@@ -1,0 +1,143 @@
+
+1.6.3.0
+- Fixed issue deleting listener by name (F3)
+- No longer have to double click when printing (F2)
+- Now playing the "not in use" sound if a deleted wallet is scanned more than once (F8)
+- Average number of wallets dispatched each week is now (number of wallets scanned in + number of wallets scanned out) (F6)
+
+1.6.2.1
+- Removed the dead/deceased listener hard deletion
+
+1.6.1.0
+- Fixed issue with the add form
+- Removed the year from the birthdays
+
+1.6.0.0
+- Big refactor for the app, its now called: TNBase 
+- Changed the Solihill to Solihull (its now in the settings file anyway)
+- Stats: Changed the title to 'This Year's Database Statistics Up To [date printed]' 
+- Changed 'Wallets' in all the list items in the stats to 'News Wallets'.
+- Removed age analysis list
+- Unsent Wallet list: No longer showing addresses but keeping everything else including 'phone numbers.
+
+1.5.2.0
+- Removed "invalid scan" announcement bug
+- Now recording scan records in the database (for future stats changes)
+
+1.5.1.0
+- Removed text to voice on scan in form
+- Hopeful fix for the scanned out issue
+
+1.5.0.0
+- Hopefully improved the scan in form
+- Added an "enable scan out button"
+
+1.4.9.0
+- Handle incorrect scanning better on scan in form
+
+1.4.8.0
+- Reverted to showing paused listeners in unsent listener list
+- Now initiating a scan if a 0 is entered (should fix scanning issues)
+
+1.4.7.0
+- Enter should no longer skip over in the scan out names page
+- Backup path now supports name or drive volume e.g. BackupUSB or D:\
+
+1.4.6.0
+- Fixed printing issue on label form
+- Now only showing active listeners on the unsent listener list (no longer paused ones as well)
+
+1.4.5.0
+- Now removing invalid deleted dates
+- Changed menu item to Listeners inactive for more than 30 days.
+
+1.4.4.1
+- Improved the scanning in warning
+- Fixed the issue with not detecting scanned in listeners
+
+1.4.4.0
+- Moved labels accross
+- Now doing automatic backups
+
+1.4.3.8
+- Changed duplicate scan in form timeout to 8 seconds
+- Arrow keys are now enabled on the first scan out form
+- You can now search for just a surname or forname by leaving one blank or using an asterix
+- Fixed issue with scan in not updating the in/out records
+- New form in the maintenance menu allows you to edit stock and in out records for listener
+
+1.4.3.7
+- 'Rev' added to titles list.
+- No longer including deleted listeners in birthday list
+- Removed 'GPO' from menu item
+- Changed birthday printing logic
+- Moved address label barcodes and wallet numbers accross
+- Buttons in the browse screen are now only enabled if they are useful
+- Fixed: Scan out form calling out the wrong listeners.
+
+1.4.3.6
+- "wallets not sent out" no longer including deleted listeners
+
+1.4.3.5
+- Added "Ms" to title dropdowns
+- Now only showing print forms on a Saturday when finishing
+- Stats printing should allow printer selection now.
+- Not printing/showing forms if there are no listeners etc to display
+- Printing a warning form showing things like "No birthdays for next week" if there are none as part of the finished button auto printing
+- The import process doesnt delete collectors, if you need to keep them between releases, you should backup the database before upgrading, upgrade and them restore the database you backed up before upgrading.
+
+1.4.3.4
+- Magazine Wallets - Gordon's number 6
+- Printing forms when the finished button is clicked - Gordon's number 2
+- The new listener count was including deleted listeners before, that has been fixed. 
+
+1.4.3.3
+- Alphabetic list is no longer showing deleted listeners
+- Add and edit form now say "Memory Stick Player Issued?"
+- Added the explode sound to the duplicate scan in form, also changed colour to red and it now auto closes after 5 seconds
+
+1.4.3.2
+- Scanning in - now playing the not in use file for deleted listeners
+- Print dormant listeners, this is now using the correct database query
+- Removed unused wav files
+
+1.4.3.1
+- Removed overwrite prompt on DB backup
+
+1.4.3.0
+- Made titles consistent and added "sir"
+- Import process no longer deletes collectors.
+- Added a new print collector for listener menu item
+
+1.4.2.8
+- Collectors Improvements, you can now filter by surnames (optionally)
+
+1.4.2.7
+- Refix from 1.4.2.6
+
+1.4.2.6
+- Fixed issue with being unable to restore a listener.
+- Added tests for day of the week scanning.
+
+1.4.2.5
+- Fixed birthday display on edit form
+- Made address columns wider on edit form
+- Changed "never" to "UFN" on stop date
+
+1.4.2.4
+- Fixed recently deleted form
+- Scanning in: now clearing text after rejecting duplicate entry
+- Scanning out: Added a message warning if a duplicate is scanned outwards
+- Fixed a bug finding collectors for a listener with an invalid postcode
+- Fixed issue with 0 wallet number in collector form after adding listener
+- Edit Form: Now asking whether to update labels if the name details change
+- Now showing 15 collectors on the browse collectors form
+- Updated contact number column width on collectors form
+- Added warning for any wallets that would set the stock to over 3
+- Changed new listeners for the year calculation - hopefully fixed 
+
+1.4.2.3
+- Improved resume/restore functionality
+- Fixed incorrect date format on paused listeners on the edit page
+- Fixed the broken memory sticks on loan statistic
+- Fixed an issue with weekly stats saving

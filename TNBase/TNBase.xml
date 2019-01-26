@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TNBase</name>
+    </assembly>
+    <members>
+        <member name="T:TNBase.ExceptionHandler">
+            <summary>
+            Handle unhandled exceptions (at least log them!)
+            </summary>
+        </member>
+        <member name="M:TNBase.ExceptionHandler.AppDomain_CurrentDomain_UnhandledException(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            Unhandled exception handler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.ExceptionHandler.AppDomain_Application_ThreadException(System.Object,System.Threading.ThreadExceptionEventArgs)">
+            <summary>
+            Unhandled exception handler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:TNBase.FormAbout">
+            <summary>
+            About form
+            </summary>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_Deactivate(System.Object,System.EventArgs)">
+            <summary>
+            Close the form if they click away
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_Load(System.Object,System.EventArgs)">
+            <summary>
+            On the form load
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_LostFocus(System.Object,System.EventArgs)">
+            <summary>
+            Close the form if they click away
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAbout.PictureBox_Click(System.Object,System.EventArgs)">
+            <summary>
+            Hidden testing form, only showed by pressing the picture 3 times.
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAddMini.showFullForm">
+            <summary>
+            Show the full add form
+            </summary>
+        </member>
+        <member name="F:TNBase.FormAdjustStockLevels.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.setupForm(System.Int32)">
+            <summary>
+            Setup the form
+            </summary>
+            <param name="walletId"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.btnDontAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.btnAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add button is clicked.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.#ctor">
+            <summary>
+            Form load.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormEdit.setupForm(TNBase.Objects.Listener)">
+            <summary>
+            Setup the form
+            </summary>
+            <param name="theListener"></param>
+        </member>
+        <member name="M:TNBase.FormEdit.HasAddressChanged">
+            <summary>
+            Has the address changed?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TNBase.FormEdit.HasNameChanged">
+            <summary>
+            Has the name changed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TNBase.FormEdit.HasUpdated">
+            <summary>
+            Has the listener been updated
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TNBase.FormLogViewer.UpdateText(System.String)">
+            <summary>
+            Highlight log text by color
+            </summary>
+        </member>
+        <member name="M:TNBase.FormLogViewer.logUpdater_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Keep the log file up to date!
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.FormLogViewer.formLogViewer_Load(System.Object,System.EventArgs)">
+            <summary>
+            When the form loads
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:TNBase.FormLogViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormLogViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.FormLogViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TNBase.FormMain">
+            <summary>
+            Main form
+            </summary>
+        </member>
+        <member name="M:TNBase.FormMain.LoadLogo">
+            <summary>
+            Load the correct logo!
+            </summary>
+        </member>
+        <member name="M:TNBase.FormMain.formMain_Load(System.Object,System.EventArgs)">
+            <summary>
+            When the form loads.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:TNBase.FormPrintMagazineWallets.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormPrintMagazineWallets.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.FormPrintMagazineWallets.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormStopSending.setupForm(TNBase.Objects.Listener)">
+            <summary>
+            Setup the form with some listener.
+            </summary>
+            <param name="theListener"></param>
+        </member>
+        <member name="M:TNBase.FormTest.btnDevTest_Click(System.Object,System.EventArgs)">
+            <summary>
+            Function for some latest development test!
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.ModuleGeneric.GetDatabasePath">
+            <summary>
+            Get the database path.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TNBase.ModuleGeneric.GetLogFilePath">
+            <summary>
+            Get the log file path!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TNBase.ModuleGeneric.UpdateStatsWeek(TNBase.DataStorage.IServiceLayer,System.Boolean)">
+            <summary>
+            Update weekly stats
+            </summary>
+        </member>
+        <member name="T:TNBase.My.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:TNBase.My.Resources.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:TNBase.My.Resources.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:TNBase.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:TNBase.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:TNBase.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:TNBase.RichTextBoxExtensions.MyAppendText(System.Windows.Forms.RichTextBox,System.String,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            My rich text extension to add new lines
+            </summary>
+            <param name="box"></param>
+            <param name="text"></param>
+            <param name="color"></param>
+            <param name="backColor"></param>
+        </member>
+    </members>
+</doc>
