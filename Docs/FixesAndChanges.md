@@ -7,10 +7,8 @@
 Weekly listeners as of today: 190
 'Net change of listeners for the year': -4   Should be -9 
 
-**F9.** Editing: Searching by a listener's name has stopped working. Searching by wallet number is OK.
-
 ## Changes:
-**C1.** Change 'Wallets'�in all the list items in the stats to 'News Wallets' so that News wallets and Magazine wallets can be separately identified.
+**C1.** Change 'Wallets' in all the list items in the stats to 'News Wallets' so that News wallets and Magazine wallets can be separately identified.
 
 **C2.** Make the number of News wallets allocated to each listener configurable**. Default = 3.
 
