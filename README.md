@@ -8,7 +8,7 @@ Some talking newspapers also upload their recordings to a web site so that suita
 As a charity, we are looking for assistance to update our database software so that:
 * It better complies with recent changes to the GDPR regulations
 * Meets our changed requirements
-* It can be made more configarable so that it can meet the differing requirements of the many other Talking Newspaper groups.
+* It can be made more configurable so that it can meet the differing requirements of the many other Talking Newspaper groups.
 
 See also: [Developer Notes](docs/DevNotes.md) 
 and [Requested Fixed and Changes](docs/FixesAndChanges.md).
