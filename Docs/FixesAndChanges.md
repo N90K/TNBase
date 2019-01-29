@@ -2,7 +2,7 @@
 ## Fixes:
 **F1.**  Check the calculation of the number of scanned in wallets displayed in the 'History' menu item: Number seems to be much too high. However the 'Scanned out' number and the 'Total' numbers look to be reasonable. 
 
-**F7.** Stats: 'Net change of listeners for the year' doesn't seem to add up: For example:
+**F7.** Stats: 'Net change of listeners for the year' doesn't always add up correctly: For example:
 'Weekly listeners at the start of this year: 199
 Weekly listeners as of today: 190
 'Net change of listeners for the year': -4   Should be -9 
