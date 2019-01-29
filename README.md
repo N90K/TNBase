@@ -5,6 +5,11 @@ TNBase is a database programme used to keep the records of listeners and the pos
 
 Some talking newspapers also upload their recordings to a web site so that suitably equipped listeners can download them or listen on-line.
 
+As a charity, we are looking for assistance to update our database software so that:
+ It better complies with recent changes to the GDPR regulations
+ Meets our changed requirements
+ It can be made more configuarable so that it can meet the differing requirements of the many other Talking Newspaper groups.
+
 See also: [Developer Notes](docs/DevNotes.md) 
 and [Requested Fixed and Changes](docs/FixesAndChanges.md).
 
