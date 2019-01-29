@@ -43,6 +43,6 @@ Separate stock records need to be generated for magazine wallets:  The only chan
 ** Discontinue week numbers but use Saturday dates or other way of identifying weeks
 ** Browse Form - Freeze column on the edit form.
 
-Download TNBase at: www.acdale.plus.com/TNBase/
+Download TNBase at: www.acdale.plus.com/TNBase/  Note: TNBase requires Windows 7 or higher and .NET v4.5 or higher
 
-Chris D. 12/08/2018
+Chris D. 29/01/2019
