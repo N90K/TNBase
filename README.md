@@ -11,7 +11,7 @@ As a charity, we are looking for assistance to update our database software so t
 * It can be made more configurable so that it can meet the differing requirements of other Talking Newspaper groups.
 
 See also: [Developer Notes](docs/DevNotes.md) 
-and [Requested Fixed and Changes](/docs/FixesAndChanges.md).
+and [Requested Fixed and Changes](https://github.com/achrisdale/TNBase/docs/FixesAndChanges.md).
 
 ## **Recording, Editing, and Viewing of Listeners' Details:**
 Listeners' names, addresses, 'phone numbers, any other useful information they provide, and if they wish, their day and month of birth, are recorded. Listeners' details also include whether they have been lent a USB memory stick player, whether they take the separate magazine recordings as well as the weekly news, and their current 'status'. This can be 'Active', 'Paused' or 'Deleted'. Additional information shows the listener's quantities of wallets scanned in and out over the last eight weeks, Each listener's postal wallets are allocated a serial number. Each listener will have three addressed wallets allocated to them so that if they do not return their first wallet by the end of the week, two more wallets are available for sending on a second and third week.
