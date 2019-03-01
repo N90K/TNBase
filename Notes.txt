@@ -1,3 +1,5 @@
+1.6.4.0
+- Fixed issue with scanner closing duplicate form straight away
 
 1.6.3.0
 - Fixed issue deleting listener by name (F3)

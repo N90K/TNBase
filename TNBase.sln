@@ -15,13 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNBase.Objects.Test", "TNBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNBase.Test", "TNBase.Test\TNBase.Test.csproj", "{00008951-7EE7-42A6-BCA4-78A676FE8668}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B357866A-9244-49D9-B94E-1DC12739F727}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6783E69C-32D4-46C6-9C1C-99F06003FF5E}"
 	ProjectSection(SolutionItems) = preProject
 		Docs\DevNotes.md = Docs\DevNotes.md

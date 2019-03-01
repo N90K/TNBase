@@ -1,19 +1,11 @@
-using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.Linq;
-using System.Xml.Linq;
+
 namespace TNBase
 {
-	public partial class FormDuplicateFound
+    public partial class FormDuplicateFound
 	{
         private int autoCloseTime = 8;
+        private Boolean addEnabled = false;
 
         /// <summary>
         /// Setup the form
@@ -22,7 +14,8 @@ namespace TNBase
 		public void setupForm(int walletId)
 		{
 			lblWallet.Text = walletId.ToString();
-		}
+            timerEnableAdd.Enabled = true;
+        }
 
         /// <summary>
         /// Close the form.
@@ -42,8 +35,13 @@ namespace TNBase
         /// <param name="e"></param>
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			My.MyProject.Forms.formScanIn.addListItem(int.Parse(lblWallet.Text));
-			this.Hide();
+            // Add is disabled initially to avoid scanner auto-enter
+            if (addEnabled)
+            {
+                My.MyProject.Forms.formScanIn.addListItem(int.Parse(lblWallet.Text));
+                this.Hide();
+                addEnabled = false;
+            }
 		}
 
         /// <summary>
@@ -71,5 +69,11 @@ namespace TNBase
                 this.Close();
             }
         }
-	}
+
+        private void timerEnableAdd_Tick(object sender, EventArgs e)
+        {
+            addEnabled = true;
+            timerEnableAdd.Enabled = false;
+        }
+    }
 }

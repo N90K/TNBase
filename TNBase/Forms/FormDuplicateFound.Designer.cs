@@ -47,6 +47,7 @@ namespace TNBase
             this.label3 = new System.Windows.Forms.Label();
             this.lblSeconds = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timerEnableAdd = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Label1
@@ -136,7 +137,13 @@ namespace TNBase
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // formDuplicateFound
+            // timerEnableAdd
+            // 
+            this.timerEnableAdd.Enabled = true;
+            this.timerEnableAdd.Interval = 250;
+            this.timerEnableAdd.Tick += new System.EventHandler(this.timerEnableAdd_Tick);
+            // 
+            // FormDuplicateFound
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +160,7 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formDuplicateFound";
+            this.Name = "FormDuplicateFound";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.formDuplicateFound_Load);
             this.ResumeLayout(false);
@@ -168,5 +175,6 @@ namespace TNBase
         internal Label label3;
         internal Label lblSeconds;
         private Timer timer;
-	}
+        private Timer timerEnableAdd;
+    }
 }
