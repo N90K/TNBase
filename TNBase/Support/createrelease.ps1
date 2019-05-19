@@ -15,6 +15,7 @@ $Destination = "TNBase V$VersionStr.zip"
 # For safety remove the Database (and any backups)
 Remove-Item TNBase\Resource\Listeners.s3db
 Remove-Item TNBase\Resource\Listeners.s3db.bak
+Remove-Item -R TNBase\app.publish
 
 Write-Host "Zipping this folder: $Source"
 Write-Host "Creating file: $Destination"
@@ -24,6 +25,8 @@ Get-ChildItem "$PSScriptRoot\$Source" -Recurse | Remove-Item -Recurse -Force -Co
 
 git tag $VersionStr
 Write-Host "Creating git tag: $VersionStr"
+
+Remove-Item -R TNBase
 
 Write-Host "Press any key to continue ..."
 $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

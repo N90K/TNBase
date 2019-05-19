@@ -496,6 +496,7 @@ namespace TNBase
             this.chkNoBirthday.TabIndex = 59;
             this.chkNoBirthday.Text = "Birthday Unknown";
             this.chkNoBirthday.UseVisualStyleBackColor = false;
+            this.chkNoBirthday.CheckedChanged += new System.EventHandler(this.chkNoBirthday_CheckedChanged);
             // 
             // btnNext
             // 
@@ -673,7 +674,7 @@ namespace TNBase
             this.Label20.TabIndex = 77;
             this.Label20.Text = "N/a";
             // 
-            // formEdit
+            // FormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -730,7 +731,7 @@ namespace TNBase
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "formEdit";
+            this.Name = "FormEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();

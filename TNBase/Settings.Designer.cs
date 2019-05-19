@@ -97,7 +97,7 @@ namespace TNBase {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool CreateDummyData {
             get {
                 return ((bool)(this["CreateDummyData"]));

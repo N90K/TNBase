@@ -208,8 +208,15 @@ namespace TNBase
                 {
                     myListener.Stock = int.Parse(txtStock.Text);
                 }
-
-                myListener.Birthday = birthdayDate.Value;
+                
+                if (chkNoBirthday.Checked)
+                {
+                    myListener.Birthday = null;
+                }
+                else
+                {
+                    myListener.Birthday = birthdayDate.Value;
+                }
 
                 if (serviceLayer.UpdateListener(myListener))
                 {
@@ -346,5 +353,16 @@ namespace TNBase
             birthdayDate.Format = DateTimePickerFormat.Custom;
             birthdayDate.CustomFormat = "dd MMMM";
 		}
-	}
+
+        private void chkNoBirthday_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNoBirthday.Checked == false)
+            {
+                birthdayDate.Enabled = true;
+            } else {
+                birthdayDate.Enabled = false;
+                birthdayDate.Value = DateTime.Parse("01/01/" + DateTime.Now.Year);
+            }
+        }
+    }
 }

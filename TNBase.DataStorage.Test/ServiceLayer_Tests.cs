@@ -250,7 +250,7 @@ namespace TNBase.DataStorage.Test
         [TestMethod]
         public void Stats_TotalWalletsSentForYear()
         {
-            serviceLayer.GetWalletsDispatchedForYear(DateTime.Now.Year).Should().Be(36);
+            serviceLayer.GetWalletsDispatchedForYear(DateTime.Now.Year).Should().Be(81);
         }
 
         /// <summary>

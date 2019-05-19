@@ -20,3 +20,11 @@
 ### Database Check
 
 1. sqlite3 Listeners.s3db "PRAGMA integrity_check"
+
+### Creating a release
+
+1. Make sure all tests pass
+1. Update the version on the TNBase project
+1. Clean the solution
+1. Build the solution
+1. Run the ```TNBase\Support\createrelease.ps1``` powershell script
