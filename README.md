@@ -109,3 +109,4 @@ Add Collectors: Add contact details for volunteers delivering and collecting mem
 
 **Download TNBase at: www.acdale.plus.com/TNBase/  Note: TNBase requires Windows 7 or higher and .NET v4.5 or higher**
 
+** We need help to update 'TBBase'. If you can assist us, please contact: cd@acdale.plus.com  
