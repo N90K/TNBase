@@ -31,7 +31,9 @@ Separate stock records need to be generated for magazine wallets:  The only chan
 
 **C10.** New item in the 'Print' menu: Print list of all wallet number with current stock levels of News and Magazine wallets.  Three columns, preferably several pairs of columns so to fit everything on one page.  Stock levels of unused/reserved wallet numbers up to the latest used (or up to 300) can be shown as an 'X'.   
 
-**C11.** Make the usual day of the week when the database is updated configurable**. Default = Saturday. 
+**C11.** Make the usual day of the week when the database is updated configurable**. Default = Saturday.
+
+**C12.** Add to Print menu: List currently Paused wallets, with 'Until' date where known.
 
 ** **These changes are required so we can conform to the new GDPR regulations.**
 
