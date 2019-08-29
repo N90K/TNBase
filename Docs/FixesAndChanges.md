@@ -47,4 +47,4 @@ Separate stock records need to be generated for magazine wallets:  The only chan
 
 Download TNBase at: www.acdale.plus.com/TNBase/  Note: TNBase requires Windows 7 or higher and .NET v4.5 or higher
 
-Chris D. 29/01/2019
+Chris D. 29/08/2019
