@@ -29,7 +29,7 @@ Each listener has 1/2/3**  magazine wallet(s) Default = 1.
 Magazine wallets are only scanned out four times a year (Spring, Summer, Autumn, and Winter, date range to be agreed**), but can be scanned in at any time**.
 Separate stock records need to be generated for magazine wallets:  The only change needed to the New/Edit listener details will be a new box 'Magazine wallet stock'. The Last in/out boxes continue to refer to the weekly news wallets.   Also a new column in 'Browse' needed: 'Mag. wallet stock' so existing 'Stock' column relabelled: 'News wallet stock'.  Magazine wallet scanning records are not essential.
 
-**C10.** New item in the 'Print' menu: Print list of all wallet number with current stock levels of News and Magazine wallets.  Three columns, preferably several pairs of columns so to fit everything on one page.  Stock levels of unused/reserved wallet numbers up to the latest used (or up to 300) can be shown as an 'X'.   
+**C10.** New item in the 'Print' menu: Print list of all wallet number with current stock levels of News and Magazine wallets (Magazine wallets aded only after C9 completed).  Three columns, preferably several pairs of columns so to fit everything on one  A4 page.  Stock levels of unused/reserved wallet numbers up to the latest used (or up to 300) can be shown as an 'X'.   
 
 **C11.** Make the usual day of the week when the database is updated configurable**. Default = Saturday.
 
