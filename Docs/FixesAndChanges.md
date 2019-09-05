@@ -35,7 +35,7 @@ Separate stock records need to be generated for magazine wallets:  The only chan
 
 **C12.** Add to Print menu: List currently Paused wallets, with 'Until' date where known.
 
-** **These changes are required so we can conform to the new GDPR regulations.**
+* **These changes are required so we can better conform to the new GDPR regulations.**
 
 ** **Newly configurable item for TNBase versions for use by other TNs.**
 
