@@ -39,12 +39,7 @@ Separate stock records need to be generated for magazine wallets:  The only chan
 
 ** **Newly configurable item for TNBase versions for use by other TNs.**
 
-** Delete names and all contact details after a listener is deleted and all wallets returned (or delete manually if necessary), but reserve/keep the wallet numbers for a year, as now.*
-** Delete all the years of listeners' births and just retain the days and months of birth. *
-** A new report to list 'Magazine only listeners'. (List only Wallet numbers and names)
-** Discontinue week numbers but use Saturday dates or other way of identifying weeks
-** Browse Form - Freeze column on the edit form.
 
 Download TNBase at: www.acdale.plus.com/TNBase/  Note: TNBase requires Windows 7 or higher and .NET v4.5 or higher
 
-Chris D. 29/08/2019
+Chris D. 05/09/2019
