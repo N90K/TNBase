@@ -1,3 +1,6 @@
+1.6.5.0
+- Added option to print the stock of all wallets
+
 1.6.4.1
 - Fixed issue with birthday editing (unable to edit once unknown is selected)
 

@@ -108,6 +108,7 @@ namespace TNBase
             this.restoreDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblWeekNumber = new System.Windows.Forms.Label();
+            this.walletsStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTop.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
@@ -293,7 +294,8 @@ namespace TNBase
             this.PrintAlphabeticSurnameListToolStripMenuItem,
             this.StoppedListenerListToolStripMenuItem,
             this.printCollectorForListenerToolStripMenuItem,
-            this.magazineWalletsToolStripMenuItem});
+            this.magazineWalletsToolStripMenuItem,
+            this.walletsStockToolStripMenuItem});
             this.PrintingToolStripMenuItem.Name = "PrintingToolStripMenuItem";
             this.PrintingToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.PrintingToolStripMenuItem.Text = "Prin&ting";
@@ -743,7 +745,14 @@ namespace TNBase
             this.lblWeekNumber.TabIndex = 17;
             this.lblWeekNumber.Text = "Week: ????";
             // 
-            // formMain
+            // walletsStockToolStripMenuItem
+            // 
+            this.walletsStockToolStripMenuItem.Name = "walletsStockToolStripMenuItem";
+            this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
+            this.walletsStockToolStripMenuItem.Text = "Wallets Stock";
+            this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.walletsStockToolStripMenuItem_Click);
+            // 
+            // FormMain
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -768,7 +777,7 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuTop;
             this.MaximizeBox = false;
-            this.Name = "formMain";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.formMain_Load);
             this.menuTop.ResumeLayout(false);
@@ -861,5 +870,6 @@ namespace TNBase
         private ToolStripMenuItem magazineWalletsToolStripMenuItem;
         private ToolStripMenuItem adjustStockLevelsToolStripMenuItem;
         private ToolStripMenuItem enableScanOutToolStripMenuItem;
-	}
+        private ToolStripMenuItem walletsStockToolStripMenuItem;
+    }
 }

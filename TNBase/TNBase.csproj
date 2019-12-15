@@ -288,6 +288,12 @@
     <Compile Include="Forms\Printing\FormPrintGPOLabels.Designer.cs">
       <DependentUpon>FormPrintGPOLabels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Printing\FormPrintWalletStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Printing\FormPrintWalletStock.Designer.cs">
+      <DependentUpon>FormPrintWalletStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Printing\FormPrintWarnings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -511,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Printing\FormPrintGPOLabels.resx">
       <DependentUpon>FormPrintGPOLabels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Printing\FormPrintWalletStock.resx">
+      <DependentUpon>FormPrintWalletStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Printing\FormPrintWarnings.resx">
       <DependentUpon>FormPrintWarnings.cs</DependentUpon>

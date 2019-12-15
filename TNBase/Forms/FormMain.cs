@@ -11,6 +11,8 @@ using System.Linq;
 using System.Xml.Linq;
 using TNBase.DataStorage;
 using NLog;
+using TNBase.Forms.Printing;
+
 namespace TNBase
 {
     /// <summary>
@@ -508,5 +510,10 @@ namespace TNBase
         {
             btnScanOut.Enabled = true;
         }
+
+		private void walletsStockToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            new FormPrintWalletStock().Show();
+		}
 	}
 }
