@@ -32,6 +32,10 @@ namespace TNBase.Forms.Printing
         private void PrintForm()
         {
             SetInitial();
+            printWalletsStockDoc.DefaultPageSettings.Margins.Top = 70;
+            printWalletsStockDoc.DefaultPageSettings.Margins.Left = 70;
+            printWalletsStockDoc.DefaultPageSettings.Margins.Right = 70;
+            printWalletsStockDoc.DefaultPageSettings.Margins.Bottom = 70;
             printPreview.Document = printWalletsStockDoc;
             printPreview.ClientSize = new Size(600, 600);
             printPreview.ShowDialog();
@@ -52,15 +56,15 @@ namespace TNBase.Forms.Printing
         {
             var g = e.Graphics;
 
-            var spaceWidth = 7;
+            var spaceWidth = 3;
             var fontNormal = new Font(FONT_FAMILY, 12);
             var fontBold = new Font(FONT_FAMILY, 12, FontStyle.Bold);
 
             currentPageNumber = currentPageNumber + 1;
 
-            var headerPosition = DrawHeader("Wallet Stock", e.MarginBounds, g);
-            
-            var tableHeaders = new List<string> { "Wallet", "N", "M" }
+            var headerPosition = DrawHeader("News Wallet Stock", e.MarginBounds, g);
+
+            var tableHeaders = new List<string> { "Wallet", "Qty" }
                 .Select(x => new
                 {
                     Text = x,
@@ -109,9 +113,6 @@ namespace TNBase.Forms.Printing
                         var position2 = new Rectangle(position1.Right + spaceWidth, bottom, tableHeaders[1].Size.Width, rowHeight);
                         g.DrawString(stockText, fontNormal, Brushes.Black, position2);
 
-                        var position3 = new Rectangle(position2.Right + spaceWidth, bottom, tableHeaders[2].Size.Width, rowHeight);
-                        g.DrawString("-", fontNormal, Brushes.Black, position3);
-
                         listenersToPrint.RemoveAt(0);
                     }
 
@@ -124,9 +125,8 @@ namespace TNBase.Forms.Printing
 
             var totalPages = (totalCount + recordCount - 1) / recordCount;
 
-            var bottomMargin = e.MarginBounds.Bottom + 20;
+            var bottomMargin = e.MarginBounds.Bottom + 25;
 
-            g.DrawString("Number of Listeners: " + totalCount, fontBold, Brushes.Black, 100, bottomMargin);
             g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), fontBold, Brushes.Black, 550, bottomMargin);
             g.DrawString("Page " + currentPageNumber + "/" + totalPages, fontBold, Brushes.Black, 380, bottomMargin);
 
