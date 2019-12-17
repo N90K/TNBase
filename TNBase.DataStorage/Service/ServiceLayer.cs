@@ -997,7 +997,7 @@ namespace TNBase.DataStorage
             int defaultRet = 0;
             try
             {
-                IEnumerable<WeeklyStats> weeklyStats = repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd && x.Status.Equals(ListenerStates.Active)).Average(x=>x.TotalListeners);
+                IEnumerable<WeeklyStats> weeklyStats = repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd);
                 if (weeklyStats.Count() > 0) 
                 {
                     defaultRet = (int)weeklyStats.Average(x => x.ScannedOut);

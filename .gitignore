@@ -16,10 +16,5 @@ bin
 /TNBase.suo
 /TNBase.v12.suo
 /TNBase/Resource/Listeners - withdata.s3db
-/.vs/TNBase/DesignTimeBuild/.dtbcache
-/.vs/TNBase/v15/.suo
-/.vs/TNBase/v15/Server/sqlite3/db.lock
-/.vs/TNBase/v15/Server/sqlite3/storage.ide
-/.vs/TNBase/v15/Server/sqlite3/storage.ide-shm
-/.vs/TNBase/v15/Server/sqlite3/storage.ide-wal
+.vs/
 /TNBase/Resource/Listeners - Copy.s3db
