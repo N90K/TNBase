@@ -39,7 +39,6 @@ namespace TNBase
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowse));
             this.lstBrowse = new System.Windows.Forms.ListView();
-            this.Wallet = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Forename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,13 +70,15 @@ namespace TNBase
             this.btnLast = new System.Windows.Forms.Button();
             this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.Label1 = new System.Windows.Forms.Label();
+            this.MagazineStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstFreeze = new System.Windows.Forms.ListView();
+            this.walletFreeze = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstBrowse
             // 
             this.lstBrowse.AllowColumnReorder = true;
             this.lstBrowse.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Wallet,
             this.Title,
             this.Forename,
             this.Surname,
@@ -94,6 +95,7 @@ namespace TNBase
             this.Status,
             this.StatusInfo,
             this.Stock,
+            this.MagazineStock,
             this.LastIn,
             this.LastOut,
             this.Info});
@@ -101,19 +103,14 @@ namespace TNBase
             this.lstBrowse.FullRowSelect = true;
             this.lstBrowse.GridLines = true;
             this.lstBrowse.HideSelection = false;
-            this.lstBrowse.Location = new System.Drawing.Point(12, 61);
+            this.lstBrowse.Location = new System.Drawing.Point(96, 61);
             this.lstBrowse.MultiSelect = false;
             this.lstBrowse.Name = "lstBrowse";
-            this.lstBrowse.Size = new System.Drawing.Size(1075, 405);
+            this.lstBrowse.Size = new System.Drawing.Size(991, 405);
             this.lstBrowse.TabIndex = 2;
             this.lstBrowse.UseCompatibleStateImageBehavior = false;
             this.lstBrowse.View = System.Windows.Forms.View.Details;
             this.lstBrowse.SelectedIndexChanged += new System.EventHandler(this.lstBrowse_SelectedIndexChanged);
-            // 
-            // Wallet
-            // 
-            this.Wallet.Text = "Wallet";
-            this.Wallet.Width = 65;
             // 
             // Title
             // 
@@ -188,7 +185,7 @@ namespace TNBase
             // 
             // Stock
             // 
-            this.Stock.Text = "Stock";
+            this.Stock.Text = "News Stock";
             // 
             // LastIn
             // 
@@ -348,12 +345,40 @@ namespace TNBase
             this.Label1.TabIndex = 63;
             this.Label1.Text = "Order by:";
             // 
-            // formBrowse
+            // MagazineStock
+            // 
+            this.MagazineStock.Text = "Mag Stock";
+            // 
+            // lstFreeze
+            // 
+            this.lstFreeze.AllowColumnReorder = true;
+            this.lstFreeze.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.walletFreeze});
+            this.lstFreeze.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstFreeze.FullRowSelect = true;
+            this.lstFreeze.GridLines = true;
+            this.lstFreeze.HideSelection = false;
+            this.lstFreeze.Location = new System.Drawing.Point(12, 61);
+            this.lstFreeze.MultiSelect = false;
+            this.lstFreeze.Name = "lstFreeze";
+            this.lstFreeze.Size = new System.Drawing.Size(83, 405);
+            this.lstFreeze.TabIndex = 64;
+            this.lstFreeze.UseCompatibleStateImageBehavior = false;
+            this.lstFreeze.View = System.Windows.Forms.View.Details;
+            this.lstFreeze.SelectedIndexChanged += new System.EventHandler(this.lstFreeze_SelectedIndexChanged);
+            // 
+            // walletFreeze
+            // 
+            this.walletFreeze.Text = "Wallet";
+            this.walletFreeze.Width = 87;
+            // 
+            // FormBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1104, 634);
+            this.Controls.Add(this.lstFreeze);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.cmbOrder);
             this.Controls.Add(this.btnPrevious);
@@ -371,14 +396,13 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formBrowse";
+            this.Name = "FormBrowse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 
 		}
 		internal System.Windows.Forms.ListView lstBrowse;
-		internal System.Windows.Forms.ColumnHeader Wallet;
 		internal System.Windows.Forms.ColumnHeader Title;
 		internal System.Windows.Forms.ColumnHeader Forename;
 		internal System.Windows.Forms.ColumnHeader Surname;
@@ -410,5 +434,8 @@ namespace TNBase
         internal System.Windows.Forms.ColumnHeader Info;
         private System.Windows.Forms.ComboBox cmbOrder;
 		internal System.Windows.Forms.Label Label1;
-	}
+        internal ColumnHeader MagazineStock;
+        internal ListView lstFreeze;
+        internal ColumnHeader walletFreeze;
+    }
 }
