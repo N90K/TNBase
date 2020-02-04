@@ -1,146 +1,69 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace TNBase.Objects
 {
-    /// <summary>
-    /// Represents a Listener
-    /// </summary>
+    [Table("Listeners")]
     public class Listener
     {
-        /// <summary>
-        /// String used to indicate a never ending time
-        /// </summary>
         public const string NEVER_END_PAUSE_STRING = "UFN";
-        /// <summary>
-        /// How much stock does a new listener get
-        /// </summary>
         public const int DEFAULT_STOCK = 3;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public Listener() 
+        public Listener()
         {
             Joined = DateTime.Now;
             Stock = DEFAULT_STOCK;
-            inOutRecords = new InOutRecords();
+            Status = ListenerStates.ACTIVE;
         }
-        
-        /// <summary>
-        /// The wallet number for the Listener
-        /// </summary>
-        public int Wallet;
 
-        /// <summary>
-        /// Title for the Listener e.g. Mr
-        /// </summary>
-        public string Title;
-        /// <summary>
-        /// Listener Forename
-        /// </summary>
-        public string Forename;
-        /// <summary>
-        /// Listener Surname
-        /// </summary>
-        public string Surname;
-
-        /// <summary>
-        /// Address Line 1
-        /// </summary>
-        public string Addr1;
-        /// <summary>
-        /// Address Line 2
-        /// </summary>
-        public string Addr2;
-        /// <summary>
-        /// Town
-        /// </summary>
-        public string Town;
-        /// <summary>
-        /// County
-        /// </summary>
-        public string County;
-        /// <summary>
-        /// Postcode
-        /// </summary>
-        public string Postcode;
-        /// <summary>
-        /// Telephone Number
-        /// </summary>
-        public string Telephone;
-
-        /// <summary>
-        /// Does the Listener have a memory stick on loan?
-        /// </summary>
-        public bool MemStickPlayer;
-        /// <summary>
-        /// Does the listener use magazines?
-        /// TODO (L) Remove Magazine field if not used
-        /// </summary>
-        public bool Magazine;
-
-        /// <summary>
-        /// The Listeners Birthday
-        /// </summary>
-        public DateTime? Birthday;
-
-        /// <summary>
-        /// The Date in which the Listener joined
-        /// </summary>
+        [Key]
+        public int Wallet { get; set; }
+        public string Title { get; set; }
+        public string Forename { get; set; }
+        public string Surname { get; set; }
+        public string Addr1 { get; set; }
+        public string Addr2 { get; set; }
+        public string Town { get; set; }
+        public string County { get; set; }
+        public string Postcode { get; set; }
+        public string Telephone { get; set; }
+        public bool MemStickPlayer { get; set; }
+        public bool Magazine { get; set; }
+        public DateTime? Birthday { get; set; }
         [XmlIgnore]
-        public DateTime Joined;
+        public DateTime Joined { get; set; }
+        public string Info { get; set; }
+        [Column("Status")]
+        public string State { get; set; }
+        [NotMapped]
+        public ListenerStates Status
+        {
+            get
+            {
+                Enum.TryParse<ListenerStates>(State, out var status);
+                return status;
+            }
+            set
+            {
+                State = value.ToString();
+            }
+        }
+        public string StatusInfo { get; set; }
+        [Required]
+        public virtual InOutRecords inOutRecords { get; set; }
+        public DateTime? DeletedDate { get; set; }
+        public int Stock { get; set; }
+        public DateTime? LastIn { get; set; }
+        public DateTime? LastOut { get; set; }
+        public int MagazineStock { get; set; }
 
-        /// <summary>
-        /// Freetext info field
-        /// </summary>
-        public string Info;
-
-        /// <summary>
-        /// The Listeners Status
-        /// </summary>
-        public ListenerStates Status;
-        /// <summary>
-        /// Some more status info used internally
-        /// </summary>
-        public string StatusInfo;
-
-        /// <summary>
-        /// In / Out numbers
-        /// </summary>
-        public InOutRecords inOutRecords;
-
-        /// <summary>
-        /// The deleted date for the listener (if they are deleted)
-        /// </summary>
-        public DateTime? DeletedDate;
-
-        /// <summary>
-        /// The Listener Stock Level
-        /// </summary>
-        public int Stock;
-        /// <summary>
-        /// The date a wallet last came in for the Listener
-        /// </summary>
-        public DateTime? LastIn;
-        /// <summary>
-        /// The date a wallet last went out for the Listener
-        /// </summary>
-        public DateTime? LastOut;
-
-        /// <summary>
-        /// Get the debug string for the listener
-        /// </summary>
-        /// <returns></returns>
         public string GetDebugString()
         {
             return "Wallet: " + this.Wallet + Environment.NewLine + "Name: " + GetNiceName() + Environment.NewLine + "Addr1: " + this.Addr1 + Environment.NewLine + "Addr2: " + this.Addr2 + Environment.NewLine + "Town: " + this.Town + Environment.NewLine + "County: " + this.County + Environment.NewLine + "Postcode: " + this.Postcode + Environment.NewLine + "Birthday: " + this.Birthday + Environment.NewLine + "Info: " + this.Info + Environment.NewLine + "Joined: " + this.Joined + Environment.NewLine + "LastIn: " + this.LastIn + Environment.NewLine + "LastOut: " + this.LastOut + Environment.NewLine + "Stock: " + this.Stock + Environment.NewLine + "DeletedDate: " + this.DeletedDate + Environment.NewLine + "Telephone: " + this.Telephone + Environment.NewLine + "StatusInfo: " + this.StatusInfo + Environment.NewLine + "Status: " + this.Status + Environment.NewLine + "MemStickPlayer: " + this.MemStickPlayer + Environment.NewLine + "Magazine: " + this.Magazine + Environment.NewLine;
         }
 
-        /// <summary>
-        /// Get the nice name for a listener
-        /// </summary>
-        /// <returns></returns>
         public string GetNiceName()
         {
             string start = "";
@@ -165,11 +88,6 @@ namespace TNBase.Objects
             return start + this.Forename + " " + this.Surname;
         }
 
-        /// <summary>
-        /// Get the days until a birthday
-        /// </summary>
-        /// <param name="birthday"></param>
-        /// <returns></returns>
         public static int DaysUntilBirthday(DateTime birthday)
         {
             var nextBirthday = birthday.AddYears(DateTime.Today.Year - birthday.Year);
@@ -180,11 +98,6 @@ namespace TNBase.Objects
             return (nextBirthday - DateTime.Today).Days;
         }
 
-        /// <summary>
-        /// Get the stop date for a listener
-        /// </summary>
-        /// <param name="theListener"></param>
-        /// <returns></returns>
         public static DateTime GetStoppedDate(Listener theListener)
         {
             DateTime adate = DateTime.Now;
@@ -198,9 +111,6 @@ namespace TNBase.Objects
             return adate;
         }
 
-        /// <summary>
-        /// Pause the listener
-        /// </summary>
         public void Pause(DateTime startDate, DateTime? endDate = null)
         {
             // We can only pause the listener if they are not deleted!
@@ -209,7 +119,7 @@ namespace TNBase.Objects
                 throw new ListenerStateChangeException();
             }
             Status = ListenerStates.PAUSED;
-            
+
             string myDateStr = "";
             if (endDate == null)
             {
@@ -223,9 +133,6 @@ namespace TNBase.Objects
             StatusInfo = startDate.ToNiceStr() + "," + myDateStr;
         }
 
-        /// <summary>
-        /// Resume a paused listener.
-        /// </summary>
         public void Resume()
         {
             // We can only resume the listener if they are paused!
@@ -238,11 +145,6 @@ namespace TNBase.Objects
             StatusInfo = "";
         }
 
-        /// <summary>
-        /// Get the resume date for a listener
-        /// </summary>
-        /// <param name="theListener"></param>
-        /// <returns></returns>
         public static DateTime? GetResumeDate(Listener theListener)
         {
             DateTime? adate = null;
@@ -261,11 +163,6 @@ namespace TNBase.Objects
             return adate;
         }
 
-        /// <summary>
-        /// Get the stop date string.
-        /// </summary>
-        /// <param name="theListener">The listener</param>
-        /// <returns>the string</returns>
         public static string GetResumeDateString(Listener theListener)
         {
             DateTime? result = GetResumeDate(theListener);
@@ -280,10 +177,6 @@ namespace TNBase.Objects
             }
         }
 
-        /// <summary>
-        /// Get the listeners birthday day this year
-        /// </summary>
-        /// <returns>The birthday date this year</returns>
         public DateTime BirthdayThisYear()
         {
             DateTime copy = Birthday.Value;
@@ -291,11 +184,6 @@ namespace TNBase.Objects
             return copy;
         }
 
-        /// <summary>
-        /// Get listener data string
-        /// </summary>
-        /// <param name="theListener"></param>
-        /// <returns></returns>
         public static string FormatListenerData(Listener theListener)
         {
             string resultStr = null;

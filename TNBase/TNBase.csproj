@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExceptionHandler.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Forms\Misc\FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +349,18 @@
     <Compile Include="Forms\FormResumeSending.Designer.cs">
       <DependentUpon>FormResumeSending.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Scanning\MagazinesScanOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Scanning\MagazinesScanOutForm.Designer.cs">
+      <DependentUpon>MagazinesScanOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Scanning\MagazinesScanInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Scanning\MagazinesScanInForm.Designer.cs">
+      <DependentUpon>MagazinesScanInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Scanning\FormScanIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -408,6 +421,7 @@
     <Compile Include="Forms\Misc\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\StockItem.cs" />
     <Compile Include="ModuleGeneric.cs" />
     <Compile Include="ModuleScanning.cs" />
     <Compile Include="ModuleSounds.cs" />
@@ -548,6 +562,12 @@
     <EmbeddedResource Include="Forms\FormResumeSending.resx">
       <DependentUpon>FormResumeSending.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Scanning\MagazinesScanOutForm.resx">
+      <DependentUpon>MagazinesScanOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Scanning\MagazinesScanInForm.resx">
+      <DependentUpon>MagazinesScanInForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Scanning\FormScanIn.resx">
       <DependentUpon>FormScanIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -633,10 +653,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resource\Iconshock-Real-Vista-Data-Database.ico" />
+    <Content Include="Resource\sound\beep-invalid.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resource\sound\beep.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resource\sound\beep2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\sound\doublebeep.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resource\sound\duplicate.wav">

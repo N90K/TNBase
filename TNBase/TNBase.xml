@@ -197,6 +197,40 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:TNBase.Forms.Scanning.MagazinesScanOutForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TNBase.Forms.Scanning.MagazinesScanInForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:TNBase.FormPrintMagazineWallets.components">
             <summary>
             Required designer variable.

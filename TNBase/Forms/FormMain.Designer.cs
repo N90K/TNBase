@@ -72,6 +72,8 @@ namespace TNBase
             this.StoppedListenerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printCollectorForListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magazineWalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.walletsStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.magazineWalletStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatisticsHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,9 +99,6 @@ namespace TNBase
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.btnScanOut = new System.Windows.Forms.Button();
             this.btnScanIn = new System.Windows.Forms.Button();
-            this.GroupBox3 = new System.Windows.Forms.GroupBox();
-            this.brnRestore = new System.Windows.Forms.Button();
-            this.btnBackup = new System.Windows.Forms.Button();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblHints = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerHints = new System.Windows.Forms.Timer(this.components);
@@ -108,13 +107,15 @@ namespace TNBase
             this.restoreDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblWeekNumber = new System.Windows.Forms.Label();
-            this.walletsStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnMagScanOut = new System.Windows.Forms.Button();
+            this.btnMagScanIn = new System.Windows.Forms.Button();
             this.menuTop.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
-            this.GroupBox3.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Label1
@@ -295,7 +296,8 @@ namespace TNBase
             this.StoppedListenerListToolStripMenuItem,
             this.printCollectorForListenerToolStripMenuItem,
             this.magazineWalletsToolStripMenuItem,
-            this.walletsStockToolStripMenuItem});
+            this.walletsStockToolStripMenuItem,
+            this.magazineWalletStockToolStripMenuItem});
             this.PrintingToolStripMenuItem.Name = "PrintingToolStripMenuItem";
             this.PrintingToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.PrintingToolStripMenuItem.Text = "Prin&ting";
@@ -391,6 +393,20 @@ namespace TNBase
             this.magazineWalletsToolStripMenuItem.Text = "Magazine Wallets";
             this.magazineWalletsToolStripMenuItem.Click += new System.EventHandler(this.magazineWalletsToolStripMenuItem_Click);
             // 
+            // walletsStockToolStripMenuItem
+            // 
+            this.walletsStockToolStripMenuItem.Name = "walletsStockToolStripMenuItem";
+            this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
+            this.walletsStockToolStripMenuItem.Text = "News Wallet Stock";
+            this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.walletsStockToolStripMenuItem_Click);
+            // 
+            // magazineWalletStockToolStripMenuItem
+            // 
+            this.magazineWalletStockToolStripMenuItem.Name = "magazineWalletStockToolStripMenuItem";
+            this.magazineWalletStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
+            this.magazineWalletStockToolStripMenuItem.Text = "Magazine Wallet Stock";
+            this.magazineWalletStockToolStripMenuItem.Click += new System.EventHandler(this.magazineWalletStockToolStripMenuItem_Click);
+            // 
             // StatisticsHistoryToolStripMenuItem
             // 
             this.StatisticsHistoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -403,14 +419,14 @@ namespace TNBase
             // StatisticsToolStripMenuItem
             // 
             this.StatisticsToolStripMenuItem.Name = "StatisticsToolStripMenuItem";
-            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.StatisticsToolStripMenuItem.Text = "Statistics";
             this.StatisticsToolStripMenuItem.Click += new System.EventHandler(this.StatisticsToolStripMenuItem_Click);
             // 
             // HistoryToolStripMenuItem
             // 
             this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
-            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.HistoryToolStripMenuItem.Text = "History";
             this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
@@ -620,11 +636,11 @@ namespace TNBase
             this.GroupBox2.Size = new System.Drawing.Size(210, 145);
             this.GroupBox2.TabIndex = 12;
             this.GroupBox2.TabStop = false;
-            this.GroupBox2.Text = "Scanning";
+            this.GroupBox2.Text = "News Scanning";
             // 
             // btnScanOut
             // 
-            this.btnScanOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnScanOut.BackColor = System.Drawing.Color.Yellow;
             this.btnScanOut.Enabled = false;
             this.btnScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnScanOut.Location = new System.Drawing.Point(6, 80);
@@ -637,7 +653,7 @@ namespace TNBase
             // 
             // btnScanIn
             // 
-            this.btnScanIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnScanIn.BackColor = System.Drawing.Color.Yellow;
             this.btnScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnScanIn.Location = new System.Drawing.Point(6, 31);
             this.btnScanIn.Name = "btnScanIn";
@@ -646,43 +662,6 @@ namespace TNBase
             this.btnScanIn.Text = "Scan &In";
             this.btnScanIn.UseVisualStyleBackColor = false;
             this.btnScanIn.Click += new System.EventHandler(this.btnScanIn_Click);
-            // 
-            // GroupBox3
-            // 
-            this.GroupBox3.Controls.Add(this.brnRestore);
-            this.GroupBox3.Controls.Add(this.btnBackup);
-            this.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.GroupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox3.Location = new System.Drawing.Point(774, 365);
-            this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(204, 139);
-            this.GroupBox3.TabIndex = 13;
-            this.GroupBox3.TabStop = false;
-            this.GroupBox3.Text = "Maintenance";
-            // 
-            // brnRestore
-            // 
-            this.brnRestore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.brnRestore.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.brnRestore.Location = new System.Drawing.Point(6, 75);
-            this.brnRestore.Name = "brnRestore";
-            this.brnRestore.Size = new System.Drawing.Size(192, 38);
-            this.brnRestore.TabIndex = 11;
-            this.brnRestore.Text = "&Restore";
-            this.brnRestore.UseVisualStyleBackColor = false;
-            this.brnRestore.Click += new System.EventHandler(this.brnRestore_Click);
-            // 
-            // btnBackup
-            // 
-            this.btnBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBackup.Location = new System.Drawing.Point(6, 29);
-            this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(192, 38);
-            this.btnBackup.TabIndex = 10;
-            this.btnBackup.Text = "&Backup";
-            this.btnBackup.UseVisualStyleBackColor = false;
-            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
             // 
             // StatusStrip1
             // 
@@ -745,12 +724,42 @@ namespace TNBase
             this.lblWeekNumber.TabIndex = 17;
             this.lblWeekNumber.Text = "Week: ????";
             // 
-            // walletsStockToolStripMenuItem
+            // groupBox3
             // 
-            this.walletsStockToolStripMenuItem.Name = "walletsStockToolStripMenuItem";
-            this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
-            this.walletsStockToolStripMenuItem.Text = "Wallets Stock";
-            this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.walletsStockToolStripMenuItem_Click);
+            this.groupBox3.Controls.Add(this.btnMagScanOut);
+            this.groupBox3.Controls.Add(this.btnMagScanIn);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(768, 377);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(210, 145);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Magazine Scanning";
+            // 
+            // btnMagScanOut
+            // 
+            this.btnMagScanOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnMagScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMagScanOut.Location = new System.Drawing.Point(6, 80);
+            this.btnMagScanOut.Name = "btnMagScanOut";
+            this.btnMagScanOut.Size = new System.Drawing.Size(198, 39);
+            this.btnMagScanOut.TabIndex = 13;
+            this.btnMagScanOut.Text = "Scan &Out";
+            this.btnMagScanOut.UseVisualStyleBackColor = false;
+            this.btnMagScanOut.Click += new System.EventHandler(this.btnMagScanOut_Click);
+            // 
+            // btnMagScanIn
+            // 
+            this.btnMagScanIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnMagScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMagScanIn.Location = new System.Drawing.Point(6, 31);
+            this.btnMagScanIn.Name = "btnMagScanIn";
+            this.btnMagScanIn.Size = new System.Drawing.Size(198, 39);
+            this.btnMagScanIn.TabIndex = 12;
+            this.btnMagScanIn.Text = "Scan &In";
+            this.btnMagScanIn.UseVisualStyleBackColor = false;
+            this.btnMagScanIn.Click += new System.EventHandler(this.btnMagScanIn_Click);
             // 
             // FormMain
             // 
@@ -759,11 +768,11 @@ namespace TNBase
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1051, 623);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblWeekNumber);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.StatusStrip1);
-            this.Controls.Add(this.GroupBox3);
             this.Controls.Add(this.GroupBox2);
             this.Controls.Add(this.btnFinished);
             this.Controls.Add(this.GroupBox1);
@@ -784,10 +793,10 @@ namespace TNBase
             this.menuTop.PerformLayout();
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox2.ResumeLayout(false);
-            this.GroupBox3.ResumeLayout(false);
             this.StatusStrip1.ResumeLayout(false);
             this.StatusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -814,8 +823,6 @@ namespace TNBase
 		internal System.Windows.Forms.GroupBox GroupBox2;
         private System.Windows.Forms.Button btnScanOut;
         private System.Windows.Forms.Button btnScanIn;
-		internal System.Windows.Forms.GroupBox GroupBox3;
-        private System.Windows.Forms.Button btnBackup;
 		internal System.Windows.Forms.StatusStrip StatusStrip1;
 		internal System.Windows.Forms.ToolStripStatusLabel lblHints;
         private System.Windows.Forms.Timer timerHints;
@@ -830,7 +837,6 @@ namespace TNBase
         private System.Windows.Forms.ToolStripMenuItem CancelAStopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BrowseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StatisticsToolStripMenuItem;
-        private System.Windows.Forms.Button brnRestore;
         private System.Windows.Forms.ToolStripMenuItem RestoreToolStripMenuItem;
         internal System.Windows.Forms.OpenFileDialog restoreDialog;
         private System.Windows.Forms.ToolStripMenuItem ScanningToolStripMenuItem;
@@ -871,5 +877,9 @@ namespace TNBase
         private ToolStripMenuItem adjustStockLevelsToolStripMenuItem;
         private ToolStripMenuItem enableScanOutToolStripMenuItem;
         private ToolStripMenuItem walletsStockToolStripMenuItem;
+        internal GroupBox groupBox3;
+        private Button btnMagScanOut;
+        private Button btnMagScanIn;
+        private ToolStripMenuItem magazineWalletStockToolStripMenuItem;
     }
 }

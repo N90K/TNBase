@@ -74,6 +74,7 @@
     <Compile Include="Scan.cs" />
     <Compile Include="ScanTypes.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="WalletTypes.cs" />
     <Compile Include="WeeklyStats.cs" />
     <Compile Include="YearStats.cs" />
   </ItemGroup>

@@ -121,6 +121,5 @@ namespace TNBase.DataStorage
         /// </summary>
         void RunCommand(String sqlCommand);
         void CleanDeletedDates();
-        void EnsureScanTableExists();
     }
 }

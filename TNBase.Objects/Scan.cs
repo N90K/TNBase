@@ -1,35 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TNBase.Objects
 {
-    /// <summary>
-    /// Scan - some scan record
-    /// </summary>
     public class Scan
     {
-
-        /// <summary>
-        /// The wallet number for the Listener
-        /// </summary>
-        public int Wallet;
-
-        /// <summary>
-        /// The scan type
-        /// </summary>
-        public ScanTypes scanType;
-
-        /// <summary>
-        /// The date the scan was made
-        /// </summary>
-        public DateTime recorded;
-
         public Scan()
         {
-            this.recorded = DateTime.Now;
+            ScanType = ScanTypes.IN;
+            WalletType = WalletTypes.News;
         }
+
+        public int Id { get; set; }
+        public int Wallet { get; set; }
+        public string Type { get; set; }
+        [NotMapped]
+        public ScanTypes ScanType
+        {
+            get
+            {
+                Enum.TryParse<ScanTypes>(Type, out var scanType);
+                return scanType;
+            }
+            set
+            {
+                Type = value.ToString();
+            }
+        }
+
+        [NotMapped]
+        public WalletTypes WalletType
+        {
+            get
+            {
+                Enum.TryParse<WalletTypes>(WalletTypeValue, out var walletType);
+                return walletType;
+            }
+            set
+            {
+                WalletTypeValue = value.ToString();
+            }
+        }
+        public DateTime Recorded { get; set; }
+
+        [Column("WalletType")]
+        public string WalletTypeValue { get; set; }
     }
 }

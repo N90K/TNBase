@@ -1,19 +1,14 @@
 using Microsoft.VisualBasic;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System.Linq;
-using System.Xml.Linq;
 using TNBase.Objects;
 using TNBase.DataStorage;
 namespace TNBase
 {
-	public partial class FormBrowse
+    public partial class FormBrowse
 	{
 		NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
         IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
@@ -25,7 +20,6 @@ namespace TNBase
 		bool deletedMode = false;
 		private void btnDone_Click(object sender, EventArgs e)
 		{
-			log.Trace("Closing form, user has cancelled.");
 			this.Close();
 		}
 

@@ -1,3 +1,5 @@
+using System.Media;
+
 namespace TNBase
 {
     //
@@ -36,7 +38,7 @@ namespace TNBase
 			if (!My.MyProject.Computer.FileSystem.FileExists(sound)) {
 				log.Error("Could not find sound file: '" + sound + "'");
 			} else {
-                My.MyProject.Computer.Audio.Play(sound);
+				new SoundPlayer(sound).Play();
 			}
 		}
 
@@ -51,6 +53,12 @@ namespace TNBase
 		public static void PlayBeep()
 		{
 			string sound = GetResourcesFolder() + "beep.wav";
+			PlaySound(sound);
+		}
+
+		public static void DoubleBeep()
+		{
+			string sound = GetResourcesFolder() + "doublebeep.wav";
 			PlaySound(sound);
 		}
 
@@ -110,5 +118,10 @@ namespace TNBase
 			PlaySound(sound);
 		}
 
+		public static void BeepInvalid()
+		{
+			string sound = GetResourcesFolder() + "beep-invalid.wav";
+			PlaySound(sound);
+		}
 	}
 }

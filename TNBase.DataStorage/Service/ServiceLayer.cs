@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
+using TNBase.DataStorage.Migrations;
 
 namespace TNBase.DataStorage
 {
-    public class ServiceLayer : IServiceLayer
+    public class ServiceLayer : IServiceLayer, IDisposable
     {
         // Logging instance
         static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
@@ -136,7 +137,7 @@ namespace TNBase.DataStorage
             {
                 DateTime birthdayThisYear = l.BirthdayThisYear();
                 if (birthdayThisYear >= nowDate && birthdayThisYear <= weekDate)
-                { 
+                {
                     results.Add(l);
                 }
             }
@@ -273,32 +274,32 @@ namespace TNBase.DataStorage
         /// </summary>
         public void ResumePausedListeners()
         {
-			log.Debug("Resuming paused listeners!");
+            log.Debug("Resuming paused listeners!");
 
-			// Get all paused listeners.
-			List<Listener> theListeners = new List<Listener>();
-			theListeners = GetStoppedListeners();
+            // Get all paused listeners.
+            List<Listener> theListeners = new List<Listener>();
+            theListeners = GetStoppedListeners();
 
-			// Resume paused listeners.
+            // Resume paused listeners.
             foreach (Listener tListener in theListeners)
             {
-				// If they are past the resume date
-				DateTime? resumeDate = Listener.GetResumeDate(tListener);
-				if (resumeDate.HasValue) 
+                // If they are past the resume date
+                DateTime? resumeDate = Listener.GetResumeDate(tListener);
+                if (resumeDate.HasValue)
                 {
-					if (resumeDate.Value < DateTime.Now) 
+                    if (resumeDate.Value < DateTime.Now)
                     {
-						tListener.Status = ListenerStates.ACTIVE;
-						tListener.StatusInfo = "";
+                        tListener.Status = ListenerStates.ACTIVE;
+                        tListener.StatusInfo = "";
 
-						if (!UpdateListener(tListener)) 
+                        if (!UpdateListener(tListener))
                         {
-							log.Error("Failed to maintain (resume paused) listeners.");
-						}
-					}
-				}
-			}
-		}
+                            log.Error("Failed to maintain (resume paused) listeners.");
+                        }
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Get stopped listeners
@@ -485,7 +486,7 @@ namespace TNBase.DataStorage
         /// <returns></returns>
         public Collector GetCollector(int id)
         {
-            return repoLayer.GetCollectors(connection).SingleOrDefault(x => x.ID.Equals( id ));
+            return repoLayer.GetCollectors(connection).SingleOrDefault(x => x.ID.Equals(id));
         }
 
         /// <summary>
@@ -698,7 +699,7 @@ namespace TNBase.DataStorage
                             }
                         }
                     }
-                    catch (Exception e) 
+                    catch (Exception e)
                     {
                         log.Warn(e, "Failed to find collector for postcode: '" + postcode + "'.");
                     }
@@ -975,9 +976,9 @@ namespace TNBase.DataStorage
             int defaultRet = 0;
             try
             {
-                defaultRet = (int) repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.TotalListeners);
+                defaultRet = (int)repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.TotalListeners);
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 log.Warn(e, "Couldnt calculate average listeners for year: " + year);
             }
@@ -998,7 +999,7 @@ namespace TNBase.DataStorage
             try
             {
                 IEnumerable<WeeklyStats> weeklyStats = repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd);
-                if (weeklyStats.Count() > 0) 
+                if (weeklyStats.Count() > 0)
                 {
                     defaultRet = (int)weeklyStats.Average(x => x.ScannedOut);
                 }
@@ -1050,7 +1051,7 @@ namespace TNBase.DataStorage
         /// </summary>
         /// <returns></returns>
         public int GetCurrentWeekNumber()
-        {			
+        {
             // Gets the latest weekly stats.
             WeeklyStats myStats = repoLayer.GetWeeklyStats(connection).OrderByDescending(x => x.WeekNumber).FirstOrDefault();
 
@@ -1067,11 +1068,11 @@ namespace TNBase.DataStorage
 
                 //if (addnewbit)
                 //{
-                    // Is it within the current week if so dont add a new bit
-                    if (nowDate.AddDays(-5) > weekDate)
-                    {
-                        return weekNumber + 1;
-                    }
+                // Is it within the current week if so dont add a new bit
+                if (nowDate.AddDays(-5) > weekDate)
+                {
+                    return weekNumber + 1;
+                }
                 //}
             }
             catch (Exception ex)
@@ -1139,7 +1140,8 @@ namespace TNBase.DataStorage
             // Get listeners that are not deleted but have a deleted date
             List<Listener> listenersToClean = repoLayer.GetListeners(connection).Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.DeletedDate != null).ToList();
 
-            foreach (Listener listener in listenersToClean) {
+            foreach (Listener listener in listenersToClean)
+            {
                 log.Warn("Listener " + listener.GetNiceName() + ", Wallet: " + listener.Wallet + " is " + listener.Status + " but has a deleted date. Removing it!");
                 listener.DeletedDate = null;
                 UpdateListener(listener);
@@ -1156,23 +1158,16 @@ namespace TNBase.DataStorage
         {
             Scan tempScan = new Scan();
             tempScan.Wallet = wallet;
-            tempScan.scanType = scanType;
+            tempScan.ScanType = scanType;
 
             repoLayer.InsertScan(connection, tempScan);
             return true;
         }
 
-        /// <summary>
-        /// Ensure the scan table exists
-        /// </summary>
-        public void EnsureScanTableExists()
+        public void Dispose()
         {
-            RunCommand("CREATE TABLE IF NOT EXISTS 'Scans' (" +
-	                        "'Id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
-	                        "'Wallet' INTEGER NOT NULL," +
-	                        "'Type' TEXT NOT NULL," +
-                            "'Recorded' DATE DEFAULT CURRENT_DATE" + 
-                        ");");
+            if (connection != null)
+                connection.Close();
         }
     }
 }

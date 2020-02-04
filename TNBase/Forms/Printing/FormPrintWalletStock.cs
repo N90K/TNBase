@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TNBase.DataStorage;
-using TNBase.Objects;
+using TNBase.Model;
 
 namespace TNBase.Forms.Printing
 {
@@ -12,8 +11,9 @@ namespace TNBase.Forms.Printing
     {
         const string FONT_FAMILY = "Times New Roman";
 
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
-        private List<Listener> listenersToPrint = new List<Listener>();
+        private string title = "Stock";
+        private List<StockItem> stockItems = new List<StockItem>();
+        private List<StockItem> stockItemsInPrint = new List<StockItem>();
         private int totalCount = 0;
         private int currentPageNumber = 0;
 
@@ -22,10 +22,16 @@ namespace TNBase.Forms.Printing
             InitializeComponent();
         }
 
+        public void Setup(string title, IEnumerable<StockItem> stockItems)
+        {
+            this.title = title;
+            this.stockItems = stockItems.ToList();
+        }
+
         private void SetInitial()
         {
-            listenersToPrint = serviceLayer.GetListeners();
-            totalCount = listenersToPrint.Count;
+            stockItemsInPrint = stockItems.ToList();
+            totalCount = stockItemsInPrint.Count;
             currentPageNumber = 0;
         }
 
@@ -62,7 +68,7 @@ namespace TNBase.Forms.Printing
 
             currentPageNumber = currentPageNumber + 1;
 
-            var headerPosition = DrawHeader("News Wallet Stock", e.MarginBounds, g);
+            var headerPosition = DrawHeader(title, e.MarginBounds, g);
 
             var tableHeaders = new List<string> { "Wallet", "Qty" }
                 .Select(x => new
@@ -103,17 +109,17 @@ namespace TNBase.Forms.Printing
                         g.FillRectangle(new SolidBrush(Color.LightGray), backgroundPosition);
                     }
 
-                    var listener = listenersToPrint.FirstOrDefault();
-                    if (listener != null)
+                    var stockItem = stockItemsInPrint.FirstOrDefault();
+                    if (stockItem != null)
                     {
                         var position1 = new Rectangle(tableHeaderPosition.Left + spaceWidth, bottom, tableHeaders[0].Size.Width, rowHeight);
-                        g.DrawString(listener.Wallet.ToString(), fontNormal, Brushes.Black, position1);
+                        g.DrawString(stockItem.Wallet.ToString(), fontNormal, Brushes.Black, position1);
 
-                        var stockText = listener.Status == ListenerStates.DELETED ? "X" : listener.Stock.ToString();
+                        var stockText = stockItem.Stock;
                         var position2 = new Rectangle(position1.Right + spaceWidth, bottom, tableHeaders[1].Size.Width, rowHeight);
                         g.DrawString(stockText, fontNormal, Brushes.Black, position2);
 
-                        listenersToPrint.RemoveAt(0);
+                        stockItemsInPrint.RemoveAt(0);
                     }
 
                     bottom += rowHeight;
@@ -130,7 +136,7 @@ namespace TNBase.Forms.Printing
             g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), fontBold, Brushes.Black, 550, bottomMargin);
             g.DrawString("Page " + currentPageNumber + "/" + totalPages, fontBold, Brushes.Black, 380, bottomMargin);
 
-            e.HasMorePages = listenersToPrint.Any();
+            e.HasMorePages = stockItemsInPrint.Any();
 
             // VB is stupid.... have to reset this so its back when you actually print it!
             if (!(e.HasMorePages))

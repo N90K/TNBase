@@ -81,10 +81,21 @@
   <ItemGroup>
     <Compile Include="DBUtils_Tests.cs" />
     <Compile Include="ExtensionTests.cs" />
+    <Compile Include="Migrations\DatabaseMigration.cs" />
+    <Compile Include="Migrations\DatabaseUpdaterBuilder.cs" />
+    <Compile Include="Migrations\DatabaseUpdaterTests.cs" />
+    <Compile Include="Migrations\MigrationTestData.cs" />
+    <Compile Include="Migrations\SqlMigrationTests.cs" />
+    <Compile Include="Migrations\TestMigrations\10_TestSqlMigrationTen.cs" />
+    <Compile Include="Migrations\TestMigrations\1_TestSqlMigrationOne.cs" />
+    <Compile Include="Migrations\TestMigrations\2_TestSqlMigrationTwo.cs" />
+    <Compile Include="Migrations\TestMigrations\TestSqlMigration.cs" />
     <Compile Include="RepoStorage_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLayer_Tests.cs" />
+    <Compile Include="Service\ScanServiceTests.cs" />
     <Compile Include="TestHelpers\CreateExtensions.cs" />
+    <Compile Include="TestHelpers\DatabaseHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj">
@@ -103,6 +114,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

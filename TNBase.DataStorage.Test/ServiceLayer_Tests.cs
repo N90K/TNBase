@@ -11,8 +11,6 @@ using FluentAssertions;
 namespace TNBase.DataStorage.Test
 {
     [TestClass]
-    [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")] // this is the key
-    [DeploymentItem("Listeners.s3db")]
     public class ServiceLayer_Tests
     {
         ServiceLayer serviceLayer;
@@ -22,10 +20,9 @@ namespace TNBase.DataStorage.Test
         public void Setup()
         {
             repoLayer = new RepositoryLayer();
-            serviceLayer = new ServiceLayer("Listeners.s3db", repoLayer);
-
+            serviceLayer = new ServiceLayer(":memory:", repoLayer);
+            DatabaseHelper.CreateDatabase(serviceLayer.GetConnection());
             // Insert some data.
-            repoLayer.ClearAllData(serviceLayer.GetConnection());
             InsertListeners();
             InsertCollectors();
             InsertWeeklyStats();
@@ -89,19 +86,19 @@ namespace TNBase.DataStorage.Test
         private void InsertListeners()
         {
             // Add some active listeners
-            Listener l1 = new Listener() { Title = "Mr", Forename = "John", Surname = "Biddle", Addr1 = "1 Park Avenue", Addr2 = "", County = "London", Postcode = "N7 NDF", Town = "Camden", Telephone = "01234 423 232", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = false, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-2), Wallet = 1 };
+            Listener l1 = new Listener() { Title = "Mr", Forename = "John", Surname = "Biddle", Addr1 = "1 Park Avenue", Addr2 = "", County = "London", Postcode = "N7 NDF", Town = "Camden", Telephone = "01234 423 232", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = false, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-2), Wallet = 1, inOutRecords = new InOutRecords() };
             serviceLayer.AddListener(l1);
-            Listener l2 = new Listener() { Title = "Miss", Forename = "Sarah", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 2 };
+            Listener l2 = new Listener() { Title = "Miss", Forename = "Sarah", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 2, inOutRecords = new InOutRecords() };
             serviceLayer.AddListener(l2);
 
             // Add a deleted listener
-            Listener l3 = new Listener() { Title = "Doctor", Forename = "Nigel", Surname = "Sarage", Addr1 = "4 Bad Lane", Addr2 = "Topal", County = "Coart", Postcode = "N7 8DD", Town = "Rhywr", Telephone = "01435 643633", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 3 };
+            Listener l3 = new Listener() { Title = "Doctor", Forename = "Nigel", Surname = "Sarage", Addr1 = "4 Bad Lane", Addr2 = "Topal", County = "Coart", Postcode = "N7 8DD", Town = "Rhywr", Telephone = "01435 643633", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 3, inOutRecords = new InOutRecords() };
             // TODO (L) Improve/Change the delete method!
             serviceLayer.SoftDeleteListener(l3, "Test");
             serviceLayer.AddListener(l3);
 
             // Add a paused listener
-            Listener l4 = new Listener() { Title = "Mrs", Forename = "Lazy", Surname = "Bones", Addr1 = "4 Bone Road", Addr2 = "Scel", County = "Etal", Postcode = "N19 2DD", Town = "Death", Telephone = "01435 643433", Stock = 3, Info = "", Joined = DateTime.Now.AddDays(-425), MemStickPlayer = false, Magazine = false, Status = ListenerStates.ACTIVE, StatusInfo = "", Wallet = 4 };
+            Listener l4 = new Listener() { Title = "Mrs", Forename = "Lazy", Surname = "Bones", Addr1 = "4 Bone Road", Addr2 = "Scel", County = "Etal", Postcode = "N19 2DD", Town = "Death", Telephone = "01435 643433", Stock = 3, Info = "", Joined = DateTime.Now.AddDays(-425), MemStickPlayer = false, Magazine = false, Status = ListenerStates.ACTIVE, StatusInfo = "", Wallet = 4, inOutRecords = new InOutRecords() };
             l4.Pause(DateTime.Now);
             serviceLayer.AddListener(l4);
         }
@@ -149,7 +146,7 @@ namespace TNBase.DataStorage.Test
         [Ignore]
         [TestMethod]
         public void Stats_InactiveWallets()
-        {            
+        {
             // TODO (L) Implement Stats_InactiveWallets
             throw new NotImplementedException();
         }
@@ -190,7 +187,7 @@ namespace TNBase.DataStorage.Test
             List<WeeklyStats> stats = repoLayer.GetWeeklyStats(serviceLayer.GetConnection());
             repoLayer.ClearWeeklyStats(serviceLayer.GetConnection());
 
-            foreach (WeeklyStats stat in stats) 
+            foreach (WeeklyStats stat in stats)
             {
                 stat.WeekDate = stat.WeekDate.AddDays(-8);
                 repoLayer.InsertWeeklyStats(serviceLayer.GetConnection(), stat);
@@ -399,7 +396,7 @@ namespace TNBase.DataStorage.Test
         {
             int firstCount = serviceLayer.GetListeners().Count;
             serviceLayer.RunCommand("DELETE FROM Listeners WHERE Wallet = 1;");
-            Assert.AreEqual(firstCount-1, serviceLayer.GetListeners().Count);
+            Assert.AreEqual(firstCount - 1, serviceLayer.GetListeners().Count);
         }
 
         /// <summary>
@@ -448,9 +445,9 @@ namespace TNBase.DataStorage.Test
             serviceLayer.ClearWeeklyStats();
             WeeklyStats stats = serviceLayer.GetCurrentWeekStats();
 
-            Assert.IsNotNull(stats);  
-        }        
-        
+            Assert.IsNotNull(stats);
+        }
+
         /// <summary>
         /// Get weekly stats for the current week
         /// </summary>

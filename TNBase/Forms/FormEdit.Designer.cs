@@ -96,6 +96,8 @@ namespace TNBase
             this.DateLastOut = new System.Windows.Forms.DateTimePicker();
             this.Label19 = new System.Windows.Forms.Label();
             this.Label20 = new System.Windows.Forms.Label();
+            this.txtMagazineStock = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtInformation
@@ -130,6 +132,7 @@ namespace TNBase
             this.chkMagazine.TabIndex = 47;
             this.chkMagazine.Text = "Magazine?";
             this.chkMagazine.UseVisualStyleBackColor = true;
+            this.chkMagazine.CheckedChanged += new System.EventHandler(this.chkMagazine_CheckedChanged);
             // 
             // chkMemStickPlayer
             // 
@@ -593,19 +596,19 @@ namespace TNBase
             // 
             this.Label15.AutoSize = true;
             this.Label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label15.Location = new System.Drawing.Point(411, 251);
+            this.Label15.Location = new System.Drawing.Point(411, 226);
             this.Label15.Name = "Label15";
-            this.Label15.Size = new System.Drawing.Size(56, 24);
+            this.Label15.Size = new System.Drawing.Size(109, 24);
             this.Label15.TabIndex = 68;
-            this.Label15.Text = "Stock";
+            this.Label15.Text = "News Stock";
             // 
             // txtStock
             // 
             this.txtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.Location = new System.Drawing.Point(489, 251);
+            this.txtStock.Location = new System.Drawing.Point(580, 223);
             this.txtStock.MaxLength = 8;
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(210, 29);
+            this.txtStock.Size = new System.Drawing.Size(119, 29);
             this.txtStock.TabIndex = 69;
             // 
             // Label16
@@ -674,11 +677,32 @@ namespace TNBase
             this.Label20.TabIndex = 77;
             this.Label20.Text = "N/a";
             // 
+            // txtMagazineStock
+            // 
+            this.txtMagazineStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMagazineStock.Location = new System.Drawing.Point(580, 258);
+            this.txtMagazineStock.MaxLength = 8;
+            this.txtMagazineStock.Name = "txtMagazineStock";
+            this.txtMagazineStock.Size = new System.Drawing.Size(119, 29);
+            this.txtMagazineStock.TabIndex = 79;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(411, 261);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(143, 24);
+            this.label18.TabIndex = 78;
+            this.label18.Text = "Magazine Stock";
+            // 
             // FormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1157, 533);
+            this.Controls.Add(this.txtMagazineStock);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.DateLastOut);
             this.Controls.Add(this.DateLastIn);
             this.Controls.Add(this.Label17);
@@ -795,5 +819,7 @@ namespace TNBase
         internal System.Windows.Forms.DateTimePicker DateLastOut;
 		internal System.Windows.Forms.Label Label19;
 		internal System.Windows.Forms.Label Label20;
-	}
+        internal TextBox txtMagazineStock;
+        internal Label label18;
+    }
 }
