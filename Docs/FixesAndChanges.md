@@ -24,12 +24,12 @@ Weekly listeners as of today: 190
 
 **C8.** Printing Menu: All the various lists of listeners except the 'Unsent wallet list' which has already been changed:  Remove all contact details so that the lists only show wallet numbers and names.  The only print out that continues to contain the full details of the listener is to be the 'Print Collector for Listener'. *
 
-**C9.** Magazine Wallets: Scan in and Scan out menu buttons: on clicking on either, to give a choice: 'Scan in/out Yellow** News Wallets' or 'Scan in/out Orange** Magazine Wallets' (buttons can be yellow** and orange**). The scanning in/out of the magazine wallets to replicate that of the news wallets except that:
+Done **C9.** Magazine Wallets: Scan in and Scan out menu buttons: on clicking on either, to give a choice: 'Scan in/out Yellow** News Wallets' or 'Scan in/out Orange** Magazine Wallets' (buttons can be yellow** and orange**). The scanning in/out of the magazine wallets to replicate that of the news wallets except that:
 Each listener has 1/2/3**  magazine wallet(s) Default = 1.
 Magazine wallets are only scanned out four times a year (Spring, Summer, Autumn, and Winter, date range to be agreed**), but can be scanned in at any time**.
 Separate stock records need to be generated for magazine wallets:  The only change needed to the New/Edit listener details will be a new box 'Magazine wallet stock'. The Last in/out boxes continue to refer to the weekly news wallets.   Also a new column in 'Browse' needed: 'Mag. wallet stock' so existing 'Stock' column relabelled: 'News wallet stock'.  Magazine wallet scanning records are not essential.
 
-**C10.** New item in the 'Print' menu: Print list of all wallet number with current stock levels of News and Magazine wallets (Magazine wallets aded only after C9 completed).  Three columns, preferably several pairs of columns so to fit everything on one  A4 page.  Stock levels of unused/reserved wallet numbers up to the latest used (or up to 300) can be shown as an 'X'.   
+Done **C10.** New item in the 'Print' menu: Print list of all wallet number with current stock levels of News and Magazine wallets (Magazine wallets aded only after C9 completed).  Three columns, preferably several pairs of columns so to fit everything on one  A4 page.  Stock levels of unused/reserved wallet numbers up to the latest used (or up to 300) can be shown as an 'X'.   
 
 **C11.** Make the usual day of the week when the database is updated configurable**. Default = Saturday.
 
