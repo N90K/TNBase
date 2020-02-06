@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Data.SQLite;
 using System.Linq;
-using TNBase.DataStorage.Migrations;
 
 namespace TNBase.DataStorage.Test.Migrations
 {

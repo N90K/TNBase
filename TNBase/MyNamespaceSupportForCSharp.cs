@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -13,7 +12,7 @@ using Microsoft.VisualBasic.Devices;
 
 namespace TNBase.My
 {
-	sealed partial class MyProject
+    sealed partial class MyProject
 	{
 		[ThreadStatic] static MyApplication application;
 		

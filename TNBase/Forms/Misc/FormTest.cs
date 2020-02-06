@@ -1,21 +1,15 @@
 using Microsoft.VisualBasic;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System.Linq;
-using System.Xml.Linq;
 using TNBase.Objects;
 using TNBase.DataStorage;
 using System.IO;
 using System.Threading;
 namespace TNBase
 {
-	public partial class FormTest
+    public partial class FormTest
 	{
         private NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
         IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());

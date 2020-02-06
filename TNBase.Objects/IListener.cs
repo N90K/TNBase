@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace TNBase.Objects
+﻿namespace TNBase.Objects
 {
     // Used for sorting the Listeners.
     public class IListener : System.Collections.Generic.IComparer<Listener>

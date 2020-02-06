@@ -123,7 +123,7 @@ namespace TNBase
             this.txtForename.MaxLength = 50;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(208, 40);
-            this.txtForename.TabIndex = 6;
+            this.txtForename.TabIndex = 3;
             // 
             // Label4
             // 
@@ -266,6 +266,7 @@ namespace TNBase
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(51, 568);
             this.btnCancel.Name = "btnCancel";
@@ -278,6 +279,7 @@ namespace TNBase
             // btnFinished
             // 
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinished.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinished.Location = new System.Drawing.Point(867, 568);
             this.btnFinished.Name = "btnFinished";
@@ -346,10 +348,12 @@ namespace TNBase
             this.chkNoBirthday.Text = "Birthday Unknown";
             this.chkNoBirthday.UseVisualStyleBackColor = false;
             // 
-            // formAddFull
+            // FormAddFull
             // 
+            this.AcceptButton = this.btnFinished;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1127, 656);
             this.Controls.Add(this.birthdayDate);
             this.Controls.Add(this.chkNoBirthday);
@@ -382,7 +386,7 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formAddFull";
+            this.Name = "FormAddFull";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();

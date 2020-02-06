@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.SQLite;
 using TNBase.DataStorage.Test.TestHelpers;
 using TNBase.Objects;
 using System.Collections.Generic;
-using TNBase.DataStorage.Migrations;
 
 namespace TNBase.DataStorage.Test
 {

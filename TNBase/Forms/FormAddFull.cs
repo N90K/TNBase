@@ -1,14 +1,6 @@
 using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
-using System.Linq;
-using System.Xml.Linq;
 using TNBase.Objects;
 using NLog;
 using TNBase.DataStorage;
@@ -21,6 +13,18 @@ namespace TNBase
         private Logger log = LogManager.GetCurrentClassLogger();
 
         IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private string title;
+        private string surname;
+        private string forename;
+        private bool withSetup;
+
+        public void Setup(string title, string surname, string forename)
+        {
+            this.title = title;
+            this.surname = surname;
+            this.forename = forename;
+            this.withSetup = true;
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -120,6 +124,18 @@ namespace TNBase
         private void formAddFull_Load(object sender, EventArgs e)
         {
             comboTitle.Items.AddRange(ListenerTitles.getAllTitles().ToArray());
+            if (title != null)
+            {
+                comboTitle.Text = title;
+            }
+
+            txtSurname.Text = surname;
+            txtForename.Text = forename;
+
+            if (withSetup)
+            {
+                txtAddr1.Focus();
+            }
         }
 
         public FormAddFull()

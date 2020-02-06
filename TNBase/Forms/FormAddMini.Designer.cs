@@ -37,6 +37,7 @@ namespace TNBase
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddMini));
             this.Label1 = new System.Windows.Forms.Label();
             this.comboTitle = new System.Windows.Forms.ComboBox();
@@ -45,6 +46,8 @@ namespace TNBase
             this.txtForename = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
             this.btnFinished = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // Label1
@@ -62,10 +65,12 @@ namespace TNBase
             this.comboTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboTitle.FormattingEnabled = true;
+            this.errorProvider.SetIconAlignment(this.comboTitle, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.comboTitle.Location = new System.Drawing.Point(29, 60);
             this.comboTitle.Name = "comboTitle";
             this.comboTitle.Size = new System.Drawing.Size(413, 41);
             this.comboTitle.TabIndex = 1;
+            this.comboTitle.Validating += new System.ComponentModel.CancelEventHandler(this.comboTitle_Validating);
             // 
             // Label2
             // 
@@ -80,20 +85,24 @@ namespace TNBase
             // txtSurname
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorProvider.SetIconAlignment(this.txtSurname, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.txtSurname.Location = new System.Drawing.Point(33, 159);
             this.txtSurname.MaxLength = 50;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(409, 40);
             this.txtSurname.TabIndex = 2;
+            this.txtSurname.Validating += new System.ComponentModel.CancelEventHandler(this.txtSurname_Validating);
             // 
             // txtForename
             // 
             this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorProvider.SetIconAlignment(this.txtForename, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.txtForename.Location = new System.Drawing.Point(33, 271);
             this.txtForename.MaxLength = 50;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(409, 40);
             this.txtForename.TabIndex = 3;
+            this.txtForename.Validating += new System.ComponentModel.CancelEventHandler(this.txtForename_Validating);
             // 
             // Label3
             // 
@@ -108,6 +117,7 @@ namespace TNBase
             // btnFinished
             // 
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinished.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinished.Location = new System.Drawing.Point(127, 354);
             this.btnFinished.Name = "btnFinished";
@@ -117,10 +127,17 @@ namespace TNBase
             this.btnFinished.UseVisualStyleBackColor = false;
             this.btnFinished.Click += new System.EventHandler(this.btnFinished_Click);
             // 
-            // formAddMini
+            // errorProvider
             // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
+            // FormAddMini
+            // 
+            this.AcceptButton = this.btnFinished;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(482, 451);
             this.Controls.Add(this.btnFinished);
             this.Controls.Add(this.txtForename);
@@ -133,8 +150,10 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formAddMini";
+            this.Name = "FormAddMini";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddMini_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +170,7 @@ namespace TNBase
 			Load += formAddMini_Load;
 			InitializeComponent();
 		}
-	}
+
+        private ErrorProvider errorProvider;
+    }
 }
