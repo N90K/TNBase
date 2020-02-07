@@ -134,7 +134,7 @@ namespace TNBase.Forms.Scanning
             this.walletsToScan = walletsToScan.ToList();
 
             Text = title;
-            ScanInputLabel.Text = $"Please scan in a {walletType.ToString().ToLower()} wallet:";
+            ScanInputLabel.Text = $"Please scan out a {walletType.ToString().ToLower()} wallet:";
             lblStatus.Text = "";
 
             if (scanned != null && scanned.Any())

@@ -178,7 +178,7 @@
             this.label3.Text = "Scanned wallets:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ScanOutForm
+            // MagazinesScanOutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -192,8 +192,9 @@
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.txtScannerInput);
             this.Controls.Add(this.ScanInputLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ScanOutForm";
+            this.Name = "MagazinesScanOutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scan";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMagazineScanIn_FormClosing);

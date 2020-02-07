@@ -74,7 +74,7 @@
             // 
             this.btnFinish.BackColor = System.Drawing.Color.LimeGreen;
             this.btnFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinish.Location = new System.Drawing.Point(634, 366);
+            this.btnFinish.Location = new System.Drawing.Point(634, 314);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(154, 55);
             this.btnFinish.TabIndex = 3;
@@ -85,7 +85,7 @@
             // txtScannerInput
             // 
             this.txtScannerInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScannerInput.Location = new System.Drawing.Point(430, 193);
+            this.txtScannerInput.Location = new System.Drawing.Point(430, 146);
             this.txtScannerInput.Name = "txtScannerInput";
             this.txtScannerInput.Size = new System.Drawing.Size(314, 40);
             this.txtScannerInput.TabIndex = 1;
@@ -96,7 +96,7 @@
             // 
             this.ScanInputLabel.AutoSize = true;
             this.ScanInputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScanInputLabel.Location = new System.Drawing.Point(424, 157);
+            this.ScanInputLabel.Location = new System.Drawing.Point(424, 110);
             this.ScanInputLabel.Name = "ScanInputLabel";
             this.ScanInputLabel.Size = new System.Drawing.Size(289, 33);
             this.ScanInputLabel.TabIndex = 103;
@@ -115,13 +115,13 @@
             // 
             // btnScanOut
             // 
-            this.btnScanOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnScanOut.BackColor = System.Drawing.Color.LimeGreen;
             this.btnScanOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanOut.Location = new System.Drawing.Point(430, 366);
+            this.btnScanOut.Location = new System.Drawing.Point(472, 375);
             this.btnScanOut.Name = "btnScanOut";
-            this.btnScanOut.Size = new System.Drawing.Size(198, 55);
+            this.btnScanOut.Size = new System.Drawing.Size(315, 55);
             this.btnScanOut.TabIndex = 2;
-            this.btnScanOut.Text = "Scan Out";
+            this.btnScanOut.Text = "Finish and Scan Out";
             this.btnScanOut.UseVisualStyleBackColor = false;
             this.btnScanOut.Click += new System.EventHandler(this.btnScanOut_Click);
             // 
@@ -140,13 +140,13 @@
             // 
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblStatus.Location = new System.Drawing.Point(426, 236);
+            this.lblStatus.Location = new System.Drawing.Point(426, 189);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(318, 56);
             this.lblStatus.TabIndex = 107;
             this.lblStatus.Text = "Status";
             // 
-            // FormScan
+            // MagazinesScanInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -159,8 +159,9 @@
             this.Controls.Add(this.txtScannerInput);
             this.Controls.Add(this.ScanInputLabel);
             this.Controls.Add(this.ListLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormScan";
+            this.Name = "MagazinesScanInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scan";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMagazineScanIn_FormClosing);
