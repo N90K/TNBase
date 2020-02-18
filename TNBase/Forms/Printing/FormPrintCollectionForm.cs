@@ -90,7 +90,7 @@ namespace TNBase
 			this.Close();
 		}
 
-		public void setupForm(Listener argListener, bool valDeleted)
+		public void SetupForm(Listener argListener, bool valDeleted)
 		{
 			theListener = argListener;
 			deleted = valDeleted;

@@ -4,124 +4,162 @@ using System.Windows.Forms;
 using TNBase.Objects;
 using NLog;
 using TNBase.DataStorage;
+using System.Globalization;
 
 namespace TNBase
 {
     public partial class FormAddFull
     {
-        // Logging instance.
         private Logger log = LogManager.GetCurrentClassLogger();
-
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
         private string title;
         private string surname;
         private string forename;
         private bool withSetup;
+        private bool allowClose;
 
         public void Setup(string title, string surname, string forename)
         {
             this.title = title;
             this.surname = surname;
             this.forename = forename;
-            this.withSetup = true;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            // Confirm we really want to cancel.
-            DialogResult result = MessageBox.Show("Are you sure you wish to cancel?" + Environment.NewLine + Environment.NewLine + "Press [y] to confirm, [n] to cancel.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            withSetup = true;
         }
 
         private void txtTelephone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Only allow digits.
-            if (!char.IsDigit(e.KeyChar) & !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        // Add the listener to the database.
         private void btnFinished_Click(object sender, EventArgs e)
         {
-            Listener newListener = new Listener();
-            newListener.Wallet = 0;
-            newListener.Title = comboTitle.Text;
-            newListener.Forename = txtForename.Text;
-            newListener.Surname = txtSurname.Text;
-            newListener.Addr1 = txtAddr1.Text;
-            newListener.Addr2 = txtAddr2.Text;
-            newListener.Town = txtTown.Text;
-            newListener.County = txtCounty.Text;
-            newListener.Postcode = txtPostcode.Text;
-            newListener.MemStickPlayer = chkTape.Checked;
-            newListener.Magazine = chkMagazine.Checked;
-            newListener.Info = txtInformation.Text;
-            if ((!string.IsNullOrEmpty(txtTelephone.Text)))
+            var newListener = new Listener
             {
-                newListener.Telephone = (txtTelephone.Text);
-            }
-            else
-            {
-                newListener.Telephone = "0";
-            }
-            string theStr = "";
-            if (chkNoBirthday.Checked)
-            {
-                theStr = "01/01/" + DateTime.Now.Year;
-            }
-            else
-            {
-                theStr = birthdayDate.Value.ToString(ModuleGeneric.DATE_FORMAT);
-            }
-            newListener.Birthday = DateTime.Parse(theStr);
-            newListener.Status = ListenerStates.ACTIVE;
-            newListener.StatusInfo = "";
-            newListener.DeletedDate = DateTime.Now;
-            newListener.Joined = DateTime.Now;
+                Wallet = 0,
+                Title = comboTitle.Text,
+                Forename = txtForename.Text,
+                Surname = txtSurname.Text,
+                Addr1 = txtAddr1.Text,
+                Addr2 = txtAddr2.Text,
+                Town = txtTown.Text,
+                County = txtCounty.Text,
+                Postcode = txtPostcode.Text,
+                MemStickPlayer = chkTape.Checked,
+                Magazine = chkMagazine.Checked,
+                Info = txtInformation.Text,
+                Telephone = string.IsNullOrEmpty(txtTelephone.Text) ? "0" : txtTelephone.Text,
+                Birthday = GetBirthdayValue(),
+                Status = ListenerStates.ACTIVE,
+                StatusInfo = "",
+                DeletedDate = DateTime.Now,
+                Joined = DateTime.Now,
+                inOutRecords = new InOutRecords()
+            };
 
-            newListener.inOutRecords = new InOutRecords();
-
-            int result = 0;
-            result = serviceLayer.AddListener(newListener);
+            var result = serviceLayer.AddListener(newListener);
             if (result > 0)
             {
                 log.Debug("Listener has been added. ID: " + result + ", Name: " + newListener.GetNiceName());
                 Interaction.MsgBox("The listener has successfully been added.");
 
-                Listener newListenerWithWalletNo = serviceLayer.GetListenerById(result);
+                var newListenerWithWalletNo = serviceLayer.GetListenerById(result);
 
-                // Do new labels need to be added?
-                DialogResult msgResult = MessageBox.Show("Would you like to print labels for the new listener?", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
-                if (msgResult == DialogResult.Yes)
-                {
-                    My.MyProject.Forms.formChoosePrintPoint.Show();
-                    My.MyProject.Forms.formChoosePrintPoint.SetupForm(newListenerWithWalletNo);
-                }
-
-                // Will they use a memory stick player?
-                if (newListener.MemStickPlayer)
-                {
-                    Interaction.MsgBox("Please print the following form as listener requires a memory stick player.");
-                    My.MyProject.Forms.formPrintCollectionForm.Show();
-                    My.MyProject.Forms.formPrintCollectionForm.setupForm(newListenerWithWalletNo, false);
-                }
-
-                this.Close();
+                PrintLabels(newListenerWithWalletNo);
+                PrintMemoryStickForm(newListenerWithWalletNo);
             }
             else
             {
                 log.Error("Failed to add new listener!");
                 Interaction.MsgBox("Failed to add new listener!");
-                this.Close();
+            }
+
+            allowClose = true;
+        }
+
+        private void PrintMemoryStickForm(Listener listener)
+        {
+            if (listener.MemStickPlayer)
+            {
+                Interaction.MsgBox("Please print the following form as listener requires a memory stick player.");
+                var form = new FormPrintCollectionForm();
+                form.Show();
+                form.SetupForm(listener, false);
             }
         }
 
-        private void formAddFull_Load(object sender, EventArgs e)
+        private void PrintLabels(Listener listener)
+        {
+            var msgResult = MessageBox.Show("Would you like to print labels for the new listener?", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
+            if (msgResult == DialogResult.Yes)
+            {
+                var form = new FormChoosePrintPoint();
+                form.SetupForm(listener);
+                form.ShowDialog();
+            }
+        }
+
+        private DateTime? GetBirthdayValue()
+        {
+            if (chkNoBirthday.Checked)
+            {
+                return null;
+            }
+
+            var day = cbxBirthdayDay.SelectedIndex + 1;
+            var month = cbxBirthdayMonth.SelectedIndex + 1;
+            return new DateTime(DateTime.Now.Year, month, day);
+        }
+
+        public FormAddFull()
+        {
+            InitializeComponent();
+
+            AddBirthdayDays();
+            AddBirthdayMonths();
+        }
+
+        private void AddBirthdayDays()
+        {
+            for (int i = 1; i <= 31; i++)
+            {
+                cbxBirthdayDay.Items.Add(i);
+            }
+            cbxBirthdayDay.SelectedIndex = 0;
+        }
+
+        private void AddBirthdayMonths()
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                cbxBirthdayMonth.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i));
+            }
+            cbxBirthdayMonth.SelectedIndex = 0;
+        }
+
+        private void FormAddFull_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (allowClose)
+            {
+                return;
+            }
+
+            var result = MessageBox.Show("Are you sure you wish to cancel?" + Environment.NewLine + Environment.NewLine + "Press [y] to confirm, [n] to cancel.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
+            if (result != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void chkNoBirthday_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxBirthdayDay.Enabled = !chkNoBirthday.Checked;
+            cbxBirthdayMonth.Enabled = !chkNoBirthday.Checked;
+        }
+
+        private void FormAddFull_Load(object sender, EventArgs e)
         {
             comboTitle.Items.AddRange(ListenerTitles.getAllTitles().ToArray());
             if (title != null)
@@ -134,20 +172,8 @@ namespace TNBase
 
             if (withSetup)
             {
-                txtAddr1.Focus();
+                ActiveControl = txtAddr1;
             }
-        }
-
-        public FormAddFull()
-        {
-            Load += formAddFull_Load;
-            InitializeComponent();
-
-            // Restrict input to month and day
-            birthdayDate.MinDate = new DateTime(DateTime.UtcNow.Year, 01, 01);
-            birthdayDate.MaxDate = new DateTime(DateTime.UtcNow.Year, 12, 31);
-            birthdayDate.Format = DateTimePickerFormat.Custom;
-            birthdayDate.CustomFormat = "dd MMMM";
         }
     }
 }

@@ -234,7 +234,7 @@ namespace TNBase
                     bool deleted = (result == DialogResult.Yes);
 
                     My.MyProject.Forms.formPrintCollectionForm.Show();
-                    My.MyProject.Forms.formPrintCollectionForm.setupForm(serviceLayer.GetListenerById(walletNumb), deleted);
+                    My.MyProject.Forms.formPrintCollectionForm.SetupForm(serviceLayer.GetListenerById(walletNumb), deleted);
                     this.Close();
                 }
             }

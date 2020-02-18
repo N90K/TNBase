@@ -56,7 +56,6 @@ namespace TNBase
             this.txtPostcode = new System.Windows.Forms.TextBox();
             this.Label9 = new System.Windows.Forms.Label();
             this.txtTelephone = new System.Windows.Forms.TextBox();
-            this.birthdayDate = new System.Windows.Forms.DateTimePicker();
             this.Label10 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnFinished = new System.Windows.Forms.Button();
@@ -65,6 +64,8 @@ namespace TNBase
             this.Label12 = new System.Windows.Forms.Label();
             this.txtInformation = new System.Windows.Forms.TextBox();
             this.chkNoBirthday = new System.Windows.Forms.CheckBox();
+            this.cbxBirthdayDay = new System.Windows.Forms.ComboBox();
+            this.cbxBirthdayMonth = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Label1
@@ -240,19 +241,6 @@ namespace TNBase
             this.txtTelephone.TabIndex = 17;
             this.txtTelephone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelephone_KeyPress);
             // 
-            // birthdayDate
-            // 
-            this.birthdayDate.Checked = false;
-            this.birthdayDate.CustomFormat = "MM/dd";
-            this.birthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.birthdayDate.Location = new System.Drawing.Point(770, 201);
-            this.birthdayDate.MaxDate = new System.DateTime(2099, 5, 25, 0, 0, 0, 0);
-            this.birthdayDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.birthdayDate.Name = "birthdayDate";
-            this.birthdayDate.Size = new System.Drawing.Size(319, 40);
-            this.birthdayDate.TabIndex = 18;
-            this.birthdayDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
             // Label10
             // 
             this.Label10.AutoSize = true;
@@ -271,10 +259,9 @@ namespace TNBase
             this.btnCancel.Location = new System.Drawing.Point(51, 568);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(206, 60);
-            this.btnCancel.TabIndex = 20;
+            this.btnCancel.TabIndex = 32;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnFinished
             // 
@@ -284,7 +271,7 @@ namespace TNBase
             this.btnFinished.Location = new System.Drawing.Point(867, 568);
             this.btnFinished.Name = "btnFinished";
             this.btnFinished.Size = new System.Drawing.Size(206, 60);
-            this.btnFinished.TabIndex = 21;
+            this.btnFinished.TabIndex = 31;
             this.btnFinished.Text = "Continue";
             this.btnFinished.UseVisualStyleBackColor = false;
             this.btnFinished.Click += new System.EventHandler(this.btnFinished_Click);
@@ -297,7 +284,7 @@ namespace TNBase
             this.chkTape.Name = "chkTape";
             this.chkTape.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkTape.Size = new System.Drawing.Size(413, 37);
-            this.chkTape.TabIndex = 22;
+            this.chkTape.TabIndex = 18;
             this.chkTape.Text = "Memory Stick Player Issued?\r\n";
             this.chkTape.UseVisualStyleBackColor = true;
             // 
@@ -310,7 +297,7 @@ namespace TNBase
             this.chkMagazine.Name = "chkMagazine";
             this.chkMagazine.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkMagazine.Size = new System.Drawing.Size(176, 37);
-            this.chkMagazine.TabIndex = 24;
+            this.chkMagazine.TabIndex = 19;
             this.chkMagazine.Text = "Magazine?";
             this.chkMagazine.UseVisualStyleBackColor = true;
             // 
@@ -332,7 +319,7 @@ namespace TNBase
             this.txtInformation.Multiline = true;
             this.txtInformation.Name = "txtInformation";
             this.txtInformation.Size = new System.Drawing.Size(517, 174);
-            this.txtInformation.TabIndex = 26;
+            this.txtInformation.TabIndex = 30;
             // 
             // chkNoBirthday
             // 
@@ -341,12 +328,33 @@ namespace TNBase
             this.chkNoBirthday.Checked = true;
             this.chkNoBirthday.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNoBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkNoBirthday.Location = new System.Drawing.Point(884, 238);
+            this.chkNoBirthday.Location = new System.Drawing.Point(884, 251);
             this.chkNoBirthday.Name = "chkNoBirthday";
             this.chkNoBirthday.Size = new System.Drawing.Size(205, 29);
-            this.chkNoBirthday.TabIndex = 60;
+            this.chkNoBirthday.TabIndex = 22;
             this.chkNoBirthday.Text = "Birthday Unknown";
             this.chkNoBirthday.UseVisualStyleBackColor = false;
+            this.chkNoBirthday.CheckedChanged += new System.EventHandler(this.chkNoBirthday_CheckedChanged);
+            // 
+            // cbxBirthdayDay
+            // 
+            this.cbxBirthdayDay.Enabled = false;
+            this.cbxBirthdayDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxBirthdayDay.FormattingEnabled = true;
+            this.cbxBirthdayDay.Location = new System.Drawing.Point(841, 204);
+            this.cbxBirthdayDay.Name = "cbxBirthdayDay";
+            this.cbxBirthdayDay.Size = new System.Drawing.Size(73, 41);
+            this.cbxBirthdayDay.TabIndex = 20;
+            // 
+            // cbxBirthdayMonth
+            // 
+            this.cbxBirthdayMonth.Enabled = false;
+            this.cbxBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxBirthdayMonth.FormattingEnabled = true;
+            this.cbxBirthdayMonth.Location = new System.Drawing.Point(920, 204);
+            this.cbxBirthdayMonth.Name = "cbxBirthdayMonth";
+            this.cbxBirthdayMonth.Size = new System.Drawing.Size(169, 41);
+            this.cbxBirthdayMonth.TabIndex = 21;
             // 
             // FormAddFull
             // 
@@ -355,7 +363,8 @@ namespace TNBase
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1127, 656);
-            this.Controls.Add(this.birthdayDate);
+            this.Controls.Add(this.cbxBirthdayMonth);
+            this.Controls.Add(this.cbxBirthdayDay);
             this.Controls.Add(this.chkNoBirthday);
             this.Controls.Add(this.txtInformation);
             this.Controls.Add(this.Label12);
@@ -388,6 +397,8 @@ namespace TNBase
             this.MinimizeBox = false;
             this.Name = "FormAddFull";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddFull_FormClosing);
+            this.Load += new System.EventHandler(this.FormAddFull_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,7 +421,6 @@ namespace TNBase
 		internal System.Windows.Forms.TextBox txtPostcode;
 		internal System.Windows.Forms.Label Label9;
         private System.Windows.Forms.TextBox txtTelephone;
-        private System.Windows.Forms.DateTimePicker birthdayDate;
 		internal System.Windows.Forms.Label Label10;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnFinished;
@@ -419,5 +429,7 @@ namespace TNBase
 		internal System.Windows.Forms.Label Label12;
 		internal System.Windows.Forms.TextBox txtInformation;
         private System.Windows.Forms.CheckBox chkNoBirthday;
-	}
+        private ComboBox cbxBirthdayDay;
+        private ComboBox cbxBirthdayMonth;
+    }
 }

@@ -95,15 +95,13 @@ namespace TNBase
         {
             FormDuplicates form = new FormDuplicates();
 
-            form.Show();
             form.setupForm(FormDuplicates.DuplicateFormType.AddForm);
 
             foreach (Listener tListener in theListeners)
             {
                 form.addDuplicate(tListener);
             }
-
-            this.Close();
+            form.ShowDialog();
         }
 
         private void comboTitle_Click(object sender, EventArgs e)

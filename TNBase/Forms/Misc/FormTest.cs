@@ -95,7 +95,7 @@ namespace TNBase
 			string myWallet = Interaction.InputBox("Please enter a wallet number!");
 			var myWalletInt = int.Parse(myWallet);
 			My.MyProject.Forms.formPrintCollectionForm.Show();
-			My.MyProject.Forms.formPrintCollectionForm.setupForm(serviceLayer.GetListenerById(myWalletInt), true);
+			My.MyProject.Forms.formPrintCollectionForm.SetupForm(serviceLayer.GetListenerById(myWalletInt), true);
 		}
 
 		private void formTest_Load(object sender, EventArgs e)

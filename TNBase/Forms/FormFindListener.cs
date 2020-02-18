@@ -58,7 +58,7 @@ namespace TNBase
 						} else {
 							// Else print deleted listener form.
 							My.MyProject.Forms.formPrintCollectionForm.Show();
-							My.MyProject.Forms.formPrintCollectionForm.setupForm(tempListener, true);
+							My.MyProject.Forms.formPrintCollectionForm.SetupForm(tempListener, true);
 						}
 					}
 				} else {
@@ -112,7 +112,7 @@ namespace TNBase
                         bool deleted = (result == DialogResult.Yes);
 
                         My.MyProject.Forms.formPrintCollectionForm.Show();
-                        My.MyProject.Forms.formPrintCollectionForm.setupForm(serviceLayer.GetListenerById(int.Parse(txtWallet.Text)), deleted);
+                        My.MyProject.Forms.formPrintCollectionForm.SetupForm(serviceLayer.GetListenerById(int.Parse(txtWallet.Text)), deleted);
                         this.Close();
                     }
 				} else {
@@ -168,7 +168,7 @@ namespace TNBase
                             bool deleted = (result == DialogResult.Yes);
 
                             My.MyProject.Forms.formPrintCollectionForm.Show();
-                            My.MyProject.Forms.formPrintCollectionForm.setupForm(theListener, deleted);
+                            My.MyProject.Forms.formPrintCollectionForm.SetupForm(theListener, deleted);
                             this.Close();
                         }
 					} else {

@@ -140,7 +140,7 @@ namespace TNBase
 
                 // First sub item is wallet number.
                 int walletNumb = 0;
-                walletNumb = int.Parse(lstBrowse.Items[theIndex].SubItems[0].Text);
+                walletNumb = int.Parse(lstFreeze.Items[theIndex].Text);
 
                 Listener theListener = serviceLayer.GetListenerById(walletNumb);
                 try
@@ -267,7 +267,7 @@ namespace TNBase
                                 {
                                     // Else print deleted listener form.
                                     My.MyProject.Forms.formPrintCollectionForm.Show();
-                                    My.MyProject.Forms.formPrintCollectionForm.setupForm(tempListener, true);
+                                    My.MyProject.Forms.formPrintCollectionForm.SetupForm(tempListener, true);
                                 }
                             }
                         }
