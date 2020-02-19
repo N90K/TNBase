@@ -1,3 +1,13 @@
+1.6.5.4
+- Fixed: print dialogue is opening in the backgroun
+- Fixed: birthday is saved as 1st January when "Birthday Unknown" is selected
+- Fixed: error occurs when adding a duplicate listener
+- Improved keyboard navigation when adding a listener
+- Simplified birthday selection
+
+1.6.5.3
+- Fixed wording in magazine scan out form
+
 1.6.5.2
 - Added magazine scanning option
 - Freeze wallet column on Browse Listeners form

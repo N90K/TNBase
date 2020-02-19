@@ -338,16 +338,22 @@ namespace TNBase
             // 
             // cbxBirthdayDay
             // 
+            this.cbxBirthdayDay.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbxBirthdayDay.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxBirthdayDay.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cbxBirthdayDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxBirthdayDay.Enabled = false;
             this.cbxBirthdayDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxBirthdayDay.FormattingEnabled = true;
-            this.cbxBirthdayDay.Location = new System.Drawing.Point(841, 204);
+            this.cbxBirthdayDay.Location = new System.Drawing.Point(827, 204);
+            this.cbxBirthdayDay.MaxDropDownItems = 10;
             this.cbxBirthdayDay.Name = "cbxBirthdayDay";
             this.cbxBirthdayDay.Size = new System.Drawing.Size(73, 41);
             this.cbxBirthdayDay.TabIndex = 20;
             // 
             // cbxBirthdayMonth
             // 
+            this.cbxBirthdayMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxBirthdayMonth.Enabled = false;
             this.cbxBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxBirthdayMonth.FormattingEnabled = true;
@@ -361,6 +367,7 @@ namespace TNBase
             this.AcceptButton = this.btnFinished;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1127, 656);
             this.Controls.Add(this.cbxBirthdayMonth);
