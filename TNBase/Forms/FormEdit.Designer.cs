@@ -37,13 +37,13 @@ namespace TNBase
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEdit));
             this.txtInformation = new System.Windows.Forms.TextBox();
             this.Label12 = new System.Windows.Forms.Label();
             this.chkMagazine = new System.Windows.Forms.CheckBox();
             this.chkMemStickPlayer = new System.Windows.Forms.CheckBox();
             this.Label10 = new System.Windows.Forms.Label();
-            this.birthdayDate = new System.Windows.Forms.DateTimePicker();
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.Label9 = new System.Windows.Forms.Label();
             this.txtPostcode = new System.Windows.Forms.TextBox();
@@ -98,6 +98,10 @@ namespace TNBase
             this.Label20 = new System.Windows.Forms.Label();
             this.txtMagazineStock = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.cbBirthdayDay = new System.Windows.Forms.ComboBox();
+            this.cbBirthdayMonth = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // txtInformation
@@ -156,20 +160,6 @@ namespace TNBase
             this.Label10.Size = new System.Drawing.Size(77, 24);
             this.Label10.TabIndex = 45;
             this.Label10.Text = "Birthday";
-            // 
-            // birthdayDate
-            // 
-            this.birthdayDate.Checked = false;
-            this.birthdayDate.CustomFormat = "yyyy/MM/dd";
-            this.birthdayDate.Enabled = false;
-            this.birthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.birthdayDate.Location = new System.Drawing.Point(121, 351);
-            this.birthdayDate.MaxDate = new System.DateTime(2099, 5, 25, 0, 0, 0, 0);
-            this.birthdayDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.birthdayDate.Name = "birthdayDate";
-            this.birthdayDate.Size = new System.Drawing.Size(208, 29);
-            this.birthdayDate.TabIndex = 44;
-            this.birthdayDate.ValueChanged += new System.EventHandler(this.birthdayDate_ValueChanged);
             // 
             // txtTelephone
             // 
@@ -493,13 +483,14 @@ namespace TNBase
             this.chkNoBirthday.Checked = true;
             this.chkNoBirthday.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNoBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkNoBirthday.Location = new System.Drawing.Point(172, 378);
+            this.chkNoBirthday.Location = new System.Drawing.Point(172, 385);
             this.chkNoBirthday.Name = "chkNoBirthday";
             this.chkNoBirthday.Size = new System.Drawing.Size(157, 24);
             this.chkNoBirthday.TabIndex = 59;
             this.chkNoBirthday.Text = "Birthday Unknown";
             this.chkNoBirthday.UseVisualStyleBackColor = false;
             this.chkNoBirthday.CheckedChanged += new System.EventHandler(this.chkNoBirthday_CheckedChanged);
+            this.chkNoBirthday.Validating += new System.ComponentModel.CancelEventHandler(this.chkNoBirthday_Validating);
             // 
             // btnNext
             // 
@@ -696,11 +687,39 @@ namespace TNBase
             this.label18.TabIndex = 78;
             this.label18.Text = "Magazine Stock";
             // 
+            // cbBirthdayDay
+            // 
+            this.cbBirthdayDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBirthdayDay.FormattingEnabled = true;
+            this.cbBirthdayDay.Location = new System.Drawing.Point(121, 347);
+            this.cbBirthdayDay.Name = "cbBirthdayDay";
+            this.cbBirthdayDay.Size = new System.Drawing.Size(63, 32);
+            this.cbBirthdayDay.TabIndex = 80;
+            this.cbBirthdayDay.Validating += new System.ComponentModel.CancelEventHandler(this.cbBirthdayDay_Validating);
+            // 
+            // cbBirthdayMonth
+            // 
+            this.cbBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBirthdayMonth.FormattingEnabled = true;
+            this.cbBirthdayMonth.Location = new System.Drawing.Point(190, 347);
+            this.cbBirthdayMonth.Name = "cbBirthdayMonth";
+            this.cbBirthdayMonth.Size = new System.Drawing.Size(139, 32);
+            this.cbBirthdayMonth.TabIndex = 81;
+            this.cbBirthdayMonth.Validating += new System.ComponentModel.CancelEventHandler(this.cbBirthdayMonth_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
             // FormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(1157, 533);
+            this.Controls.Add(this.cbBirthdayMonth);
+            this.Controls.Add(this.cbBirthdayDay);
             this.Controls.Add(this.txtMagazineStock);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.DateLastOut);
@@ -717,7 +736,6 @@ namespace TNBase
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.birthdayDate);
             this.Controls.Add(this.chkNoBirthday);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.lstInOut);
@@ -757,6 +775,7 @@ namespace TNBase
             this.MaximizeBox = false;
             this.Name = "FormEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -766,7 +785,6 @@ namespace TNBase
 		internal System.Windows.Forms.CheckBox chkMagazine;
 		internal System.Windows.Forms.CheckBox chkMemStickPlayer;
 		internal System.Windows.Forms.Label Label10;
-        private System.Windows.Forms.DateTimePicker birthdayDate;
 		internal System.Windows.Forms.TextBox txtTelephone;
 		internal System.Windows.Forms.Label Label9;
         private System.Windows.Forms.TextBox txtPostcode;
@@ -821,5 +839,8 @@ namespace TNBase
 		internal System.Windows.Forms.Label Label20;
         internal TextBox txtMagazineStock;
         internal Label label18;
+        private ComboBox cbBirthdayDay;
+        private ComboBox cbBirthdayMonth;
+        private ErrorProvider errorProvider;
     }
 }

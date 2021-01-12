@@ -1,3 +1,6 @@
+1.6.5.5
+- Fixed: any birthday on 29th of February causes application to fail on non leap year
+
 1.6.5.4
 - Fixed: print dialogue is opening in the backgroun
 - Fixed: birthday is saved as 1st January when "Birthday Unknown" is selected

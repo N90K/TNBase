@@ -82,7 +82,7 @@ namespace TNBase
                 arr[10] = theListener.MemStickPlayer.ToString();
                 arr[11] = theListener.Telephone;
                 arr[12] = theListener.Joined.ToString(DateTimeExtensions.DEFAULT_FORMAT);
-                arr[13] = theListener.Birthday.ToNullableNaString();
+                arr[13] = theListener.BirthdayText;
                 arr[14] = theListener.Status.ToString();
                 arr[15] = theListener.StatusInfo;
                 arr[16] = theListener.Stock.ToString();

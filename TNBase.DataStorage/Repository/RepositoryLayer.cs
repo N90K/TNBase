@@ -127,9 +127,10 @@ namespace TNBase.DataStorage
             {
                 tempListener.Postcode = (string)myReader["Postcode"];
             }
-            if (!(myReader["Birthday"] is DBNull))
+            if (!(myReader["BirthdayDay"] is DBNull) && !(myReader["BirthdayMonth"] is DBNull))
             {
-                tempListener.Birthday = (DateTime)myReader["Birthday"];
+                tempListener.BirthdayDay = (int)myReader["BirthdayDay"];
+                tempListener.BirthdayMonth = (int)myReader["BirthdayMonth"];
             }
             if (!(myReader["Joined"] is DBNull))
             {
@@ -280,7 +281,6 @@ namespace TNBase.DataStorage
             int magazineInt = listener.Magazine ? 1 : 0;
             int memStickInt = listener.MemStickPlayer ? 1 : 0;
 
-            string birthdayStr = listener.Birthday.ToSQLiteInsertStr();
             string deletedStr = listener.DeletedDate.ToSQLiteInsertStr();
             string lastInStr = listener.LastIn.ToSQLiteInsertStr();
             string lastOutStr = listener.LastOut.ToSQLiteInsertStr();
@@ -288,8 +288,9 @@ namespace TNBase.DataStorage
             string inString = ", In1 = " + listener.inOutRecords.In1 + ", In2 = " + listener.inOutRecords.In2 + ", In3 = " + listener.inOutRecords.In3 + ", In4 = " + listener.inOutRecords.In4 + ", In5 = " + listener.inOutRecords.In5 + ", In6 = " + listener.inOutRecords.In6 + ", In7= " + listener.inOutRecords.In7 + ", In8 = " + listener.inOutRecords.In8;
             string outString = ", Out1 = " + listener.inOutRecords.Out1 + ", Out2 = " + listener.inOutRecords.Out2 + ", Out3 = " + listener.inOutRecords.Out3 + ", Out4 = " + listener.inOutRecords.Out4 + ", Out5 = " + listener.inOutRecords.Out5 + ", Out6 = " + listener.inOutRecords.Out6 + ", Out7 = " + listener.inOutRecords.Out7 + ", Out8 = " + listener.inOutRecords.Out8;
 
-            // Now run the query with the strings we have created.
-            DoNoResultQuery(objConn, "UPDATE Listeners SET Title = '" + listener.Title + "', Forename = '" + listener.Forename + "', Surname = '" + listener.Surname + "', Addr1 = '" + listener.Addr1 + "', Addr2 = '" + listener.Addr2 + "', Town = '" + listener.Town + "', County = '" + listener.County + "', Postcode = '" + listener.Postcode + "', Birthday = " + birthdayStr + ", MemStickPlayer = " + memStickInt + ", Magazine = " + magazineInt + ", Telephone = '" + listener.Telephone + "', Info = '" + listener.Info + "', Status ='" + listener.Status + "', StatusInfo = '" + listener.StatusInfo + "'" + inString + outString + ", DeletedDate = " + deletedStr + ", Stock = " + listener.Stock + ", MagazineStock = " + listener.MagazineStock + ", LastIn = " + lastInStr + ", LastOut = " + lastOutStr + " WHERE Wallet = " + listener.Wallet);
+            var birthdayDay = listener.BirthdayDay.HasValue ? listener.BirthdayDay.ToString() : "null";
+            var birthdayMonth = listener.BirthdayMonth.HasValue ? listener.BirthdayMonth.ToString() : "null";
+            DoNoResultQuery(objConn, "UPDATE Listeners SET Title = '" + listener.Title + "', Forename = '" + listener.Forename + "', Surname = '" + listener.Surname + "', Addr1 = '" + listener.Addr1 + "', Addr2 = '" + listener.Addr2 + "', Town = '" + listener.Town + "', County = '" + listener.County + "', Postcode = '" + listener.Postcode + "', MemStickPlayer = " + memStickInt + ", Magazine = " + magazineInt + ", Telephone = '" + listener.Telephone + "', Info = '" + listener.Info + "', Status ='" + listener.Status + "', StatusInfo = '" + listener.StatusInfo + "'" + inString + outString + ", DeletedDate = " + deletedStr + ", Stock = " + listener.Stock + ", MagazineStock = " + listener.MagazineStock + ", LastIn = " + lastInStr + ", LastOut = " + lastOutStr + ", BirthdayDay = " + birthdayDay + ", BirthdayMonth = " + birthdayMonth + " WHERE Wallet = " + listener.Wallet);
         }
 
         /// <summary>
@@ -307,7 +308,6 @@ namespace TNBase.DataStorage
             // Convert variables to mysql storage.
             int magazineInt = listener.Magazine ? 1 : 0;
             int memStickInt = listener.MemStickPlayer ? 1 : 0;
-            string birthdayStr = listener.Birthday.ToSQLiteInsertStr();
             string joinedStr = listener.Joined.ToSQLiteInsertStr();
             string deletedStr = listener.DeletedDate.ToSQLiteInsertStr();
             string lastInStr = listener.LastIn.ToSQLiteInsertStr();
@@ -338,7 +338,9 @@ namespace TNBase.DataStorage
                 inoutValues = inoutValues + ", " + listener.inOutRecords.Out1 + ", " + listener.inOutRecords.Out2 + ", " + listener.inOutRecords.Out3 + ", " + listener.inOutRecords.Out4 + ", " + listener.inOutRecords.Out5 + ", " + listener.inOutRecords.Out6 + ", " + listener.inOutRecords.Out7 + ", " + listener.inOutRecords.Out8;
             }
 
-            string sql = "INSERT INTO Listeners (Wallet, Title, Forename, Surname, Addr1, Addr2, Town, County, Postcode, Birthday, MemStickPlayer, Magazine, Telephone, Info, Status, StatusInfo, DeletedDate" + inoutFields + ", Joined, LastIn, LastOut, Stock) VALUES  (" + WalletStrValue + "'" + listener.Title + "', '" + listener.Forename + "', '" + listener.Surname + "', '" + listener.Addr1 + "', '" + listener.Addr2 + "', '" + listener.Town + "', '" + listener.County + "', '" + listener.Postcode + "', " + birthdayStr + ", " + memStickInt + ", " + magazineInt + ", '" + listener.Telephone + "', '" + listener.Info + "', '" + listener.Status + "', '" + listener.StatusInfo + "', " + deletedStr + inoutValues + ", " + joinedStr + ", " + lastInStr + ", " + lastOutStr + ", " + listener.Stock + ");";
+            var birthdayDay = listener.BirthdayDay.HasValue ? listener.BirthdayDay.ToString() : "null";
+            var birthdayMonth = listener.BirthdayMonth.HasValue ? listener.BirthdayMonth.ToString() : "null";
+            string sql = "INSERT INTO Listeners (Wallet, Title, Forename, Surname, Addr1, Addr2, Town, County, Postcode, MemStickPlayer, Magazine, Telephone, Info, Status, StatusInfo, DeletedDate" + inoutFields + ", Joined, LastIn, LastOut, Stock, BirthdayDay, BirthdayMonth) VALUES  (" + WalletStrValue + "'" + listener.Title + "', '" + listener.Forename + "', '" + listener.Surname + "', '" + listener.Addr1 + "', '" + listener.Addr2 + "', '" + listener.Town + "', '" + listener.County + "', '" + listener.Postcode + "', " + memStickInt + ", " + magazineInt + ", '" + listener.Telephone + "', '" + listener.Info + "', '" + listener.Status + "', '" + listener.StatusInfo + "', " + deletedStr + inoutValues + ", " + joinedStr + ", " + lastInStr + ", " + lastOutStr + ", " + listener.Stock  + ", " + birthdayDay + ", " + birthdayMonth + "); ";
             DoNoResultQuery(objConn, sql);
 
             return result;

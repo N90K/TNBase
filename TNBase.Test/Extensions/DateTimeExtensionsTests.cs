@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using TNBase.Extensions;
+using TNBase.Infrastructure.Extensions;
 
 namespace TNBase.Test.Extensions
 {

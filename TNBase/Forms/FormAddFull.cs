@@ -5,6 +5,7 @@ using TNBase.Objects;
 using NLog;
 using TNBase.DataStorage;
 using System.Globalization;
+using TNBase.Infrastructure.Helpers;
 
 namespace TNBase
 {
@@ -17,6 +18,7 @@ namespace TNBase
         private string forename;
         private bool withSetup;
         private bool allowClose;
+        private bool preventClose;
 
         public void Setup(string title, string surname, string forename)
         {
@@ -36,6 +38,12 @@ namespace TNBase
 
         private void btnFinished_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren())
+            {
+                preventClose = true;
+                return;
+            }
+
             var newListener = new Listener
             {
                 Wallet = 0,
@@ -51,13 +59,23 @@ namespace TNBase
                 Magazine = chkMagazine.Checked,
                 Info = txtInformation.Text,
                 Telephone = string.IsNullOrEmpty(txtTelephone.Text) ? "0" : txtTelephone.Text,
-                Birthday = GetBirthdayValue(),
                 Status = ListenerStates.ACTIVE,
                 StatusInfo = "",
                 DeletedDate = DateTime.Now,
                 Joined = DateTime.Now,
                 inOutRecords = new InOutRecords()
             };
+
+            if (chkNoBirthday.Checked)
+            {
+                newListener.BirthdayDay = null;
+                newListener.BirthdayMonth = null;
+            }
+            else
+            {
+                newListener.BirthdayDay = cbxBirthdayDay.SelectedIndex + 1;
+                newListener.BirthdayMonth = cbxBirthdayMonth.SelectedIndex + 1;
+            }
 
             var result = serviceLayer.AddListener(newListener);
             if (result > 0)
@@ -146,6 +164,12 @@ namespace TNBase
                 return;
             }
 
+            if (preventClose)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             var result = MessageBox.Show("Are you sure you wish to cancel?" + Environment.NewLine + Environment.NewLine + "Press [y] to confirm, [n] to cancel.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
             if (result != DialogResult.Yes)
             {
@@ -174,6 +198,40 @@ namespace TNBase
             {
                 ActiveControl = txtAddr1;
             }
+        }
+
+        private void cbxBirthdayDay_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !ValidateBirthday();
+        }
+
+        private void cbxBirthdayMonth_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !ValidateBirthday();
+        }
+
+        private void chkNoBirthday_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !ValidateBirthday();
+        }
+
+        private bool ValidateBirthday()
+        {
+            if (!chkNoBirthday.Checked)
+            {
+                if (cbxBirthdayDay.SelectedIndex < 0 || cbxBirthdayMonth.SelectedIndex < 0)
+                {
+                    errorProvider.SetError(cbxBirthdayMonth, "Birthday value is required");
+                    return false;
+                }
+
+                if (cbxBirthdayDay.SelectedIndex + 1 > DateHelpers.GetDaysInMonth(cbxBirthdayMonth.SelectedIndex + 1))
+                {
+                    errorProvider.SetError(cbxBirthdayMonth, "Birthday value is not valid");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -19,20 +19,21 @@ namespace TNBase.DataStorage.Test.TestHelpers
                 Wallet = 1,
                 Title = "Mr",
                 Forename = "Test",
-                Surname = "Er", 
-                Addr1 = "1 Test Street", 
-                Addr2 = "Test Av", 
+                Surname = "Er",
+                Addr1 = "1 Test Street",
+                Addr2 = "Test Av",
                 County = "Test County",
                 Postcode = "CF13 3TS",
                 Magazine = true,
                 MemStickPlayer = true,
                 Status = ListenerStates.ACTIVE,
-                Telephone = "01234 234 242", 
+                Telephone = "01234 234 242",
                 Town = "Test Town",
                 StatusInfo = "",
                 Info = "Some test listener",
                 inOutRecords = new InOutRecords(),
-                Birthday = DateTime.Parse("01/01/2010")
+                BirthdayDay = 1,
+                BirthdayMonth = 1
             };
             return temp;
         }

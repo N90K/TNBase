@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Xml.Serialization;
+using TNBase.Infrastructure.Extensions;
 
 namespace TNBase.Objects
 {
@@ -31,7 +33,39 @@ namespace TNBase.Objects
         public string Telephone { get; set; }
         public bool MemStickPlayer { get; set; }
         public bool Magazine { get; set; }
-        public DateTime? Birthday { get; set; }
+        public int? BirthdayDay { get; set; }
+        public int? BirthdayMonth { get; set; }
+
+
+        [NotMapped]
+        public bool HasBirthday => BirthdayDay.HasValue && BirthdayMonth.HasValue;
+
+        [NotMapped]
+        public string BirthdayText => HasBirthday ? $"{BirthdayDay.Value.WithSuffix()} {DateTimeFormatInfo.CurrentInfo.GetMonthName(BirthdayMonth.Value)}" : "N/A";
+
+        [NotMapped]
+        public DateTime? NextBirthdayDate
+        {
+            get
+            {
+                if (!HasBirthday)
+                {
+                    return null;
+                }
+
+                var now = DateTime.Now;
+                var isNextYear = BirthdayMonth.Value < now.Month || (BirthdayDay < now.Day && BirthdayMonth == now.Month);
+                var year = isNextYear ? now.Year + 1 : now.Year;
+                
+                if(!DateTime.IsLeapYear(year) && BirthdayDay == 29 && BirthdayMonth == 2)
+                {
+                    return new DateTime(year, 3, 1); // move birthday forward by a day if not leap year
+                }
+
+                return new DateTime(year, BirthdayMonth.Value, BirthdayDay.Value);
+            }
+        }
+
         [XmlIgnore]
         public DateTime Joined { get; set; }
         public string Info { get; set; }
@@ -61,7 +95,7 @@ namespace TNBase.Objects
 
         public string GetDebugString()
         {
-            return "Wallet: " + this.Wallet + Environment.NewLine + "Name: " + GetNiceName() + Environment.NewLine + "Addr1: " + this.Addr1 + Environment.NewLine + "Addr2: " + this.Addr2 + Environment.NewLine + "Town: " + this.Town + Environment.NewLine + "County: " + this.County + Environment.NewLine + "Postcode: " + this.Postcode + Environment.NewLine + "Birthday: " + this.Birthday + Environment.NewLine + "Info: " + this.Info + Environment.NewLine + "Joined: " + this.Joined + Environment.NewLine + "LastIn: " + this.LastIn + Environment.NewLine + "LastOut: " + this.LastOut + Environment.NewLine + "Stock: " + this.Stock + Environment.NewLine + "DeletedDate: " + this.DeletedDate + Environment.NewLine + "Telephone: " + this.Telephone + Environment.NewLine + "StatusInfo: " + this.StatusInfo + Environment.NewLine + "Status: " + this.Status + Environment.NewLine + "MemStickPlayer: " + this.MemStickPlayer + Environment.NewLine + "Magazine: " + this.Magazine + Environment.NewLine;
+            return "Wallet: " + this.Wallet + Environment.NewLine + "Name: " + GetNiceName() + Environment.NewLine + "Addr1: " + this.Addr1 + Environment.NewLine + "Addr2: " + this.Addr2 + Environment.NewLine + "Town: " + this.Town + Environment.NewLine + "County: " + this.County + Environment.NewLine + "Postcode: " + this.Postcode + Environment.NewLine + "Birthday: " + this.BirthdayDay + "/" + this.BirthdayMonth + Environment.NewLine + "Info: " + this.Info + Environment.NewLine + "Joined: " + this.Joined + Environment.NewLine + "LastIn: " + this.LastIn + Environment.NewLine + "LastOut: " + this.LastOut + Environment.NewLine + "Stock: " + this.Stock + Environment.NewLine + "DeletedDate: " + this.DeletedDate + Environment.NewLine + "Telephone: " + this.Telephone + Environment.NewLine + "StatusInfo: " + this.StatusInfo + Environment.NewLine + "Status: " + this.Status + Environment.NewLine + "MemStickPlayer: " + this.MemStickPlayer + Environment.NewLine + "Magazine: " + this.Magazine + Environment.NewLine;
         }
 
         public string GetNiceName()
@@ -177,12 +211,12 @@ namespace TNBase.Objects
             }
         }
 
-        public DateTime BirthdayThisYear()
-        {
-            DateTime copy = Birthday.Value;
-            copy = copy.AddYears(DateTime.Now.Year - Birthday.Value.Year);
-            return copy;
-        }
+        //public DateTime BirthdayThisYear()
+        //{
+        //    DateTime copy = Birthday.Value;
+        //    copy = copy.AddYears(DateTime.Now.Year - Birthday.Value.Year);
+        //    return copy;
+        //}
 
         public static string FormatListenerData(Listener theListener)
         {

@@ -101,6 +101,10 @@
       <Project>{1b25649f-1ce3-4764-92de-73e2efce8789}</Project>
       <Name>TNBase.DataStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj">
+      <Project>{68828006-18c6-4f24-ad61-5350c524c093}</Project>
+      <Name>TNBase.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj">
       <Project>{3abec2d1-048c-4fad-a649-c686a2e91c82}</Project>
       <Name>TNBase.Objects</Name>

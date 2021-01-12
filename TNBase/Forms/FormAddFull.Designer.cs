@@ -37,6 +37,7 @@ namespace TNBase
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddFull));
             this.Label1 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
@@ -66,6 +67,8 @@ namespace TNBase
             this.chkNoBirthday = new System.Windows.Forms.CheckBox();
             this.cbxBirthdayDay = new System.Windows.Forms.ComboBox();
             this.cbxBirthdayMonth = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // Label1
@@ -335,6 +338,7 @@ namespace TNBase
             this.chkNoBirthday.Text = "Birthday Unknown";
             this.chkNoBirthday.UseVisualStyleBackColor = false;
             this.chkNoBirthday.CheckedChanged += new System.EventHandler(this.chkNoBirthday_CheckedChanged);
+            this.chkNoBirthday.Validating += new System.ComponentModel.CancelEventHandler(this.chkNoBirthday_Validating);
             // 
             // cbxBirthdayDay
             // 
@@ -350,6 +354,7 @@ namespace TNBase
             this.cbxBirthdayDay.Name = "cbxBirthdayDay";
             this.cbxBirthdayDay.Size = new System.Drawing.Size(73, 41);
             this.cbxBirthdayDay.TabIndex = 20;
+            this.cbxBirthdayDay.Validating += new System.ComponentModel.CancelEventHandler(this.cbxBirthdayDay_Validating);
             // 
             // cbxBirthdayMonth
             // 
@@ -361,6 +366,12 @@ namespace TNBase
             this.cbxBirthdayMonth.Name = "cbxBirthdayMonth";
             this.cbxBirthdayMonth.Size = new System.Drawing.Size(169, 41);
             this.cbxBirthdayMonth.TabIndex = 21;
+            this.cbxBirthdayMonth.Validating += new System.ComponentModel.CancelEventHandler(this.cbxBirthdayMonth_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // FormAddFull
             // 
@@ -406,6 +417,7 @@ namespace TNBase
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddFull_FormClosing);
             this.Load += new System.EventHandler(this.FormAddFull_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +450,6 @@ namespace TNBase
         private System.Windows.Forms.CheckBox chkNoBirthday;
         private ComboBox cbxBirthdayDay;
         private ComboBox cbxBirthdayMonth;
+        private ErrorProvider errorProvider;
     }
 }

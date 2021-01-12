@@ -79,7 +79,7 @@ namespace TNBase
 				g.DrawString(linebstr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 50);
 				g.DrawString(theListener.Postcode, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 75);
 
-				g.DrawString("DOB: " + theListener.Birthday, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
+				g.DrawString("DOB: " + theListener.BirthdayText, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
 				g.DrawString("Joined: " + theListener.Joined, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 50);
 				g.DrawString("Mem-Stick Player: " + theListener.MemStickPlayer, reportFontSmall, Brushes.Black, 530, start + (gap * value) + 75);
 

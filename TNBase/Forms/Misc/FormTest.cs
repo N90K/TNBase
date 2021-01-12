@@ -46,7 +46,8 @@ namespace TNBase
 			newListener.Info = "Test Account";
 			newListener.Telephone = "0800 TEST";
 
-			newListener.Birthday = DateTime.Now;
+			newListener.BirthdayDay = DateTime.Now.Day;
+			newListener.BirthdayMonth = DateTime.Now.Month;
 			newListener.Status = ListenerStates.ACTIVE;
 			newListener.StatusInfo = "";
 			newListener.Joined = DateTime.Now;

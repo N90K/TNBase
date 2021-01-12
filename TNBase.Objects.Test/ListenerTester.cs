@@ -20,7 +20,6 @@ namespace TNBase.Objects.Test
             listener.Addr1 = "29 Baker Street";
             listener.Addr2 = "";
             listener.Postcode = "N193HH";
-            listener.Birthday = DateTime.Parse("01/01/2015");
             listener.County = "Londonshire";
             listener.inOutRecords = new InOutRecords();
             listener.MemStickPlayer = true;
@@ -45,17 +44,6 @@ namespace TNBase.Objects.Test
 
             dateTime = DateTime.Now.AddDays(67);
             Assert.AreEqual(67, Listener.DaysUntilBirthday(dateTime));
-        }
-
-        [TestMethod]
-        public void Listener_BirthdayThisYear()
-        {
-            Listener dummy = CreateValidListener();
-            DateTime birthdayThisYear = dummy.BirthdayThisYear();
-
-            Assert.AreEqual(DateTime.Now.Year, birthdayThisYear.Year);
-            Assert.AreEqual(dummy.Birthday.Value.Month, birthdayThisYear.Month);
-            Assert.AreEqual(dummy.Birthday.Value.Day, birthdayThisYear.Day);
         }
 
         [TestMethod]

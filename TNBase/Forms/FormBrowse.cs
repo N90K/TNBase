@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
-using TNBase.Objects;
 using TNBase.DataStorage;
+using TNBase.Objects;
+
 namespace TNBase
 {
     public partial class FormBrowse
@@ -46,51 +47,51 @@ namespace TNBase
         }
 
         // Add items to the list.
-        public void addToListeners(Listener theListener)
+        public void addToListeners(Listener listener)
         {
             try
             {
-                lstFreeze.Items.Add(theListener.Wallet.ToString());
+                lstFreeze.Items.Add(listener.Wallet.ToString());
 
                 var subItems = new List<string>
                 {
-                    theListener.Title,
-                    theListener.Forename,
-                    theListener.Surname,
-                    theListener.Addr1,
-                    theListener.Addr2,
-                    theListener.Town,
-                    theListener.County,
-                    theListener.Postcode,
-                    theListener.Magazine.ToString(),
-                    theListener.MemStickPlayer.ToString(),
-                    theListener.Telephone,
-                    theListener.Joined.ToNiceStr(),
-                    theListener.Birthday.ToNullableNaString(DateTimeExtensions.BIRTHDAY_FORMAT),
-                    theListener.Status.ToString(),
-                    theListener.StatusInfo,
-                    theListener.Stock.ToString(),
-                    theListener.MagazineStock.ToString(),
-                    theListener.LastIn.ToNullableNaString(),
-                    theListener.LastOut.ToNullableNaString(),
-                    theListener.Info,
-                    theListener.inOutRecords.In1.ToString(),
-                    theListener.inOutRecords.In2.ToString(),
-                    theListener.inOutRecords.In3.ToString(),
-                    theListener.inOutRecords.In4.ToString(),
-                    theListener.inOutRecords.Out1.ToString(),
-                    theListener.inOutRecords.Out2.ToString(),
-                    theListener.inOutRecords.Out3.ToString(),
-                    theListener.inOutRecords.Out4.ToString()
+                    listener.Title,
+                    listener.Forename,
+                    listener.Surname,
+                    listener.Addr1,
+                    listener.Addr2,
+                    listener.Town,
+                    listener.County,
+                    listener.Postcode,
+                    listener.Magazine.ToString(),
+                    listener.MemStickPlayer.ToString(),
+                    listener.Telephone,
+                    listener.Joined.ToNiceStr(),
+                    listener.BirthdayText,
+                    listener.Status.ToString(),
+                    listener.StatusInfo,
+                    listener.Stock.ToString(),
+                    listener.MagazineStock.ToString(),
+                    listener.LastIn.ToNullableNaString(),
+                    listener.LastOut.ToNullableNaString(),
+                    listener.Info,
+                    listener.inOutRecords.In1.ToString(),
+                    listener.inOutRecords.In2.ToString(),
+                    listener.inOutRecords.In3.ToString(),
+                    listener.inOutRecords.In4.ToString(),
+                    listener.inOutRecords.Out1.ToString(),
+                    listener.inOutRecords.Out2.ToString(),
+                    listener.inOutRecords.Out3.ToString(),
+                    listener.inOutRecords.Out4.ToString()
                 };
 
                 var itm = new ListViewItem(subItems.ToArray());
-                if (theListener.Status == ListenerStates.DELETED)
+                if (listener.Status == ListenerStates.DELETED)
                 {
                     itm.BackColor = Color.DarkRed;
                     itm.ForeColor = Color.White;
                 }
-                else if (theListener.Status == ListenerStates.PAUSED)
+                else if (listener.Status == ListenerStates.PAUSED)
                 {
                     itm.BackColor = Color.LightGray;
                 }

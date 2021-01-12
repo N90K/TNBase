@@ -79,7 +79,7 @@ namespace TNBase
 				g.DrawString(linebstr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 50);
 				g.DrawString(theListener.Postcode, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 75);
 
-				g.DrawString("DOB: " + theListener.Birthday, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
+				g.DrawString("DOB: " + theListener.BirthdayText, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
 				g.DrawString("Info: " + theListener.StatusInfo, reportFontSmallBold, Brushes.Black, 150, start + (gap * value) + 100);
 				g.DrawString("Deleted: " + theListener.DeletedDate, reportFontSmallBold, Brushes.Black, 550, start + (gap * value) + 75);
 
