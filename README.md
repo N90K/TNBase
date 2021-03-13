@@ -1,7 +1,7 @@
 # **TNBase**
 
 ## **Introduction:**
-TNBase is a database programme used to keep the records of listeners and the postal pouches for talking newspapers. Talking newspapers provide an audio service in a local area for sight impaired people who want to keep up to date with the local news and to listen to some locally produced magazine items. The postal pouches also known at postal wallets, are used to send the media to the listeners. The media can be compact discs or cassette tapes but are usually USB memory sticks. Talking newspaper organisations typically send out local news recordings weekly for 50 weeks of the year. Separate magazine recordings can be sent out less frequently.
+TNBase is a database application used to keep the records of listeners and the postal pouches for talking newspapers. Talking newspapers provide an audio service in a local area for sight impaired people who want to keep up to date with the local news and to listen to some locally produced magazine items. The postal pouches also known at postal wallets, are used to send the media to the listeners. The media can be compact discs or cassette tapes but are usually USB memory sticks. Talking newspaper organisations typically send out local news recordings weekly for 50 weeks of the year. Separate magazine recordings can be sent out less frequently.
 
 Some talking newspapers also upload their recordings to a web site so that suitably equipped listeners can download them or listen on-line.
 
