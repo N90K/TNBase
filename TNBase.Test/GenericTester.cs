@@ -12,7 +12,7 @@ namespace TNBase.Test
         [TestMethod]
         public void Generic_BasicTimeTest()
         {
-            ModuleGeneric.saveStartTime();
+            ModuleGeneric.SaveStartTime();
             ModuleGeneric.saveEndTime();
             ModuleGeneric.getStartTimeString();
             ModuleGeneric.getEndTimeString();
@@ -89,12 +89,6 @@ namespace TNBase.Test
         public void Generic_WeekStatSave_DontUpdateInOuts()
         {
             WeekStatTest_Base(true, false);
-        }
-
-        [TestMethod]
-        public void Generic_CheckWeArentGeneratingDummyData()
-        {
-            Assert.IsFalse(ModuleGeneric.CreateDummyData());
         }
     }
 }

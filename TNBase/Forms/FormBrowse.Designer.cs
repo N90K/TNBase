@@ -55,11 +55,11 @@ namespace TNBase
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StatusInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MagazineStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastIn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastOut = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Info = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnCancelStop = new System.Windows.Forms.Button();
             this.btnStopSending = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -70,9 +70,9 @@ namespace TNBase
             this.btnLast = new System.Windows.Forms.Button();
             this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.Label1 = new System.Windows.Forms.Label();
-            this.MagazineStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lstFreeze = new System.Windows.Forms.ListView();
             this.walletFreeze = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.filterButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstBrowse
@@ -187,6 +187,10 @@ namespace TNBase
             // 
             this.Stock.Text = "News Stock";
             // 
+            // MagazineStock
+            // 
+            this.MagazineStock.Text = "Mag Stock";
+            // 
             // LastIn
             // 
             this.LastIn.Text = "LastIn";
@@ -205,22 +209,9 @@ namespace TNBase
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(422, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(255, 33);
+            this.lblTitle.Size = new System.Drawing.Size(238, 33);
             this.lblTitle.TabIndex = 51;
-            this.lblTitle.Text = "Browse Listeners";
-            // 
-            // btnCancelStop
-            // 
-            this.btnCancelStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnCancelStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelStop.Location = new System.Drawing.Point(663, 546);
-            this.btnCancelStop.Name = "btnCancelStop";
-            this.btnCancelStop.Size = new System.Drawing.Size(209, 74);
-            this.btnCancelStop.TabIndex = 56;
-            this.btnCancelStop.Text = "Cancel a Stop";
-            this.btnCancelStop.UseVisualStyleBackColor = false;
-            this.btnCancelStop.Click += new System.EventHandler(this.btnCancelStop_Click);
+            this.lblTitle.Text = "Active Listeners";
             // 
             // btnStopSending
             // 
@@ -345,10 +336,6 @@ namespace TNBase
             this.Label1.TabIndex = 63;
             this.Label1.Text = "Order by:";
             // 
-            // MagazineStock
-            // 
-            this.MagazineStock.Text = "Mag Stock";
-            // 
             // lstFreeze
             // 
             this.lstFreeze.AllowColumnReorder = true;
@@ -372,12 +359,24 @@ namespace TNBase
             this.walletFreeze.Text = "Wallet";
             this.walletFreeze.Width = 87;
             // 
+            // filterButton
+            // 
+            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterButton.Location = new System.Drawing.Point(801, 11);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(277, 37);
+            this.filterButton.TabIndex = 65;
+            this.filterButton.Text = "Show marked for deletion";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
             // FormBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1104, 634);
+            this.Controls.Add(this.filterButton);
             this.Controls.Add(this.lstFreeze);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.cmbOrder);
@@ -386,7 +385,6 @@ namespace TNBase
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnDone);
-            this.Controls.Add(this.btnCancelStop);
             this.Controls.Add(this.btnStopSending);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnRemove);
@@ -414,7 +412,6 @@ namespace TNBase
 		internal System.Windows.Forms.ColumnHeader Birthday;
 		internal System.Windows.Forms.Label lblTitle;
 		internal System.Windows.Forms.ColumnHeader Status;
-        private System.Windows.Forms.Button btnCancelStop;
         private System.Windows.Forms.Button btnStopSending;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnRemove;
@@ -437,5 +434,6 @@ namespace TNBase
         internal ColumnHeader MagazineStock;
         internal ListView lstFreeze;
         internal ColumnHeader walletFreeze;
+        private Button filterButton;
     }
 }

@@ -142,6 +142,7 @@ namespace TNBase
             // btnFinished
             // 
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFinished.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinished.Location = new System.Drawing.Point(324, 359);
             this.btnFinished.Name = "btnFinished";
@@ -154,6 +155,7 @@ namespace TNBase
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(38, 359);
             this.btnCancel.Name = "btnCancel";
@@ -186,7 +188,7 @@ namespace TNBase
             this.label4.TabIndex = 56;
             this.label4.Text = "Wallet:";
             // 
-            // formStopSending
+            // FormStopSending
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,7 +209,7 @@ namespace TNBase
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formStopSending";
+            this.Name = "FormStopSending";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();

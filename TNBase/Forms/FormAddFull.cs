@@ -185,7 +185,7 @@ namespace TNBase
 
         private void FormAddFull_Load(object sender, EventArgs e)
         {
-            comboTitle.Items.AddRange(ListenerTitles.getAllTitles().ToArray());
+            comboTitle.Items.AddRange(ListenerTitles.GetAllTitles().ToArray());
             if (title != null)
             {
                 comboTitle.Text = title;

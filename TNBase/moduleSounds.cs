@@ -22,7 +22,7 @@ namespace TNBase
 		// Check sounds exist.
 		public static bool CheckResourcesFolder()
 		{
-			System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(GetResourcesFolder());
+			var dir = new System.IO.DirectoryInfo(GetResourcesFolder());
 
             bool result = dir.Exists;
 			if (!result) {

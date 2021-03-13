@@ -53,6 +53,7 @@ namespace TNBase
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(23, 253);
             this.btnCancel.Name = "btnCancel";
@@ -65,6 +66,7 @@ namespace TNBase
             // btnCancelStop
             // 
             this.btnCancelStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnCancelStop.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancelStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelStop.Location = new System.Drawing.Point(553, 253);
             this.btnCancelStop.Name = "btnCancelStop";
@@ -136,7 +138,7 @@ namespace TNBase
             this.ResumeSending.Text = "Resume Sending On...";
             this.ResumeSending.Width = 230;
             // 
-            // formResumeSending
+            // FormResumeSending
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -148,7 +150,7 @@ namespace TNBase
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "formResumeSending";
+            this.Name = "FormResumeSending";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();

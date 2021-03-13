@@ -27,7 +27,7 @@ namespace TNBase
 
         private static DateTime endTime;
         // Save start time.
-        public static void saveStartTime()
+        public static void SaveStartTime()
         {
             startTime = DateTime.Now;
         }
@@ -55,11 +55,6 @@ namespace TNBase
             TimeSpan elapsedTime = default(TimeSpan);
             elapsedTime = endTime.Subtract(startTime);
             return string.Format("{0:00}:{1:00}:{2:00}", elapsedTime.TotalHours, elapsedTime.Minutes, elapsedTime.Seconds);
-        }
-
-        public static bool CreateDummyData()
-        {
-            return TNBase.Settings.Default.CreateDummyData;
         }
 
         // Get elapsed time.

@@ -34,7 +34,7 @@ namespace TNBase.DataStorage
         void ClearYearlyStats();
         void ClearAllData();
         void ClearAllDataExceptCollectors();
-        
+
         /// <summary>
         /// Listener Calls
         /// </summary>
@@ -57,13 +57,10 @@ namespace TNBase.DataStorage
         List<Listener> GetListenersByStatus(ListenerStates status);
         List<Listener> GetOrderedListeners(OrderVar ordering);
         int AddListener(Listener listener);
-        bool UpdateListener(Listener listener);
-        bool SoftDeleteListener(Listener listener, string reason);
+        void UpdateListener(Listener listener);
+        void SoftDeleteListener(Listener listener, string reason);
         bool RestoreListener(Listener listener);
         void ResumePausedListeners();
-        // Cleanup methods
-        void CleanUpDates();
-        void CleanUpTitles();
 
         /// <summary>
         /// Year stats calls
@@ -118,6 +115,5 @@ namespace TNBase.DataStorage
         /// Support methods
         /// </summary>
         void RunCommand(String sqlCommand);
-        void CleanDeletedDates();
     }
 }

@@ -74,6 +74,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="ITNBaseContext.cs" />
     <Compile Include="Migrations\2_Birthdays.cs" />
+    <Compile Include="Migrations\4_MaskDeletedListeners.cs" />
+    <Compile Include="Migrations\3_Titles.cs" />
     <Compile Include="Migrations\1_Initial.cs" />
     <Compile Include="Migrations\DatabaseUpdater.cs" />
     <Compile Include="Migrations\ISqlMigration.cs" />

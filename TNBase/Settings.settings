@@ -26,8 +26,5 @@
     <Setting Name="AssociationName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Solihull Borough Talking Newspaper Association</Value>
     </Setting>
-    <Setting Name="CreateDummyData" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

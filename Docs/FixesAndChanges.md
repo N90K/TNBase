@@ -12,15 +12,15 @@ Weekly listeners as of today: 190
 
 **C2.** Make the number of News wallets allocated to each listener configurable**. Default = 3.
 
-**C3.** Delete permanently all names and all contact details after a listener is deleted and all wallets returned (or delete manually if necessary), but reserve/keep the wallet numbers for a year, as now. Also remove the  'Restore Deleted Listeners' in the maintenance menu.*
+Done **C3.** Delete permanently all names and all contact details after a listener is deleted and all wallets returned (or delete manually if necessary), but reserve/keep the wallet numbers for a year, as now. Also remove the  'Restore Deleted Listeners' in the maintenance menu.*
 
-**C4.** A new report to list 'Magazine only listeners'. (List only Wallet numbers and names)
+Done **C4.** A new report to list 'Magazine only listeners'. (List only Wallet numbers and names)
 
 **C5.** Replace the present old system of week numbers with a more widely used system of week numbers or Saturday dates. Provide a method for migrating to the new week numbering system.
 
-**C6.** Browse menu: Either freeze the wallet number column when scrolling sideways, or if difficult to do, repeat the wallet number column next to the 'Stock' column.
+Done **C6.** Browse menu: Either freeze the wallet number column when scrolling sideways, or if difficult to do, repeat the wallet number column next to the 'Stock' column.
 
-**C7.** The previous 8 weeks worth of scanning records in 'Browse' are no longer required. 4 weeks will be sufficient.
+Done **C7.** The previous 8 weeks worth of scanning records in 'Browse' are no longer required. 4 weeks will be sufficient.
 
 **C8.** Printing Menu: All the various lists of listeners except the 'Unsent wallet list' which has already been changed:  Remove all contact details so that the lists only show wallet numbers and names.  The only print out that continues to contain the full details of the listener is to be the 'Print Collector for Listener'. *
 
@@ -34,6 +34,8 @@ Done **C10.** New item in the 'Print' menu: Print list of all wallet number with
 **C11.** Make the usual day of the week when the database is updated configurable**. Default = Saturday.
 
 **C12.** Add to Print menu: List currently Paused wallets, with 'Until' date where known.
+
+**C13** In the Statistics menu one of the items is 'Average number of listeners for the year' which we want to change to: 'Average number of active listeners for the year'
 
 * **These changes are required so we can better conform to the new GDPR regulations.**
 

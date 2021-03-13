@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Reflection;
+using TNBase.Objects;
 
 namespace TNBase.DataStorage.Migrations
 {
@@ -41,7 +42,7 @@ namespace TNBase.DataStorage.Migrations
                 command.CommandText = $"INSERT INTO DatabaseMigrations(Version, Name, CreateDate) VALUES($Version, $Name, $CreateDate)";
                 command.Parameters.Add("$Version", DbType.Int32).Value = migration.Version;
                 command.Parameters.Add("$Name", DbType.String).Value = migration.Name;
-                command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow;
+                command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow.ToSQLiteUtcString();
                 command.ExecuteNonQuery();
             }
         }

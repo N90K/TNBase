@@ -38,7 +38,7 @@ namespace TNBase
                     {
                         // Look up data.
                         Listener theListener = theListeners[0];
-                        dataString = Listener.FormatListenerData(theListener);
+                        dataString = theListener.FormatListenerData();
 
                         // Show prompt.
                         DialogResult result = MessageBox.Show("There would appear to be another listener with the same name. Is this a duplicate?" + Environment.NewLine + Environment.NewLine + dataString + Environment.NewLine + "Press [Y] if this is a duplicate or [N] otherwise.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
@@ -112,7 +112,7 @@ namespace TNBase
 
         private void formAddMini_Load(object sender, EventArgs e)
         {
-            comboTitle.Items.AddRange(ListenerTitles.getAllTitles().ToArray());
+            comboTitle.Items.AddRange(ListenerTitles.GetAllTitles().ToArray());
         }
 
         private void comboTitle_Validating(object sender, System.ComponentModel.CancelEventArgs e)

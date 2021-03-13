@@ -24,7 +24,7 @@ namespace TNBase.DataStorage
                 var listener = context.Listeners.FirstOrDefault(x => x.Wallet == scan.Wallet);
                 if (listener != null)
                 {
-                    UpdateListenerStock(listener, scan.ScanType, scan.WalletType);
+                    listener.Scan(scan.ScanType, scan.WalletType);
                 }
 
                 context.Scans.Add(new Scan
@@ -37,23 +37,6 @@ namespace TNBase.DataStorage
             }
 
             context.SaveChanges();
-        }
-
-        private void UpdateListenerStock(Listener listener, ScanTypes scanType, WalletTypes walletType)
-        {
-            var increment = scanType == ScanTypes.OUT ? -1 : 1;
-
-            switch (walletType)
-            {
-                case WalletTypes.News:
-                    listener.Stock += increment;
-                    break;
-                case WalletTypes.Magazine:
-                    listener.MagazineStock += increment;
-                    break;
-                default:
-                    break;
-            }
         }
     }
 }

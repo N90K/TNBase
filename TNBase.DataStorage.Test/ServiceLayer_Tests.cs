@@ -222,55 +222,9 @@ namespace TNBase.DataStorage.Test
         }
 
         [TestMethod]
-        public void ServiceLayer_CleanUpDates()
+        public void ServiceLayer_GetNextWeeksBirthdays()
         {
-            // Insert a listener with a invalid dates
-            int listenerId = 332;
-            Listener l2 = new Listener()
-            {
-                Title = "Miss",
-                Forename = "Clean",
-                Surname = "Dates",
-                Addr1 = "40 Clean Road",
-                Addr2 = "",
-                County = "London",
-                Postcode = "N7 8AB",
-                Town = "Camden",
-                Telephone = "07843434343",
-                Stock = 3,
-                Info = "",
-                BirthdayDay = 1,
-                BirthdayMonth = 1,
-                Joined = DateTime.Now,
-                MemStickPlayer = false,
-                Magazine = true,
-                Status = ListenerStates.ACTIVE,
-                StatusInfo = "",
-                Wallet = listenerId,
-                DeletedDate = DateTime.Parse("01/01/1000"),
-                LastIn = DateTime.Parse("01/01/1000"),
-                LastOut = DateTime.Parse("01/01/1000")
-            };
-            repoLayer.InsertListener(serviceLayer.GetConnection(), l2);
-
-            // Get the listener.
-            Listener retrieved = serviceLayer.GetListenerById(listenerId);
-
-            // Check the dates are invalid!
-            Assert.IsTrue(retrieved.DeletedDate.Value < DBUtils.AppMinDate());
-            Assert.IsTrue(retrieved.LastOut.Value < DBUtils.AppMinDate());
-            Assert.IsTrue(retrieved.LastIn.Value < DBUtils.AppMinDate());
-
-            // Clean them up
-            serviceLayer.CleanUpDates();
-
-            // Get the updated listener.
-            Listener updated = serviceLayer.GetListenerById(listenerId);
-
-            // Check they are now valid
-            Assert.IsFalse(updated.DeletedDate.HasValue);
-            Assert.IsFalse(updated.LastOut.HasValue);
-            Assert.IsFalse(updated.LastIn.HasValue);
+            Assert.AreEqual(0, serviceLayer.GetNextWeekBirthdays().Count);
         }
 
         [TestMethod]
@@ -374,41 +328,6 @@ namespace TNBase.DataStorage.Test
         }
 
         [TestMethod]
-        public void ServiceLayer_CleanUpTitles()
-        {
-            int listenerId = 333;
-            Listener l2 = new Listener()
-            {
-                Title = "Miss.",
-                Forename = "Clean",
-                Surname = "Dates",
-                Addr1 = "40 Clean Road",
-                Addr2 = "",
-                County = "London",
-                Postcode = "N7 8AB",
-                Town = "Camden",
-                Telephone = "07843434343",
-                Stock = 3,
-                Info = "",
-                Joined = DateTime.Now,
-                MemStickPlayer = false,
-                Magazine = true,
-                Status = ListenerStates.ACTIVE,
-                StatusInfo = "",
-                Wallet = listenerId,
-                DeletedDate = DateTime.Parse("01/01/1000"),
-                LastIn = DateTime.Parse("01/01/1000"),
-                LastOut = DateTime.Parse("01/01/1000")
-            };
-            repoLayer.InsertListener(serviceLayer.GetConnection(), l2);
-
-            serviceLayer.CleanUpTitles();
-
-            Listener result = serviceLayer.GetListenerById(333);
-            Assert.AreEqual("Miss", result.Title);
-        }
-
-        [TestMethod]
         public void ServiceLayer_GetWeeklyStatsForNewWeek()
         {
             serviceLayer.ClearWeeklyStats();
@@ -428,18 +347,6 @@ namespace TNBase.DataStorage.Test
             Assert.AreEqual(17, stats.TotalListeners);
             Assert.AreEqual(3, stats.PausedCount);
             Assert.AreEqual(5, stats.WeekNumber);
-        }
-
-        [TestMethod]
-        public void ServiceLayer_CleanDeletedDate()
-        {
-            Listener l5 = new Listener() { Title = "Miss", Forename = "Other", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 5, DeletedDate = DateTime.Now.AddDays(-5) };
-            serviceLayer.AddListener(l5);
-
-            serviceLayer.CleanDeletedDates();
-            Listener result = serviceLayer.GetListenerById(l5.Wallet);
-
-            Assert.IsNull(result.DeletedDate);
         }
     }
 }

@@ -51,7 +51,6 @@ namespace TNBase
             this.MaintenenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RestoreDeletedListenersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintAllListenerLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EnableScanInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableScanOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -206,7 +205,6 @@ namespace TNBase
             this.MaintenenceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BackupToolStripMenuItem,
             this.RestoreToolStripMenuItem,
-            this.RestoreDeletedListenersToolStripMenuItem,
             this.PrintAllListenerLabelsToolStripMenuItem,
             this.EnableScanInToolStripMenuItem,
             this.enableScanOutToolStripMenuItem,
@@ -220,63 +218,56 @@ namespace TNBase
             // BackupToolStripMenuItem
             // 
             this.BackupToolStripMenuItem.Name = "BackupToolStripMenuItem";
-            this.BackupToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.BackupToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.BackupToolStripMenuItem.Text = "Backup";
             this.BackupToolStripMenuItem.Click += new System.EventHandler(this.BackupToolStripMenuItem_Click);
             // 
             // RestoreToolStripMenuItem
             // 
             this.RestoreToolStripMenuItem.Name = "RestoreToolStripMenuItem";
-            this.RestoreToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.RestoreToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.RestoreToolStripMenuItem.Text = "Restore";
             this.RestoreToolStripMenuItem.Click += new System.EventHandler(this.RestoreToolStripMenuItem_Click);
-            // 
-            // RestoreDeletedListenersToolStripMenuItem
-            // 
-            this.RestoreDeletedListenersToolStripMenuItem.Name = "RestoreDeletedListenersToolStripMenuItem";
-            this.RestoreDeletedListenersToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
-            this.RestoreDeletedListenersToolStripMenuItem.Text = "Restore Deleted Listeners";
-            this.RestoreDeletedListenersToolStripMenuItem.Click += new System.EventHandler(this.RestoreDeletedListenersToolStripMenuItem_Click);
             // 
             // PrintAllListenerLabelsToolStripMenuItem
             // 
             this.PrintAllListenerLabelsToolStripMenuItem.Name = "PrintAllListenerLabelsToolStripMenuItem";
-            this.PrintAllListenerLabelsToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.PrintAllListenerLabelsToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.PrintAllListenerLabelsToolStripMenuItem.Text = "Print All Listener Labels";
             this.PrintAllListenerLabelsToolStripMenuItem.Click += new System.EventHandler(this.PrintAllListenerLabelsToolStripMenuItem_Click);
             // 
             // EnableScanInToolStripMenuItem
             // 
             this.EnableScanInToolStripMenuItem.Name = "EnableScanInToolStripMenuItem";
-            this.EnableScanInToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.EnableScanInToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.EnableScanInToolStripMenuItem.Text = "Enable Scan In";
             this.EnableScanInToolStripMenuItem.Click += new System.EventHandler(this.EnableScanInToolStripMenuItem_Click);
             // 
             // enableScanOutToolStripMenuItem
             // 
             this.enableScanOutToolStripMenuItem.Name = "enableScanOutToolStripMenuItem";
-            this.enableScanOutToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.enableScanOutToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.enableScanOutToolStripMenuItem.Text = "Enable Scan Out";
             this.enableScanOutToolStripMenuItem.Click += new System.EventHandler(this.enableScanOutToolStripMenuItem_Click);
             // 
             // logViewToolStripMenuItem
             // 
             this.logViewToolStripMenuItem.Name = "logViewToolStripMenuItem";
-            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.logViewToolStripMenuItem.Text = "Log View";
             this.logViewToolStripMenuItem.Click += new System.EventHandler(this.logViewToolStripMenuItem_Click);
             // 
             // openLogDirectoryToolStripMenuItem
             // 
             this.openLogDirectoryToolStripMenuItem.Name = "openLogDirectoryToolStripMenuItem";
-            this.openLogDirectoryToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.openLogDirectoryToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.openLogDirectoryToolStripMenuItem.Text = "Open Log Directory";
             this.openLogDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openLogDirectoryToolStripMenuItem_Click);
             // 
             // adjustStockLevelsToolStripMenuItem
             // 
             this.adjustStockLevelsToolStripMenuItem.Name = "adjustStockLevelsToolStripMenuItem";
-            this.adjustStockLevelsToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.adjustStockLevelsToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.adjustStockLevelsToolStripMenuItem.Text = "Adjust Stock Levels";
             this.adjustStockLevelsToolStripMenuItem.Click += new System.EventHandler(this.adjustStockLevelsToolStripMenuItem_Click);
             // 
@@ -419,14 +410,14 @@ namespace TNBase
             // StatisticsToolStripMenuItem
             // 
             this.StatisticsToolStripMenuItem.Name = "StatisticsToolStripMenuItem";
-            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.StatisticsToolStripMenuItem.Text = "Statistics";
             this.StatisticsToolStripMenuItem.Click += new System.EventHandler(this.StatisticsToolStripMenuItem_Click);
             // 
             // HistoryToolStripMenuItem
             // 
             this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
-            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.HistoryToolStripMenuItem.Text = "History";
             this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
@@ -844,7 +835,6 @@ namespace TNBase
         private System.Windows.Forms.ToolStripMenuItem ScanOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RecentlyAddedListenersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PrintAddressLabelsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem RestoreDeletedListenersToolStripMenuItem;
 		internal System.Windows.Forms.ToolStripMenuItem CollectorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddCollectorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BrowseToolStripMenuItem1;

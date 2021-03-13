@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using TNBase.Objects;
 
 namespace TNBase.DataStorage.Test.Migrations
 {
@@ -81,7 +82,7 @@ namespace TNBase.DataStorage.Test.Migrations
             {
                 var updater = builder.Build();
 
-                var before = DateTime.UtcNow;
+                var before = DateTime.UtcNow.TruncateMilliseconds();
                 updater.Update();
                 var after = DateTime.UtcNow;
 

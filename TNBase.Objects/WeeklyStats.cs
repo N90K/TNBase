@@ -2,54 +2,21 @@
 
 namespace TNBase.Objects
 {
-    /// <summary>
-    /// Stores the statistics for a week
-    /// </summary>
     public class WeeklyStats
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
         public WeeklyStats() 
         {
             WeekDate = DateTime.Now;
         }
 
-        /// <summary>
-        /// The week number - this is used for reports etc.
-        /// </summary>
-        public int WeekNumber;
+        public int WeekNumber { get; set; }
+        public int ScannedIn { get; set; }
+        public int ScannedOut { get; set; }
+        public int PausedCount { get; set; }
+        public int TotalListeners { get; set; }
+        public DateTime WeekDate { get; set; }
 
-        /// <summary>
-        /// The number of wallets scanned in - e.g. recieved back.
-        /// </summary>
-        public int ScannedIn;
-
-        /// <summary>
-        /// The number of wallets scanned out - e.g. sent to Listeners.
-        /// </summary>
-        public int ScannedOut;
-
-        /// <summary>
-        /// The number of Paused Listeners
-        /// </summary>
-        public int PausedCount;
-
-        /// <summary>
-        /// The Total number of Listeners
-        /// </summary>
-        public int TotalListeners;
-
-        /// <summary>
-        /// The date for the week
-        /// </summary>
-        public DateTime WeekDate;
-
-        /// <summary>
-        /// Are there scanning results
-        /// </summary>
-        /// <returns>true or false</returns>
-        public bool hasScanningResults()
+        public bool HasScanningResults()
         {
             return ScannedIn > 0 || ScannedOut > 0;
         }

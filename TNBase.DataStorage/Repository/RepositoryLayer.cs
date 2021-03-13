@@ -136,10 +136,16 @@ namespace TNBase.DataStorage
             {
                 tempListener.Joined = (DateTime)myReader["Joined"];
             }
-            tempListener.Telephone = (string)myReader["Telephone"];
+            if (!(myReader["Telephone"] is DBNull))
+            {
+                tempListener.Telephone = (string)myReader["Telephone"];
+            }
             tempListener.MemStickPlayer = (bool)myReader["MemStickPlayer"];
             tempListener.Magazine = (bool)myReader["Magazine"];
-            tempListener.Info = (string)myReader["Info"];
+            if (!(myReader["Info"] is DBNull))
+            {
+                tempListener.Info = (string)myReader["Info"];
+            }
             tempListener.Status = (ListenerStates)Enum.Parse(typeof(ListenerStates), (string)myReader["Status"], true);
             if (!(myReader["StatusInfo"] is DBNull))
             {

@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using TNBase.Forms;
+
 namespace TNBase
 {
     public partial class FormDuplicates
@@ -81,7 +83,7 @@ namespace TNBase
                 arr[9] = theListener.Magazine.ToString();
                 arr[10] = theListener.MemStickPlayer.ToString();
                 arr[11] = theListener.Telephone;
-                arr[12] = theListener.Joined.ToString(DateTimeExtensions.DEFAULT_FORMAT);
+                arr[12] = theListener.Joined.ToNullableNaString(DateTimeExtensions.DEFAULT_FORMAT);
                 arr[13] = theListener.BirthdayText;
                 arr[14] = theListener.Status.ToString();
                 arr[15] = theListener.StatusInfo;
@@ -141,143 +143,55 @@ namespace TNBase
                 Close();
             }
 
-            // Delete Form
+            if (lstDuplicates.FocusedItem == null)
+                return;
+
+            var index = lstDuplicates.FocusedItem.Index;
+            var wallet = int.Parse(lstDuplicates.Items[index].SubItems[0].Text);
+            var listener = serviceLayer.GetListenerById(wallet);
+
             if (theFormType == DuplicateFormType.DeleteForm)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
-
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    string dataString = null;
-                    dataString = Listener.FormatListenerData(serviceLayer.GetListenerById(walletNumb));
-
-                    // Show prompt.
-                    DialogResult result = MessageBox.Show("Are you sure you wish to delete the following listener?" + Environment.NewLine + Environment.NewLine + dataString + Environment.NewLine + "Press [Y] to confirm or [N] to cancel.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        string myReason = Interaction.InputBox("Please enter a reason for deletion", "S.B.T.N.A.", "");
-                        bool resultofdelete = false;
-
-                        // Check if the delete was a success.
-                        resultofdelete = serviceLayer.SoftDeleteListener(serviceLayer.GetListenerById(walletNumb), myReason);
-                        if (resultofdelete)
-                        {
-                            Interaction.MsgBox("Listener deleted successfully.");
-                            lstDuplicates.Items[theIndex].Remove();
-
-                            MessageBox.Show("You should remove all wallets including the magazine wallet" + Environment.NewLine + "from stock for Wallet number " + walletNumb + ".", ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
-                        }
-                        else
-                        {
-                            Interaction.MsgBox("Error deleting listener.");
-                        }
-                        this.Close();
-                    }
-                }
+                var deleteForm = FormDelete.Create(listener);
+                deleteForm.ShowDialog();
             }
 
-            // Edit Form
             if (theFormType == DuplicateFormType.EditForm)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
-
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    My.MyProject.Forms.formEdit.Show();
-                    My.MyProject.Forms.formEdit.setupForm(serviceLayer.GetListenerById(walletNumb));
-                    this.Close();
-                }
+                My.MyProject.Forms.formEdit.Show();
+                My.MyProject.Forms.formEdit.Setup(listener);
             }
 
-            // StopSending form
             if (theFormType == DuplicateFormType.StopSending)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
-
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    My.MyProject.Forms.formStopSending.Show();
-                    My.MyProject.Forms.formStopSending.setupForm(serviceLayer.GetListenerById(walletNumb));
-                    this.Close();
-                }
+                My.MyProject.Forms.formStopSending.Show();
+                My.MyProject.Forms.formStopSending.Setup(listener);
             }
 
-            // Print labels form.
             if (theFormType == DuplicateFormType.PrintLabels)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
-
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    My.MyProject.Forms.formChoosePrintPoint.Show();
-                    My.MyProject.Forms.formChoosePrintPoint.SetupForm(serviceLayer.GetListenerById(walletNumb));
-                    this.Close();
-                }
+                My.MyProject.Forms.formChoosePrintPoint.Show();
+                My.MyProject.Forms.formChoosePrintPoint.SetupForm(listener);
             }
 
             if (theFormType == DuplicateFormType.PrintCollector)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
+                DialogResult result = MessageBox.Show("Are you printing this form for a deleted listener? (Select No if its a new one)", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
+                bool deleted = (result == DialogResult.Yes);
 
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    DialogResult result = MessageBox.Show("Are you printing this form for a deleted listener? (Select No if its a new one)", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
-                    bool deleted = (result == DialogResult.Yes);
-
-                    My.MyProject.Forms.formPrintCollectionForm.Show();
-                    My.MyProject.Forms.formPrintCollectionForm.SetupForm(serviceLayer.GetListenerById(walletNumb), deleted);
-                    this.Close();
-                }
+                My.MyProject.Forms.formPrintCollectionForm.Show();
+                My.MyProject.Forms.formPrintCollectionForm.SetupForm(listener, deleted);
             }
 
             if (theFormType == DuplicateFormType.AdjustStock)
             {
-                // Do we have a selected item?
-                if ((lstDuplicates.FocusedItem != null))
-                {
-                    int theIndex = 0;
-                    theIndex = lstDuplicates.FocusedItem.Index;
 
-                    // First sub item is wallet number.
-                    int walletNumb = 0;
-                    walletNumb = int.Parse(lstDuplicates.Items[theIndex].SubItems[0].Text);
-
-                    FormAdjustStockLevels formAdjustStock = new FormAdjustStockLevels();
-                    formAdjustStock.setListener(serviceLayer.GetListenerById(walletNumb));
-                    formAdjustStock.Show();
-                    this.Close();
-                }
+                FormAdjustStockLevels formAdjustStock = new FormAdjustStockLevels();
+                formAdjustStock.setListener(listener);
+                formAdjustStock.Show();
             }
+
+            Close();
         }
         public FormDuplicates()
         {

@@ -1,3 +1,7 @@
+1.6.6.0
+- Remove listeners personal data when listener is deleted who doesn't own a player or any wallets
+- Fixed listener title inconsisten period
+
 1.6.5.5
 - Fixed: any birthday on 29th of February causes application to fail on non leap year
 
