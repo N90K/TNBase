@@ -37,6 +37,8 @@ Done **C10.** New item in the 'Print' menu: Print list of all wallet number with
 
 **C13** In the Statistics menu one of the items is 'Average number of listeners for the year' which we want to change to: 'Average number of active listeners for the year'
 
+**C14** Option to set a login  before TNBase will run.
+
 * **These changes are required so we can better conform to the new GDPR regulations.**
 
 ** **Newly configurable item for TNBase versions for use by other TNs.**
