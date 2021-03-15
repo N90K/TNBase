@@ -46,4 +46,4 @@ Done **C10.** New item in the 'Print' menu: Print list of all wallet number with
 
 Download TNBase at: www.acdale.plus.com/TNBase/  Note: TNBase requires Windows 7 or higher and .NET v4.5 or higher
 
-Chris D. 05/09/2019
+Chris D. 15/03/2021
