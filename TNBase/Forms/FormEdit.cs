@@ -63,6 +63,7 @@ namespace TNBase
                     cbBirthdayMonth.Enabled = false;
                     chkNoBirthday.Checked = true;
                 }
+
                 dtpJoined.Value = listener.Joined.HasValue ? listener.Joined.Value.EnsureMinDate() : DateTime.MinValue.EnsureMinDate();
                 dtpJoined.Enabled = false;
 

@@ -574,7 +574,6 @@ namespace TNBase
             // 
             // dtpJoined
             // 
-            this.dtpJoined.Checked = false;
             this.dtpJoined.CustomFormat = "yyyy/MM/dd";
             this.dtpJoined.Enabled = false;
             this.dtpJoined.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -626,7 +625,6 @@ namespace TNBase
             // 
             // DateLastIn
             // 
-            this.DateLastIn.Checked = false;
             this.DateLastIn.CustomFormat = "yyyy/MM/dd";
             this.DateLastIn.Enabled = false;
             this.DateLastIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -639,7 +637,6 @@ namespace TNBase
             // 
             // DateLastOut
             // 
-            this.DateLastOut.Checked = false;
             this.DateLastOut.CustomFormat = "yyyy/MM/dd";
             this.DateLastOut.Enabled = false;
             this.DateLastOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
