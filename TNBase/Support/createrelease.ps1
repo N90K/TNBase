@@ -13,7 +13,7 @@ $VersionStr = (Get-Item TNBase\TNBase.exe).VersionInfo.FileVersion
 $Destination = "TNBase V$VersionStr.zip"
 
 # For safety remove the Database (and any backups)
-Remove-Item TNBase\Resource\Listeners.s3db
+#Remove-Item TNBase\Resource\Listeners.s3db
 Remove-Item TNBase\Resource\Listeners.s3db.bak
 Remove-Item -R TNBase\app.publish
 
