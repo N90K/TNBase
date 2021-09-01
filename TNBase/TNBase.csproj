@@ -1,21 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CAA1C567-2970-437F-9CF2-A50677AA2F21}</ProjectGuid>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <StartupObject>
     </StartupObject>
-    <RootNamespace>TNBase</RootNamespace>
-    <AssemblyName>TNBase</AssemblyName>
-    <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <PublishUrl>publish\</PublishUrl>
@@ -35,28 +25,21 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>TNBase.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>SBTNA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -92,370 +75,24 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DocumentationFile>SBTNA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x86\Release\</OutputPath>
     <DocumentationFile>SBTNA.xml</DocumentationFile>
-    <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BarcodeLib, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\BarcodeLib.1.3.0.0\lib\net20\BarcodeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.6.3\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.110.0\lib\net45\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.110.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.110.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ExceptionHandler.cs" />
-    <Compile Include="Forms\FormDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDelete.Designer.cs">
-      <DependentUpon>FormDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Misc\FormAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Misc\FormAbout.Designer.cs">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Collectors\FormAddCollectors.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Collectors\FormAddCollectors.Designer.cs">
-      <DependentUpon>FormAddCollectors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormAddFull.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormAddFull.Designer.cs">
-      <DependentUpon>FormAddFull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormAddMini.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormAddMini.Designer.cs">
-      <DependentUpon>FormAddMini.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormAdjustStockLevels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormAdjustStockLevels.Designer.cs">
-      <DependentUpon>FormAdjustStockLevels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormBrowse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormBrowse.Designer.cs">
-      <DependentUpon>FormBrowse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Collectors\FormBrowseCollectors.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Collectors\FormBrowseCollectors.Designer.cs">
-      <DependentUpon>FormBrowseCollectors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormChoosePrintPoint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormChoosePrintPoint.Designer.cs">
-      <DependentUpon>FormChoosePrintPoint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormDuplicateFound.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDuplicateFound.Designer.cs">
-      <DependentUpon>FormDuplicateFound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormDuplicates.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDuplicates.Designer.cs">
-      <DependentUpon>FormDuplicates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormEdit.Designer.cs">
-      <DependentUpon>FormEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormFindListener.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormFindListener.Designer.cs">
-      <DependentUpon>FormFindListener.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormFinished.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormFinished.Designer.cs">
-      <DependentUpon>FormFinished.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormHistory.Designer.cs">
-      <DependentUpon>FormHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Misc\FormLogViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Misc\FormLogViewer.Designer.cs">
-      <DependentUpon>FormLogViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintAllLabels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintAllLabels.Designer.cs">
-      <DependentUpon>FormPrintAllLabels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintAlphabeticList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintAlphabeticList.Designer.cs">
-      <DependentUpon>FormPrintAlphabeticList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintBirthdays.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintBirthdays.Designer.cs">
-      <DependentUpon>FormPrintBirthdays.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintCollectionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintCollectionForm.Designer.cs">
-      <DependentUpon>FormPrintCollectionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintDormantListeners.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintDormantListeners.Designer.cs">
-      <DependentUpon>FormPrintDormantListeners.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintGPOLabels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintGPOLabels.Designer.cs">
-      <DependentUpon>FormPrintGPOLabels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintWalletStock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintWalletStock.Designer.cs">
-      <DependentUpon>FormPrintWalletStock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintWarnings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintWarnings.Designer.cs">
-      <DependentUpon>FormPrintWarnings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintLabels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintLabels.Designer.cs">
-      <DependentUpon>FormPrintLabels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintMagazineWallets.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintMagazineWallets.Designer.cs">
-      <DependentUpon>FormPrintMagazineWallets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintNotSentWallets.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintNotSentWallets.Designer.cs">
-      <DependentUpon>FormPrintNotSentWallets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintRecentListeners.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintRecentListeners.Designer.cs">
-      <DependentUpon>FormPrintRecentListeners.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintStoppedWallets.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintStoppedWallets.Designer.cs">
-      <DependentUpon>FormPrintStoppedWallets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintStoppedWalletsAll.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintStoppedWalletsAll.Designer.cs">
-      <DependentUpon>FormPrintStoppedWalletsAll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintUnreturnedSpeakers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Printing\FormPrintUnreturnedSpeakers.Designer.cs">
-      <DependentUpon>FormPrintUnreturnedSpeakers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormResumeSending.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormResumeSending.Designer.cs">
-      <DependentUpon>FormResumeSending.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\MagazinesScanOutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\MagazinesScanOutForm.Designer.cs">
-      <DependentUpon>MagazinesScanOutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\MagazinesScanInForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\MagazinesScanInForm.Designer.cs">
-      <DependentUpon>MagazinesScanInForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanIn.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanIn.Designer.cs">
-      <DependentUpon>FormScanIn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScannedInTotal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScannedInTotal.Designer.cs">
-      <DependentUpon>FormScannedInTotal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScannedOutTotal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScannedOutTotal.Designer.cs">
-      <DependentUpon>FormScannedOutTotal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanOut.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanOut.Designer.cs">
-      <DependentUpon>FormScanOut.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanOutInitial.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Scanning\FormScanOutInitial.Designer.cs">
-      <DependentUpon>FormScanOutInitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormSplash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSplash.Designer.cs">
-      <DependentUpon>FormSplash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormStats.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormStats.Designer.cs">
-      <DependentUpon>FormStats.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormStopSending.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormStopSending.Designer.cs">
-      <DependentUpon>FormStopSending.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormTempShowNewListener.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormTempShowNewListener.Designer.cs">
-      <DependentUpon>FormTempShowNewListener.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Misc\FormTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Misc\FormTest.Designer.cs">
-      <DependentUpon>FormTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StockItem.cs" />
-    <Compile Include="ModuleGeneric.cs" />
-    <Compile Include="ModuleScanning.cs" />
-    <Compile Include="ModuleSounds.cs" />
-    <Compile Include="My Project\Application.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="MyNamespaceSupportForCSharp.cs" />
-    <Compile Include="PrintPreviewDialogSelectPrinter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RichTextBoxExtensions.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -471,190 +108,25 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\FormDelete.resx">
-      <DependentUpon>FormDelete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Misc\FormAbout.resx">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Collectors\FormAddCollectors.resx">
-      <DependentUpon>FormAddCollectors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddFull.resx">
-      <DependentUpon>FormAddFull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddMini.resx">
-      <DependentUpon>FormAddMini.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAdjustStockLevels.resx">
-      <DependentUpon>FormAdjustStockLevels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBrowse.resx">
-      <DependentUpon>FormBrowse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Collectors\FormBrowseCollectors.resx">
-      <DependentUpon>FormBrowseCollectors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormChoosePrintPoint.resx">
-      <DependentUpon>FormChoosePrintPoint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDuplicateFound.resx">
-      <DependentUpon>FormDuplicateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDuplicates.resx">
-      <DependentUpon>FormDuplicates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormEdit.resx">
-      <DependentUpon>FormEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFindListener.resx">
-      <DependentUpon>FormFindListener.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFinished.resx">
-      <DependentUpon>FormFinished.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHistory.resx">
-      <DependentUpon>FormHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Misc\FormLogViewer.resx">
-      <DependentUpon>FormLogViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintAllLabels.resx">
-      <DependentUpon>FormPrintAllLabels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintAlphabeticList.resx">
-      <DependentUpon>FormPrintAlphabeticList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintBirthdays.resx">
-      <DependentUpon>FormPrintBirthdays.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintCollectionForm.resx">
-      <DependentUpon>FormPrintCollectionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintDormantListeners.resx">
-      <DependentUpon>FormPrintDormantListeners.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintGPOLabels.resx">
-      <DependentUpon>FormPrintGPOLabels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintWalletStock.resx">
-      <DependentUpon>FormPrintWalletStock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintWarnings.resx">
-      <DependentUpon>FormPrintWarnings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintLabels.resx">
-      <DependentUpon>FormPrintLabels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintMagazineWallets.resx">
-      <DependentUpon>FormPrintMagazineWallets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintNotSentWallets.resx">
-      <DependentUpon>FormPrintNotSentWallets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintRecentListeners.resx">
-      <DependentUpon>FormPrintRecentListeners.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintStoppedWallets.resx">
-      <DependentUpon>FormPrintStoppedWallets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintStoppedWalletsAll.resx">
-      <DependentUpon>FormPrintStoppedWalletsAll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Printing\FormPrintUnreturnedSpeakers.resx">
-      <DependentUpon>FormPrintUnreturnedSpeakers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormResumeSending.resx">
-      <DependentUpon>FormResumeSending.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\MagazinesScanOutForm.resx">
-      <DependentUpon>MagazinesScanOutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\MagazinesScanInForm.resx">
-      <DependentUpon>MagazinesScanInForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\FormScanIn.resx">
-      <DependentUpon>FormScanIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\FormScannedInTotal.resx">
-      <DependentUpon>FormScannedInTotal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\FormScannedOutTotal.resx">
-      <DependentUpon>FormScannedOutTotal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\FormScanOut.resx">
-      <DependentUpon>FormScanOut.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Scanning\FormScanOutInitial.resx">
-      <DependentUpon>FormScanOutInitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSplash.resx">
-      <DependentUpon>FormSplash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormStats.resx">
-      <DependentUpon>FormStats.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormStopSending.resx">
-      <DependentUpon>FormStopSending.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTempShowNewListener.resx">
-      <DependentUpon>FormTempShowNewListener.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Misc\FormTest.resx">
-      <DependentUpon>FormTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrintPreviewDialogSelectPrinter.resx">
-      <DependentUpon>PrintPreviewDialogSelectPrinter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="My Project\app.manifest">
+    <None Update="My Project\app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="My Project\Application.myapp">
+    <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="My Project\DataSources\SQLite.Designer.ChangePasswordDialog.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.ChangeScriptDialog.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Design.ColumnsMultiSelectEditor.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.AutoCompleteCell.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.AutoCompleteColumn.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.AutoCompleteEditingControl.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.DesignerDocBase.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.TableDesignerDoc.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.ViewDesignerDoc+EnumWindowsCallback.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.Editors.ViewDesignerDoc.datasource" />
-    <None Include="My Project\DataSources\SQLite.Designer.TableNameDialog.datasource" />
-    <None Include="NLog.xsd">
+    <None Update="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
     <None Include="Resource\codes\Thumbs.db" />
-    <None Include="Resource\Listeners.s3db">
+    <None Update="Resource\Listeners.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Settings.settings">
+    <None Update="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
-    <None Include="Support\createrelease.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
@@ -724,30 +196,25 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj">
-      <Project>{1b25649f-1ce3-4764-92de-73e2efce8789}</Project>
-      <Name>TNBase.DataStorage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj">
-      <Project>{68828006-18c6-4f24-ad61-5350c524c093}</Project>
-      <Name>TNBase.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj">
-      <Project>{3abec2d1-048c-4fad-a649-c686a2e91c82}</Project>
-      <Name>TNBase.Objects</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj" />
+    <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
+    <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\packages\System.Data.SQLite.Core.1.0.102.0\build\net20\System.Data.SQLite.Core.targets" Condition="Exists('$(SolutionDir)\packages\System.Data.SQLite.Core.1.0.102.0\build\net20\System.Data.SQLite.Core.targets')" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets'))" />
-  </Target>
+  <ItemGroup>
+    <PackageReference Include="BarcodeLib" Version="2.4.0" />
+    <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
+    <PackageReference Include="NLog.Config" Version="4.7.11" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <PropertyGroup />
 </Project>

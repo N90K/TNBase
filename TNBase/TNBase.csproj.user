@@ -13,5 +13,146 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Forms\Collectors\FormAddCollectors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Collectors\FormBrowseCollectors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormAddFull.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormAddMini.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormAdjustStockLevels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormBrowse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormChoosePrintPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormDuplicateFound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormDuplicates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormFindListener.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormFinished.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormResumeSending.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormStopSending.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormTempShowNewListener.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Misc\formAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Misc\FormLogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Misc\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintAllLabels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintAlphabeticList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintBirthdays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintCollectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintDormantListeners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintGPOLabels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintLabels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintMagazineWallets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintNotSentWallets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintRecentListeners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintStoppedWallets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintStoppedWalletsAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintUnreturnedSpeakers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintWalletStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Printing\FormPrintWarnings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\FormScanIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\FormScannedInTotal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\FormScannedOutTotal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\FormScanOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\FormScanOutInitial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\MagazinesScanInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Scanning\MagazinesScanOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PrintPreviewDialogSelectPrinter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

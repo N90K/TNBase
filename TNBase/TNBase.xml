@@ -23,6 +23,28 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:TNBase.FormAddMini.showFullForm">
+            <summary>
+            Show the full add form
+            </summary>
+        </member>
+        <member name="F:TNBase.FormAdjustStockLevels.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:TNBase.Forms.FormDelete.components">
             <summary>
             Required designer variable.
@@ -57,6 +79,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:TNBase.Forms.Scanning.MagazinesScanInForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:TNBase.Forms.Scanning.MagazinesScanOutForm.components">
             <summary>
             Required designer variable.
@@ -74,22 +113,47 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:TNBase.Forms.Scanning.MagazinesScanInForm.components">
+        <member name="M:TNBase.FormDuplicateFound.setupForm(System.Int32)">
             <summary>
-            Required designer variable.
+            Setup the form
+            </summary>
+            <param name="walletId"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.btnDontAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.btnAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add button is clicked.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TNBase.FormDuplicateFound.#ctor">
+            <summary>
+            Form load.
             </summary>
         </member>
-        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.Dispose(System.Boolean)">
+        <member name="T:TNBase.FormMain">
             <summary>
-            Clean up any resources being used.
+            Main form
             </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:TNBase.Forms.Scanning.MagazinesScanInForm.InitializeComponent">
+        <member name="M:TNBase.FormMain.LoadLogo">
             <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            Load the correct logo!
             </summary>
+        </member>
+        <member name="M:TNBase.FormMain.formMain_Load(System.Object,System.EventArgs)">
+            <summary>
+            When the form loads.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="T:TNBase.FormAbout">
             <summary>
@@ -123,53 +187,6 @@
             </summary>
             <param name="sender">ignored</param>
             <param name="e">ignored</param>
-        </member>
-        <member name="M:TNBase.FormAddMini.showFullForm">
-            <summary>
-            Show the full add form
-            </summary>
-        </member>
-        <member name="F:TNBase.FormAdjustStockLevels.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:TNBase.FormAdjustStockLevels.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:TNBase.FormAdjustStockLevels.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:TNBase.FormDuplicateFound.setupForm(System.Int32)">
-            <summary>
-            Setup the form
-            </summary>
-            <param name="walletId"></param>
-        </member>
-        <member name="M:TNBase.FormDuplicateFound.btnDontAdd_Click(System.Object,System.EventArgs)">
-            <summary>
-            Close the form.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:TNBase.FormDuplicateFound.btnAdd_Click(System.Object,System.EventArgs)">
-            <summary>
-            Add button is clicked.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:TNBase.FormDuplicateFound.#ctor">
-            <summary>
-            Form load.
-            </summary>
         </member>
         <member name="M:TNBase.FormLogViewer.UpdateText(System.String)">
             <summary>
@@ -207,19 +224,9 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:TNBase.FormMain">
+        <member name="M:TNBase.FormTest.btnDevTest_Click(System.Object,System.EventArgs)">
             <summary>
-            Main form
-            </summary>
-        </member>
-        <member name="M:TNBase.FormMain.LoadLogo">
-            <summary>
-            Load the correct logo!
-            </summary>
-        </member>
-        <member name="M:TNBase.FormMain.formMain_Load(System.Object,System.EventArgs)">
-            <summary>
-            When the form loads.
+            Function for some latest development test!
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -240,13 +247,6 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="M:TNBase.FormTest.btnDevTest_Click(System.Object,System.EventArgs)">
-            <summary>
-            Function for some latest development test!
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:TNBase.ModuleGeneric.GetDatabasePath">
             <summary>
