@@ -43,12 +43,6 @@ namespace TNBase
             return "TNBase";
         }
 
-        // Get the app name.
-        public static string getAppName()
-        {
-            return My.MyProject.Application.Info.AssemblyName + ".exe";
-        }
-
         // Get start time.
         public static string getElapsedTimeString()
         {

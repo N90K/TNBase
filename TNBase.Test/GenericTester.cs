@@ -28,12 +28,6 @@ namespace TNBase.Test
             Assert.AreEqual(expected, ModuleGeneric.getUKFormatDate(dateStr));
         }
 
-        [TestMethod]
-        public void Generic_TestAppName()
-        {
-            Assert.AreEqual("TNBase.exe", ModuleGeneric.getAppName());
-        }
-
         /// <summary>
         /// Base for the weekly stat test methods
         /// </summary>
