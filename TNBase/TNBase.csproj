@@ -197,9 +197,14 @@
     <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj" />
     <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
     <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
+    <ProjectReference Include="..\TNBase.Repository\TNBase.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="NLog.Config" Version="4.7.11" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">

@@ -11,6 +11,7 @@ using TNBase.Forms.Scanning;
 using TNBase.Objects;
 using System.Linq;
 using TNBase.Model;
+using TNBase.Repository;
 
 namespace TNBase
 {

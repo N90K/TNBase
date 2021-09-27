@@ -10,7 +10,7 @@ namespace TNBase.DataStorage
         /// <returns></returns>
         public static string GenConnectionString(string databasePath)
         {
-            return "Data Source=" + databasePath + ";Version=3;";
+            return $"Data Source={databasePath}";
         }
 
         /// <summary>
