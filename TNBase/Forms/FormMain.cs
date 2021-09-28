@@ -11,7 +11,6 @@ using TNBase.Forms.Scanning;
 using TNBase.Objects;
 using System.Linq;
 using TNBase.Model;
-using TNBase.Repository;
 
 namespace TNBase
 {
@@ -605,7 +604,7 @@ namespace TNBase
         {
             if (scans.Any())
             {
-                using (var context = new TNBaseContext(DBUtils.GenConnectionString(ModuleGeneric.GetDatabasePath())))
+                using (var context = new Repository.TNBaseContext(DBUtils.GenConnectionString(ModuleGeneric.GetDatabasePath())))
                 {
                     var scanService = new ScanService(context);
                     scanService.AddScans(scans);

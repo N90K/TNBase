@@ -1,4 +1,4 @@
-﻿namespace TNBase.DataStorage.Migrations
+﻿namespace TNBase.DatabaseMigrations
 {
     public interface ISqlMigration
     {

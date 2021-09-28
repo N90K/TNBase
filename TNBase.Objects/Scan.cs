@@ -14,7 +14,7 @@ namespace TNBase.Objects
         public int Id { get; set; }
         public int Wallet { get; set; }
         public string Type { get; set; }
-        [NotMapped]
+
         public ScanTypes ScanType
         {
             get
@@ -28,7 +28,6 @@ namespace TNBase.Objects
             }
         }
 
-        [NotMapped]
         public WalletTypes WalletType
         {
             get
@@ -43,7 +42,6 @@ namespace TNBase.Objects
         }
         public DateTime Recorded { get; set; }
 
-        [Column("WalletType")]
         public string WalletTypeValue { get; set; }
     }
 }

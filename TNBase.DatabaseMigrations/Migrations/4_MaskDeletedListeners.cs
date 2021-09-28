@@ -1,7 +1,6 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 
-namespace TNBase.DataStorage.Migrations
+namespace TNBase.DatabaseMigrations.Migrations
 {
     public class _4_MaskDeletedListeners : SqlMigration
     {

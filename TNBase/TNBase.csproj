@@ -196,6 +196,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj" />
     <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
+    <ProjectReference Include="..\TNBase.DatabaseMigrations\TNBase.DatabaseMigrations.csproj" />
     <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
     <ProjectReference Include="..\TNBase.Repository\TNBase.Repository.csproj" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using System.Data.SQLite;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TNBase.DataStorage;
-using TNBase.DataStorage.Migrations;
+using TNBase.DatabaseMigrations;
 using TNBase.Objects;
 
 namespace TNBase

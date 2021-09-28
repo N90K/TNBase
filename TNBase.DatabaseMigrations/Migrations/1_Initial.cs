@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace TNBase.DataStorage.Migrations
+namespace TNBase.DatabaseMigrations.Migrations
 {
     public class _1_Initial : SqlMigration
     {

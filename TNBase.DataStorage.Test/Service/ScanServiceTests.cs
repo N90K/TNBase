@@ -6,7 +6,6 @@ using System.Data.SQLite;
 using System.Linq;
 using TNBase.DataStorage.Test.TestHelpers;
 using TNBase.Objects;
-using TNBase.Repository;
 
 namespace TNBase.DataStorage.Test.Services
 {
@@ -23,22 +22,20 @@ namespace TNBase.DataStorage.Test.Services
                     new Scan { Wallet = 1 }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using var context = new Repository.TNBaseContext(connection);
+            context.Listeners.Add(new Listener
             {
-                context.Listeners.Add(new Listener
-                {
-                    Forename = "Test",
-                    Surname = "Tester",
-                    inOutRecords = new InOutRecords()
-                });
-                context.SaveChanges();
+                Forename = "Test",
+                Surname = "Tester",
+                inOutRecords = new InOutRecords()
+            });
+            context.SaveChanges();
 
-                var service = new ScanService(context);
+            var service = new ScanService(context);
 
-                service.AddScans(scans);
+            service.AddScans(scans);
 
-                Assert.AreEqual(2, context.Scans.Count());
-            }
+            Assert.AreEqual(2, context.Scans.Count());
         }
 
         [TestMethod]
@@ -59,7 +56,7 @@ namespace TNBase.DataStorage.Test.Services
                     }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {
@@ -100,7 +97,7 @@ namespace TNBase.DataStorage.Test.Services
                     new Scan { Wallet = 1 }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {
@@ -137,7 +134,7 @@ namespace TNBase.DataStorage.Test.Services
                     }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {
@@ -172,7 +169,7 @@ namespace TNBase.DataStorage.Test.Services
                     }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {
@@ -207,7 +204,7 @@ namespace TNBase.DataStorage.Test.Services
                     }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {
@@ -242,7 +239,7 @@ namespace TNBase.DataStorage.Test.Services
                     }
                 };
 
-            using (var context = new TNBaseContext(connection))
+            using (var context = new Repository.TNBaseContext(connection))
             {
                 context.Listeners.Add(new Listener
                 {

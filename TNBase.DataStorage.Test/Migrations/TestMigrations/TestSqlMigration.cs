@@ -1,5 +1,5 @@
 ﻿using System.Data.SQLite;
-using TNBase.DataStorage.Migrations;
+using TNBase.DatabaseMigrations;
 
 namespace TNBase.DataStorage.Test.Migrations.TestMigrations
 {

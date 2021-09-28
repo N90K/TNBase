@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace TNBase.DataStorage.Migrations
+namespace TNBase.DatabaseMigrations.Migrations
 {
     /// <summary>
     /// This migration replaces Birthday date column of the Listeners table 

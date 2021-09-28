@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using TNBase.DataStorage.Migrations;
 using TNBase.DataStorage.Test.Migrations.TestMigrations;
+using TNBase.DatabaseMigrations;
 
 namespace TNBase.DataStorage.Test.Migrations
 {

@@ -2,7 +2,7 @@
 using System;
 using System.Data.SQLite;
 
-namespace TNBase.DataStorage.Migrations
+namespace TNBase.DatabaseMigrations
 {
     public abstract class SqlMigration : ISqlMigration
     {

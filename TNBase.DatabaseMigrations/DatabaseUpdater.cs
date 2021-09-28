@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using TNBase.Objects;
 
-namespace TNBase.DataStorage.Migrations
+namespace TNBase.DatabaseMigrations
 {
     public class DatabaseUpdater<T> where T : class, ISqlMigration
     {

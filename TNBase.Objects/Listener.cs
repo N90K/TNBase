@@ -10,7 +10,6 @@ using TNBase.Infrastructure.Extensions;
 
 namespace TNBase.Objects
 {
-    [Table("Listeners")]
     public class Listener
     {
         public const string NEVER_END_PAUSE_STRING = "UFN";
@@ -23,7 +22,6 @@ namespace TNBase.Objects
             Status = ListenerStates.ACTIVE;
         }
 
-        [Key]
         public int Wallet { get; set; }
 
         public string Title { get; set; }
@@ -40,13 +38,10 @@ namespace TNBase.Objects
         public int? BirthdayDay { get; set; }
         public int? BirthdayMonth { get; set; }
 
-        [NotMapped]
         public bool HasBirthday => BirthdayDay.HasValue && BirthdayMonth.HasValue;
 
-        [NotMapped]
         public string BirthdayText => HasBirthday ? $"{BirthdayDay.Value.WithSuffix()} {DateTimeFormatInfo.CurrentInfo.GetMonthName(BirthdayMonth.Value)}" : "N/A";
 
-        [NotMapped]
         public DateTime? NextBirthdayDate
         {
             get
@@ -69,15 +64,12 @@ namespace TNBase.Objects
             }
         }
 
-        [XmlIgnore]
         public DateTime? Joined { get; set; }
 
         public string Info { get; set; }
 
-        [Column("Status")]
         public string State { get; set; }
 
-        [NotMapped]
         public ListenerStates Status
         {
             get
@@ -93,7 +85,6 @@ namespace TNBase.Objects
 
         public string StatusInfo { get; set; }
 
-        [Required]
         public virtual InOutRecords inOutRecords { get; set; }
 
         public DateTime? DeletedDate { get; set; }

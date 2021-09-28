@@ -6,7 +6,7 @@ using TNBase.Objects;
 
 namespace TNBase.Repository
 {
-    public class TNBaseContext : DbContext, ITNBaseContext
+    public partial class TNBaseContext : DbContext, ITNBaseContext
     {
         private readonly TNBaseContextOptions options;
 
@@ -25,16 +25,246 @@ namespace TNBase.Repository
         {
         }
 
+        public virtual DbSet<Collector> Collectors { get; set; }
         public virtual DbSet<Listener> Listeners { get; set; }
         public virtual DbSet<Scan> Scans { get; set; }
+        public virtual DbSet<WeekStat> WeekStats { get; set; }
+        public virtual DbSet<YearStat> YearStats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+                optionsBuilder.UseSqlite(@"Data Source=C:\Users\Audrius\Documents\Code\TNBase\TNBase\bin\Debug\Resource\Listeners.s3db");
                 //optionsBuilder.UseSqlite("Data Source=C:\\Users\\Audrius\\Documents\\Code\\TNBase\\Listeners.s3db");
                 optionsBuilder.UseSqlite(options.ConnectionString);
             }
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Collector>(entity =>
+            {
+                entity.HasKey(e => e.Key);
+            });
+
+            modelBuilder.Entity<InOutRecords>(entity =>
+            {
+                entity.ToTable("Listeners");
+
+                entity.HasKey(e => e.Wallet);
+
+                entity.Property(e => e.In1)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In2)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In3)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In4)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In5)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In6)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In7)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.In8)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out1)
+                   .HasColumnType("bigint")
+                   .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out2)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out3)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out4)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out5)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out6)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out7)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Out8)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+            });
+
+            modelBuilder.Entity<Listener>(entity =>
+            {
+                entity.HasKey(e => e.Wallet);
+
+                entity.HasOne(e => e.inOutRecords)
+                    .WithOne()
+                    .HasForeignKey<InOutRecords>(e => e.Wallet)
+                    .IsRequired();
+
+                entity.Property(e => e.Addr1).HasColumnType("text");
+
+                entity.Property(e => e.Addr2).HasColumnType("text");
+
+                entity.Property(e => e.BirthdayDay).HasColumnType("int");
+
+                entity.Property(e => e.BirthdayMonth).HasColumnType("int");
+
+                entity.Property(e => e.County).HasColumnType("text");
+
+                entity.Property(e => e.DeletedDate).HasColumnType("date");
+
+                entity.Property(e => e.Forename)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Info).HasColumnType("text");
+
+                entity.Property(e => e.Joined).HasColumnType("date");
+
+                entity.Property(e => e.LastIn).HasColumnType("date");
+
+                entity.Property(e => e.LastOut).HasColumnType("date");
+
+                entity.Property(e => e.Magazine).HasColumnType("bit");
+
+                entity.Property(e => e.MagazineStock)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.MemStickPlayer).HasColumnType("bit");
+
+                entity.Property(e => e.Postcode).HasColumnType("text");
+
+                entity.Property(e => e.State)
+                    .HasColumnName("Status")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.StatusInfo).HasColumnType("text");
+
+                entity.Property(e => e.Stock)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("3");
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Telephone).HasColumnType("text");
+
+                entity.Property(e => e.Title).HasColumnType("text");
+
+                entity.Property(e => e.Town).HasColumnType("text");
+            });
+
+            modelBuilder.Entity<Listener>().Ignore(e => e.Status);
+
+            modelBuilder.Entity<Scan>(entity =>
+            {
+                entity.HasIndex(e => e.Id, "IX_Scans_Id")
+                    .IsUnique();
+
+                entity.Property(e => e.Recorded)
+                    .HasColumnType("DATE")
+                    .HasDefaultValueSql("CURRENT_DATE");
+
+                entity.Property(e => e.Type).IsRequired();
+
+                entity.Property(e => e.WalletTypeValue)
+                    .HasColumnName("WalletType")
+                    .HasColumnType("text")
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<Scan>()
+                .Ignore(e => e.ScanType)
+                .Ignore(e => e.WalletType);
+
+            modelBuilder.Entity<WeekStat>(entity =>
+            {
+                entity.HasKey(e => e.WeekNumber);
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("DATE")
+                    .HasDefaultValueSql("CURRENT_DATE");
+
+                entity.Property(e => e.PausedCount).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.ScannedIn).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.ScannedOut).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.TotalListeners).HasDefaultValueSql("'0'");
+            });
+
+            modelBuilder.Entity<YearStat>(entity =>
+            {
+                entity.HasKey(e => e.Year);
+
+                entity.HasIndex(e => e.Year, "IX_YearStats_Year")
+                    .IsUnique();
+
+                entity.Property(e => e.Year).ValueGeneratedNever();
+
+                entity.Property(e => e.AverageListeners).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.AveragePaused).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.AverageSent).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.DeletedListeners).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.DeletedTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EndListeners).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.InactiveTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.MagazineTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.MagazinesSent).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.MemStickPlayerLoanTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.NewListeners).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.PausedTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.PercentSent).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.SentTotal).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.StartListeners).HasDefaultValueSql("'0'");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
