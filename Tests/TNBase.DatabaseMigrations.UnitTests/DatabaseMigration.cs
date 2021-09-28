@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TNBase.DataStorage.Test.Migrations
+namespace TNBase.DatabaseMigrations.UnitTests
 {
     public class DatabaseMigration
     {

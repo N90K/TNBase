@@ -1,24 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data.SQLite;
-using TNBase.DatabaseMigrations;
+﻿using System.Data.SQLite;
+using Xunit;
 
-namespace TNBase.DataStorage.Test.Migrations
+namespace TNBase.DatabaseMigrations.UnitTests
 {
-    [TestClass]
     public class SqlMigrationTests
     {
-        [TestMethod]
+        [Fact]
         public void Version_ReturnsVersionNumberFromClassName()
         {
             var migration = new _123_TestSqlMigration(new SQLiteConnection());
-            Assert.AreEqual(123, migration.Version);
+            Assert.Equal(123, migration.Version);
         }
 
-        [TestMethod]
+        [Fact]
         public void Version_ReturnsMigrationNameFromClassName()
         {
             var migration = new _123_TestSqlMigration(new SQLiteConnection());
-            Assert.AreEqual("TestSqlMigration", migration.Name);
+            Assert.Equal("TestSqlMigration", migration.Name);
         }
 
         private class _123_TestSqlMigration : SqlMigration

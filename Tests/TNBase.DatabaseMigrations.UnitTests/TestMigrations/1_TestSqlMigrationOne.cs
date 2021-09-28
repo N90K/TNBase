@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace TNBase.DataStorage.Test.Migrations.TestMigrations
+namespace TNBase.DatabaseMigrations.UnitTests.TestMigrations
 {
     public class _1_TestSqlMigrationOne : TestSqlMigration
     {

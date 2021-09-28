@@ -1,12 +1,10 @@
 using NLog;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using TNBase.DataStorage;
-using TNBase.Objects;
 
 namespace TNBase
 {

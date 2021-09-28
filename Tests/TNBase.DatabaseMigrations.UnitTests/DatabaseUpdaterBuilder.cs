@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using TNBase.DataStorage.Test.Migrations.TestMigrations;
-using TNBase.DatabaseMigrations;
+using TNBase.DatabaseMigrations.UnitTests.TestMigrations;
 
-namespace TNBase.DataStorage.Test.Migrations
+namespace TNBase.DatabaseMigrations.UnitTests
 {
     public class DatabaseUpdaterBuilder : IDisposable
     {
@@ -15,7 +14,7 @@ namespace TNBase.DataStorage.Test.Migrations
 
         public DatabaseUpdaterBuilder()
         {
-            connection = new SQLiteConnection(DBUtils.GenConnectionString(":memory:"));
+            connection = new SQLiteConnection("Data Source=:memory:");
             connection.Open();
         }
 
@@ -71,7 +70,7 @@ namespace TNBase.DataStorage.Test.Migrations
             }
         }
 
-        public DatabaseUpdaterBuilder WithMigrations(int version, string name)
+        public DatabaseUpdaterBuilder WithMigration(int version, string name)
         {
             using (var command = connection.CreateCommand())
             {
