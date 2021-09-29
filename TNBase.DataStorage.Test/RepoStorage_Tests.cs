@@ -3,6 +3,7 @@ using System.Data.SQLite;
 using TNBase.DataStorage.Test.TestHelpers;
 using TNBase.Objects;
 using System.Collections.Generic;
+using TNBase.DatabaseMigrations;
 
 namespace TNBase.DataStorage.Test
 {
@@ -20,7 +21,7 @@ namespace TNBase.DataStorage.Test
             {
                 connection = new SQLiteConnection(DBUtils.GenConnectionString(":memory:"));
                 connection.Open();
-                DatabaseHelper.CreateDatabase(connection);
+                new DatabaseUpdater<SqlMigration>(connection).Update();
             }
         }
 

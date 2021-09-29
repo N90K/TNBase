@@ -9,9 +9,9 @@ namespace TNBase.DatabaseMigrations.Migrations
 
         public override void Up()
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = $@"UPDATE Listeners SET 
+            using var command = connection.CreateCommand();
+
+            command.CommandText = $@"UPDATE Listeners SET 
                                             Title='N/A',
                                             Forename='Deleted',
                                             Surname='Deleted',
@@ -29,8 +29,7 @@ namespace TNBase.DatabaseMigrations.Migrations
                                             MemStickPlayer=false AND 
                                             Stock=3 AND 
                                             (Magazine=0 OR (Magazine=1 AND MagazineStock=1))";
-                command.ExecuteNonQuery();
-            }
+            command.ExecuteNonQuery();
         }
     }
 }

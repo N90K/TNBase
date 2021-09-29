@@ -13,9 +13,9 @@ namespace TNBase.DatabaseMigrations.Migrations
 
         public override void Up()
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = @"CREATE TEMPORARY TABLE [Listeners_Backup] (
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"CREATE TEMPORARY TABLE [Listeners_Backup] (
                                               [Wallet] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                                             , [Title] text NULL
                                             , [Forename] text NOT NULL
@@ -177,8 +177,7 @@ namespace TNBase.DatabaseMigrations.Migrations
                                             ,SUBSTR([Birthday], 6, 2)
                                         FROM Listeners_Backup;
                                         DROP TABLE Listeners_Backup;";
-                command.ExecuteNonQuery();
-            }
+            command.ExecuteNonQuery();
         }
     }
 }

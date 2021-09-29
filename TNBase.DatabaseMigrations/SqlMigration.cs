@@ -6,7 +6,7 @@ namespace TNBase.DatabaseMigrations
 {
     public abstract class SqlMigration : ISqlMigration
     {
-        private Logger log = LogManager.GetCurrentClassLogger();
+        private readonly Logger log = LogManager.GetCurrentClassLogger();
         protected readonly SQLiteConnection connection;
 
         public SqlMigration(SQLiteConnection connection)
@@ -22,11 +22,9 @@ namespace TNBase.DatabaseMigrations
         protected void Sql(string query)
         {
             log.Debug("Executing query: " + query);
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = query;
-                command.ExecuteNonQuery();
-            }
+            using var command = connection.CreateCommand();
+            command.CommandText = query;
+            command.ExecuteNonQuery();
         }
 
         public abstract void Up();

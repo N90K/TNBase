@@ -22,48 +22,31 @@ namespace TNBase.DatabaseMigrations
             CreateMigrationsTableIfNotExist();
             var lastMigration = GetLastMigration();
 
-            using (var transaction = connection.BeginTransaction())
+            using var transaction = connection.BeginTransaction();
+            foreach (var migration in GetMigrations(lastMigration))
             {
-                foreach (var migration in GetMigrations(lastMigration))
-                {
-                    migration.Up();
-                    AddMigration(migration);
-                }
-
-                transaction.Commit();
+                migration.Up();
+                AddMigration(migration);
             }
 
+            transaction.Commit();
         }
 
         private void AddMigration(ISqlMigration migration)
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = $"INSERT INTO DatabaseMigrations(Version, Name, CreateDate) VALUES($Version, $Name, $CreateDate)";
-                command.Parameters.Add("$Version", DbType.Int32).Value = migration.Version;
-                command.Parameters.Add("$Name", DbType.String).Value = migration.Name;
-                command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow.ToSQLiteUtcString();
-                command.ExecuteNonQuery();
-            }
+            using var command = connection.CreateCommand();
+            command.CommandText = $"INSERT INTO DatabaseMigrations(Version, Name, CreateDate) VALUES($Version, $Name, $CreateDate)";
+            command.Parameters.Add("$Version", DbType.Int32).Value = migration.Version;
+            command.Parameters.Add("$Name", DbType.String).Value = migration.Name;
+            command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow.ToSQLiteUtcString();
+            command.ExecuteNonQuery();
         }
 
         private void CreateMigrationsTableIfNotExist()
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = $"SELECT name FROM sqlite_master WHERE type='table' AND name='DatabaseMigrations'";
-                using (var reader = command.ExecuteReader())
-                {
-                    var tableExists = reader.HasRows;
-                    reader.Close();
-
-                    if (!tableExists)
-                    {
-                        command.CommandText = @"CREATE TABLE DatabaseMigrations(Id INTEGER PRIMARY KEY, Version INT, Name TEXT, CreateDate DATE)";
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
+            using var command = connection.CreateCommand();
+            command.CommandText = @"CREATE TABLE IF NOT EXISTS DatabaseMigrations(Id INTEGER PRIMARY KEY, Version INT, Name TEXT, CreateDate DATE)";
+            command.ExecuteNonQuery();
         }
 
         private int GetLastMigration()
@@ -71,17 +54,16 @@ namespace TNBase.DatabaseMigrations
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "SELECT Version FROM DatabaseMigrations ORDER BY Version DESC LIMIT 1";
-                using (var reader = command.ExecuteReader())
+                using var reader = command.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        return Convert.ToInt32(reader[0]);
-                    }
+                    reader.Read();
+                    return Convert.ToInt32(reader[0]);
                 }
             }
 
-            return 0;
+            return -1;
         }
 
         private List<T> GetMigrations(int from)
