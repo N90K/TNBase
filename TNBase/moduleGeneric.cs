@@ -3,7 +3,6 @@ using System.Data.SQLite;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TNBase.DataStorage;
-using TNBase.DatabaseMigrations;
 using TNBase.Objects;
 
 namespace TNBase
@@ -127,16 +126,6 @@ namespace TNBase
             {
                 // Update in/out stats.
                 DBServiceLayer.UpdateListenerInOuts();
-            }
-        }
-
-        public static void UpdateDatabase()
-        {
-            using (var connection = new SQLiteConnection(DBUtils.GenConnectionString(ModuleGeneric.GetDatabasePath())))
-            {
-                connection.Open();
-                new DatabaseUpdater<SqlMigration>(connection).Update();
-                connection.Close();
             }
         }
     }

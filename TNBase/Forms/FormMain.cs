@@ -210,9 +210,11 @@ namespace TNBase
             // If successful, backup the database.
             if (restoreDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (DBUtils.RestoreDatabase(restoreDialog.FileName, ModuleGeneric.GetDatabasePath()))
+                var databasePath = ModuleGeneric.GetDatabasePath();
+                if (DBUtils.RestoreDatabase(restoreDialog.FileName, databasePath))
                 {
-                    ModuleGeneric.UpdateDatabase();
+                    var context = new Repository.TNBaseContext($"Data Source={databasePath}");
+                    context.UpdateDatabase();
                     Interaction.MsgBox("Database restore successful.");
                 }
                 else

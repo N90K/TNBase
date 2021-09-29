@@ -1,20 +1,19 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using TNBase.DatabaseMigrations.UnitTests.TestMigrations;
+using TNBase.Repository.UnitTests.TestMigrations;
 
-namespace TNBase.DatabaseMigrations.UnitTests
+namespace TNBase.Repository.UnitTests
 {
     public class DatabaseUpdaterBuilder : IDisposable
     {
         private const string DatabaseMigrationsTable = "DatabaseMigrations";
         private const string MigrationTestTable = "MigrationTest";
-        private SQLiteConnection connection;
+        private readonly SqliteConnection connection;
 
         public DatabaseUpdaterBuilder()
         {
-            connection = new SQLiteConnection("Data Source=:memory:");
+            connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
         }
 
@@ -75,9 +74,9 @@ namespace TNBase.DatabaseMigrations.UnitTests
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = $"INSERT INTO DatabaseMigrations(Version, Name, CreateDate) VALUES($Version, $Name, $CreateDate)";
-                command.Parameters.Add("$Version", DbType.Int32).Value = version;
-                command.Parameters.Add("$Name", DbType.String).Value = name;
-                command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow;
+                command.Parameters.Add("$Version", SqliteType.Integer).Value = version;
+                command.Parameters.Add("$Name", SqliteType.Text).Value = name;
+                command.Parameters.Add("$CreateDate", SqliteType.Text).Value = DateTime.UtcNow;
                 command.ExecuteNonQuery();
             }
 

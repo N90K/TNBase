@@ -1,15 +1,15 @@
-﻿using NLog;
+﻿using Microsoft.Data.Sqlite;
+using NLog;
 using System;
-using System.Data.SQLite;
 
-namespace TNBase.DatabaseMigrations
+namespace TNBase.Repository
 {
     public abstract class SqlMigration : ISqlMigration
     {
         private readonly Logger log = LogManager.GetCurrentClassLogger();
-        protected readonly SQLiteConnection connection;
+        protected readonly SqliteConnection connection;
 
-        public SqlMigration(SQLiteConnection connection)
+        public SqlMigration(SqliteConnection connection)
         {
             this.connection = connection;
             SetVersionAndName();

@@ -1,4 +1,4 @@
-﻿namespace TNBase.DatabaseMigrations.UnitTests
+﻿namespace TNBase.Repository.UnitTests
 {
     public class MigrationTestData
     {

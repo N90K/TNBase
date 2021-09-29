@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 using TNBase.Infrastructure.Extensions;
 
 namespace TNBase.Objects
@@ -61,6 +62,7 @@ namespace TNBase.Objects
             }
         }
 
+        [XmlIgnore]
         public DateTime? Joined { get; set; }
 
         public string Info { get; set; }

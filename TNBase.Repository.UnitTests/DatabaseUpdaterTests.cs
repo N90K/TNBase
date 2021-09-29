@@ -3,7 +3,7 @@ using System.Linq;
 using TNBase.Objects;
 using Xunit;
 
-namespace TNBase.DatabaseMigrations.UnitTests
+namespace TNBase.Repository.UnitTests
 {
     public class DatabaseUpdaterTests
     {

@@ -1,6 +1,7 @@
-﻿using System.Data.SQLite;
+﻿
+using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.Migrations
+namespace TNBase.Repository.Migrations
 {
     /// <summary>
     /// This migration replaces Birthday date column of the Listeners table 
@@ -8,7 +9,7 @@ namespace TNBase.DatabaseMigrations.Migrations
     /// </summary>
     public class _2_Birthdays : SqlMigration
     {
-        public _2_Birthdays(SQLiteConnection connection) : base(connection)
+        public _2_Birthdays(SqliteConnection connection) : base(connection)
         { }
 
         public override void Up()

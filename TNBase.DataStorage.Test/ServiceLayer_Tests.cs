@@ -1,10 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TNBase.DataStorage.Test.TestHelpers;
 using TNBase.Objects;
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using TNBase.DatabaseMigrations;
 
 namespace TNBase.DataStorage.Test
 {
@@ -19,7 +17,6 @@ namespace TNBase.DataStorage.Test
         {
             repoLayer = new RepositoryLayer();
             serviceLayer = new ServiceLayer(":memory:", repoLayer);
-            new DatabaseUpdater<SqlMigration>(serviceLayer.GetConnection()).Update();
             // Insert some data.
             InsertListeners();
             InsertCollectors();

@@ -1,10 +1,10 @@
-﻿using System.Data.SQLite;
+﻿using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.Migrations
+namespace TNBase.Repository.Migrations
 {
     public class _1_MagazineStock : SqlMigration
     {
-        public _1_MagazineStock(SQLiteConnection connection) : base(connection)
+        public _1_MagazineStock(SqliteConnection connection) : base(connection)
         { }
 
         public override void Up()

@@ -1,10 +1,11 @@
-﻿using System.Data.SQLite;
+﻿
+using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.UnitTests.TestMigrations
+namespace TNBase.Repository.UnitTests.TestMigrations
 {
     public class _1_TestSqlMigrationOne : TestSqlMigration
     {
-        public _1_TestSqlMigrationOne(SQLiteConnection connection) : base(connection)
+        public _1_TestSqlMigrationOne(SqliteConnection connection) : base(connection)
         { }
 
         public override int Version => 1;

@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.Linq;
 using System.Reflection;
 using TNBase.Objects;
 
-namespace TNBase.DatabaseMigrations
+namespace TNBase.Repository
 {
     public class DatabaseUpdater<T> where T : class, ISqlMigration
     {
-        private readonly SQLiteConnection connection;
+        private readonly SqliteConnection connection;
 
-        public DatabaseUpdater(SQLiteConnection connection)
+        public DatabaseUpdater(SqliteConnection connection)
         {
             this.connection = connection;
         }
@@ -36,9 +36,9 @@ namespace TNBase.DatabaseMigrations
         {
             using var command = connection.CreateCommand();
             command.CommandText = $"INSERT INTO DatabaseMigrations(Version, Name, CreateDate) VALUES($Version, $Name, $CreateDate)";
-            command.Parameters.Add("$Version", DbType.Int32).Value = migration.Version;
-            command.Parameters.Add("$Name", DbType.String).Value = migration.Name;
-            command.Parameters.Add("$CreateDate", DbType.DateTime).Value = DateTime.UtcNow.ToSQLiteUtcString();
+            command.Parameters.Add("$Version", SqliteType.Integer).Value = migration.Version;
+            command.Parameters.Add("$Name", SqliteType.Text).Value = migration.Name;
+            command.Parameters.Add("$CreateDate", SqliteType.Text).Value = DateTime.UtcNow.ToSQLiteUtcString();
             command.ExecuteNonQuery();
         }
 

@@ -1,10 +1,11 @@
-﻿using System.Data.SQLite;
+﻿
+using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.Migrations
+namespace TNBase.Repository.Migrations
 {
     public class _4_MaskDeletedListeners : SqlMigration
     {
-        public _4_MaskDeletedListeners(SQLiteConnection connection) : base(connection)
+        public _4_MaskDeletedListeners(SqliteConnection connection) : base(connection)
         { }
 
         public override void Up()

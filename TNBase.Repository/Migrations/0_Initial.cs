@@ -1,10 +1,11 @@
-﻿using System.Data.SQLite;
+﻿
+using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.Migrations
+namespace TNBase.Repository.Migrations
 {
     public class _0_Initial : SqlMigration
     {
-        public _0_Initial(SQLiteConnection connection) : base(connection)
+        public _0_Initial(SqliteConnection connection) : base(connection)
         { }
 
         public override void Up()

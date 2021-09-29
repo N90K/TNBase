@@ -1,12 +1,12 @@
-﻿using System.Data.SQLite;
+﻿using Microsoft.Data.Sqlite;
 
-namespace TNBase.DatabaseMigrations.UnitTests.TestMigrations
+namespace TNBase.Repository.UnitTests.TestMigrations
 {
     public abstract class TestSqlMigration : ISqlMigration
     {
-        protected readonly SQLiteConnection connection;
+        protected readonly SqliteConnection connection;
 
-        public TestSqlMigration(SQLiteConnection connection)
+        public TestSqlMigration(SqliteConnection connection)
         {
             this.connection = connection;
         }

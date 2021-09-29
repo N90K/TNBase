@@ -44,7 +44,10 @@ namespace TNBase
             ModuleGeneric.SaveStartTime();
             progressBar.Value = 15;
 
-            ModuleGeneric.UpdateDatabase();
+            var databasePath = ModuleGeneric.GetDatabasePath();
+            var context = new Repository.TNBaseContext($"Data Source={databasePath}");
+            context.UpdateDatabase();
+
             progressBar.Value = 25;
 
             if (!ModuleSounds.CheckResourcesFolder())

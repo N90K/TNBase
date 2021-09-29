@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using TNBase.DataStorage;
 using TNBase.Objects;
 
@@ -8,21 +9,12 @@ namespace TNBase.Repository
 {
     public partial class TNBaseContext : DbContext, ITNBaseContext
     {
-        private readonly TNBaseContextOptions options;
+        private readonly SqliteConnection connection;
 
         public TNBaseContext(string connectionString)
         {
-            this.options = new TNBaseContextOptions { ConnectionString = connectionString };
-        }
-
-        public TNBaseContext(TNBaseContextOptions options)
-        {
-            this.options = options;
-        }
-
-        public TNBaseContext(DbContextOptions<TNBaseContext> options)
-            : base(options)
-        {
+            connection = new SqliteConnection(connectionString);
+            connection.Open();
         }
 
         public virtual DbSet<Collector> Collectors { get; set; }
@@ -31,13 +23,18 @@ namespace TNBase.Repository
         public virtual DbSet<WeekStat> WeekStats { get; set; }
         public virtual DbSet<YearStat> YearStats { get; set; }
 
+        public void UpdateDatabase()
+        {
+            new DatabaseUpdater<SqlMigration>(connection).Update();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite(@"Data Source=C:\Users\Audrius\Documents\Code\TNBase\TNBase\bin\Debug\Resource\Listeners.s3db");
+                //optionsBuilder.UseSqlite(@"Data Source=C:\Users\Audrius\Documents\Code\TNBase\TNBase\bin\Debug\Resource\Listeners.s3db");
                 //optionsBuilder.UseSqlite("Data Source=C:\\Users\\Audrius\\Documents\\Code\\TNBase\\Listeners.s3db");
-                optionsBuilder.UseSqlite(options.ConnectionString);
+                optionsBuilder.UseSqlite(connection);
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
