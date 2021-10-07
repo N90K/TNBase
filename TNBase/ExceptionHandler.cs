@@ -20,7 +20,7 @@ namespace TNBase
         public static void AppDomain_CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = (Exception) e.ExceptionObject;
-            log.Fatal(ex, "Some fatal exception occured!");
+            log.Fatal(ex, $"Fatal exception occured: {ex.Message}");
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace TNBase
         public static void AppDomain_Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Exception ex = (Exception)e.Exception;
-            log.Fatal(ex, "Some fatal (thread) exception occured!");
+            log.Fatal(ex, $"Fatal (thread) exception occured: {ex.Message}");
         }
     }
 }

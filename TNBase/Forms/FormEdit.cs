@@ -7,12 +7,13 @@ using TNBase.Objects;
 using TNBase.DataStorage;
 using System.Globalization;
 using TNBase.Infrastructure.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormEdit
     {
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         private int listenerWalletNo = 0;
         private Listener myListener;
@@ -144,28 +145,28 @@ namespace TNBase
 
             //Add first item
             arr[0] = "OUT";
-            arr[1] = theListener.inOutRecords.Out1.ToString();
-            arr[2] = theListener.inOutRecords.Out2.ToString();
-            arr[3] = theListener.inOutRecords.Out3.ToString();
-            arr[4] = theListener.inOutRecords.Out4.ToString();
-            arr[5] = theListener.inOutRecords.Out5.ToString();
-            arr[6] = theListener.inOutRecords.Out6.ToString();
-            arr[7] = theListener.inOutRecords.Out7.ToString();
-            arr[8] = theListener.inOutRecords.Out8.ToString();
+            arr[1] = theListener.InOutRecords.Out1.ToString();
+            arr[2] = theListener.InOutRecords.Out2.ToString();
+            arr[3] = theListener.InOutRecords.Out3.ToString();
+            arr[4] = theListener.InOutRecords.Out4.ToString();
+            arr[5] = theListener.InOutRecords.Out5.ToString();
+            arr[6] = theListener.InOutRecords.Out6.ToString();
+            arr[7] = theListener.InOutRecords.Out7.ToString();
+            arr[8] = theListener.InOutRecords.Out8.ToString();
 
             itm = new ListViewItem(arr);
             lstInOut.Items.Add(itm);
 
             //Add first item
             arr[0] = "IN";
-            arr[1] = theListener.inOutRecords.In1.ToString();
-            arr[2] = theListener.inOutRecords.In2.ToString();
-            arr[3] = theListener.inOutRecords.In3.ToString();
-            arr[4] = theListener.inOutRecords.In4.ToString();
-            arr[5] = theListener.inOutRecords.In5.ToString();
-            arr[6] = theListener.inOutRecords.In6.ToString();
-            arr[7] = theListener.inOutRecords.In7.ToString();
-            arr[8] = theListener.inOutRecords.In8.ToString();
+            arr[1] = theListener.InOutRecords.In1.ToString();
+            arr[2] = theListener.InOutRecords.In2.ToString();
+            arr[3] = theListener.InOutRecords.In3.ToString();
+            arr[4] = theListener.InOutRecords.In4.ToString();
+            arr[5] = theListener.InOutRecords.In5.ToString();
+            arr[6] = theListener.InOutRecords.In6.ToString();
+            arr[7] = theListener.InOutRecords.In7.ToString();
+            arr[8] = theListener.InOutRecords.In8.ToString();
 
             itm = new ListViewItem(arr);
             lstInOut.Items.Add(itm);

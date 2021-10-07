@@ -5,12 +5,13 @@ using System.Windows.Forms;
 using System.Linq;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormPrintAllLabels
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		List<Listener> theListeners = new List<Listener>();
 		int totalCount = 0;
 

@@ -18,10 +18,11 @@ namespace TNBase.Repository
         }
 
         public virtual DbSet<Collector> Collectors { get; set; }
+        public virtual DbSet<InOutRecords> InOutRecords { get; set; }
         public virtual DbSet<Listener> Listeners { get; set; }
         public virtual DbSet<Scan> Scans { get; set; }
-        public virtual DbSet<WeekStat> WeekStats { get; set; }
-        public virtual DbSet<YearStat> YearStats { get; set; }
+        public virtual DbSet<WeeklyStats> WeeklyStats { get; set; }
+        public virtual DbSet<YearStats> YearStats { get; set; }
 
         public void UpdateDatabase()
         {
@@ -36,19 +37,98 @@ namespace TNBase.Repository
                 //optionsBuilder.UseSqlite("Data Source=C:\\Users\\Audrius\\Documents\\Code\\TNBase\\Listeners.s3db");
                 optionsBuilder.UseSqlite(connection);
             }
+
+            optionsBuilder.UseLazyLoadingProxies();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Collector>(entity =>
             {
-                entity.HasKey(e => e.Key);
+                entity.HasKey(e => e.ID).HasName("Key");
             });
+
+            modelBuilder.Entity<Listener>(entity =>
+            {
+                entity.ToTable("Listeners");
+
+                entity.HasKey(e => e.Wallet);
+
+                entity.HasOne(e => e.InOutRecords)
+                    .WithOne()
+                    .HasForeignKey<Listener>(e => e.Wallet)
+                    .IsRequired();
+
+                entity.Property(e => e.Addr1).HasColumnType("text");
+
+                entity.Property(e => e.Addr2).HasColumnType("text");
+
+                entity.Property(e => e.BirthdayDay).HasColumnType("int");
+
+                entity.Property(e => e.BirthdayMonth).HasColumnType("int");
+
+                entity.Property(e => e.County).HasColumnType("text");
+
+                entity.Property(e => e.DeletedDate).HasColumnType("date");
+
+                entity.Property(e => e.Forename)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Info).HasColumnType("text");
+
+                entity.Property(e => e.Joined).HasColumnType("date");
+
+                entity.Property(e => e.LastIn).HasColumnType("date");
+
+                entity.Property(e => e.LastOut).HasColumnType("date");
+
+                entity.Property(e => e.Magazine).HasColumnType("bit");
+
+                entity.Property(e => e.MagazineStock)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.MemStickPlayer).HasColumnType("bit");
+
+                entity.Property(e => e.Postcode).HasColumnType("text");
+
+                entity.Property(e => e.Status)
+                    .HasConversion<string>();
+
+                entity.Property(e => e.StatusInfo).HasColumnType("text");
+
+                entity.Property(e => e.Stock)
+                    .HasColumnType("bigint")
+                    .HasDefaultValueSql("3");
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Telephone).HasColumnType("text");
+
+                entity.Property(e => e.Title).HasColumnType("text");
+
+                entity.Property(e => e.Town).HasColumnType("text");
+            });
+
+            //modelBuilder.Entity<Listener>()
+            //    .Ignore(e => e.Status)
+            //    .HasOne(e=>e.InOutRecords)
+            //    .WithOne(e=)
+            //    .HasForeignKey<Listener>(e => e.Wallet)
+            //    .IsRequired();
 
             modelBuilder.Entity<InOutRecords>(entity =>
             {
                 entity.ToTable("Listeners");
 
                 entity.HasKey(e => e.Wallet);
+
+                //entity.HasOne(e => e.Listener)
+                //    .WithOne(e => e.InOutRecords)
+                //    .HasForeignKey<Listener>(e => e.Wallet)
+                //    .IsRequired();
 
                 entity.Property(e => e.In1)
                     .HasColumnType("bigint")
@@ -115,72 +195,6 @@ namespace TNBase.Repository
                     .HasDefaultValueSql("0");
             });
 
-            modelBuilder.Entity<Listener>(entity =>
-            {
-                entity.HasKey(e => e.Wallet);
-
-                entity.HasOne(e => e.inOutRecords)
-                    .WithOne()
-                    .HasForeignKey<InOutRecords>(e => e.Wallet)
-                    .IsRequired();
-
-                entity.Property(e => e.Addr1).HasColumnType("text");
-
-                entity.Property(e => e.Addr2).HasColumnType("text");
-
-                entity.Property(e => e.BirthdayDay).HasColumnType("int");
-
-                entity.Property(e => e.BirthdayMonth).HasColumnType("int");
-
-                entity.Property(e => e.County).HasColumnType("text");
-
-                entity.Property(e => e.DeletedDate).HasColumnType("date");
-
-                entity.Property(e => e.Forename)
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                entity.Property(e => e.Info).HasColumnType("text");
-
-                entity.Property(e => e.Joined).HasColumnType("date");
-
-                entity.Property(e => e.LastIn).HasColumnType("date");
-
-                entity.Property(e => e.LastOut).HasColumnType("date");
-
-                entity.Property(e => e.Magazine).HasColumnType("bit");
-
-                entity.Property(e => e.MagazineStock)
-                    .HasColumnType("bigint")
-                    .HasDefaultValueSql("0");
-
-                entity.Property(e => e.MemStickPlayer).HasColumnType("bit");
-
-                entity.Property(e => e.Postcode).HasColumnType("text");
-
-                entity.Property(e => e.State)
-                    .HasColumnName("Status")
-                    .HasColumnType("text");
-
-                entity.Property(e => e.StatusInfo).HasColumnType("text");
-
-                entity.Property(e => e.Stock)
-                    .HasColumnType("bigint")
-                    .HasDefaultValueSql("3");
-
-                entity.Property(e => e.Surname)
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                entity.Property(e => e.Telephone).HasColumnType("text");
-
-                entity.Property(e => e.Title).HasColumnType("text");
-
-                entity.Property(e => e.Town).HasColumnType("text");
-            });
-
-            modelBuilder.Entity<Listener>().Ignore(e => e.Status);
-
             modelBuilder.Entity<Scan>(entity =>
             {
                 entity.HasIndex(e => e.Id, "IX_Scans_Id")
@@ -198,15 +212,18 @@ namespace TNBase.Repository
                     .IsRequired();
             });
 
-            modelBuilder.Entity<Scan>()
-                .Ignore(e => e.ScanType)
-                .Ignore(e => e.WalletType);
+            //modelBuilder.Entity<Scan>()
+            //    .Ignore(e => e.ScanType)
+            //    .Ignore(e => e.WalletType);
 
-            modelBuilder.Entity<WeekStat>(entity =>
+            modelBuilder.Entity<WeeklyStats>(entity =>
             {
+                entity.ToTable("WeekStats");
+
                 entity.HasKey(e => e.WeekNumber);
 
-                entity.Property(e => e.Date)
+                entity.Property(e => e.WeekDate)
+                    .HasColumnName("Date")
                     .HasColumnType("DATE")
                     .HasDefaultValueSql("CURRENT_DATE");
 
@@ -219,7 +236,7 @@ namespace TNBase.Repository
                 entity.Property(e => e.TotalListeners).HasDefaultValueSql("'0'");
             });
 
-            modelBuilder.Entity<YearStat>(entity =>
+            modelBuilder.Entity<YearStats>(entity =>
             {
                 entity.HasKey(e => e.Year);
 

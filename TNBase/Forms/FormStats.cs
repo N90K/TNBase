@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
 using TNBase.DataStorage;
@@ -5,7 +6,7 @@ namespace TNBase
 {
     public partial class FormStats
 	{
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
 		private void formStats_Load(object sender, EventArgs e)
 		{

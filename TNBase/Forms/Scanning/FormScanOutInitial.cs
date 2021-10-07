@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormScanOutInitial
 	{
         List<Listener> listenerWallets = new List<Listener>();
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
 		int currentItem = 0;
 		private void formScanOutInitial_KeyDown(object sender, KeyEventArgs e)

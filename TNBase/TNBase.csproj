@@ -109,11 +109,6 @@
     <None Update="My Project\app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Update="My Project\Application.myapp">
-      <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Update="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

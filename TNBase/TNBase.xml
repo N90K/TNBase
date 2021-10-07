@@ -181,13 +181,6 @@
             <param name="sender">ignored</param>
             <param name="e">ignored</param>
         </member>
-        <member name="M:TNBase.FormAbout.PictureBox_Click(System.Object,System.EventArgs)">
-            <summary>
-            Hidden testing form, only showed by pressing the picture 3 times.
-            </summary>
-            <param name="sender">ignored</param>
-            <param name="e">ignored</param>
-        </member>
         <member name="M:TNBase.FormLogViewer.UpdateText(System.String)">
             <summary>
             Highlight log text by color
@@ -223,13 +216,6 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="M:TNBase.FormTest.btnDevTest_Click(System.Object,System.EventArgs)">
-            <summary>
-            Function for some latest development test!
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="F:TNBase.FormPrintMagazineWallets.components">
             <summary>
@@ -279,6 +265,11 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:TNBase.Program.Main">
+            <summary>
+             The main entry point for the application.
             </summary>
         </member>
         <member name="T:TNBase.Properties.Resources">

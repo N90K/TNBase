@@ -31,7 +31,7 @@ namespace TNBase.DataStorage.Test.TestHelpers
                 Town = "Test Town",
                 StatusInfo = "",
                 Info = "Some test listener",
-                inOutRecords = new InOutRecords(),
+                InOutRecords = new InOutRecords(),
                 BirthdayDay = 1,
                 BirthdayMonth = 1
             };
@@ -82,7 +82,7 @@ namespace TNBase.DataStorage.Test.TestHelpers
             YearStats temp = new YearStats()
             {
                 AverageSent = 1,
-                AvListeners = 2,
+                AverageListeners = 2,
                 AveragePaused = 3,
                 EndListeners = 4,
                 InactiveTotal = 5,

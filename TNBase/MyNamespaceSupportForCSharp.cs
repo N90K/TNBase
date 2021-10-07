@@ -13,18 +13,7 @@ using Microsoft.VisualBasic.Devices;
 namespace TNBase.My
 {
     sealed partial class MyProject
-	{
-		[ThreadStatic] static MyApplication application;
-		
-		public static MyApplication Application {
-			[DebuggerStepThrough]
-			get {
-				if (application == null)
-					application = new MyApplication();
-				return application;
-			}
-		}
-		
+	{		
 		[ThreadStatic] static MyComputer computer;
 		
 		public static MyComputer Computer {
@@ -277,13 +266,6 @@ namespace TNBase.My
 				[DebuggerStepThrough] set { SetForm(ref formMain_instance, value); }
 			}
 			
-			global::TNBase.FormTest formTest_instance;
-			bool formTest_isCreating;
-			public global::TNBase.FormTest formTest {
-				[DebuggerStepThrough] get { return GetForm(ref formTest_instance, ref formTest_isCreating); }
-				[DebuggerStepThrough] set { SetForm(ref formTest_instance, value); }
-			}
-			
 			global::TNBase.FormStats formStats_instance;
 			bool formStats_isCreating;
 			public global::TNBase.FormStats formStats {
@@ -359,17 +341,7 @@ namespace TNBase.My
 			}
 		}
 	}
-	
-	partial class MyApplication : WindowsFormsApplicationBase
-	{
-		[STAThread]
-		public static void Main(string[] args)
-		{
-			Application.SetCompatibleTextRenderingDefault(UseCompatibleTextRendering);
-			MyProject.Application.Run(args);
-		}
-	}
-	
+		
 	partial class MyComputer : Computer
 	{
 	}

@@ -46,23 +46,6 @@ namespace TNBase
 			this.Close();
 		}
 
-        /// <summary>
-        /// Hidden testing form, only showed by pressing the picture 3 times.
-        /// </summary>
-        /// <param name="sender">ignored</param>
-        /// <param name="e">ignored</param>
-		private void PictureBox_Click(object sender, EventArgs e)
-		{
-			clickCount = clickCount + 1;
-
-			log.Trace("Click count: " + clickCount);
-			if (clickCount > 3) {
-				log.Debug("Showing test form...");
-				My.MyProject.Forms.formTest.Show();
-				clickCount = 0;
-			}
-		}
-
 		public FormAbout()
 		{
 			LostFocus += FormAbout_LostFocus;

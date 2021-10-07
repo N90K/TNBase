@@ -43,7 +43,7 @@ namespace TNBase.DataStorage
             tempStats.EndListeners = (int)(long)myReader["EndListeners"];
             tempStats.NewListeners = (int)(long)myReader["NewListeners"];
             tempStats.DeletedListeners = (int)(long)myReader["DeletedListeners"];
-            tempStats.AvListeners = (int)(long)myReader["AverageListeners"];
+            tempStats.AverageListeners = (int)(long)myReader["AverageListeners"];
             tempStats.InactiveTotal = (int)(long)myReader["InactiveTotal"];
             tempStats.MagazineTotal = (int)(long)myReader["MagazineTotal"];
             tempStats.AverageSent = (int)(long)myReader["AverageSent"];
@@ -152,23 +152,23 @@ namespace TNBase.DataStorage
                 tempListener.StatusInfo = (string)myReader["StatusInfo"];
             }
 
-            tempListener.inOutRecords = new InOutRecords();
-            tempListener.inOutRecords.In1 = (int)(long)myReader["In1"];
-            tempListener.inOutRecords.In2 = (int)(long)myReader["In2"];
-            tempListener.inOutRecords.In3 = (int)(long)myReader["In3"];
-            tempListener.inOutRecords.In4 = (int)(long)myReader["In4"];
-            tempListener.inOutRecords.In5 = (int)(long)myReader["In5"];
-            tempListener.inOutRecords.In6 = (int)(long)myReader["In6"];
-            tempListener.inOutRecords.In7 = (int)(long)myReader["In7"];
-            tempListener.inOutRecords.In8 = (int)(long)myReader["In8"];
-            tempListener.inOutRecords.Out1 = (int)(long)myReader["Out1"];
-            tempListener.inOutRecords.Out2 = (int)(long)myReader["Out2"];
-            tempListener.inOutRecords.Out3 = (int)(long)myReader["Out3"];
-            tempListener.inOutRecords.Out4 = (int)(long)myReader["Out4"];
-            tempListener.inOutRecords.Out5 = (int)(long)myReader["Out5"];
-            tempListener.inOutRecords.Out6 = (int)(long)myReader["Out6"];
-            tempListener.inOutRecords.Out7 = (int)(long)myReader["Out7"];
-            tempListener.inOutRecords.Out8 = (int)(long)myReader["Out8"];
+            tempListener.InOutRecords = new InOutRecords();
+            tempListener.InOutRecords.In1 = (int)(long)myReader["In1"];
+            tempListener.InOutRecords.In2 = (int)(long)myReader["In2"];
+            tempListener.InOutRecords.In3 = (int)(long)myReader["In3"];
+            tempListener.InOutRecords.In4 = (int)(long)myReader["In4"];
+            tempListener.InOutRecords.In5 = (int)(long)myReader["In5"];
+            tempListener.InOutRecords.In6 = (int)(long)myReader["In6"];
+            tempListener.InOutRecords.In7 = (int)(long)myReader["In7"];
+            tempListener.InOutRecords.In8 = (int)(long)myReader["In8"];
+            tempListener.InOutRecords.Out1 = (int)(long)myReader["Out1"];
+            tempListener.InOutRecords.Out2 = (int)(long)myReader["Out2"];
+            tempListener.InOutRecords.Out3 = (int)(long)myReader["Out3"];
+            tempListener.InOutRecords.Out4 = (int)(long)myReader["Out4"];
+            tempListener.InOutRecords.Out5 = (int)(long)myReader["Out5"];
+            tempListener.InOutRecords.Out6 = (int)(long)myReader["Out6"];
+            tempListener.InOutRecords.Out7 = (int)(long)myReader["Out7"];
+            tempListener.InOutRecords.Out8 = (int)(long)myReader["Out8"];
 
             if (!(myReader["DeletedDate"] is DBNull))
             {
@@ -291,8 +291,8 @@ namespace TNBase.DataStorage
             string lastInStr = listener.LastIn.ToSQLiteInsertStr();
             string lastOutStr = listener.LastOut.ToSQLiteInsertStr();
 
-            string inString = ", In1 = " + listener.inOutRecords.In1 + ", In2 = " + listener.inOutRecords.In2 + ", In3 = " + listener.inOutRecords.In3 + ", In4 = " + listener.inOutRecords.In4 + ", In5 = " + listener.inOutRecords.In5 + ", In6 = " + listener.inOutRecords.In6 + ", In7= " + listener.inOutRecords.In7 + ", In8 = " + listener.inOutRecords.In8;
-            string outString = ", Out1 = " + listener.inOutRecords.Out1 + ", Out2 = " + listener.inOutRecords.Out2 + ", Out3 = " + listener.inOutRecords.Out3 + ", Out4 = " + listener.inOutRecords.Out4 + ", Out5 = " + listener.inOutRecords.Out5 + ", Out6 = " + listener.inOutRecords.Out6 + ", Out7 = " + listener.inOutRecords.Out7 + ", Out8 = " + listener.inOutRecords.Out8;
+            string inString = ", In1 = " + listener.InOutRecords.In1 + ", In2 = " + listener.InOutRecords.In2 + ", In3 = " + listener.InOutRecords.In3 + ", In4 = " + listener.InOutRecords.In4 + ", In5 = " + listener.InOutRecords.In5 + ", In6 = " + listener.InOutRecords.In6 + ", In7= " + listener.InOutRecords.In7 + ", In8 = " + listener.InOutRecords.In8;
+            string outString = ", Out1 = " + listener.InOutRecords.Out1 + ", Out2 = " + listener.InOutRecords.Out2 + ", Out3 = " + listener.InOutRecords.Out3 + ", Out4 = " + listener.InOutRecords.Out4 + ", Out5 = " + listener.InOutRecords.Out5 + ", Out6 = " + listener.InOutRecords.Out6 + ", Out7 = " + listener.InOutRecords.Out7 + ", Out8 = " + listener.InOutRecords.Out8;
 
             var birthdayDay = listener.BirthdayDay.HasValue ? listener.BirthdayDay.ToString() : "null";
             var birthdayMonth = listener.BirthdayMonth.HasValue ? listener.BirthdayMonth.ToString() : "null";
@@ -337,11 +337,11 @@ namespace TNBase.DataStorage
             // Add in/out records if they are available.
             string inoutFields = "";
             string inoutValues = "";
-            if (listener.inOutRecords != null)
+            if (listener.InOutRecords != null)
             {
                 inoutFields = ", In1, In2, In3, In4, In5, In6, In7, In8, Out1, Out2, Out3, Out4, Out5, Out6, Out7, Out8";
-                inoutValues = ", " + listener.inOutRecords.In1 + ", " + listener.inOutRecords.In2 + ", " + listener.inOutRecords.In3 + ", " + listener.inOutRecords.In4 + ", " + listener.inOutRecords.In5 + ", " + listener.inOutRecords.In6 + ", " + listener.inOutRecords.In7 + ", " + listener.inOutRecords.In8;
-                inoutValues = inoutValues + ", " + listener.inOutRecords.Out1 + ", " + listener.inOutRecords.Out2 + ", " + listener.inOutRecords.Out3 + ", " + listener.inOutRecords.Out4 + ", " + listener.inOutRecords.Out5 + ", " + listener.inOutRecords.Out6 + ", " + listener.inOutRecords.Out7 + ", " + listener.inOutRecords.Out8;
+                inoutValues = ", " + listener.InOutRecords.In1 + ", " + listener.InOutRecords.In2 + ", " + listener.InOutRecords.In3 + ", " + listener.InOutRecords.In4 + ", " + listener.InOutRecords.In5 + ", " + listener.InOutRecords.In6 + ", " + listener.InOutRecords.In7 + ", " + listener.InOutRecords.In8;
+                inoutValues = inoutValues + ", " + listener.InOutRecords.Out1 + ", " + listener.InOutRecords.Out2 + ", " + listener.InOutRecords.Out3 + ", " + listener.InOutRecords.Out4 + ", " + listener.InOutRecords.Out5 + ", " + listener.InOutRecords.Out6 + ", " + listener.InOutRecords.Out7 + ", " + listener.InOutRecords.Out8;
             }
 
             var birthdayDay = listener.BirthdayDay.HasValue ? listener.BirthdayDay.ToString() : "null";
@@ -615,7 +615,7 @@ namespace TNBase.DataStorage
                 throw new ArgumentNullException("yearStats");
             }
 
-            string sql = "UPDATE YearStats SET StartListeners = " + yearStats.StartListeners + ", EndListeners = " + yearStats.EndListeners + ", NewListeners = " + yearStats.NewListeners + ", DeletedListeners = " + yearStats.DeletedListeners + ", AverageListeners = " + yearStats.AvListeners + ", InactiveTotal = " + yearStats.InactiveTotal + ", MagazineTotal = " + yearStats.MagazineTotal + ", AverageSent = " + yearStats.AverageSent + ", SentTotal = " + yearStats.SentTotal + ", MagazinesSent = " + yearStats.MagazinesSent + ", PercentSent = " + yearStats.PercentSent + ", MemStickPlayerLoanTotal = " + yearStats.MemStickPlayerLoanTotal + ", PausedTotal = " + yearStats.PausedTotal + ", AveragePaused = " + yearStats.AveragePaused + ", DeletedTotal = " + yearStats.DeletedTotal + " WHERE Year = " + yearStats.Year;
+            string sql = "UPDATE YearStats SET StartListeners = " + yearStats.StartListeners + ", EndListeners = " + yearStats.EndListeners + ", NewListeners = " + yearStats.NewListeners + ", DeletedListeners = " + yearStats.DeletedListeners + ", AverageListeners = " + yearStats.AverageListeners + ", InactiveTotal = " + yearStats.InactiveTotal + ", MagazineTotal = " + yearStats.MagazineTotal + ", AverageSent = " + yearStats.AverageSent + ", SentTotal = " + yearStats.SentTotal + ", MagazinesSent = " + yearStats.MagazinesSent + ", PercentSent = " + yearStats.PercentSent + ", MemStickPlayerLoanTotal = " + yearStats.MemStickPlayerLoanTotal + ", PausedTotal = " + yearStats.PausedTotal + ", AveragePaused = " + yearStats.AveragePaused + ", DeletedTotal = " + yearStats.DeletedTotal + " WHERE Year = " + yearStats.Year;
             DoNoResultQuery(objConn, sql);
         }
 
@@ -631,7 +631,7 @@ namespace TNBase.DataStorage
                 throw new ArgumentNullException("yearStats");
             }
 
-            DoNoResultQuery(objConn, "INSERT INTO YearStats (Year, StartListeners, EndListeners, NewListeners, DeletedListeners, AverageListeners, InactiveTotal, MagazineTotal, AverageSent, SentTotal, MagazinesSent, PercentSent, MemStickPlayerLoanTotal, PausedTotal, AveragePaused, DeletedTotal) VALUES  (" + yearStats.Year + ", " + yearStats.StartListeners + ", " + yearStats.EndListeners + ", " + yearStats.NewListeners + ", " + yearStats.DeletedListeners + ", " + yearStats.AvListeners + ", " + yearStats.InactiveTotal + ", " + yearStats.MagazineTotal + ", " + yearStats.AverageSent + ", " + yearStats.SentTotal + ", " + yearStats.MagazinesSent + ", " + yearStats.PercentSent + ", " + yearStats.MemStickPlayerLoanTotal + ", " + yearStats.PausedTotal + ", " + yearStats.AveragePaused + ", " + yearStats.DeletedTotal + ");");
+            DoNoResultQuery(objConn, "INSERT INTO YearStats (Year, StartListeners, EndListeners, NewListeners, DeletedListeners, AverageListeners, InactiveTotal, MagazineTotal, AverageSent, SentTotal, MagazinesSent, PercentSent, MemStickPlayerLoanTotal, PausedTotal, AveragePaused, DeletedTotal) VALUES  (" + yearStats.Year + ", " + yearStats.StartListeners + ", " + yearStats.EndListeners + ", " + yearStats.NewListeners + ", " + yearStats.DeletedListeners + ", " + yearStats.AverageListeners + ", " + yearStats.InactiveTotal + ", " + yearStats.MagazineTotal + ", " + yearStats.AverageSent + ", " + yearStats.SentTotal + ", " + yearStats.MagazinesSent + ", " + yearStats.PercentSent + ", " + yearStats.MemStickPlayerLoanTotal + ", " + yearStats.PausedTotal + ", " + yearStats.AveragePaused + ", " + yearStats.DeletedTotal + ");");
         }
 
         /// <summary>

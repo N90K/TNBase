@@ -136,7 +136,7 @@ namespace TNBase.DataStorage.Test
             Assert.AreEqual(toInsert.Serialize(), results[1].Serialize());
 
             // Update one of the listeners
-            results[1].AvListeners = 19;
+            results[1].AverageListeners = 19;
             YearStats updated = results[1];
             repoLayer.UpdateYearStats(connection, updated);
 

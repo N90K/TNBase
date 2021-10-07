@@ -5,23 +5,25 @@ using System.Windows.Forms;
 using System.Linq;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TNBase
 {
     public partial class FormBrowseCollectors
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
 		int limit = 15;
 
 		int offset = 0;
-		public void clearList()
+		public void ClearList()
 		{
 			lstBrowse.Items.Clear();
 		}
 
 		public void refreshList()
 		{
-			clearList();
+			ClearList();
 
 			List<Collector> theCollectors = new List<Collector>();
             theCollectors = serviceLayer.GetCollectors().Skip(offset).Take(limit).ToList();

@@ -2,12 +2,13 @@ using System;
 using System.Drawing;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormPrintCollectionForm
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		Listener theListener = new Listener();
 		Collector theColl = new Collector();
 

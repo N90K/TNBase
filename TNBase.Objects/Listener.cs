@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,7 @@ namespace TNBase.Objects
             Status = ListenerStates.ACTIVE;
         }
 
+        [Key, ForeignKey("Listener")]
         public int Wallet { get; set; }
 
         public string Title { get; set; }
@@ -67,24 +70,11 @@ namespace TNBase.Objects
 
         public string Info { get; set; }
 
-        public string State { get; set; }
-
-        public ListenerStates Status
-        {
-            get
-            {
-                Enum.TryParse<ListenerStates>(State, out var status);
-                return status;
-            }
-            set
-            {
-                State = value.ToString();
-            }
-        }
+        public ListenerStates Status { get; set; }
 
         public string StatusInfo { get; set; }
 
-        public virtual InOutRecords inOutRecords { get; set; }
+        public virtual InOutRecords InOutRecords { get; set; }
 
         public DateTime? DeletedDate { get; set; }
         public int Stock { get; set; }

@@ -6,12 +6,13 @@ using TNBase.Objects;
 using TNBase.DataStorage;
 using System.Globalization;
 using TNBase.Infrastructure.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormPrintBirthdays
     {
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         List<Listener> theListeners = new List<Listener>();
         int totalCount = 0;
         int currentPageNumber = 0;

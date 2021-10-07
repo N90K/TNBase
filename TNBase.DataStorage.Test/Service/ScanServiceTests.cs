@@ -24,7 +24,7 @@ namespace TNBase.DataStorage.Test.Services
             {
                 Forename = "Test",
                 Surname = "Tester",
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -58,14 +58,14 @@ namespace TNBase.DataStorage.Test.Services
             {
                 Forename = "Test1",
                 Surname = "Tester",
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
 
             context.Listeners.Add(new Listener
             {
                 Forename = "Test2",
                 Surname = "Tester",
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -99,7 +99,7 @@ namespace TNBase.DataStorage.Test.Services
                 Surname = "Tester",
                 Stock = 1,
                 MagazineStock = 2,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -134,7 +134,7 @@ namespace TNBase.DataStorage.Test.Services
                 Surname = "Tester",
                 Stock = 1,
                 MagazineStock = 2,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -167,7 +167,7 @@ namespace TNBase.DataStorage.Test.Services
                 Surname = "Tester",
                 Stock = 1,
                 MagazineStock = 2,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -200,7 +200,7 @@ namespace TNBase.DataStorage.Test.Services
                 Surname = "Tester",
                 Stock = 1,
                 MagazineStock = 2,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 
@@ -233,7 +233,7 @@ namespace TNBase.DataStorage.Test.Services
                 Surname = "Tester",
                 Stock = 1,
                 MagazineStock = 2,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             });
             context.SaveChanges();
 

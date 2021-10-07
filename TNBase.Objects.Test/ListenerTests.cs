@@ -19,7 +19,7 @@ namespace TNBase.Objects.Test
             listener.BirthdayDay = 1;
             listener.BirthdayMonth = 1;
             listener.County = "Londonshire";
-            listener.inOutRecords = new InOutRecords();
+            listener.InOutRecords = new InOutRecords();
             listener.MemStickPlayer = true;
             listener.LastIn = DateTime.Now;
             listener.LastOut = null;

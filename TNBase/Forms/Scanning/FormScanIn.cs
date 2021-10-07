@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System;
 using System.Speech.Synthesis;
@@ -18,7 +19,7 @@ namespace TNBase
     {
         private NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         private int scannedIn = 0;
         private int lastScanned = 0;
@@ -174,7 +175,7 @@ namespace TNBase
                 var listener = serviceLayer.GetListenerById(wallet);
                 if (listener != null)
                 {
-                    listener.inOutRecords.In8 = quantity;
+                    listener.InOutRecords.In8 = quantity;
 
                     for (int i = 0; i < quantity; i++)
                     {

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 using TNBase.DataStorage;
@@ -5,7 +6,7 @@ namespace TNBase
 {
     public partial class FormFinished
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
 		bool readyToExit = false;

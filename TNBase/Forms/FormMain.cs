@@ -11,6 +11,7 @@ using TNBase.Forms.Scanning;
 using TNBase.Objects;
 using System.Linq;
 using TNBase.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
@@ -23,7 +24,7 @@ namespace TNBase
         Logger log = LogManager.GetCurrentClassLogger();
 
         // Variabless
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         /// <summary>
         /// Load the correct logo!

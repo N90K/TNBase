@@ -3,12 +3,13 @@ using System;
 using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormScanOut
     {
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         int scannedOut = 0;
         int lastScanned = 0;
@@ -144,7 +145,7 @@ namespace TNBase
                 Listener theListener = serviceLayer.GetListenerById(int.Parse(item.SubItems[0].Text));
                 if ((theListener != null))
                 {
-                    theListener.inOutRecords.Out8 = int.Parse(item.SubItems[1].Text);
+                    theListener.InOutRecords.Out8 = int.Parse(item.SubItems[1].Text);
                     // Also adjust stock.
                     theListener.Stock = theListener.Stock - int.Parse(item.SubItems[1].Text);
                     theListener.LastOut = DateTime.Now;

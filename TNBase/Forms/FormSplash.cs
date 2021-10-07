@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using NLog;
 using System;
 using System.IO;
@@ -11,7 +12,7 @@ namespace TNBase
     public partial class FormSplash
     {
         private readonly Logger log = LogManager.GetCurrentClassLogger();
-        private readonly IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         private bool readyToProgress;
 
@@ -30,12 +31,12 @@ namespace TNBase
 
             progressBar.Value = 0;
 
-            if (!serviceLayer.IsConnected())
-            {
-                MessageBox.Show("Could not find database file", ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
-                log.Fatal("Could not find database file.");
-                Close();
-            }
+            //if (!serviceLayer.IsConnected())
+            //{
+            //    MessageBox.Show("Could not find database file", ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
+            //    log.Fatal("Could not find database file.");
+            //    Close();
+            //}
 
             progressBar.Value = 10;
 
@@ -136,8 +137,9 @@ namespace TNBase
             // Progress on the second call (either after 1 second or whenever database processing is complete).
             if (readyToProgress)
             {
-                My.MyProject.Forms.formMain.Show();
-                this.Close();
+                var form = new FormMain();
+                form.Show();
+               // this.Close();
             }
             else
             {

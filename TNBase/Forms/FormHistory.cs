@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TNBase
 {
 	public partial class FormHistory
@@ -17,7 +19,7 @@ namespace TNBase
 			this.Close();
 		}
 
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
 		private void SetYear(int year)
 		{

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TNBase
 {
     public partial class FormPrintDormantListeners
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		List<Listener> theListeners = new List<Listener>();
 
 		int totalCount = 0;
