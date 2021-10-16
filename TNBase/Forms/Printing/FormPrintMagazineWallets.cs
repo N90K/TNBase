@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormPrintMagazineWallets : Form
     {
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
-        
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
         List<Listener> theListeners = new List<Listener>();
         int totalPages = 0;
         int currentPageNumber = 0;

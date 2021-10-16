@@ -19,21 +19,6 @@ namespace TNBase.Test
             Assert.AreEqual("00:00:00", ModuleGeneric.getElapsedTimeString());
         }
 
-        [TestMethod]
-        public void Generic_DateToUK()
-        {
-            string dateStr = "2015-10-20";
-            string expected = "20/10/2015";
-
-            Assert.AreEqual(expected, ModuleGeneric.getUKFormatDate(dateStr));
-        }
-
-        [TestMethod]
-        public void Generic_TestAppName()
-        {
-            Assert.AreEqual("TNBase.exe", ModuleGeneric.getAppName());
-        }
-
         /// <summary>
         /// Base for the weekly stat test methods
         /// </summary>

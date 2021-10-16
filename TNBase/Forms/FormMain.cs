@@ -11,6 +11,8 @@ using TNBase.Forms.Scanning;
 using TNBase.Objects;
 using System.Linq;
 using TNBase.Model;
+using Microsoft.Extensions.DependencyInjection;
+using TNBase.Repository;
 
 namespace TNBase
 {
@@ -23,7 +25,7 @@ namespace TNBase
         Logger log = LogManager.GetCurrentClassLogger();
 
         // Variabless
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         /// <summary>
         /// Load the correct logo!
@@ -68,14 +70,9 @@ namespace TNBase
             updateWeekNumber();
 
             // Show version
-            lblVersion.Text = ModuleGeneric.getVersionString();
-            log.Info("Loaded " + ModuleGeneric.getVersionString());
-
-            // If its not saturday we shouldnt be scanning in!
-            if (!(DateTime.UtcNow.DayOfWeek.Equals(DayOfWeek.Saturday)))
-            {
-                btnScanIn.Enabled = false;
-            }
+            var version = $"V{Application.ProductVersion}";
+            lblVersion.Text = version;
+            log.Info($"Loaded {version}");
         }
 
         private void updateWeekNumber()
@@ -96,17 +93,6 @@ namespace TNBase
             updateTimers();
         }
 
-        public void ScanInDone()
-        {
-            btnScanIn.Enabled = false;
-            btnScanOut.Enabled = true;
-        }
-
-        public void ScanOutDone()
-        {
-            btnScanOut.Enabled = false;
-        }
-
         // Show the finished form when exiting.
         private void formMain_FormClosing(System.Object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
@@ -115,21 +101,23 @@ namespace TNBase
 
         private void updateHints()
         {
-            List<string> hints = new List<string>();
-            hints.Add("Log files can be found at: " + ModuleGeneric.GetLogFilePath());
-            hints.Add("");
+            var hints = new List<string>
+            {
+                "Log files can be found at: " + ModuleGeneric.GetLogFilePath(),
+                ""
+            };
 
             // Pick a random item from the hints.
-            Random randomNumber = new Random();
+            var randomNumber = new Random();
             lblHints.Text = hints[randomNumber.Next(0, hints.Count)];
         }
 
-        private void timerHints_Tick(object sender, EventArgs e)
+        private void TimerHints_Tick(object sender, EventArgs e)
         {
             updateHints();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             new FormAddMini().ShowDialog();
         }
@@ -139,13 +127,13 @@ namespace TNBase
             new FormAddMini().ShowDialog();
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
+        private void BtnRemove_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formFindListener.Show();
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.DeleteForm;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formFindListener.Show();
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.EditForm;
@@ -163,13 +151,13 @@ namespace TNBase
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.EditForm;
         }
 
-        private void btnBackup_Click(object sender, EventArgs e)
+        private void BtnBackup_Click(object sender, EventArgs e)
         {
-            showBackup();
+            ShowBackup();
         }
 
         // Show backup dialog.
-        public void showBackup()
+        public void ShowBackup()
         {
             backupDialog.FileName = ModuleGeneric.DATABASE_NAME;
             backupDialog.Title = "Backup Listener Database";
@@ -193,7 +181,7 @@ namespace TNBase
         }
 
         // Show restore dialog.
-        public void showRestore()
+        public void ShowRestore()
         {
             DialogResult result = MessageBox.Show("You should backup the existing database before restoring as restoring will overwrite the current database." + Environment.NewLine + Environment.NewLine + "Overwriting the current database is irreversible, are you sure you want to continue?", ModuleGeneric.getAppShortName(), MessageBoxButtons.OKCancel);
             if (result == DialogResult.Cancel)
@@ -210,9 +198,12 @@ namespace TNBase
             // If successful, backup the database.
             if (restoreDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (DBUtils.RestoreDatabase(restoreDialog.FileName, ModuleGeneric.GetDatabasePath()))
+                var databasePath = ModuleGeneric.GetDatabasePath();
+                if (DBUtils.RestoreDatabase(restoreDialog.FileName, databasePath))
                 {
-                    ModuleGeneric.UpdateDatabase();
+                    Program.NewScope();
+                    var context = (TNBaseContext)Program.ServiceProvider.GetService<ITNBaseContext>();
+                    context.UpdateDatabase();
                     Interaction.MsgBox("Database restore successful.");
                 }
                 else
@@ -224,7 +215,7 @@ namespace TNBase
 
         private void BackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showBackup();
+            ShowBackup();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -232,7 +223,7 @@ namespace TNBase
             My.MyProject.Forms.formAbout.Show();
         }
 
-        private void btnFinished_Click(object sender, EventArgs e)
+        private void BtnFinished_Click(object sender, EventArgs e)
         {
             // Show a load of forms automatically.!
             if ((Settings.Default.OnlyAutoPrintOnSat &&
@@ -291,16 +282,16 @@ namespace TNBase
                 }
             }
 
-            showFinishedForm();
+            ShowFinishedForm();
         }
 
-        private void showFinishedForm()
+        private void ShowFinishedForm()
         {
             My.MyProject.Forms.formFinished.Show();
             this.Close();
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void BtnBrowse_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formBrowse.Show();
         }
@@ -326,7 +317,7 @@ namespace TNBase
             My.MyProject.Forms.formStats.Show();
         }
 
-        private void btnScanIn_Click(object sender, EventArgs e)
+        private void BtnScanIn_Click(object sender, EventArgs e)
         {
             // Check if alterations have been completed.
             DialogResult result = MessageBox.Show("Have you completed all the alterations and additions from the pending tray?" + Environment.NewLine + Environment.NewLine + "If you still have alterations or additions press Cancel and scan in after.", ModuleGeneric.getAppShortName(), MessageBoxButtons.OKCancel);
@@ -350,23 +341,23 @@ namespace TNBase
             }
         }
 
-        private void brnRestore_Click(object sender, EventArgs e)
+        private void BrnRestore_Click(object sender, EventArgs e)
         {
-            showRestore();
+            ShowRestore();
         }
 
         private void RestoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showRestore();
+            ShowRestore();
         }
 
-        private void btnStopSending_Click(object sender, EventArgs e)
+        private void BtnStopSending_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formFindListener.Show();
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.StopSending;
         }
 
-        private void btnCancelStop_Click(object sender, EventArgs e)
+        private void BtnCancelStop_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formResumeSending.Show();
         }
@@ -376,7 +367,7 @@ namespace TNBase
             My.MyProject.Forms.formPrintLabels.Show();
         }
 
-        private void btnScanOut_Click(object sender, EventArgs e)
+        private void BtnScanOut_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formScanOutInitial.Show();
         }
@@ -479,46 +470,36 @@ namespace TNBase
             My.MyProject.Forms.formPrintStoppedWalletsAll.Show();
         }
 
-        private void EnableScanInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            btnScanIn.Enabled = true;
-        }
-
-        private void logViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LogViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormLogViewer frm = new FormLogViewer();
             frm.Show();
         }
 
-        private void openLogDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenLogDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", ModuleGeneric.GetLogFilePath().Replace("Debug.log", ""));
         }
 
-        private void printCollectorForListenerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PrintCollectorForListenerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formFindListener.Show();
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.PrintCollector;
         }
 
-        private void magazineWalletsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MagazineWalletsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPrintMagazineWallets myForm = new FormPrintMagazineWallets();
             myForm.Show();
         }
 
-        private void adjustStockLevelsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AdjustStockLevelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.formFindListener.Show();
             My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.AdjustStock;
         }
 
-        private void enableScanOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            btnScanOut.Enabled = true;
-        }
-
-        private void walletsStockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void WalletsStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormPrintWalletStock();
             var stock = serviceLayer.GetListeners()
@@ -534,7 +515,7 @@ namespace TNBase
             form.Show();
         }
 
-        private void magazineWalletStockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MagazineWalletStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormPrintWalletStock();
             var stock = serviceLayer.GetListeners()
@@ -550,12 +531,12 @@ namespace TNBase
             form.Show();
         }
 
-        private void btnMagScanIn_Click(object sender, EventArgs e)
+        private void BtnMagScanIn_Click(object sender, EventArgs e)
         {
             ScanIn(WalletTypes.Magazine);
         }
 
-        private void btnMagScanOut_Click(object sender, EventArgs e)
+        private void BtnMagScanOut_Click(object sender, EventArgs e)
         {
             ScanOut(WalletTypes.Magazine);
         }
@@ -604,11 +585,8 @@ namespace TNBase
         {
             if (scans.Any())
             {
-                using (var context = new TNBaseContext(DBUtils.GenConnectionString(ModuleGeneric.GetDatabasePath())))
-                {
-                    var scanService = new ScanService(context);
-                    scanService.AddScans(scans);
-                }
+                var scanService = Program.ServiceProvider.GetService<ScanService>();
+                scanService.AddScans(scans);
             }
         }
     }

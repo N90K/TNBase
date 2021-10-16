@@ -3,13 +3,14 @@ using System;
 using System.Drawing;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormStopSending
     {
         private NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         private Listener myListener;
 

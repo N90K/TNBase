@@ -9,7 +9,7 @@ namespace TNBase.Objects.Test
         [TestMethod]
         public void DateTime_Sat_Test()
         {
-            DateTime dt = DateTime.Parse("28/01/2017");
+            DateTime dt = DateTime.ParseExact("28/01/2017", "dd/MM/yyyy", null);
             Assert.AreEqual(DayOfWeek.Saturday, dt.DayOfWeek);
         }
     }

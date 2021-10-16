@@ -2,6 +2,8 @@
 {
     public static class DateHelpers
     {
+        public const string DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+
         public static int GetDaysInMonth(int month)
         {
             switch (month)

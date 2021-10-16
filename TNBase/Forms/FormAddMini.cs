@@ -5,13 +5,14 @@ using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
 using NLog;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormAddMini
     {
         private Logger log = LogManager.GetCurrentClassLogger();
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         private bool preventClose;
 
         private void progressForm()

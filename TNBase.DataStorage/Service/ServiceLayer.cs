@@ -1,35 +1,22 @@
 ﻿using TNBase.Objects;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using TNBase.Infrastructure.Extensions;
+using System.Data.Entity;
+using TNBase.Infrastructure.Helpers;
 
 namespace TNBase.DataStorage
 {
-    public class ServiceLayer : IServiceLayer, IDisposable
+    public class ServiceLayer : IServiceLayer
     {
         static NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
-        SQLiteConnection connection;
-        IRepositoryLayer repoLayer;
+        private readonly ITNBaseContext context;
 
-        public ServiceLayer(string databasePath, IRepositoryLayer rLayerParam = null)
+        public ServiceLayer(ITNBaseContext context)
         {
-            connection = new SQLiteConnection(DBUtils.GenConnectionString(databasePath));
-            connection.Open();
-
-            repoLayer = (rLayerParam == null ? new RepositoryLayer() : rLayerParam);
-        }
-
-        public SQLiteConnection GetConnection()
-        {
-            return connection;
-        }
-
-        public bool IsConnected()
-        {
-            return connection.State == System.Data.ConnectionState.Open;
+            this.context = context;
         }
 
         public List<Listener> GetListenersByName(string forename, string surname, string title = null)
@@ -38,15 +25,15 @@ namespace TNBase.DataStorage
 
             if (string.IsNullOrEmpty(forename) || forename.Equals("*"))
             {
-                results = repoLayer.GetListeners(connection).Where(x => x.Surname.ToLower().Equals(surname.ToLower())).ToList();
+                results = context.Listeners.Where(x => x.Surname.ToLower().Equals(surname.ToLower())).ToList();
             }
             else if (string.IsNullOrEmpty(surname) || surname.Equals("*"))
             {
-                results = repoLayer.GetListeners(connection).Where(x => x.Forename.ToLower().Equals(forename.ToLower())).ToList();
+                results = context.Listeners.Where(x => x.Forename.ToLower().Equals(forename.ToLower())).ToList();
             }
             else
             {
-                results = repoLayer.GetListeners(connection).Where(
+                results = context.Listeners.Where(
                     x => x.Forename.ToLower().Equals(forename.ToLower()) &&
                         x.Surname.ToLower().Equals(surname.ToLower())).ToList();
             }
@@ -62,20 +49,20 @@ namespace TNBase.DataStorage
 
         public List<WeeklyStats> GetWeeklyStatsForYear(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
-            return repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).ToList();
+            return context.WeeklyStats.Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).ToList();
         }
 
         public List<Listener> GetAlphabeticList()
         {
-            return repoLayer.GetListeners(connection).Where(x => !x.Status.Equals(ListenerStates.DELETED)).OrderBy(x => x.Surname).ToList();
+            return context.Listeners.Where(x => !x.Status.Equals(ListenerStates.DELETED)).OrderBy(x => x.Surname).ToList();
         }
 
         public List<Listener> GetNextWeekBirthdays()
         {
-            var list = repoLayer.GetListeners(connection).Where(x =>
+            var list = context.Listeners.ToList().Where(x =>
                 x.HasBirthday &&
                 !x.Status.Equals(ListenerStates.DELETED))
             .ToList();
@@ -116,21 +103,21 @@ namespace TNBase.DataStorage
 
         public List<Listener> GetUnsentListeners()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.inOutRecords.Out8.Equals(0) && !x.Status.Equals(ListenerStates.DELETED)).ToList();
+            return context.Listeners.ToList().Where(x => x.InOutRecords.Out8.Equals(0) && !x.Status.Equals(ListenerStates.DELETED)).ToList();
         }
 
         public List<Listener> GetRecentlyAddedListeners()
         {
             DateTime fewDaysBack = DateTime.Today.AddDays(-6);
 
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.Joined > fewDaysBack && x.Joined <= DateTime.Now).ToList();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.Joined > fewDaysBack && x.Joined <= DateTime.Now).ToList();
         }
 
         public List<Listener> GetRecentlyDeletedListeners()
         {
             DateTime fewDaysBack = DateTime.Today.AddDays(-6);
 
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.DELETED) && x.DeletedDate > fewDaysBack && x.DeletedDate <= DateTime.Now).ToList();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.DELETED) && x.DeletedDate > fewDaysBack && x.DeletedDate <= DateTime.Now).ToList();
         }
 
         public void ResumePausedListeners()
@@ -141,7 +128,7 @@ namespace TNBase.DataStorage
 
             foreach (var listener in listeners)
             {
-                if(listener.HasPausePeriodElapsed)
+                if (listener.HasPausePeriodElapsed)
                 {
                     listener.Resume();
                     UpdateListener(listener);
@@ -151,24 +138,26 @@ namespace TNBase.DataStorage
 
         public List<Listener> GetStoppedListeners()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.PAUSED)).ToList();
+            return context.Listeners.ToList().Where(x => x.Status == ListenerStates.PAUSED).ToList();
         }
 
         public List<Listener> GetUnreturnedSpeakerListeners()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.DELETED) && x.MemStickPlayer).ToList();
+            return context.Listeners.Where(x => x.Status.Equals(ListenerStates.DELETED) && x.MemStickPlayer).ToList();
         }
 
         public List<Listener> GetActiveListenersNotScannedIn()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.inOutRecords.In7.Equals(0) && x.Stock > 0).ToList();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.InOutRecords.In7.Equals(0) && x.Stock > 0).ToList();
         }
 
         public bool AddCollector(Collector collector)
         {
             try
             {
-                repoLayer.InsertCollector(connection, collector);
+                context.Collectors.Add(collector);
+                context.SaveChanges();
+
                 log.Info("Added new collector: " + collector.Forename + " " + collector.Surname);
                 return true;
             }
@@ -183,7 +172,9 @@ namespace TNBase.DataStorage
         {
             try
             {
-                repoLayer.UpdateCollector(connection, collector);
+                context.Collectors.Attach(collector);
+                context.SaveChanges();
+
                 log.Info("Updated collector: " + collector.Forename + " " + collector.Surname);
                 return true;
             }
@@ -196,24 +187,27 @@ namespace TNBase.DataStorage
 
         public List<Collector> GetCollectors()
         {
-            return repoLayer.GetCollectors(connection);
+            return context.Collectors.ToList();
         }
 
         public Listener GetListenerById(int id)
         {
-            return repoLayer.GetListeners(connection).SingleOrDefault(x => x.Wallet.Equals(id));
+            return context.Listeners.Include(x => x.InOutRecords).SingleOrDefault(x => x.Wallet.Equals(id));
         }
 
         public int AddListener(Listener listener)
         {
-            int result = repoLayer.InsertListener(connection, listener);
-            log.Info("Added new listener: " + listener.Forename + " " + listener.Surname + ", Wallet: " + result);
-            return result;
+            context.Listeners.Add(listener);
+            context.SaveChanges();
+
+            log.Info("Added new listener: " + listener.Forename + " " + listener.Surname + ", Wallet: " + listener.Wallet);
+            return listener.Wallet;
         }
 
         public void UpdateListener(Listener listener)
         {
-            repoLayer.UpdateListener(connection, listener);
+            context.Listeners.Attach(listener);
+            context.SaveChanges();
             log.Info("Updated listener: " + listener.Forename + " " + listener.Surname + ", Wallet: " + listener.Wallet);
         }
 
@@ -223,42 +217,43 @@ namespace TNBase.DataStorage
             listener.StatusInfo = reason;
             listener.DeletedDate = DateTime.Now;
 
-            repoLayer.UpdateListener(connection, listener);
+            context.Listeners.Attach(listener);
+            context.SaveChanges();
             log.Info("Deleted listener (soft): " + listener.Forename + " " + listener.Surname + ", Wallet: " + listener.Wallet);
         }
 
         public List<Listener> GetListeners()
         {
-            return repoLayer.GetListeners(connection);
+            return context.Listeners.ToList();
         }
 
         public bool DeleteCollector(Collector collector)
         {
-            repoLayer.DeleteCollector(connection, collector);
+            context.Collectors.Remove(collector);
+            context.SaveChanges();
+
             log.Info("Deleted collector: " + collector.Forename + " " + collector.Surname);
             return true;
         }
 
         public int GetHighestYearNumber()
         {
-            return repoLayer.GetYearStats(connection).Max(x => x.Year);
+            return context.YearStats.Max(x => x.Year);
         }
 
         public int GetHighestWeekNumber()
         {
-            List<WeeklyStats> weeklyStats = repoLayer.GetWeeklyStats(connection);
-
-            return weeklyStats.Count == 0 ? 0 : weeklyStats.Max(x => x.WeekNumber);
+            return context.WeeklyStats.Count() == 0 ? 0 : context.WeeklyStats.Max(x => x.WeekNumber);
         }
 
         public int GetMinimumYear()
         {
-            return repoLayer.GetYearStats(connection).Min(x => x.Year);
+            return context.YearStats.Min(x => x.Year);
         }
 
         public Collector GetCollector(int id)
         {
-            return repoLayer.GetCollectors(connection).SingleOrDefault(x => x.ID.Equals(id));
+            return context.Collectors.SingleOrDefault(x => x.Id.Equals(id));
         }
 
         public bool IsNewStatsWeek()
@@ -272,7 +267,7 @@ namespace TNBase.DataStorage
                 return true;
             }
 
-            WeeklyStats stats = repoLayer.GetWeeklyStats(connection).SingleOrDefault(x => x.WeekNumber.Equals(highestWeekNumber));
+            WeeklyStats stats = context.WeeklyStats.SingleOrDefault(x => x.WeekNumber.Equals(highestWeekNumber));
 
             // If we are in a later year, its an easy decision
             if (DateTime.Today.Year > stats.WeekDate.Year)
@@ -284,61 +279,38 @@ namespace TNBase.DataStorage
             return (DateTime.Today.DayOfYear > (stats.WeekDate.DayOfYear + 5));
         }
 
-        public int CalculateNextFreeIndex()
-        {
-            return repoLayer.CalculateNextFreeWallet(connection);
-        }
-
-        public void ClearListeners()
-        {
-            repoLayer.ClearListeners(connection);
-        }
-
-        public void ClearCollectors()
-        {
-            repoLayer.ClearCollectors(connection);
-        }
-
-        public void ClearWeeklyStats()
-        {
-            repoLayer.ClearWeeklyStats(connection);
-        }
-
-        public void ClearYearlyStats()
-        {
-            repoLayer.ClearYearStats(connection);
-        }
-
         public List<Listener> GetListenersByStatus(ListenerStates status)
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(status)).ToList();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(status)).ToList();
         }
 
         public List<WeeklyStats> GetAllWeeklyStats()
         {
-            return repoLayer.GetWeeklyStats(connection);
+            return context.WeeklyStats.ToList();
         }
 
         public List<YearStats> GetAllYearlyStats()
         {
-            return repoLayer.GetYearStats(connection);
+            return context.YearStats.ToList();
         }
 
         public bool SaveYearStats(YearStats stats)
         {
-            repoLayer.InsertYearStats(connection, stats);
+            context.YearStats.Add(stats);
+            context.SaveChanges();
             return true;
         }
 
         public bool SaveWeekStats(WeeklyStats stats)
         {
-            repoLayer.InsertWeeklyStats(connection, stats);
+            context.WeeklyStats.Add(stats);
+            context.SaveChanges();
             return true;
         }
 
         public bool WeeklyStatExistsForWeek(int weekNumber)
         {
-            return (repoLayer.GetWeeklyStats(connection).Where(x => x.WeekNumber == weekNumber).Count() > 0);
+            return context.WeeklyStats.Where(x => x.WeekNumber == weekNumber).Any();
         }
 
         public bool RestoreListener(Listener listener)
@@ -347,18 +319,20 @@ namespace TNBase.DataStorage
             listener.StatusInfo = "";
             listener.DeletedDate = null;
 
-            repoLayer.UpdateListener(connection, listener);
+            context.Listeners.Attach(listener);
+            context.SaveChanges();
             return true;
         }
 
         public List<Listener> GetListenersWithBirthdays()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.BirthdayDay.HasValue && x.BirthdayMonth.HasValue).ToList();
+            return context.Listeners.Where(x => x.BirthdayDay.HasValue && x.BirthdayMonth.HasValue).ToList();
         }
 
         public bool UpdateYearStats(YearStats stats)
         {
-            repoLayer.UpdateYearStats(connection, stats);
+            context.YearStats.Attach(stats);
+            context.SaveChanges();
             return true;
         }
 
@@ -375,7 +349,7 @@ namespace TNBase.DataStorage
             postcode = postcode.ToUpper();
             postcode = postcode.Replace(" ", "");
 
-            List<Collector> alist = repoLayer.GetCollectors(connection);
+            List<Collector> alist = context.Collectors.ToList();
 
             // Keep going until we find something with a minimum of 2 letters match
             for (int letterCount = 0; letterCount <= 5; letterCount++)
@@ -416,18 +390,19 @@ namespace TNBase.DataStorage
 
         public bool UpdateWeeklyStats(WeeklyStats stats)
         {
-            repoLayer.UpdateWeeklyStats(connection, stats);
+            context.WeeklyStats.Attach(stats);
+            context.SaveChanges();
             return true;
         }
 
         public Listener GetNextListener(Listener current)
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Wallet > current.Wallet).OrderBy(x => x.Wallet).FirstOrDefault();
+            return context.Listeners.Where(x => x.Wallet > current.Wallet).OrderBy(x => x.Wallet).FirstOrDefault();
         }
 
         public Listener GetPreviousListener(Listener current)
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Wallet < current.Wallet).OrderByDescending(x => x.Wallet).FirstOrDefault();
+            return context.Listeners.Where(x => x.Wallet < current.Wallet).OrderByDescending(x => x.Wallet).FirstOrDefault();
         }
 
         public bool UpdateListenerInOuts()
@@ -439,70 +414,68 @@ namespace TNBase.DataStorage
             // TODO (M) Optimise as a query and create a test?!?
             foreach (Listener l in listeners)
             {
-                l.inOutRecords.In1 = l.inOutRecords.In2;
-                l.inOutRecords.In2 = l.inOutRecords.In3;
-                l.inOutRecords.In3 = l.inOutRecords.In4;
-                l.inOutRecords.In4 = l.inOutRecords.In5;
-                l.inOutRecords.In5 = l.inOutRecords.In6;
-                l.inOutRecords.In6 = l.inOutRecords.In7;
-                l.inOutRecords.In7 = l.inOutRecords.In8;
-                l.inOutRecords.In8 = 0;
+                l.InOutRecords.In1 = l.InOutRecords.In2;
+                l.InOutRecords.In2 = l.InOutRecords.In3;
+                l.InOutRecords.In3 = l.InOutRecords.In4;
+                l.InOutRecords.In4 = l.InOutRecords.In5;
+                l.InOutRecords.In5 = l.InOutRecords.In6;
+                l.InOutRecords.In6 = l.InOutRecords.In7;
+                l.InOutRecords.In7 = l.InOutRecords.In8;
+                l.InOutRecords.In8 = 0;
 
-                l.inOutRecords.Out1 = l.inOutRecords.Out2;
-                l.inOutRecords.Out2 = l.inOutRecords.Out3;
-                l.inOutRecords.Out3 = l.inOutRecords.Out4;
-                l.inOutRecords.Out4 = l.inOutRecords.Out5;
-                l.inOutRecords.Out5 = l.inOutRecords.Out6;
-                l.inOutRecords.Out6 = l.inOutRecords.Out7;
-                l.inOutRecords.Out7 = l.inOutRecords.Out8;
-                l.inOutRecords.Out8 = 0;
+                l.InOutRecords.Out1 = l.InOutRecords.Out2;
+                l.InOutRecords.Out2 = l.InOutRecords.Out3;
+                l.InOutRecords.Out3 = l.InOutRecords.Out4;
+                l.InOutRecords.Out4 = l.InOutRecords.Out5;
+                l.InOutRecords.Out5 = l.InOutRecords.Out6;
+                l.InOutRecords.Out6 = l.InOutRecords.Out7;
+                l.InOutRecords.Out7 = l.InOutRecords.Out8;
+                l.InOutRecords.Out8 = 0;
 
                 // If they are active we wont read them out but will send.
                 if (l.Status.Equals(ListenerStates.ACTIVE))
                 {
-                    if (l.inOutRecords.In7 >= 1)
+                    if (l.InOutRecords.In7 >= 1)
                     {
-                        l.inOutRecords.Out8 = 1;
+                        l.InOutRecords.Out8 = 1;
                     }
                 }
 
-                repoLayer.UpdateListener(connection, l);
             }
+
+            context.SaveChanges();
             log.Debug("Finished updating IN/OUT values for listeners...");
 
             return true;
         }
 
-        public void ClearAllData()
-        {
-            repoLayer.ClearAllData(connection);
-        }
-
         public YearStats GetYearStats(int year)
         {
-            return repoLayer.GetYearStats(connection).SingleOrDefault(x => x.Year.Equals(year));
+            return context.YearStats.SingleOrDefault(x => x.Year.Equals(year));
         }
 
         public void DeleteOverdueDeletedListeners(int months)
         {
-            List<Listener> listeners = repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.DELETED) && x.DeletedDate < DateTime.Now.AddMonths(-months)).ToList();
+            List<Listener> listeners = context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.DELETED) && x.DeletedDate < DateTime.Now.AddMonths(-months)).ToList();
 
             foreach (Listener l in listeners)
             {
                 log.Info("Purging listener with id: " + l.Wallet + " as they have been marked as deleted for over " + months + " months.");
-                repoLayer.DeleteListener(connection, l);
+                context.Listeners.Remove(l);
             }
+
+            context.SaveChanges();
         }
 
         public List<Listener> GetOrderedListeners(OrderVar ordering)
         {
             if (ordering.Equals(OrderVar.SURNAME))
             {
-                return repoLayer.GetListeners(connection).OrderBy(x => x.Surname).ToList();
+                return context.Listeners.OrderBy(x => x.Surname).ToList();
             }
             else
             {
-                return repoLayer.GetListeners(connection).OrderBy(x => x.Wallet).ToList();
+                return context.Listeners.OrderBy(x => x.Wallet).ToList();
             }
         }
 
@@ -523,7 +496,7 @@ namespace TNBase.DataStorage
                     NewListeners = GetNewListenersForYear(lastYear),
                     AverageSent = GetAverageDispatchedWallets(lastYear),
                     AveragePaused = GetAveragePausedWallets(lastYear),
-                    AvListeners = GetAverageListenersForYear(lastYear),
+                    AverageListeners = GetAverageListenersForYear(lastYear),
                     InactiveTotal = GetInactiveWalletNumbers(),
                     DeletedListeners = GetLostListenersForYear(lastYear),
                     MagazinesSent = 0, // TODO (L) Fill this MagazinesSent feld in?
@@ -534,18 +507,20 @@ namespace TNBase.DataStorage
                     PausedTotal = GetListenersByStatus(ListenerStates.PAUSED).Count,
                     PercentSent = 0 // TODO (L) Fill this PercentSent feld in?
                 };
-                repoLayer.InsertYearStats(connection, newStats);
+
+                context.YearStats.Add(newStats);
+                context.SaveChanges();
             }
         }
 
         public int Get3MonthInactiveListeners()
         {
-            return repoLayer.GetListeners(connection).Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-3)).Count();
+            return context.Listeners.Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-3)).Count();
         }
 
         public List<Listener> Get1MonthDormantListeners()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-1)).ToList();
+            return context.Listeners.Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-1)).ToList();
         }
 
         public int GetListenersAtYearStart(int year)
@@ -562,28 +537,28 @@ namespace TNBase.DataStorage
 
         public int GetMemorySticksOnLoan()
         {
-            return repoLayer.GetListeners(connection).Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.MemStickPlayer).Count();
+            return context.Listeners.ToList().Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.MemStickPlayer).Count();
         }
 
         public int GetInactiveWalletNumbers()
         {
-            return repoLayer.GetListeners(connection).Where(x => x.Status.Equals(ListenerStates.DELETED)).Count();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.DELETED)).Count();
         }
 
         public int GetNewListenersForYear(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
-            return repoLayer.GetListeners(connection).Where(x => x.Joined >= yearStart && x.Joined <= yearEnd && x.Status != ListenerStates.DELETED).Count();
+            return context.Listeners.ToList().Where(x => x.Joined >= yearStart && x.Joined <= yearEnd && x.Status != ListenerStates.DELETED).Count();
         }
 
         public int GetLostListenersForYear(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
-            return repoLayer.GetListeners(connection).Where(x => x.Status == ListenerStates.DELETED && x.DeletedDate >= yearStart && x.DeletedDate <= yearEnd).Count();
+            return context.Listeners.ToList().Where(x => x.Status == ListenerStates.DELETED && x.DeletedDate >= yearStart && x.DeletedDate <= yearEnd).Count();
         }
 
         public int GetNetListenersForYear(int year)
@@ -593,13 +568,13 @@ namespace TNBase.DataStorage
 
         public int GetAverageListenersForYear(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
             int defaultRet = 0;
             try
             {
-                defaultRet = (int)repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.TotalListeners);
+                defaultRet = (int)context.WeeklyStats.Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.TotalListeners);
             }
             catch (Exception e)
             {
@@ -610,13 +585,13 @@ namespace TNBase.DataStorage
 
         public int GetAverageDispatchedWallets(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
             int defaultRet = 0;
             try
             {
-                IEnumerable<WeeklyStats> weeklyStats = repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd);
+                IEnumerable<WeeklyStats> weeklyStats = context.WeeklyStats.Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd);
                 if (weeklyStats.Count() > 0)
                 {
                     defaultRet = (int)weeklyStats.Average(x => x.ScannedOut);
@@ -631,13 +606,13 @@ namespace TNBase.DataStorage
 
         public int GetAveragePausedWallets(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
             int defaultRet = 0;
             try
             {
-                defaultRet = (int)repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.PausedCount);
+                defaultRet = (int)context.WeeklyStats.Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Average(x => x.PausedCount);
             }
             catch (Exception e)
             {
@@ -648,16 +623,16 @@ namespace TNBase.DataStorage
 
         public int GetWalletsDispatchedForYear(int year)
         {
-            DateTime yearStart = DateTime.Parse("01/01/" + year);
-            DateTime yearEnd = DateTime.Parse("31/12/" + year);
+            DateTime yearStart = DateTime.ParseExact("01/01/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
+            DateTime yearEnd = DateTime.ParseExact("31/12/" + year, DateHelpers.DEFAULT_DATE_FORMAT, null);
 
-            return (int)repoLayer.GetWeeklyStats(connection).Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Sum(x => x.ScannedOut + x.ScannedIn);
+            return (int)context.WeeklyStats.Where(x => x.WeekDate >= yearStart && x.WeekDate <= yearEnd).Sum(x => x.ScannedOut + x.ScannedIn);
         }
 
         public int GetCurrentWeekNumber()
         {
             // Gets the latest weekly stats.
-            WeeklyStats myStats = repoLayer.GetWeeklyStats(connection).OrderByDescending(x => x.WeekNumber).FirstOrDefault();
+            WeeklyStats myStats = context.WeeklyStats.OrderByDescending(x => x.WeekNumber).FirstOrDefault();
 
             // Safegaurd
             if (myStats == null) { return 1; }
@@ -693,25 +668,13 @@ namespace TNBase.DataStorage
 
         public int GetCurrentListenerCount()
         {
-            return repoLayer.GetListeners(connection).Where(x => !x.Status.Equals(ListenerStates.DELETED)).Count();
-        }
-
-        public void ClearAllDataExceptCollectors()
-        {
-            ClearListeners();
-            ClearWeeklyStats();
-            ClearYearlyStats();
-        }
-
-        public void RunCommand(string sqlCommand)
-        {
-            repoLayer.RunCommand(connection, sqlCommand);
+            return context.Listeners.ToList().Where(x => !x.Status.Equals(ListenerStates.DELETED)).Count();
         }
 
         public WeeklyStats GetCurrentWeekStats()
         {
             int currentWeekNumber = GetCurrentWeekNumber();
-            WeeklyStats forTheWeek = repoLayer.GetWeeklyStats(connection).ToList().Where(x => x.WeekNumber == currentWeekNumber).FirstOrDefault();
+            WeeklyStats forTheWeek = context.WeeklyStats.ToList().Where(x => x.WeekNumber == currentWeekNumber).FirstOrDefault();
 
             return (forTheWeek != null ? forTheWeek : new WeeklyStats());
         }
@@ -722,14 +685,9 @@ namespace TNBase.DataStorage
             tempScan.Wallet = wallet;
             tempScan.ScanType = scanType;
 
-            repoLayer.InsertScan(connection, tempScan);
+            context.Scans.Add(tempScan);
+            context.SaveChanges();
             return true;
-        }
-
-        public void Dispose()
-        {
-            if (connection != null)
-                connection.Close();
         }
     }
 }

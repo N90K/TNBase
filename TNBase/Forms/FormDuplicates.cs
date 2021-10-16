@@ -1,10 +1,10 @@
-using Microsoft.VisualBasic;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
 using TNBase.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
@@ -12,7 +12,7 @@ namespace TNBase
     {
         NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         public enum DuplicateFormType
         {
@@ -92,22 +92,22 @@ namespace TNBase
                 arr[18] = theListener.LastOut.ToNullableNaString();
                 arr[19] = theListener.Info;
 
-                arr[20] = theListener.inOutRecords.In1.ToString();
-                arr[21] = theListener.inOutRecords.In2.ToString();
-                arr[22] = theListener.inOutRecords.In3.ToString();
-                arr[23] = theListener.inOutRecords.In4.ToString();
-                arr[24] = theListener.inOutRecords.In5.ToString();
-                arr[25] = theListener.inOutRecords.In6.ToString();
-                arr[26] = theListener.inOutRecords.In7.ToString();
-                arr[27] = theListener.inOutRecords.In8.ToString();
-                arr[28] = theListener.inOutRecords.Out1.ToString();
-                arr[29] = theListener.inOutRecords.Out2.ToString();
-                arr[30] = theListener.inOutRecords.Out3.ToString();
-                arr[31] = theListener.inOutRecords.Out4.ToString();
-                arr[32] = theListener.inOutRecords.Out5.ToString();
-                arr[33] = theListener.inOutRecords.Out6.ToString();
-                arr[34] = theListener.inOutRecords.Out7.ToString();
-                arr[35] = theListener.inOutRecords.Out8.ToString();
+                arr[20] = theListener.InOutRecords.In1.ToString();
+                arr[21] = theListener.InOutRecords.In2.ToString();
+                arr[22] = theListener.InOutRecords.In3.ToString();
+                arr[23] = theListener.InOutRecords.In4.ToString();
+                arr[24] = theListener.InOutRecords.In5.ToString();
+                arr[25] = theListener.InOutRecords.In6.ToString();
+                arr[26] = theListener.InOutRecords.In7.ToString();
+                arr[27] = theListener.InOutRecords.In8.ToString();
+                arr[28] = theListener.InOutRecords.Out1.ToString();
+                arr[29] = theListener.InOutRecords.Out2.ToString();
+                arr[30] = theListener.InOutRecords.Out3.ToString();
+                arr[31] = theListener.InOutRecords.Out4.ToString();
+                arr[32] = theListener.InOutRecords.Out5.ToString();
+                arr[33] = theListener.InOutRecords.Out6.ToString();
+                arr[34] = theListener.InOutRecords.Out7.ToString();
+                arr[35] = theListener.InOutRecords.Out8.ToString();
 
                 itm = new ListViewItem(arr);
                 if (theListener.Status == ListenerStates.DELETED)

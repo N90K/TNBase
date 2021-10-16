@@ -1,11 +1,13 @@
 using System;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TNBase
 {
     public partial class FormTempShowNewListener
 	{
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
 		public void setupForm(int walletId)
 		{

@@ -10,7 +10,6 @@ using TNBase.Infrastructure.Extensions;
 
 namespace TNBase.Objects
 {
-    [Table("Listeners")]
     public class Listener
     {
         public const string NEVER_END_PAUSE_STRING = "UFN";
@@ -23,7 +22,7 @@ namespace TNBase.Objects
             Status = ListenerStates.ACTIVE;
         }
 
-        [Key]
+        [Key, ForeignKey("Listener")]
         public int Wallet { get; set; }
 
         public string Title { get; set; }
@@ -40,13 +39,10 @@ namespace TNBase.Objects
         public int? BirthdayDay { get; set; }
         public int? BirthdayMonth { get; set; }
 
-        [NotMapped]
         public bool HasBirthday => BirthdayDay.HasValue && BirthdayMonth.HasValue;
 
-        [NotMapped]
         public string BirthdayText => HasBirthday ? $"{BirthdayDay.Value.WithSuffix()} {DateTimeFormatInfo.CurrentInfo.GetMonthName(BirthdayMonth.Value)}" : "N/A";
 
-        [NotMapped]
         public DateTime? NextBirthdayDate
         {
             get
@@ -74,27 +70,11 @@ namespace TNBase.Objects
 
         public string Info { get; set; }
 
-        [Column("Status")]
-        public string State { get; set; }
-
-        [NotMapped]
-        public ListenerStates Status
-        {
-            get
-            {
-                Enum.TryParse<ListenerStates>(State, out var status);
-                return status;
-            }
-            set
-            {
-                State = value.ToString();
-            }
-        }
+        public ListenerStates Status { get; set; }
 
         public string StatusInfo { get; set; }
 
-        [Required]
-        public virtual InOutRecords inOutRecords { get; set; }
+        public virtual InOutRecords InOutRecords { get; set; }
 
         public DateTime? DeletedDate { get; set; }
         public int Stock { get; set; }
@@ -163,7 +143,7 @@ namespace TNBase.Objects
             if (Status == ListenerStates.PAUSED)
             {
                 var stoppedDate = StatusInfo.Substring(0, StatusInfo.IndexOf(","));
-                return DateTime.Parse(stoppedDate);
+                return DateTime.ParseExact(stoppedDate, "dd/MM/yyyy", null);
             }
 
             return DateTime.Now;
@@ -200,7 +180,7 @@ namespace TNBase.Objects
                 string resumeDate = StatusInfo.Substring(StatusInfo.IndexOf(",") + 1);
                 if (resumeDate != NEVER_END_PAUSE_STRING)
                 {
-                    return DateTime.Parse(resumeDate);
+                    return DateTime.ParseExact(resumeDate, "dd/MM/yyyy", null);
                 }
             }
 

@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Forms;
 namespace TNBase
 {
     public partial class FormScannedInTotal
@@ -21,13 +20,8 @@ namespace TNBase
 			My.MyProject.Forms.formScanIn.doClose();
 		}
 
-		private void formScannedInTotal_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			My.MyProject.Forms.formMain.ScanInDone();
-		}
 		public FormScannedInTotal()
 		{
-			FormClosing += formScannedInTotal_FormClosing;
 			InitializeComponent();
 		}
 	}

@@ -6,13 +6,14 @@ using NLog;
 using TNBase.DataStorage;
 using System.Globalization;
 using TNBase.Infrastructure.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormAddFull
     {
         private Logger log = LogManager.GetCurrentClassLogger();
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         private string title;
         private string surname;
         private string forename;
@@ -63,7 +64,7 @@ namespace TNBase
                 StatusInfo = "",
                 DeletedDate = DateTime.Now,
                 Joined = DateTime.Now,
-                inOutRecords = new InOutRecords()
+                InOutRecords = new InOutRecords()
             };
 
             if (chkNoBirthday.Checked)

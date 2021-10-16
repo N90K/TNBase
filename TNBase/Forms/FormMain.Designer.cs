@@ -52,8 +52,6 @@ namespace TNBase
             this.BackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintAllListenerLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EnableScanInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableScanOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustStockLevelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,15 +118,16 @@ namespace TNBase
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(124, 55);
+            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Label1.Location = new System.Drawing.Point(145, 63);
+            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(0, 39);
             this.Label1.TabIndex = 0;
             // 
             // menuTop
             // 
-            this.menuTop.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuTop.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.menuTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mBtnListeners,
             this.MaintenenceToolStripMenuItem,
@@ -139,7 +138,8 @@ namespace TNBase
             this.AboutToolStripMenuItem});
             this.menuTop.Location = new System.Drawing.Point(0, 0);
             this.menuTop.Name = "menuTop";
-            this.menuTop.Size = new System.Drawing.Size(1051, 28);
+            this.menuTop.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuTop.Size = new System.Drawing.Size(1226, 28);
             this.menuTop.TabIndex = 1;
             this.menuTop.Text = "MenuStrip1";
             // 
@@ -206,8 +206,6 @@ namespace TNBase
             this.BackupToolStripMenuItem,
             this.RestoreToolStripMenuItem,
             this.PrintAllListenerLabelsToolStripMenuItem,
-            this.EnableScanInToolStripMenuItem,
-            this.enableScanOutToolStripMenuItem,
             this.logViewToolStripMenuItem,
             this.openLogDirectoryToolStripMenuItem,
             this.adjustStockLevelsToolStripMenuItem});
@@ -236,40 +234,26 @@ namespace TNBase
             this.PrintAllListenerLabelsToolStripMenuItem.Text = "Print All Listener Labels";
             this.PrintAllListenerLabelsToolStripMenuItem.Click += new System.EventHandler(this.PrintAllListenerLabelsToolStripMenuItem_Click);
             // 
-            // EnableScanInToolStripMenuItem
-            // 
-            this.EnableScanInToolStripMenuItem.Name = "EnableScanInToolStripMenuItem";
-            this.EnableScanInToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
-            this.EnableScanInToolStripMenuItem.Text = "Enable Scan In";
-            this.EnableScanInToolStripMenuItem.Click += new System.EventHandler(this.EnableScanInToolStripMenuItem_Click);
-            // 
-            // enableScanOutToolStripMenuItem
-            // 
-            this.enableScanOutToolStripMenuItem.Name = "enableScanOutToolStripMenuItem";
-            this.enableScanOutToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
-            this.enableScanOutToolStripMenuItem.Text = "Enable Scan Out";
-            this.enableScanOutToolStripMenuItem.Click += new System.EventHandler(this.enableScanOutToolStripMenuItem_Click);
-            // 
             // logViewToolStripMenuItem
             // 
             this.logViewToolStripMenuItem.Name = "logViewToolStripMenuItem";
             this.logViewToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.logViewToolStripMenuItem.Text = "Log View";
-            this.logViewToolStripMenuItem.Click += new System.EventHandler(this.logViewToolStripMenuItem_Click);
+            this.logViewToolStripMenuItem.Click += new System.EventHandler(this.LogViewToolStripMenuItem_Click);
             // 
             // openLogDirectoryToolStripMenuItem
             // 
             this.openLogDirectoryToolStripMenuItem.Name = "openLogDirectoryToolStripMenuItem";
             this.openLogDirectoryToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.openLogDirectoryToolStripMenuItem.Text = "Open Log Directory";
-            this.openLogDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openLogDirectoryToolStripMenuItem_Click);
+            this.openLogDirectoryToolStripMenuItem.Click += new System.EventHandler(this.OpenLogDirectoryToolStripMenuItem_Click);
             // 
             // adjustStockLevelsToolStripMenuItem
             // 
             this.adjustStockLevelsToolStripMenuItem.Name = "adjustStockLevelsToolStripMenuItem";
             this.adjustStockLevelsToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.adjustStockLevelsToolStripMenuItem.Text = "Adjust Stock Levels";
-            this.adjustStockLevelsToolStripMenuItem.Click += new System.EventHandler(this.adjustStockLevelsToolStripMenuItem_Click);
+            this.adjustStockLevelsToolStripMenuItem.Click += new System.EventHandler(this.AdjustStockLevelsToolStripMenuItem_Click);
             // 
             // PrintingToolStripMenuItem
             // 
@@ -375,28 +359,28 @@ namespace TNBase
             this.printCollectorForListenerToolStripMenuItem.Name = "printCollectorForListenerToolStripMenuItem";
             this.printCollectorForListenerToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.printCollectorForListenerToolStripMenuItem.Text = "Print Collector For Listener";
-            this.printCollectorForListenerToolStripMenuItem.Click += new System.EventHandler(this.printCollectorForListenerToolStripMenuItem_Click);
+            this.printCollectorForListenerToolStripMenuItem.Click += new System.EventHandler(this.PrintCollectorForListenerToolStripMenuItem_Click);
             // 
             // magazineWalletsToolStripMenuItem
             // 
             this.magazineWalletsToolStripMenuItem.Name = "magazineWalletsToolStripMenuItem";
             this.magazineWalletsToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.magazineWalletsToolStripMenuItem.Text = "Magazine Wallets";
-            this.magazineWalletsToolStripMenuItem.Click += new System.EventHandler(this.magazineWalletsToolStripMenuItem_Click);
+            this.magazineWalletsToolStripMenuItem.Click += new System.EventHandler(this.MagazineWalletsToolStripMenuItem_Click);
             // 
             // walletsStockToolStripMenuItem
             // 
             this.walletsStockToolStripMenuItem.Name = "walletsStockToolStripMenuItem";
             this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.walletsStockToolStripMenuItem.Text = "News Wallet Stock";
-            this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.walletsStockToolStripMenuItem_Click);
+            this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.WalletsStockToolStripMenuItem_Click);
             // 
             // magazineWalletStockToolStripMenuItem
             // 
             this.magazineWalletStockToolStripMenuItem.Name = "magazineWalletStockToolStripMenuItem";
             this.magazineWalletStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.magazineWalletStockToolStripMenuItem.Text = "Magazine Wallet Stock";
-            this.magazineWalletStockToolStripMenuItem.Click += new System.EventHandler(this.magazineWalletStockToolStripMenuItem_Click);
+            this.magazineWalletStockToolStripMenuItem.Click += new System.EventHandler(this.MagazineWalletStockToolStripMenuItem_Click);
             // 
             // StatisticsHistoryToolStripMenuItem
             // 
@@ -478,8 +462,9 @@ namespace TNBase
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(863, 111);
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDate.Location = new System.Drawing.Point(1007, 128);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(100, 24);
             this.lblDate.TabIndex = 2;
@@ -488,8 +473,9 @@ namespace TNBase
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(74, 111);
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.Location = new System.Drawing.Point(86, 128);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(80, 24);
             this.lblTime.TabIndex = 3;
@@ -511,10 +497,12 @@ namespace TNBase
             this.GroupBox1.Controls.Add(this.btnRemove);
             this.GroupBox1.Controls.Add(this.btnAdd);
             this.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.GroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox1.Location = new System.Drawing.Point(53, 175);
+            this.GroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.GroupBox1.Location = new System.Drawing.Point(62, 202);
+            this.GroupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(210, 366);
+            this.GroupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.GroupBox1.Size = new System.Drawing.Size(245, 422);
             this.GroupBox1.TabIndex = 4;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Listeners";
@@ -523,9 +511,10 @@ namespace TNBase
             // 
             this.btnPrintLabels.BackColor = System.Drawing.Color.White;
             this.btnPrintLabels.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintLabels.Location = new System.Drawing.Point(6, 308);
+            this.btnPrintLabels.Location = new System.Drawing.Point(7, 355);
+            this.btnPrintLabels.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintLabels.Name = "btnPrintLabels";
-            this.btnPrintLabels.Size = new System.Drawing.Size(198, 39);
+            this.btnPrintLabels.Size = new System.Drawing.Size(231, 45);
             this.btnPrintLabels.TabIndex = 11;
             this.btnPrintLabels.Text = "&Print Labels";
             this.btnPrintLabels.UseVisualStyleBackColor = false;
@@ -535,96 +524,105 @@ namespace TNBase
             // 
             this.btnCancelStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancelStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelStop.Location = new System.Drawing.Point(6, 218);
+            this.btnCancelStop.Location = new System.Drawing.Point(7, 252);
+            this.btnCancelStop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancelStop.Name = "btnCancelStop";
-            this.btnCancelStop.Size = new System.Drawing.Size(198, 39);
+            this.btnCancelStop.Size = new System.Drawing.Size(231, 45);
             this.btnCancelStop.TabIndex = 9;
             this.btnCancelStop.Text = "&Cancel a Stop";
             this.btnCancelStop.UseVisualStyleBackColor = false;
-            this.btnCancelStop.Click += new System.EventHandler(this.btnCancelStop_Click);
+            this.btnCancelStop.Click += new System.EventHandler(this.BtnCancelStop_Click);
             // 
             // btnStopSending
             // 
             this.btnStopSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnStopSending.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStopSending.Location = new System.Drawing.Point(6, 263);
+            this.btnStopSending.Location = new System.Drawing.Point(7, 303);
+            this.btnStopSending.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnStopSending.Name = "btnStopSending";
-            this.btnStopSending.Size = new System.Drawing.Size(198, 39);
+            this.btnStopSending.Size = new System.Drawing.Size(231, 45);
             this.btnStopSending.TabIndex = 8;
             this.btnStopSending.Text = "&Stop Sending";
             this.btnStopSending.UseVisualStyleBackColor = false;
-            this.btnStopSending.Click += new System.EventHandler(this.btnStopSending_Click);
+            this.btnStopSending.Click += new System.EventHandler(this.BtnStopSending_Click);
             // 
             // btnBrowse
             // 
             this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBrowse.Location = new System.Drawing.Point(6, 169);
+            this.btnBrowse.Location = new System.Drawing.Point(7, 195);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(198, 39);
+            this.btnBrowse.Size = new System.Drawing.Size(231, 45);
             this.btnBrowse.TabIndex = 10;
             this.btnBrowse.Text = "Bro&wse";
             this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
             // btnEdit
             // 
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(6, 124);
+            this.btnEdit.Location = new System.Drawing.Point(7, 143);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(198, 39);
+            this.btnEdit.Size = new System.Drawing.Size(231, 45);
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "&Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // btnRemove
             // 
             this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(6, 80);
+            this.btnRemove.Location = new System.Drawing.Point(7, 92);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(198, 38);
+            this.btnRemove.Size = new System.Drawing.Size(231, 44);
             this.btnRemove.TabIndex = 6;
             this.btnRemove.Text = "&Delete";
             this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 31);
+            this.btnAdd.Location = new System.Drawing.Point(7, 36);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(198, 39);
+            this.btnAdd.Size = new System.Drawing.Size(231, 45);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // btnFinished
             // 
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnFinished.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFinished.Location = new System.Drawing.Point(422, 512);
+            this.btnFinished.Location = new System.Drawing.Point(492, 591);
+            this.btnFinished.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFinished.Name = "btnFinished";
-            this.btnFinished.Size = new System.Drawing.Size(179, 53);
+            this.btnFinished.Size = new System.Drawing.Size(209, 61);
             this.btnFinished.TabIndex = 12;
             this.btnFinished.Text = "&Finished";
             this.btnFinished.UseVisualStyleBackColor = false;
-            this.btnFinished.Click += new System.EventHandler(this.btnFinished_Click);
+            this.btnFinished.Click += new System.EventHandler(this.BtnFinished_Click);
             // 
             // GroupBox2
             // 
             this.GroupBox2.Controls.Add(this.btnScanOut);
             this.GroupBox2.Controls.Add(this.btnScanIn);
             this.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.GroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox2.Location = new System.Drawing.Point(768, 175);
+            this.GroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.GroupBox2.Location = new System.Drawing.Point(896, 202);
+            this.GroupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(210, 145);
+            this.GroupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.GroupBox2.Size = new System.Drawing.Size(245, 167);
             this.GroupBox2.TabIndex = 12;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "News Scanning";
@@ -632,36 +630,38 @@ namespace TNBase
             // btnScanOut
             // 
             this.btnScanOut.BackColor = System.Drawing.Color.Yellow;
-            this.btnScanOut.Enabled = false;
             this.btnScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnScanOut.Location = new System.Drawing.Point(6, 80);
+            this.btnScanOut.Location = new System.Drawing.Point(7, 92);
+            this.btnScanOut.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnScanOut.Name = "btnScanOut";
-            this.btnScanOut.Size = new System.Drawing.Size(198, 39);
+            this.btnScanOut.Size = new System.Drawing.Size(231, 45);
             this.btnScanOut.TabIndex = 11;
             this.btnScanOut.Text = "Scan &Out";
             this.btnScanOut.UseVisualStyleBackColor = false;
-            this.btnScanOut.Click += new System.EventHandler(this.btnScanOut_Click);
+            this.btnScanOut.Click += new System.EventHandler(this.BtnScanOut_Click);
             // 
             // btnScanIn
             // 
             this.btnScanIn.BackColor = System.Drawing.Color.Yellow;
             this.btnScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnScanIn.Location = new System.Drawing.Point(6, 31);
+            this.btnScanIn.Location = new System.Drawing.Point(7, 36);
+            this.btnScanIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnScanIn.Name = "btnScanIn";
-            this.btnScanIn.Size = new System.Drawing.Size(198, 39);
+            this.btnScanIn.Size = new System.Drawing.Size(231, 45);
             this.btnScanIn.TabIndex = 10;
             this.btnScanIn.Text = "Scan &In";
             this.btnScanIn.UseVisualStyleBackColor = false;
-            this.btnScanIn.Click += new System.EventHandler(this.btnScanIn_Click);
+            this.btnScanIn.Click += new System.EventHandler(this.BtnScanIn_Click);
             // 
             // StatusStrip1
             // 
             this.StatusStrip1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblHints});
-            this.StatusStrip1.Location = new System.Drawing.Point(0, 601);
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 697);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(1051, 22);
+            this.StatusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.StatusStrip1.Size = new System.Drawing.Size(1226, 22);
             this.StatusStrip1.TabIndex = 14;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
@@ -675,19 +675,20 @@ namespace TNBase
             // 
             this.timerHints.Enabled = true;
             this.timerHints.Interval = 3000;
-            this.timerHints.Tick += new System.EventHandler(this.timerHints_Tick);
+            this.timerHints.Tick += new System.EventHandler(this.TimerHints_Tick);
             // 
             // backupDialog
             // 
-            this.backupDialog.HelpRequest += new System.EventHandler(this.btnAdd_Click);
+            this.backupDialog.HelpRequest += new System.EventHandler(this.BtnAdd_Click);
             // 
             // PictureBox1
             // 
             this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.InitialImage")));
-            this.PictureBox1.Location = new System.Drawing.Point(362, 175);
+            this.PictureBox1.Location = new System.Drawing.Point(422, 202);
+            this.PictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(307, 262);
+            this.PictureBox1.Size = new System.Drawing.Size(358, 302);
             this.PictureBox1.TabIndex = 15;
             this.PictureBox1.TabStop = false;
             // 
@@ -698,8 +699,9 @@ namespace TNBase
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(468, 447);
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblVersion.Location = new System.Drawing.Point(546, 516);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(83, 24);
             this.lblVersion.TabIndex = 16;
@@ -708,8 +710,9 @@ namespace TNBase
             // lblWeekNumber
             // 
             this.lblWeekNumber.AutoSize = true;
-            this.lblWeekNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeekNumber.Location = new System.Drawing.Point(454, 111);
+            this.lblWeekNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblWeekNumber.Location = new System.Drawing.Point(530, 128);
+            this.lblWeekNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeekNumber.Name = "lblWeekNumber";
             this.lblWeekNumber.Size = new System.Drawing.Size(109, 24);
             this.lblWeekNumber.TabIndex = 17;
@@ -720,10 +723,12 @@ namespace TNBase
             this.groupBox3.Controls.Add(this.btnMagScanOut);
             this.groupBox3.Controls.Add(this.btnMagScanIn);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(768, 377);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox3.Location = new System.Drawing.Point(896, 435);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(210, 145);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox3.Size = new System.Drawing.Size(245, 167);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Magazine Scanning";
@@ -732,33 +737,35 @@ namespace TNBase
             // 
             this.btnMagScanOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnMagScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMagScanOut.Location = new System.Drawing.Point(6, 80);
+            this.btnMagScanOut.Location = new System.Drawing.Point(7, 92);
+            this.btnMagScanOut.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMagScanOut.Name = "btnMagScanOut";
-            this.btnMagScanOut.Size = new System.Drawing.Size(198, 39);
+            this.btnMagScanOut.Size = new System.Drawing.Size(231, 45);
             this.btnMagScanOut.TabIndex = 13;
             this.btnMagScanOut.Text = "Scan &Out";
             this.btnMagScanOut.UseVisualStyleBackColor = false;
-            this.btnMagScanOut.Click += new System.EventHandler(this.btnMagScanOut_Click);
+            this.btnMagScanOut.Click += new System.EventHandler(this.BtnMagScanOut_Click);
             // 
             // btnMagScanIn
             // 
             this.btnMagScanIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnMagScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMagScanIn.Location = new System.Drawing.Point(6, 31);
+            this.btnMagScanIn.Location = new System.Drawing.Point(7, 36);
+            this.btnMagScanIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMagScanIn.Name = "btnMagScanIn";
-            this.btnMagScanIn.Size = new System.Drawing.Size(198, 39);
+            this.btnMagScanIn.Size = new System.Drawing.Size(231, 45);
             this.btnMagScanIn.TabIndex = 12;
             this.btnMagScanIn.Text = "Scan &In";
             this.btnMagScanIn.UseVisualStyleBackColor = false;
-            this.btnMagScanIn.Click += new System.EventHandler(this.btnMagScanIn_Click);
+            this.btnMagScanIn.Click += new System.EventHandler(this.BtnMagScanIn_Click);
             // 
             // FormMain
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1051, 623);
+            this.ClientSize = new System.Drawing.Size(1226, 719);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblWeekNumber);
             this.Controls.Add(this.lblVersion);
@@ -776,6 +783,7 @@ namespace TNBase
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuTop;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -850,7 +858,6 @@ namespace TNBase
         private System.Windows.Forms.ToolStripMenuItem PrintAllListenerLabelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StoppedListenerListToolStripMenuItem;
 		internal System.Windows.Forms.Label lblWeekNumber;
-        private System.Windows.Forms.ToolStripMenuItem EnableScanInToolStripMenuItem;
 
 		public FormMain()
 		{
@@ -865,7 +872,6 @@ namespace TNBase
         private ToolStripMenuItem printCollectorForListenerToolStripMenuItem;
         private ToolStripMenuItem magazineWalletsToolStripMenuItem;
         private ToolStripMenuItem adjustStockLevelsToolStripMenuItem;
-        private ToolStripMenuItem enableScanOutToolStripMenuItem;
         private ToolStripMenuItem walletsStockToolStripMenuItem;
         internal GroupBox groupBox3;
         private Button btnMagScanOut;

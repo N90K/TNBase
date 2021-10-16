@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TNBase.Objects;
 
 namespace TNBase.DataStorage
@@ -7,15 +6,9 @@ namespace TNBase.DataStorage
     public interface IServiceLayer
     {
         /// <summary>
-        /// Utility
-        /// </summary>
-        bool IsConnected();
-
-        /// <summary>
         /// Generic
         /// </summary>
         int GetMinimumYear();
-        int CalculateNextFreeIndex();
         int GetHighestWeekNumber();
         int GetHighestYearNumber();
         int GetCurrentWeekNumber();
@@ -24,16 +17,6 @@ namespace TNBase.DataStorage
         bool UpdateListenerInOuts();
         int GetMemorySticksOnLoan();
         void DeleteOverdueDeletedListeners(int months);
-
-        /// <summary>
-        /// Clear methods
-        /// </summary>
-        void ClearListeners();
-        void ClearCollectors();
-        void ClearWeeklyStats();
-        void ClearYearlyStats();
-        void ClearAllData();
-        void ClearAllDataExceptCollectors();
 
         /// <summary>
         /// Listener Calls
@@ -110,10 +93,5 @@ namespace TNBase.DataStorage
         /// Scan methods
         /// </summary>
         bool RecordScan(int wallet, ScanTypes scanType);
-
-        /// <summary>
-        /// Support methods
-        /// </summary>
-        void RunCommand(String sqlCommand);
     }
 }

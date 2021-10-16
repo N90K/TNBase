@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace TNBase
             AdjustStock
         }
 
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         public FindListenerFormType theType;
         private void formFindListener_Load(object sender, EventArgs e)

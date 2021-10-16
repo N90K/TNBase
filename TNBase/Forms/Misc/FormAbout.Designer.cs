@@ -58,7 +58,6 @@ namespace TNBase
             this.PictureBox.Size = new System.Drawing.Size(156, 128);
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
-            this.PictureBox.Click += new System.EventHandler(this.PictureBox_Click);
             // 
             // Label1
             // 

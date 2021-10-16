@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 using NLog;
 
 namespace TNBase
@@ -30,7 +31,7 @@ namespace TNBase
 		private void FormAbout_Load(object sender, EventArgs e)
 		{
 			log.Trace("Loading form.");
-			lblVersion.Text = ModuleGeneric.getVersionString();
+			lblVersion.Text = $"V{Application.ProductVersion}";
             lblDotNetVer.Text = ".Net " + Environment.Version;
             Label1.Text = Settings.Default.AssociationName;
 		}
@@ -44,23 +45,6 @@ namespace TNBase
 		{
 			log.Trace("Closing form.");
 			this.Close();
-		}
-
-        /// <summary>
-        /// Hidden testing form, only showed by pressing the picture 3 times.
-        /// </summary>
-        /// <param name="sender">ignored</param>
-        /// <param name="e">ignored</param>
-		private void PictureBox_Click(object sender, EventArgs e)
-		{
-			clickCount = clickCount + 1;
-
-			log.Trace("Click count: " + clickCount);
-			if (clickCount > 3) {
-				log.Debug("Showing test form...");
-				My.MyProject.Forms.formTest.Show();
-				clickCount = 0;
-			}
 		}
 
 		public FormAbout()

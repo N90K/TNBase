@@ -9,13 +9,14 @@ using TNBase.Forms;
 using NLog;
 
 using TNBase.Objects;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
     public partial class FormBrowse
     {
         private Logger log = LogManager.GetCurrentClassLogger();
-        private IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         private List<Listener> listeners = new List<Listener>();
         private Listener selectedListener;
@@ -56,14 +57,14 @@ namespace TNBase
                     listener.LastIn.ToNullableNaString(),
                     listener.LastOut.ToNullableNaString(),
                     listener.Info,
-                    listener.inOutRecords.In1.ToString(),
-                    listener.inOutRecords.In2.ToString(),
-                    listener.inOutRecords.In3.ToString(),
-                    listener.inOutRecords.In4.ToString(),
-                    listener.inOutRecords.Out1.ToString(),
-                    listener.inOutRecords.Out2.ToString(),
-                    listener.inOutRecords.Out3.ToString(),
-                    listener.inOutRecords.Out4.ToString()
+                    listener.InOutRecords.In1.ToString(),
+                    listener.InOutRecords.In2.ToString(),
+                    listener.InOutRecords.In3.ToString(),
+                    listener.InOutRecords.In4.ToString(),
+                    listener.InOutRecords.Out1.ToString(),
+                    listener.InOutRecords.Out2.ToString(),
+                    listener.InOutRecords.Out3.ToString(),
+                    listener.InOutRecords.Out4.ToString()
                 };
 
                 var itm = new ListViewItem(subItems.ToArray());

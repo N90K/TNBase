@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using TNBase.Objects;
 using TNBase.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TNBase
 {
     public partial class FormPrintAlphabeticList
 	{
 		List<Listener> theListeners = new List<Listener>();
-        IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		int totalCount = 0;
 		int currentPageNumber = 0;
 

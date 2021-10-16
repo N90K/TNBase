@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows.Forms;
 using TNBase.DataStorage;
 using TNBase.Objects;
@@ -7,7 +8,7 @@ namespace TNBase.Forms
 {
     public partial class FormDelete : Form
     {
-        private readonly IServiceLayer serviceLayer = new ServiceLayer(ModuleGeneric.GetDatabasePath());
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         private Listener listener;
         private bool hasWalletsSent;
 

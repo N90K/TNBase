@@ -23,6 +23,28 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:TNBase.FormAddMini.showFullForm">
+            <summary>
+            Show the full add form
+            </summary>
+        </member>
+        <member name="F:TNBase.FormAdjustStockLevels.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TNBase.FormAdjustStockLevels.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:TNBase.Forms.FormDelete.components">
             <summary>
             Required designer variable.
@@ -57,23 +79,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:TNBase.Forms.Scanning.MagazinesScanOutForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
         <member name="F:TNBase.Forms.Scanning.MagazinesScanInForm.components">
             <summary>
             Required designer variable.
@@ -91,56 +96,18 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:TNBase.FormAbout">
-            <summary>
-            About form
-            </summary>
-        </member>
-        <member name="M:TNBase.FormAbout.FormAbout_Deactivate(System.Object,System.EventArgs)">
-            <summary>
-            Close the form if they click away
-            </summary>
-            <param name="sender">ignored</param>
-            <param name="e">ignored</param>
-        </member>
-        <member name="M:TNBase.FormAbout.FormAbout_Load(System.Object,System.EventArgs)">
-            <summary>
-            On the form load
-            </summary>
-            <param name="sender">ignored</param>
-            <param name="e">ignored</param>
-        </member>
-        <member name="M:TNBase.FormAbout.FormAbout_LostFocus(System.Object,System.EventArgs)">
-            <summary>
-            Close the form if they click away
-            </summary>
-            <param name="sender">ignored</param>
-            <param name="e">ignored</param>
-        </member>
-        <member name="M:TNBase.FormAbout.PictureBox_Click(System.Object,System.EventArgs)">
-            <summary>
-            Hidden testing form, only showed by pressing the picture 3 times.
-            </summary>
-            <param name="sender">ignored</param>
-            <param name="e">ignored</param>
-        </member>
-        <member name="M:TNBase.FormAddMini.showFullForm">
-            <summary>
-            Show the full add form
-            </summary>
-        </member>
-        <member name="F:TNBase.FormAdjustStockLevels.components">
+        <member name="F:TNBase.Forms.Scanning.MagazinesScanOutForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:TNBase.FormAdjustStockLevels.Dispose(System.Boolean)">
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:TNBase.FormAdjustStockLevels.InitializeComponent">
+        <member name="M:TNBase.Forms.Scanning.MagazinesScanOutForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -170,6 +137,49 @@
             <summary>
             Form load.
             </summary>
+        </member>
+        <member name="T:TNBase.FormMain">
+            <summary>
+            Main form
+            </summary>
+        </member>
+        <member name="M:TNBase.FormMain.LoadLogo">
+            <summary>
+            Load the correct logo!
+            </summary>
+        </member>
+        <member name="M:TNBase.FormMain.formMain_Load(System.Object,System.EventArgs)">
+            <summary>
+            When the form loads.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:TNBase.FormAbout">
+            <summary>
+            About form
+            </summary>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_Deactivate(System.Object,System.EventArgs)">
+            <summary>
+            Close the form if they click away
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_Load(System.Object,System.EventArgs)">
+            <summary>
+            On the form load
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
+        </member>
+        <member name="M:TNBase.FormAbout.FormAbout_LostFocus(System.Object,System.EventArgs)">
+            <summary>
+            Close the form if they click away
+            </summary>
+            <param name="sender">ignored</param>
+            <param name="e">ignored</param>
         </member>
         <member name="M:TNBase.FormLogViewer.UpdateText(System.String)">
             <summary>
@@ -207,23 +217,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:TNBase.FormMain">
-            <summary>
-            Main form
-            </summary>
-        </member>
-        <member name="M:TNBase.FormMain.LoadLogo">
-            <summary>
-            Load the correct logo!
-            </summary>
-        </member>
-        <member name="M:TNBase.FormMain.formMain_Load(System.Object,System.EventArgs)">
-            <summary>
-            When the form loads.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="F:TNBase.FormPrintMagazineWallets.components">
             <summary>
             Required designer variable.
@@ -241,30 +234,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:TNBase.FormTest.btnDevTest_Click(System.Object,System.EventArgs)">
-            <summary>
-            Function for some latest development test!
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:TNBase.ModuleGeneric.GetDatabasePath">
-            <summary>
-            Get the database path.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:TNBase.ModuleGeneric.GetLogFilePath">
-            <summary>
-            Get the log file path!
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:TNBase.ModuleGeneric.UpdateStatsWeek(TNBase.DataStorage.IServiceLayer,System.Boolean)">
-            <summary>
-            Update weekly stats
-            </summary>
-        </member>
         <member name="T:TNBase.My.Resources.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -279,6 +248,11 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:TNBase.Program.Main">
+            <summary>
+             The main entry point for the application.
             </summary>
         </member>
         <member name="T:TNBase.Properties.Resources">
