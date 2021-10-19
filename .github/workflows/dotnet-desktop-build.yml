@@ -50,13 +50,13 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest
     
     env:
-      Solution_Name: TNBase.sln                                 # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: TNBase.Test\TNBase.Test.csproj         # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      Solution_Name: TNBase.sln
+      Test_Project_Path: TNBase.Test\TNBase.Test.csproj
 
     steps:
     - name: Checkout
@@ -73,10 +73,12 @@ jobs:
       run: dotnet test
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
+    #- name: Restore the application
+    #  run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+    #   env:
+    #    Configuration: ${{ matrix.configuration }}
+
+    # msbuild /target:publish /p:PublishProfile=ClickOnceProfile /p:PublishDir=bin/Publish /p:Version=1.7.10 /p:ApplicationVersion=1.7.10.*
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-artifact
     #- name: Upload build artifacts
