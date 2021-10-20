@@ -3,7 +3,7 @@ name: Create TNBase Application Release
 on:
   push:
     tags:
-      - "v*"
+      - 'v*.*.*.*'
       
 jobs:
 
@@ -20,8 +20,13 @@ jobs:
       with:
         fetch-depth: 0
         
-    - name: Get version tag
-      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      
+    - name: Check output
+      env:
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
 
     # Install the .NET Core workload
     - name: Install .NET Core
@@ -54,5 +59,5 @@ jobs:
         name: $env:FileName
         path: TNBase\bin\Publish
       env:
-        FileName: TNBase_${{ env.RELEASE_VERSION }}
+        FileName: TNBase_${{ steps.vars.outputs.tag }}
 
