@@ -7,12 +7,7 @@ on:
       
 jobs:
 
-  build:
-
-    strategy:
-      matrix:
-        platform: [x86, x64]
-
+  release:
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
@@ -51,17 +46,14 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Solution_Name /target:publish /p:Platform=$env:Platform /p:Configuration=Release /p:PublishProfile=ClickOnceProfile /p:PublishDir=bin/Publish /p:Version=1.7.10 /p:ApplicationVersion=1.7.10.*
-      env:
-        Platform: ${{ matrix.platform }}
+      run: msbuild $env:Solution_Name /target:publish /p:Configuration=Release /p:PublishProfile=ClickOnceProfile /p:PublishDir=bin/Publish /p:Version=1.7.10 /p:ApplicationVersion=1.7.10.*
 
     # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: TNBase_$env:Version_$env:Platform
+        name: TNBase_$env:Version
         path: TNBase\bin\Publish
       env:
-        Platform: ${{ matrix.platform }}
         Version: ${{ steps.get_version.outputs.VERSION }}
 
