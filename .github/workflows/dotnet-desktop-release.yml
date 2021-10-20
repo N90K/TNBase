@@ -46,7 +46,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Solution_Name /target:publish /p:Configuration=Release /p:PublishProfile=ClickOnceProfile /p:PublishDir=bin/Publish /p:Version=1.7.10 /p:ApplicationVersion=1.7.10.*
+      run: msbuild $env:Solution_Name /target:publish /p:Platform="Any CPU" /p:Configuration=Release /p:PublishProfile=ClickOnceProfile /p:PublishDir=bin/Publish /p:Version=1.7.10 /p:ApplicationVersion=1.7.10.*
 
     # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
