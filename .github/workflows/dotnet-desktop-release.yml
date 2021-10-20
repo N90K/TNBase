@@ -52,8 +52,8 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: TNBase_$env:Version
+        name: $env:FileName
         path: TNBase\bin\Publish
       env:
-        Version: ${{ steps.get_version.outputs.VERSION }}
+        FileName: TNBase_${{ steps.get_version.outputs.VERSION }}
 
