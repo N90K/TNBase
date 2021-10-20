@@ -3,7 +3,7 @@ name: Create TNBase Application Release
 on:
   push:
     tags:
-      - 'v*.*.*.*'
+      - "v*"
       
 jobs:
 
