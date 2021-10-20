@@ -29,7 +29,7 @@ jobs:
     - name: Test
       run: |
         echo $RELEASE_VERSION
-        echo "${{ steps.get_version.outputs.VERSION }}"
+        echo "${{ github.ref }}"
 
     # Install the .NET Core workload
     - name: Install .NET Core
