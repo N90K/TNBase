@@ -1,3 +1,7 @@
+1.7.0
+- Upgraded to the latest .Net 5 Framework
+- Created installation package (.msi file)
+
 1.6.6.1
 - Fixed #9 - Second wallet of deleted listener is accepted
 - Fixed #6 - Joined date show as todays date in the edit form
