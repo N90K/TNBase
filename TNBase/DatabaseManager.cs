@@ -28,12 +28,12 @@ namespace TNBase
                 {
                     if (drive.VolumeLabel.Equals(Settings.Default.BackupDrive) || drive.Name.Equals(Settings.Default.BackupDrive))
                     {
-                        path = drive.RootDirectory.ToString() + ModuleGeneric.getAppShortName() + "\\backups\\";
+                        path = drive.RootDirectory.ToString() + Application.ProductName + "\\backups\\";
                         Directory.CreateDirectory(path);
 
                         if (drive.AvailableFreeSpace < (Settings.Default.BackupMBSpaceWarning * 1000000))
                         {
-                            MessageBox.Show("Warning: Low space available on backup drive: " + Settings.Default.BackupDrive, ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
+                            MessageBox.Show("Warning: Low space available on backup drive: " + Settings.Default.BackupDrive, Application.ProductName, MessageBoxButtons.OK);
                             log.Warn("Warning: Low space available on backup drive: " + Settings.Default.BackupDrive);
                         }
 
@@ -51,10 +51,10 @@ namespace TNBase
             {
                 try
                 {
-                    String fullbackuppath = path + ModuleGeneric.getAppShortName() + "_backup_" + DateTime.Now.ToString("dd-MM-yyyy") + ".bak";
-                    if (!DBUtils.CopyDatabase(ModuleGeneric.GetDatabasePath(), fullbackuppath))
+                    String fullbackuppath = path + Application.ProductName + "_backup_" + DateTime.Now.ToString("dd-MM-yyyy") + ".bak";
+                    if (!DBUtils.CopyDatabase(options.DatabasePath, fullbackuppath))
                     {
-                        MessageBox.Show("Warning: Could not backup database: " + Settings.Default.BackupDrive, ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
+                        MessageBox.Show("Warning: Could not backup database: " + Settings.Default.BackupDrive, Application.ProductName, MessageBoxButtons.OK);
                         log.Warn("Could not backup database: " + fullbackuppath);
                     }
                     else
@@ -69,7 +69,7 @@ namespace TNBase
             }
             else
             {
-                MessageBox.Show("Warning: Could not find the backup drive: " + Settings.Default.BackupDrive, ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
+                MessageBox.Show("Warning: Could not find the backup drive: " + Settings.Default.BackupDrive, Application.ProductName, MessageBoxButtons.OK);
                 log.Warn("Could not find resources folder.");
             }
         }

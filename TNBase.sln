@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Infrastructure", "TN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository", "TNBase.Repository\TNBase.Repository.csproj", "{6C10F681-0C55-459B-A800-298BBEEF0139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNBase.Repository.UnitTests", "TNBase.Repository.UnitTests\TNBase.Repository.UnitTests.csproj", "{53541575-8084-4F63-A93B-595493A2C115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository.UnitTests", "TNBase.Repository.UnitTests\TNBase.Repository.UnitTests.csproj", "{53541575-8084-4F63-A93B-595493A2C115}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TNBase.Setup", "TNBase.Setup\TNBase.Setup.vdproj", "{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{53541575-8084-4F63-A93B-595493A2C115}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53541575-8084-4F63-A93B-595493A2C115}.Release|x86.ActiveCfg = Release|Any CPU
 		{53541575-8084-4F63-A93B-595493A2C115}.Release|x86.Build.0 = Release|Any CPU
+		{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}.Debug|Any CPU.ActiveCfg = Debug
+		{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}.Debug|x86.ActiveCfg = Debug
+		{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}.Release|Any CPU.ActiveCfg = Release
+		{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

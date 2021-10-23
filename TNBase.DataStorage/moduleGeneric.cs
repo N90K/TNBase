@@ -9,7 +9,6 @@ namespace TNBase.DataStorage
     {
         // This is the path to the database!
         public static string DATABASE_NAME = "Listeners.s3db";
-        public static string DATABASE_PATH = "Resource\\" + DATABASE_NAME;
 
         // Formatting consts and defaults.
         public const string DATE_FORMAT = "dd/MM/yyyy";
@@ -55,28 +54,6 @@ namespace TNBase.DataStorage
         public static string getEndTimeString()
         {
             return endTime.ToString(TIME_FORMAT);
-        }
-
-        //// Get version number printable string.
-        //public static string getVersionString()
-        //{
-        //    return "V " + Application.ProductVersion;
-        //}
-
-
-        // Get the application path.
-        public static string getStartPath()
-        {
-            return AppDomain.CurrentDomain.BaseDirectory;
-        }
-
-        /// <summary>
-        /// Get the database path.
-        /// </summary>
-        /// <returns></returns>
-        public static string GetDatabasePath()
-        {
-            return getStartPath() + "\\" + DATABASE_PATH;
         }
 
         /// <summary>

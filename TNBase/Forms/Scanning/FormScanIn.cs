@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System;
-using System.Speech.Synthesis;
 using System.Windows.Forms;
 using TNBase.DataStorage;
 using TNBase.Infrastructure;
@@ -26,8 +25,6 @@ namespace TNBase
         private int lastScanned = 0;
 
         private bool exitMe = false;
-
-        private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
         private void txtScannerInput_KeyDown(object sender, KeyEventArgs e)
         {

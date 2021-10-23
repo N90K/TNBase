@@ -34,8 +34,6 @@ namespace TNBase.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlite(@"Data Source=C:\Users\Audrius\Documents\Code\TNBase\TNBase\bin\Debug\Resource\Listeners.s3db");
-                //optionsBuilder.UseSqlite("Data Source=C:\\Users\\Audrius\\Documents\\Code\\TNBase\\Listeners.s3db");
                 optionsBuilder.UseSqlite(connection);
             }
 

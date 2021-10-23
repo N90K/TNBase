@@ -6,6 +6,8 @@ packages
 publish
 /SBTNA.suo
 bin
+debug
+release
 /TestResults
 /SBTNA Historic
 /UpgradeLog.htm

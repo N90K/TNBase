@@ -45,7 +45,7 @@ namespace TNBase
             ModuleGeneric.SaveStartTime();
             progressBar.Value = 15;
 
-            var databasePath = ModuleGeneric.GetDatabasePath();
+            var databasePath = "//"; //ModuleGeneric.GetDatabasePath();
             var context = new Repository.TNBaseContext($"Data Source={databasePath}");
             context.UpdateDatabase();
 
@@ -110,7 +110,7 @@ namespace TNBase
                 try
                 {
                     String fullbackuppath = path + ModuleGeneric.getAppShortName() + "_backup_" + DateTime.Now.ToString("dd-MM-yyyy") + ".bak";
-                    if (!DBUtils.CopyDatabase(ModuleGeneric.GetDatabasePath(), fullbackuppath))
+                    if (!DBUtils.CopyDatabase("ModuleGeneric.GetDatabasePath()", fullbackuppath))
                     {
                         MessageBox.Show("Warning: Could not backup database: " + Settings.Default.BackupDrive, ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
                         log.Warn("Could not backup database: " + fullbackuppath);

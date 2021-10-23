@@ -1,3 +1,4 @@
+using System;
 using System.Media;
 using TNBase.DataStorage;
 
@@ -17,7 +18,7 @@ namespace TNBase
 		// Get the resouces folder.
 		public static string GetResourcesFolder()
 		{
-			return ModuleGeneric.getStartPath() + RESOURCES_FOLDER;
+			return AppDomain.CurrentDomain.BaseDirectory + RESOURCES_FOLDER;
 		}
 
 		// Check sounds exist.

@@ -169,7 +169,8 @@ namespace TNBase
             // If successful, backup the database.
             if (backupDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (DBUtils.CopyDatabase(ModuleGeneric.GetDatabasePath(), backupDialog.FileName))
+                var databaseOptions = Program.ServiceProvider.GetService<DatabaseManagerOptions>();
+                if (DBUtils.CopyDatabase(databaseOptions.DatabasePath, backupDialog.FileName))
                 {
                     Interaction.MsgBox("Database backup successful, please restart app!");
                 }
@@ -198,8 +199,8 @@ namespace TNBase
             // If successful, backup the database.
             if (restoreDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var databasePath = ModuleGeneric.GetDatabasePath();
-                if (DBUtils.RestoreDatabase(restoreDialog.FileName, databasePath))
+                var databaseOptions = Program.ServiceProvider.GetService<DatabaseManagerOptions>();
+                if (DBUtils.RestoreDatabase(restoreDialog.FileName, databaseOptions.DatabasePath))
                 {
                     Program.NewScope();
                     var context = (TNBaseContext)Program.ServiceProvider.GetService<ITNBaseContext>();

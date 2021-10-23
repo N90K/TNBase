@@ -53,7 +53,7 @@ namespace TNBase
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            var databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resource", "Listeners.s3db");
+            var databasePath = Path.Combine(Application.CommonAppDataPath, "Listeners.s3db");
             services.AddScoped<ITNBaseContext>(s => new TNBaseContext($"Data Source={databasePath}"));
             services.AddScoped<IServiceLayer, ServiceLayer>();
             services.AddScoped<ScanService>();
