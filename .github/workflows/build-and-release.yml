@@ -1,39 +1,54 @@
-name: Create TNBase Application Release
+name: Build and release TNBase Application
 
 on:
   push:
-    tags:
-      - "v*.*.*"
-
+    tags: ['v[0-9].[0-9]+.[0-9]+']
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+env:
+  Solution_Name: TNBase.sln
+  Application_Project: TNBase\TNBase.csproj
+  Setup_Project: TNBase.Setup\TNBase.Setup.vdproj
+  Configuration: Release
+      
 jobs:
-  release:
-    if: github.event.base_ref=='refs/heads/master
-    runs-on:
-      windows-latest # For a list of available runner types, refer to
-      # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-    env:
-      Solution_Name: TNBase.sln
-      Application_Project: TNBase\TNBase.csproj
-      Setup_Project: TNBase.Setup\TNBase.Setup.vdproj
-      Configuration: Release
-
+  build:
+    runs-on: windows-latest    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: Set release version
-        run: echo ("RELEASE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/v', '')) >> $env:GITHUB_ENV
-
       - name: Install .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
 
+      - name: Execute unit tests
+        run: dotnet test -c $env:Configuration
+        
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') && github.event.base_ref=='refs/heads/master'
+    runs-on: windows-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Set release version
+        run: echo ("RELEASE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/v', '')) >> $env:GITHUB_ENV
+
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
-
+        
+      - name: Restore the application
+        run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+        
       - name: Apply version number
         run: |
           $project = Get-Content $env:Setup_Project
@@ -47,20 +62,16 @@ jobs:
           $project = $project.Replace("<Version>1.0.0</Version>", "<Version>${{ env.RELEASE_VERSION }}</Version>")
           Set-Content $env:Application_Project -Value $project
 
-      - name: Restore the application
-        run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-
-      - name: Execute unit tests
-        run: dotnet test --no-restore -c $env:Configuration
-
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v3
 
       - name: Create installation package
         run: devenv $env:Solution_Name /build $env:Configuration  /Project $env:Setup_Project
-
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v2
+          
+      - name: Rename setup file
+        run: Rename-Item -Path "TNBase.Setup\Release\TNBase.Setup.msi" -NewName "TNBase-v${{ env.RELEASE_VERSION }}-win-x64.msi"
+        
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: "TNBase_v${{ env.RELEASE_VERSION }}"
-          path: TNBase.Setup\Release
+          files: "TNBase.Setup/Release/TNBase-v${{ env.RELEASE_VERSION }}-win-x64.msi"
