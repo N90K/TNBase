@@ -10,6 +10,8 @@ namespace TNBase
 {
     static class Program
     {
+        private static string applicationDataDirectory;
+
         public static IServiceProvider ServiceProvider { get; private set; }
 
         /// <summary>
@@ -23,6 +25,10 @@ namespace TNBase
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(ExceptionHandler.AppDomain_Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionHandler.AppDomain_CurrentDomain_UnhandledException);
+
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            applicationDataDirectory = Path.Combine(appDataPath, Application.CompanyName, Application.ProductName);
+            Directory.CreateDirectory(applicationDataDirectory);
 
             var services = new ServiceCollection();
             ConfigureServices(services);
@@ -53,9 +59,7 @@ namespace TNBase
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            var databasePath = Path.Combine(appDataPath, Application.CompanyName, Application.ProductName, "Listeners.s3db");
-
+            var databasePath = Path.Combine(applicationDataDirectory, "Listeners.s3db");
             services.AddScoped<ITNBaseContext>(s => new TNBaseContext($"Data Source={databasePath}"));
             services.AddScoped<IServiceLayer, ServiceLayer>();
             services.AddScoped<ScanService>();
