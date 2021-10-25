@@ -24,7 +24,7 @@ namespace TNBase
         /// <param name="e"></param>
 		private void btnDontAdd_Click(object sender, EventArgs e)
 		{
-            My.MyProject.Forms.formScanIn.clearScanText();
+            My.MyProject.Forms.formScanIn.ClearScanText();
 			this.Hide();
 		}
 
@@ -38,7 +38,7 @@ namespace TNBase
             // Add is disabled initially to avoid scanner auto-enter
             if (addEnabled)
             {
-                My.MyProject.Forms.formScanIn.addListItem(int.Parse(lblWallet.Text));
+                My.MyProject.Forms.formScanIn.AddListItem(int.Parse(lblWallet.Text));
                 this.Hide();
                 addEnabled = false;
             }

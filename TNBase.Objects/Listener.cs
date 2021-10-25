@@ -33,6 +33,7 @@ namespace TNBase.Objects
         public string Town { get; set; }
         public string County { get; set; }
         public string Postcode { get; set; }
+        public bool WarnOfAddressChange { get; set; }
         public string Telephone { get; set; }
         public bool MemStickPlayer { get; set; }
         public bool Magazine { get; set; }

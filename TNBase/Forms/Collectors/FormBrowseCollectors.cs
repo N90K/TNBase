@@ -89,7 +89,7 @@ namespace TNBase
 
 				Collector theCollector = serviceLayer.GetCollector(id);
 				My.MyProject.Forms.formAddCollectors.Show();
-				My.MyProject.Forms.formAddCollectors.setupEditMode(theCollector);
+				My.MyProject.Forms.formAddCollectors.SetupEditMode(theCollector);
 
 				refreshList();
 			} catch (Exception ex) {

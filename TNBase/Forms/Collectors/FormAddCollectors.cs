@@ -1,9 +1,10 @@
-using Microsoft.VisualBasic;
 using System;
 using TNBase.Objects;
 using NLog;
 using TNBase.DataStorage;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace TNBase
 {
@@ -22,7 +23,7 @@ namespace TNBase
             InitializeComponent();
         }
 
-        public void setupEditMode(Collector col)
+        public void SetupEditMode(Collector col)
         {
             try
             {
@@ -35,7 +36,7 @@ namespace TNBase
                 txtTelephone.Text = col.Number;
                 string tempStr = col.Postcodes;
 
-                string[] parts = Strings.Split(tempStr, ",");
+                string[] parts = tempStr.Split(",");
                 foreach (string part in parts)
                 {
                     lstPostcodes.Items.Add(part);
@@ -44,7 +45,7 @@ namespace TNBase
             catch (Exception ex)
             {
                 log.Error(ex, "Failed to setup form.");
-                Interaction.MsgBox("Error: Failed to setup form!");
+                MessageBox.Show("Error: Failed to setup form!");
                 this.Close();
             }
         }
@@ -68,7 +69,7 @@ namespace TNBase
             if (string.IsNullOrEmpty(txtForename.Text) | string.IsNullOrEmpty(txtSurname.Text) | string.IsNullOrEmpty(txtTelephone.Text) | lstPostcodes.Items.Count == 0)
             {
                 log.Error("Empty value/incomplete form. Forename: " + col.Forename + ", Surname: " + col.Surname + ", Number: " + col.Number);
-                Interaction.MsgBox("Incomplete form.");
+                MessageBox.Show("Incomplete form.");
                 return;
             }
 
@@ -92,12 +93,12 @@ namespace TNBase
             {
                 if (!serviceLayer.UpdateCollector(col))
                 {
-                    Interaction.MsgBox("Error: could not update collector in database!");
+                    MessageBox.Show("Error: could not update collector in database!");
                     log.Error("Could not update collector in database!");
                 }
                 else
                 {
-                    Interaction.MsgBox("Successfully updated collector.");
+                    MessageBox.Show("Successfully updated collector.");
                     log.Trace("Successfully updated collector.");
                 }
             }
@@ -105,12 +106,12 @@ namespace TNBase
             {
                 if (!serviceLayer.AddCollector(col))
                 {
-                    Interaction.MsgBox("Error: could not add collector to database!");
+                    MessageBox.Show("Error: could not add collector to database!");
                     log.Error("Could not add collector to database!");
                 }
                 else
                 {
-                    Interaction.MsgBox("Successfully added collector.");
+                    MessageBox.Show("Successfully added collector.");
                     log.Trace("Successfully added collector.");
                 }
             }
@@ -153,7 +154,7 @@ namespace TNBase
             catch (Exception ex)
             {
                 log.Error(ex, "Could not validate postcode" + ex.Message);
-                Interaction.MsgBox("Could not validate postcode: " + ex.Message);
+                MessageBox.Show("Could not validate postcode: " + ex.Message);
             }
         }
     }

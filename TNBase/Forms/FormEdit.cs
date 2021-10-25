@@ -37,6 +37,7 @@ namespace TNBase
                 txtTown.Text = listener.Town;
                 txtCounty.Text = listener.County;
                 txtPostcode.Text = listener.Postcode;
+                chkWarnOfAddressChange.Checked = listener.WarnOfAddressChange;
                 txtTelephone.Text = listener.Telephone;
                 txtStock.Text = listener.Stock.ToString();
                 chkMagazine.Checked = listener.Magazine;
@@ -210,6 +211,7 @@ namespace TNBase
                 myListener.Town = txtTown.Text;
                 myListener.County = txtCounty.Text;
                 myListener.Postcode = txtPostcode.Text;
+                myListener.WarnOfAddressChange = chkWarnOfAddressChange.Checked;
                 myListener.MemStickPlayer = chkMemStickPlayer.Checked;
                 myListener.Magazine = chkMagazine.Checked;
                 myListener.Info = txtInformation.Text;
@@ -330,7 +332,8 @@ namespace TNBase
                     !chkMemStickPlayer.Checked.Equals(myListener.MemStickPlayer) ||
                     restored ||
                     !int.Parse(txtStock.Text).Equals(myListener.Stock) ||
-                    !int.Parse(txtMagazineStock.Text).Equals(myListener.MagazineStock);
+                    !int.Parse(txtMagazineStock.Text).Equals(myListener.MagazineStock) ||
+                    !chkWarnOfAddressChange.Checked.Equals(myListener.WarnOfAddressChange);
         }
 
         private bool HasBirthdayChanged()
@@ -362,6 +365,7 @@ namespace TNBase
             comboTitle.Items.AddRange(ListenerTitles.GetAllTitles().ToArray());
             cbBirthdayDay.Items.AddRange(Enumerable.Range(1, 31).Select(x => x.ToString()).ToArray());
             cbBirthdayMonth.Items.AddRange(Enumerable.Range(1, 12).Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x)).ToArray());
+            toolTip.SetToolTip(chkWarnOfAddressChange, "Notify user when scanning wallets that the wallet address has changed");
         }
 
         private void chkNoBirthday_CheckedChanged(object sender, EventArgs e)

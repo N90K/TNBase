@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic;
 using System;
+using System.Threading;
 using System.Windows.Forms;
 using TNBase.DataStorage;
 using TNBase.Infrastructure;
@@ -17,7 +17,7 @@ namespace TNBase
     //
     public partial class FormScanIn
     {
-        private NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
+        private readonly NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
@@ -26,28 +26,21 @@ namespace TNBase
 
         private bool exitMe = false;
 
-        private void txtScannerInput_KeyDown(object sender, KeyEventArgs e)
+        private void TxtScannerInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                doScanAction();
+                DoScanAction();
             }
         }
 
-        private void doScanAction()
+        private void DoScanAction()
         {
-            if ((Information.IsNumeric(txtScannerInput.Text)))
+            if (int.TryParse(txtScannerInput.Text, out var walletId))
             {
-                ModuleSounds.PlayBeep();
-                try
-                {
-                    addScanItem(int.Parse(txtScannerInput.Text));
-                }
-                catch (Exception e)
-                {
-                    log.Warn(e, "Failed to parse large integer on scanning: " + txtScannerInput.Text);
-                }
+                ModuleSounds.PlaySecondBeep();
+                AddScanItem(walletId);
             }
             else if (txtScannerInput.Text.Length > 0)
             {
@@ -56,15 +49,15 @@ namespace TNBase
             }
         }
 
-        public void clearScanText()
+        public void ClearScanText()
         {
             txtScannerInput.Text = String.Empty;
             txtScannerInput.Focus();
         }
 
-        public void addScanItem(int walletId)
+        public void AddScanItem(int walletId)
         {
-            if ((walletId == lastScanned))
+            if (walletId == lastScanned)
             {
                 ModuleSounds.PlayExplode();
                 My.MyProject.Forms.formDuplicateFound.Show();
@@ -72,12 +65,12 @@ namespace TNBase
             }
             else
             {
-                addListItem(walletId);
+                AddListItem(walletId);
             }
             lastScanned = walletId;
         }
 
-        public void addListItem(int walletId)
+        public void AddListItem(int walletId)
         {
             var item = GetOrAddScannedItem(walletId);
             var newQuantity = int.Parse(item.SubItems[1].Text) + 1;
@@ -96,10 +89,18 @@ namespace TNBase
                 else if (listener.Status == ListenerStates.DELETED)
                 {
                     ModuleSounds.PlayNotInUse();
-                    Interaction.MsgBox("This listener has been deleted. Please remove the label and place wallet into the stock of unused wallets.");
+                    lblInfo.Text = $"Listener {walletId} has been deleted. Please remove the label and place wallet into the stock of unused wallets.";
                 }
                 else
                 {
+                    if (listener.WarnOfAddressChange)
+                    {
+                        lblInfo.Text = $"Listener's address has changed\nNew address is: \n{listener.FormatListenerData()}";
+                        Refresh();
+                        ModuleSounds.PlayAddressChanged();
+                        Thread.Sleep(1500);
+                    }
+
                     if (newQuantity == 2)
                     {
                         ModuleSounds.PlayTwoIn();
@@ -109,10 +110,6 @@ namespace TNBase
                         ModuleSounds.PlayThreeIn();
                         newQuantity = 3; // 3 is the max.
                     }
-                    else
-                    {
-                        ModuleSounds.PlaySecondBeep();
-                    }
                 }
             }
 
@@ -120,7 +117,7 @@ namespace TNBase
 
             // Clear text.
             txtScannerInput.Text = string.Empty;
-            scannedIn = scannedIn + 1;
+            scannedIn++;
 
             FocusScannedItem(item);
         }
@@ -151,7 +148,7 @@ namespace TNBase
             }));
         }
 
-        private void btnFinished_Click(object sender, EventArgs e)
+        private void BtnFinished_Click(object sender, EventArgs e)
         {
             // Show scanned form.
             My.MyProject.Forms.formScannedInTotal.Show();
@@ -159,7 +156,7 @@ namespace TNBase
         }
 
         // Close the form and process the wallets.
-        public void doClose()
+        public void DoClose()
         {
             ModuleScanning.setScannedIn(scannedIn);
 
@@ -221,7 +218,7 @@ namespace TNBase
             this.Close();
         }
 
-        private void formScanIn_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormScanIn_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!exitMe)
             {
@@ -232,13 +229,23 @@ namespace TNBase
             }
         }
 
-        private void txtScannerInput_TextChanged(object sender, EventArgs e)
+        private void TxtScannerInput_TextChanged(object sender, EventArgs e)
         {
+            if (txtScannerInput.Text.Length > 0)
+            {
+                lblInfo.Text = "";
+            }
+
             // The barcodes are in a 6 digit format (e.g. 000001)
             if (txtScannerInput.Text.Length == 6)
             {
-                doScanAction();
+                DoScanAction();
             }
+        }
+
+        private void FormScanIn_Load(object sender, EventArgs e)
+        {
+            lblInfo.Text = "";
         }
     }
 }

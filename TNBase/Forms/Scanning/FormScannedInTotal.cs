@@ -17,7 +17,7 @@ namespace TNBase
 		private void btnFinished_Click(object sender, EventArgs e)
 		{
 			this.Close();
-			My.MyProject.Forms.formScanIn.doClose();
+			My.MyProject.Forms.formScanIn.DoClose();
 		}
 
 		public FormScannedInTotal()

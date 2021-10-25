@@ -97,6 +97,8 @@ namespace TNBase.Repository
 
                 entity.Property(e => e.Postcode).HasColumnType("text");
 
+                entity.Property(e => e.WarnOfAddressChange).HasColumnType("bit");
+
                 entity.Property(e => e.Status)
                     .HasConversion<string>();
 

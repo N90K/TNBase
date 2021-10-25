@@ -26,9 +26,13 @@ namespace TNBase
             Application.ThreadException += new ThreadExceptionEventHandler(ExceptionHandler.AppDomain_Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionHandler.AppDomain_CurrentDomain_UnhandledException);
 
+#if DEBUG
+            applicationDataDirectory = AppDomain.CurrentDomain.BaseDirectory;
+#else
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             applicationDataDirectory = Path.Combine(appDataPath, Application.CompanyName, Application.ProductName);
             Directory.CreateDirectory(applicationDataDirectory);
+#endif
 
             var services = new ServiceCollection();
             ConfigureServices(services);

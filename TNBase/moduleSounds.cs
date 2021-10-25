@@ -1,6 +1,5 @@
 using System;
 using System.Media;
-using TNBase.DataStorage;
 
 namespace TNBase
 {
@@ -123,6 +122,12 @@ namespace TNBase
 		public static void BeepInvalid()
 		{
 			string sound = GetResourcesFolder() + "beep-invalid.wav";
+			PlaySound(sound);
+		}
+
+        internal static void PlayAddressChanged()
+        {
+			string sound = GetResourcesFolder() + "address-changed.wav";
 			PlaySound(sound);
 		}
 	}
