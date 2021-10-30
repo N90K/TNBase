@@ -4,6 +4,7 @@ using TNBase.Objects;
 using NLog;
 using TNBase.DataStorage;
 using TNBase.Repository;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
@@ -11,7 +12,7 @@ namespace TNBase
     {
         // Logging instance.
         private readonly Logger log = LogManager.GetCurrentClassLogger();
-        readonly IServiceLayer serviceLayer;
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 
         int id = 0;
 
@@ -19,8 +20,6 @@ namespace TNBase
 
         public FormAddCollectors()
         {
-            var context = new TNBaseContext($"Data Source={ModuleGeneric.GetDatabasePath()}");
-            serviceLayer = new ServiceLayer(context);
             InitializeComponent();
         }
 
@@ -31,7 +30,7 @@ namespace TNBase
                 log.Debug("Setting up edit form.");
                 editMode = true;
 
-                id = col.ID;
+                id = col.Id;
                 txtForename.Text = col.Forename;
                 txtSurname.Text = col.Surname;
                 txtTelephone.Text = col.Number;
@@ -59,11 +58,11 @@ namespace TNBase
 
         private void btnFinished_Click(object sender, EventArgs e)
         {
-            Collector col = new Collector();
+            Collector col = editMode ? serviceLayer.GetCollector(id) : new Collector();
 
             if (editMode)
             {
-                col.ID = id;
+                col.Id = id;
             }
 
             // Check we have some data.

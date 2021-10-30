@@ -73,7 +73,7 @@ namespace TNBase.DataStorage.Test.Services
 
             service.AddScans(scans);
 
-            var storedScans = context.Scans.ToList();
+            var storedScans = context.Scans.OrderBy(x => x.Wallet).ToList();
 
             Assert.AreEqual(1, storedScans.ElementAt(0).Wallet);
             Assert.AreEqual(ScanTypes.IN, storedScans.ElementAt(0).ScanType);

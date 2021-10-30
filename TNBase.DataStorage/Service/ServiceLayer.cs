@@ -252,7 +252,7 @@ namespace TNBase.DataStorage
 
         public Collector GetCollector(int id)
         {
-            return context.Collectors.SingleOrDefault(x => x.ID.Equals(id));
+            return context.Collectors.SingleOrDefault(x => x.Id.Equals(id));
         }
 
         public bool IsNewStatsWeek()
@@ -440,9 +440,9 @@ namespace TNBase.DataStorage
                     }
                 }
 
-                context.Listeners.Attach(l);
-                context.SaveChanges();
             }
+
+            context.SaveChanges();
             log.Debug("Finished updating IN/OUT values for listeners...");
 
             return true;

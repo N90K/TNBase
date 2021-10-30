@@ -5,7 +5,7 @@ namespace TNBase.Objects
     public class Collector
     {
         [XmlIgnore]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string Number { get; set; }

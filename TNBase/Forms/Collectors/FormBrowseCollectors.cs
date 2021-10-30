@@ -42,7 +42,7 @@ namespace TNBase
 			ListViewItem itm = null;
 
 			//Add first item
-			arr[0] = theCollector.ID.ToString();
+			arr[0] = theCollector.Id.ToString();
 			arr[1] = theCollector.Forename;
 			arr[2] = theCollector.Surname;
 			arr[3] = theCollector.Number;

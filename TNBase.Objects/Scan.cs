@@ -11,36 +11,13 @@ namespace TNBase.Objects
         }
 
         public int Id { get; set; }
+
         public int Wallet { get; set; }
-        public string Type { get; set; }
 
-        public ScanTypes ScanType
-        {
-            get
-            {
-                Enum.TryParse<ScanTypes>(Type, out var scanType);
-                return scanType;
-            }
-            set
-            {
-                Type = value.ToString();
-            }
-        }
+        public ScanTypes ScanType { get; set; }
 
-        public WalletTypes WalletType
-        {
-            get
-            {
-                Enum.TryParse<WalletTypes>(WalletTypeValue, out var walletType);
-                return walletType;
-            }
-            set
-            {
-                WalletTypeValue = value.ToString();
-            }
-        }
+        public WalletTypes WalletType { get; set; }
+
         public DateTime Recorded { get; set; }
-
-        public string WalletTypeValue { get; set; }
     }
 }

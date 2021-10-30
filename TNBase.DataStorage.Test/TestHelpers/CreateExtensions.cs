@@ -46,7 +46,7 @@ namespace TNBase.DataStorage.Test.TestHelpers
         {
             Collector temp = new Collector()
             {
-                ID = 1,
+                Id = 1,
                 Forename = "Martin",
                 Surname = "Garix",
                 Number = "23131 2313 232",

@@ -25,13 +25,8 @@ namespace TNBase
 			My.MyProject.Forms.formPrintNotSentWallets.Show();
 		}
 
-		private void formScannedOutTotal_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			My.MyProject.Forms.formMain.ScanOutDone();
-		}
 		public FormScannedOutTotal()
 		{
-			FormClosed += formScannedOutTotal_FormClosed;
 			InitializeComponent();
 		}
 	}

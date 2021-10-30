@@ -10,12 +10,10 @@ namespace TNBase.DataStorage.Test
     public class ServiceLayer_Tests
     {
         ServiceLayer serviceLayer;
-        IRepositoryLayer repoLayer;
 
         [TestInitialize]
         public void Setup()
         {
-            repoLayer = new RepositoryLayer();
             var contex = new TNBaseContext("Data Source=:memory:");
             contex.UpdateDatabase();
             serviceLayer = new ServiceLayer(contex);
@@ -62,9 +60,9 @@ namespace TNBase.DataStorage.Test
         private void InsertCollectors()
         {
             // Add some collectors
-            Collector c1 = new Collector() { ID = 1, Number = "01234", Forename = "Ted", Surname = "Dob", Postcodes = "N7N [A-C],N78 [S-T]" };
+            Collector c1 = new Collector() { Number = "01234", Forename = "Ted", Surname = "Dob", Postcodes = "N7N [A-C],N78 [S-T]" };
             serviceLayer.AddCollector(c1);
-            Collector c2 = new Collector() { ID = 1, Number = "02324", Forename = "Yov", Surname = "Vid", Postcodes = "N1BB,N192 [A-C]" };
+            Collector c2 = new Collector() { Number = "02324", Forename = "Yov", Surname = "Vid", Postcodes = "N1BB,N192 [A-C]" };
             serviceLayer.AddCollector(c2);
         }
 
@@ -79,8 +77,8 @@ namespace TNBase.DataStorage.Test
             // Add a deleted listener
             Listener l3 = new Listener() { Title = "Doctor", Forename = "Nigel", Surname = "Sarage", Addr1 = "4 Bad Lane", Addr2 = "Topal", County = "Coart", Postcode = "N7 8DD", Town = "Rhywr", Telephone = "01435 643633", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 3, InOutRecords = new InOutRecords() };
             // TODO (L) Improve/Change the delete method!
-            serviceLayer.SoftDeleteListener(l3, "Test");
             serviceLayer.AddListener(l3);
+            serviceLayer.SoftDeleteListener(l3, "Test");
 
             // Add a paused listener
             Listener l4 = new Listener() { Title = "Mrs", Forename = "Lazy", Surname = "Bones", Addr1 = "4 Bone Road", Addr2 = "Scel", County = "Etal", Postcode = "N19 2DD", Town = "Death", Telephone = "01435 643433", Stock = 3, Info = "", Joined = DateTime.Now.AddDays(-425), MemStickPlayer = false, Magazine = false, Status = ListenerStates.ACTIVE, StatusInfo = "", Wallet = 4, InOutRecords = new InOutRecords() };
@@ -211,7 +209,9 @@ namespace TNBase.DataStorage.Test
         [TestMethod]
         public void ServiceLayer_GetListenerByName()
         {
-            Listener l5 = new Listener() { Title = "Miss", Forename = "Other", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 5 };
+            //Listener l1 = new Listener() { Title = "Mr", Forename = "John", Surname = "Biddle", Addr1 = "1 Park Avenue", Addr2 = "", County = "London", Postcode = "N7 NDF", Town = "Camden", Telephone = "01234 423 232", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = false, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-2), Wallet = 5, InOutRecords = new InOutRecords() };
+            //serviceLayer.AddListener(l1);
+            Listener l5 = new Listener() { Title = "Miss", Forename = "Other", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 5, InOutRecords = new InOutRecords() };
             serviceLayer.AddListener(l5);
 
             Assert.AreEqual(1, serviceLayer.GetListenersByName("John", "Biddle").Count);

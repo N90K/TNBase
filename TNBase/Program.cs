@@ -10,7 +10,7 @@ namespace TNBase
 {
     static class Program
     {
-        public static ServiceProvider ServiceProvider { get; private set; }
+        public static IServiceProvider ServiceProvider { get; private set; }
 
         /// <summary>
         ///  The main entry point for the application.
@@ -36,12 +36,19 @@ namespace TNBase
             var context = (TNBaseContext)ServiceProvider.GetRequiredService<ITNBaseContext>();
             context.UpdateDatabase();
 
-            //serviceLayer.ResumePausedListeners();
-            //serviceLayer.UpdateYearStatsInternal();
-            //serviceLayer.DeleteOverdueDeletedListeners(Settings.Default.MonthsUntilDelete);
+            var serviceLayer = ServiceProvider.GetRequiredService<IServiceLayer>();
+            serviceLayer.ResumePausedListeners();
+            serviceLayer.UpdateYearStatsInternal();
+            serviceLayer.DeleteOverdueDeletedListeners(Settings.Default.MonthsUntilDelete);
 
             var form = ServiceProvider.GetRequiredService<FormMain>();
             Application.Run(form);
+        }
+
+        public static void NewScope()
+        {
+            var scope = ServiceProvider.CreateScope();
+            ServiceProvider = scope.ServiceProvider;
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -49,6 +56,7 @@ namespace TNBase
             var databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resource", "Listeners.s3db");
             services.AddScoped<ITNBaseContext>(s => new TNBaseContext($"Data Source={databasePath}"));
             services.AddScoped<IServiceLayer, ServiceLayer>();
+            services.AddScoped<ScanService>();
 
             services.AddSingleton(s => new DatabaseManagerOptions { DatabasePath = databasePath });
             services.AddScoped<DatabaseManager>();
