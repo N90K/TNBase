@@ -2,6 +2,9 @@
 
 namespace TNBase.Repository.Migrations
 {
+    /// <summary>
+    /// Add magazine wallet type
+    /// </summary>
     public class _1_MagazineStock : SqlMigration
     {
         public _1_MagazineStock(SqliteConnection connection) : base(connection)

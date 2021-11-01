@@ -194,6 +194,7 @@ namespace TNBase
 
                         // Increment scanned out count
                         ModuleScanning.setScannedOut(ModuleScanning.getScannedOut() + 1);
+                        serviceLayer.RecordScan(listener.Wallet, ScanTypes.OUT);
 
                         // Also update the last out time (as we will be updating this listener in a minute with out8 = 1).
                         listener.LastOut = DateTime.Now;
@@ -211,9 +212,6 @@ namespace TNBase
             // Show message and close.
             MessageBox.Show("The " + scannedIn + " wallets you have scanned have been successfully processed." + Environment.NewLine + Environment.NewLine + "You can now load them with memory sticks and place them in GPO mailbags.", ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
             exitMe = true;
-
-            // Update the new week stats
-            ModuleGeneric.UpdateStatsWeek(serviceLayer, true);
 
             this.Close();
         }

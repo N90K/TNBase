@@ -568,13 +568,13 @@ namespace TNBase
             }
         }
 
-        private void ScanOut(WalletTypes walletType, IEnumerable<int> scans = null)
+        private void ScanOut(WalletTypes walletType, IEnumerable<int> scanned = null)
         {
             var listeners = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE);
-            var toScan = listeners.Where(x => x.Magazine && (scans == null || !scans.Contains(x.Wallet))).Select(x => x.Wallet);
+            var toScan = listeners.Where(x => x.Magazine && (scanned == null || !scanned.Contains(x.Wallet))).Select(x => x.Wallet);
 
             var scanForm = new MagazinesScanOutForm();
-            scanForm.Setup("Magazine Scan Out", walletType, toScan, scans);
+            scanForm.Setup("Magazine Scan Out", walletType, toScan, scanned);
 
             if (scanForm.ShowDialog() == DialogResult.OK)
             {

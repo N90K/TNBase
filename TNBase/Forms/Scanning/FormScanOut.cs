@@ -136,7 +136,7 @@ namespace TNBase
         // Close the form and process the wallets.
         public void doClose()
         {
-            ModuleScanning.setScannedOut(scannedOut);
+            ModuleScanning.setScannedOut(ModuleScanning.getScannedOut() + scannedOut);
 
             // Actually process the scanned items!
             for (int i = 0; i <= (lstScanned.Items.Count - 1); i++)

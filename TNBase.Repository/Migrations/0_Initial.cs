@@ -3,6 +3,9 @@ using Microsoft.Data.Sqlite;
 
 namespace TNBase.Repository.Migrations
 {
+    /// <summary>
+    /// Create initial database
+    /// </summary>
     public class _0_Initial : SqlMigration
     {
         public _0_Initial(SqliteConnection connection) : base(connection)

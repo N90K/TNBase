@@ -3,6 +3,9 @@ using Microsoft.Data.Sqlite;
 
 namespace TNBase.Repository.Migrations
 {
+    /// <summary>
+    /// Remove deleted listener's personal data for GDPR purposes
+    /// </summary>
     public class _4_MaskDeletedListeners : SqlMigration
     {
         public _4_MaskDeletedListeners(SqliteConnection connection) : base(connection)
