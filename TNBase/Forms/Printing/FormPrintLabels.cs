@@ -51,7 +51,7 @@ namespace TNBase
 				int myRow = (int) Math.Ceiling((double) ((double)(theIndex + 1) / (double)3)) - 1;
 				int myColumn = (theIndex % 3);
 
-				var initialY = (175 * myRow) + 50;
+				var initialY = (175 * myRow) + 34;
 				var initialX = (myColumn * 240) + Settings.Default.LabelXAdjust;
 				theIndex = theIndex + 1;
 
