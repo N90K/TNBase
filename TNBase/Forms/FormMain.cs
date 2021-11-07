@@ -70,8 +70,9 @@ namespace TNBase
             updateWeekNumber();
 
             // Show version
-            var version = $"V{Application.ProductVersion}";
+            var version = $"v{Application.ProductVersion}";
             lblVersion.Text = version;
+            Text = $"TNBase {version}";
             log.Info($"Loaded {version}");
         }
 
