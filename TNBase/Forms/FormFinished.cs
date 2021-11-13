@@ -12,14 +12,6 @@ namespace TNBase
 		NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
 		bool readyToExit = false;
-		// Exit whole application when closing.
-		private void formFinished_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			if (readyToExit) {
-				log.Info("Application exiting (clean).");
-				Application.Exit();
-			}
-		}
 
 		// On load.
 		private void formFinished_Load(object sender, EventArgs e)
@@ -27,7 +19,6 @@ namespace TNBase
 			ModuleGeneric.saveEndTime();
 
 			// Setup labels.
-			int weeknumb = serviceLayer.GetCurrentWeekNumber();
 			lblStartTime.Text = ModuleGeneric.getStartTimeString();
 			lblFinishTime.Text = ModuleGeneric.getEndTimeString();
 			lblElapsedTime.Text = ModuleGeneric.getElapsedTimeString();
@@ -45,13 +36,12 @@ namespace TNBase
 		{
 			if (readyToExit) {
 				tmrQuit.Enabled = false;
-				Application.Exit();
+				Close();
 			}
 		}
 		public FormFinished()
 		{
 			Load += formFinished_Load;
-			FormClosed += formFinished_FormClosed;
 			InitializeComponent();
 		}
 

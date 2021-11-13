@@ -33,7 +33,7 @@ namespace TNBase
 			log.Trace("Loading form.");
 			lblVersion.Text = $"V{Application.ProductVersion}";
             lblDotNetVer.Text = ".Net " + Environment.Version;
-            Label1.Text = Settings.Default.AssociationName;
+            Label1.Text = Properties.Settings.Default.AssociationName;
 		}
 
         /// <summary>

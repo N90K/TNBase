@@ -13,6 +13,7 @@ using System.Linq;
 using TNBase.Model;
 using Microsoft.Extensions.DependencyInjection;
 using TNBase.Repository;
+using System.Globalization;
 
 namespace TNBase
 {
@@ -32,7 +33,7 @@ namespace TNBase
         /// </summary>
         private void LoadLogo()
         {
-            string logo = Settings.Default.Logo;
+            string logo = Properties.Settings.Default.Logo;
             if (!string.IsNullOrEmpty(logo))
             {
                 try
@@ -61,13 +62,13 @@ namespace TNBase
             LoadLogo();
 
             // Initially update the time labels.
-            updateTimers();
+            UpdateTimers();
 
             // Set an initial hint.
             updateHints();
 
             // Update week number.
-            updateWeekNumber();
+            UpdateWeekNumber();
 
             // Show version
             var version = $"v{Application.ProductVersion}";
@@ -76,12 +77,19 @@ namespace TNBase
             log.Info($"Loaded {version}");
         }
 
-        private void updateWeekNumber()
+        private void UpdateWeekNumber()
         {
-            lblWeekNumber.Text = "Week: " + serviceLayer.GetCurrentWeekNumber();
+            var weekNumber = ISOWeek.GetWeekOfYear(DateTime.UtcNow).ToString();
+
+            if (Properties.Settings.Default.ShowLegacyWeekNumber)
+            {
+                weekNumber += $" ({serviceLayer.GetCurrentWeekNumber()})";
+            }
+
+            lblWeekNumber.Text = $"Week: {weekNumber}";
         }
 
-        private void updateTimers()
+        private void UpdateTimers()
         {
             // Update the time labels with the following formatting.
             lblDate.Text = System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
@@ -91,13 +99,15 @@ namespace TNBase
         private void timerUpdate_Tick(object sender, EventArgs e)
         {
             // Update time labels every second.
-            updateTimers();
+            UpdateTimers();
         }
 
         // Show the finished form when exiting.
         private void formMain_FormClosing(System.Object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            My.MyProject.Forms.formFinished.Show();
+            Visible = false;
+            var form = new FormFinished();
+            form.ShowDialog();
         }
 
         private void updateHints()
@@ -165,7 +175,7 @@ namespace TNBase
             backupDialog.Filter = "SQLite Database Files|*.s3db";
             backupDialog.CheckPathExists = true;
             backupDialog.InitialDirectory = "A:\\";
-            backupDialog.OverwritePrompt = Settings.Default.OverwritePrompt;
+            backupDialog.OverwritePrompt = Properties.Settings.Default.OverwritePrompt;
 
             // If successful, backup the database.
             if (backupDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -228,8 +238,8 @@ namespace TNBase
         private void BtnFinished_Click(object sender, EventArgs e)
         {
             // Show a load of forms automatically.!
-            if ((Settings.Default.OnlyAutoPrintOnSat &&
-                DateTime.UtcNow.DayOfWeek.Equals(DayOfWeek.Saturday)) || !Settings.Default.OnlyAutoPrintOnSat)
+            if ((Properties.Settings.Default.OnlyAutoPrintOnSat &&
+                DateTime.UtcNow.DayOfWeek.Equals(DayOfWeek.Saturday)) || !Properties.Settings.Default.OnlyAutoPrintOnSat)
             {
                 List<String> warnings = new List<String>();
 
@@ -284,13 +294,7 @@ namespace TNBase
                 }
             }
 
-            ShowFinishedForm();
-        }
-
-        private void ShowFinishedForm()
-        {
-            My.MyProject.Forms.formFinished.Show();
-            this.Close();
+            Close();
         }
 
         private void BtnBrowse_Click(object sender, EventArgs e)

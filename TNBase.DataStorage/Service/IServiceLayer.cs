@@ -13,7 +13,6 @@ namespace TNBase.DataStorage
         int GetHighestYearNumber();
         int GetCurrentWeekNumber();
         bool IsNewStatsWeek();
-        int GetNewWeekNumber();
         bool UpdateListenerInOuts();
         int GetMemorySticksOnLoan();
         void DeleteOverdueDeletedListeners(int months);

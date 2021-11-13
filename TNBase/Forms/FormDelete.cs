@@ -58,7 +58,7 @@ namespace TNBase.Forms
         private void UpdateMemStickReceived()
         {
             toolStripStatusLabel.Text = CanPermanentlyDelete ?
-                $"Listener has no player or wallets, therefore it's data will be deleted and the wallet number reserved for {Settings.Default.MonthsUntilDelete} months" :
+                $"Listener has no player or wallets, therefore it's data will be deleted and the wallet number reserved for {Properties.Settings.Default.MonthsUntilDelete} months" :
                 "Listener's data will be deleted automatically once the player and all wallets are returned";
             btnDelete.Text = CanPermanentlyDelete ? "Permanently delete" : "Mark for deletion";
         }

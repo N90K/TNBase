@@ -10,6 +10,7 @@ using NLog;
 
 using TNBase.Objects;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 
 namespace TNBase
 {
@@ -231,18 +232,18 @@ namespace TNBase
 
         private void AddHorribleHeaders()
         {
-            int weekNumber = serviceLayer.GetCurrentWeekNumber();
+            var ins = new List<string>();
+            var outs = new List<string>();
 
-            for (int count = 1; count <= 4; count++)
+            for (int week = 0; week < 4; week++)
             {
-                int final = weekNumber - (4 - count);
-                lstBrowse.Columns.Add(final + " (IN)");
+                int weekNumber = ISOWeek.GetWeekOfYear(DateTime.UtcNow.AddDays(week * -7));
+                ins.Add($"{weekNumber} (IN)");
+                outs.Add($"{weekNumber} (OUT)");
             }
-            for (int count = 1; count <= 4; count++)
-            {
-                int final = weekNumber - (4 - count);
-                lstBrowse.Columns.Add(final + " (OUT)");
-            }
+
+            lstBrowse.Columns.AddRange(ins.Select(x => new ColumnHeader { Text = x }).ToArray());
+            lstBrowse.Columns.AddRange(outs.Select(x => new ColumnHeader { Text = x }).ToArray());
         }
 
         private void formBrowse_Load(object sender, EventArgs e)

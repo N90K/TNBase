@@ -52,7 +52,7 @@ namespace TNBase
 				int myColumn = (theIndex % 3);
 
 				var initialY = (175 * myRow) + 34;
-				var initialX = (myColumn * 240) + Settings.Default.LabelXAdjust;
+				var initialX = (myColumn * 240) + Properties.Settings.Default.LabelXAdjust;
 				theIndex = theIndex + 1;
 
 				g.DrawString("First Class Post", reportFontSmallBoldTitles, Brushes.Black, initialX, initialY);

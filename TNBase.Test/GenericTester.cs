@@ -31,7 +31,7 @@ namespace TNBase.Test
             mockServiceLayer.Setup(x => x.GetCurrentListenerCount()).Returns(10);
             mockServiceLayer.Setup(x => x.GetListenersByStatus(It.IsAny<ListenerStates>())).Returns(new List<Listener>() { });
             mockServiceLayer.Setup(x => x.WeeklyStatExistsForWeek(100)).Returns(newStatsWeek);
-            mockServiceLayer.Setup(x => x.GetCurrentWeekStats()).Returns(new WeeklyStats());
+            mockServiceLayer.Setup(x => x.GetCurrentWeekStats()).Returns(new WeeklyStats { WeekNumber = 100 });
 
             ModuleGeneric.UpdateStatsWeek(mockServiceLayer.Object, expectingInOuts);
 

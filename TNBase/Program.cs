@@ -49,7 +49,7 @@ namespace TNBase
             var serviceLayer = ServiceProvider.GetRequiredService<IServiceLayer>();
             serviceLayer.ResumePausedListeners();
             serviceLayer.UpdateYearStatsInternal();
-            serviceLayer.DeleteOverdueDeletedListeners(Settings.Default.MonthsUntilDelete);
+            serviceLayer.DeleteOverdueDeletedListeners(Properties.Settings.Default.MonthsUntilDelete);
 
             var form = ServiceProvider.GetRequiredService<FormMain>();
             Application.Run(form);

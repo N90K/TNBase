@@ -70,7 +70,6 @@ namespace TNBase.DataStorage
         public static void UpdateStatsWeek(IServiceLayer DBServiceLayer, bool updateInOuts = false)
         {
             WeeklyStats stats = DBServiceLayer.GetCurrentWeekStats();
-            stats.WeekNumber = DBServiceLayer.GetCurrentWeekNumber();
             stats.ScannedIn = stats.ScannedIn + ModuleScanning.getScannedIn();
             stats.ScannedOut = stats.ScannedOut + ModuleScanning.getScannedOut();
             stats.TotalListeners = DBServiceLayer.GetCurrentListenerCount();

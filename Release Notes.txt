@@ -1,6 +1,15 @@
-1.7.0
+1.7.2
+- Closed #35 - Warn user when listener's address has changed
+- Closed #15 - Adjusted address label print position
+- Closed #20 - Implemented standard weeks of the year numbering system
+- Included application icon with installation
+- Fixed #16 - scan-in history value is twice as high (existing records were adjusted)
+- Fixed Scan Finished dialogue is not shown on application close (introduced in v1.7.1)
+
+1.7.1
 - Upgraded to the latest .Net 5 Framework
 - Created installation package (.msi file)
+- Removed restriction to scan in and out on Saturday only unless enabled
 
 1.6.6.1
 - Fixed #9 - Second wallet of deleted listener is accepted

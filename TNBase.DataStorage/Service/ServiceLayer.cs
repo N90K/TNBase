@@ -661,11 +661,6 @@ namespace TNBase.DataStorage
             return weekNumber;
         }
 
-        public int GetNewWeekNumber()
-        {
-            return GetCurrentWeekNumber() + 1;
-        }
-
         public int GetCurrentListenerCount()
         {
             return context.Listeners.ToList().Where(x => !x.Status.Equals(ListenerStates.DELETED)).Count();
@@ -676,7 +671,7 @@ namespace TNBase.DataStorage
             int currentWeekNumber = GetCurrentWeekNumber();
             WeeklyStats forTheWeek = context.WeeklyStats.ToList().Where(x => x.WeekNumber == currentWeekNumber).FirstOrDefault();
 
-            return (forTheWeek != null ? forTheWeek : new WeeklyStats());
+            return (forTheWeek != null ? forTheWeek : new WeeklyStats { WeekNumber = currentWeekNumber });
         }
 
         public bool RecordScan(int wallet, ScanTypes scanType)

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using TNBase.Objects;
 using TNBase.DataStorage;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 
 namespace TNBase
 {
@@ -52,18 +53,25 @@ namespace TNBase
 			// Set the weekly stats.
 			lstWeekStats.Items.Clear();
             List<WeeklyStats> weeklyStats = serviceLayer.GetWeeklyStatsForYear(year);
-			for (int index = 0; index <= weeklyStats.Count - 1; index++) {
-				WeeklyStats weekStats = weeklyStats[index];
+
+			foreach (var weekStats in weeklyStats) {
+				var weekNumber = ISOWeek.GetWeekOfYear(weekStats.WeekDate).ToString();
+
+				if (Properties.Settings.Default.ShowLegacyWeekNumber)
+				{
+					weekNumber += $" ({weekStats.WeekNumber})";
+				}
+
 				//Add items in the listview
 				string[] arr = new string[7];
-				ListViewItem itm = null;
-				arr[0] = weekStats.WeekNumber.ToString();
+				arr[0] = weekNumber;
 				arr[1] = weekStats.ScannedIn.ToString();
 				arr[2] = weekStats.ScannedOut.ToString();
 				arr[3] = weekStats.PausedCount.ToString();
 				arr[4] = weekStats.WeekDate.ToNiceStr();
 				arr[5] = weekStats.TotalListeners.ToString();
-				itm = new ListViewItem(arr);
+
+				var itm = new ListViewItem(arr);
 				lstWeekStats.Items.Add(itm);
 			}
 		}

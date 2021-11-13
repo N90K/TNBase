@@ -54,7 +54,7 @@ namespace TNBase
 			Graphics g = e.Graphics;
 			int pageHeight = e.MarginBounds.Height;
 
-			g.DrawString(Settings.Default.AssociationName, reportFont, Brushes.Black, 100, 80, StringFormat.GenericTypographic);
+			g.DrawString(Properties.Settings.Default.AssociationName, reportFont, Brushes.Black, 100, 80, StringFormat.GenericTypographic);
 
 			string nowDate = null;
 			nowDate = System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);

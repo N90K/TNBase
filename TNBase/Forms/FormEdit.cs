@@ -347,15 +347,10 @@ namespace TNBase
 
         private void updateEditHeaders()
         {
-            int weekNumber = serviceLayer.GetCurrentWeekNumber();
-            lstInOut.Columns[8].Text = weekNumber.ToString();
-            lstInOut.Columns[7].Text = (weekNumber - 1).ToString();
-            lstInOut.Columns[6].Text = (weekNumber - 2).ToString();
-            lstInOut.Columns[5].Text = (weekNumber - 3).ToString();
-            lstInOut.Columns[4].Text = (weekNumber - 4).ToString();
-            lstInOut.Columns[3].Text = (weekNumber - 5).ToString();
-            lstInOut.Columns[2].Text = (weekNumber - 6).ToString();
-            lstInOut.Columns[1].Text = (weekNumber - 7).ToString();
+            for (int week = 0; week < 8; week++)
+            {
+                lstInOut.Columns[8 - week].Text = ISOWeek.GetWeekOfYear(DateTime.UtcNow.AddDays(week * -7)).ToString();
+            }
         }
 
         public FormEdit()

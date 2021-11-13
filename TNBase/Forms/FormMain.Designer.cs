@@ -864,7 +864,7 @@ namespace TNBase
 			FormClosing += formMain_FormClosing;
 			Load += formMain_Load;
 			InitializeComponent();
-            Label1.Text = Settings.Default.AssociationName;
+            Label1.Text = Properties.Settings.Default.AssociationName;
 		}
 
         private ToolStripMenuItem logViewToolStripMenuItem;
