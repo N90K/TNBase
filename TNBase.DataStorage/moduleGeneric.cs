@@ -67,11 +67,11 @@ namespace TNBase.DataStorage
         /// <summary>
         /// Update weekly stats
         /// </summary>
-        public static void UpdateStatsWeek(IServiceLayer DBServiceLayer, bool updateInOuts = false)
+        public static void UpdateStatsWeek(IServiceLayer DBServiceLayer)
         {
             WeeklyStats stats = DBServiceLayer.GetCurrentWeekStats();
-            stats.ScannedIn = stats.ScannedIn + ModuleScanning.getScannedIn();
-            stats.ScannedOut = stats.ScannedOut + ModuleScanning.getScannedOut();
+            stats.ScannedIn += ModuleScanning.getScannedIn();
+            stats.ScannedOut += ModuleScanning.getScannedOut();
             stats.TotalListeners = DBServiceLayer.GetCurrentListenerCount();
             stats.PausedCount = DBServiceLayer.GetListenersByStatus(ListenerStates.PAUSED).Count;
 
@@ -83,13 +83,6 @@ namespace TNBase.DataStorage
             else
             {
                 DBServiceLayer.SaveWeekStats(stats);
-            }
-
-            // Update the in/outs if required
-            if (updateInOuts)
-            {
-                // Update in/out stats.
-                DBServiceLayer.UpdateListenerInOuts();
             }
         }
     }

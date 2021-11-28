@@ -26,7 +26,7 @@ namespace TNBase
 			lblScannedOut.Text = ModuleScanning.getScannedOut().ToString();
 
             // Update the stats week
-            ModuleGeneric.UpdateStatsWeek(serviceLayer, false);
+            ModuleGeneric.UpdateStatsWeek(serviceLayer);
 
 			readyToExit = true;
 		}

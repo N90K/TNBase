@@ -213,6 +213,8 @@ namespace TNBase
             MessageBox.Show("The " + scannedIn + " wallets you have scanned have been successfully processed." + Environment.NewLine + Environment.NewLine + "You can now load them with memory sticks and place them in GPO mailbags.", ModuleGeneric.getAppShortName(), MessageBoxButtons.OK);
             exitMe = true;
 
+            serviceLayer.UpdateListenerInOuts();
+
             this.Close();
         }
 

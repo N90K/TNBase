@@ -24,7 +24,7 @@ namespace TNBase.Test
         /// </summary>
         /// <param name="newStatsWeek">Is it a new stats week?</param>
         /// <param name="expectingInOuts">Should the in out bits be updated?</param>
-        private void WeekStatTest_Base(bool newStatsWeek, bool expectingInOuts)
+        private void WeekStatTest_Base(bool newStatsWeek)
         {
             Mock<IServiceLayer> mockServiceLayer = new Mock<IServiceLayer>();
             mockServiceLayer.Setup(x => x.GetCurrentWeekNumber()).Returns(100);
@@ -33,7 +33,7 @@ namespace TNBase.Test
             mockServiceLayer.Setup(x => x.WeeklyStatExistsForWeek(100)).Returns(newStatsWeek);
             mockServiceLayer.Setup(x => x.GetCurrentWeekStats()).Returns(new WeeklyStats { WeekNumber = 100 });
 
-            ModuleGeneric.UpdateStatsWeek(mockServiceLayer.Object, expectingInOuts);
+            ModuleGeneric.UpdateStatsWeek(mockServiceLayer.Object);
 
             // Check we add/update the week stats
             if (newStatsWeek)
@@ -44,36 +44,18 @@ namespace TNBase.Test
             {
                 mockServiceLayer.Verify(x => x.SaveWeekStats(It.Is<WeeklyStats>(y => y.TotalListeners == 10 && y.WeekNumber == 100 && y.PausedCount == 0)), Times.Once);
             }
-
-            // Check we call to update in outs
-            if (expectingInOuts)
-            {
-                mockServiceLayer.Verify(x => x.UpdateListenerInOuts(), Times.Once);
-            }
-            else
-            {
-                mockServiceLayer.Verify(x => x.UpdateListenerInOuts(), Times.Never);
-            }
         }
 
-        /// <summary>
-        /// Test our week stat update method.
-        /// We should update the in/outs
-        /// </summary>
         [TestMethod]
-        public void Generic_WeekStatSave_UpdateInOuts()
+        public void Generic_WeekStatSave_SaveWeekStats()
         {
-            WeekStatTest_Base(false, true);
+            WeekStatTest_Base(false);
         }
 
-        /// <summary>
-        /// Test our week stat update method.
-        /// We shouldn't update the in/outs
-        /// </summary>
         [TestMethod]
-        public void Generic_WeekStatSave_DontUpdateInOuts()
+        public void Generic_WeekStatSave_UpdateWeeklyStats()
         {
-            WeekStatTest_Base(true, false);
+            WeekStatTest_Base(true);
         }
     }
 }
