@@ -1,3 +1,6 @@
+1.7.3
+- Fixed #52 - Scanning out doesn't take scanned in wallets into account
+
 1.7.2
 - Closed #35 - Warn user when listener's address has changed
 - Closed #15 - Adjusted address label print position
