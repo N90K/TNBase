@@ -1,3 +1,7 @@
+1.7.4
+- Fixed application log output file is missing
+- Added a link to log output form the Log Viewer
+
 1.7.3
 - Fixed #52 - Scanning out doesn't take scanned in wallets into account
 
