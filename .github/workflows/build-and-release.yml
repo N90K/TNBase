@@ -2,7 +2,6 @@ name: Build and release TNBase Application
 
 on:
   push:
-    tags: ['v[0-9].[0-9]+.[0-9]+']
     branches: [ master ]
   pull_request:
     branches: [ master ]
@@ -16,6 +15,12 @@ env:
 jobs:
   build:
     runs-on: windows-2019    
+    
+    outputs:
+      require_release: ${{ steps.release.outputs.require }}
+      release_version: ${{ steps.release.outputs.version }}
+      release_notes: ${{ steps.release.outputs.notes }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,20 +33,56 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: Execute unit tests
-        run: dotnet test -c $env:Configuration
-        
+        run: dotnet test -c $env:Configuration  
+          
+      - name: 'Get previous version tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        with:
+          fallback: v0.0.0
+          
+      - name: Set release version
+        id: release
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $version = ''
+            $notes = ''
+            foreach ($line in Get-Content '.\Release Notes.txt')
+            {
+                if($line -match '^[\d\.]+$'){
+                    if($version -ne ''){
+                        break
+                    }
+                    $version = $line
+                }
+                elseif($line.Trim() -ne ''){
+                    $notes += "$line `n"
+                }
+            }
+            $newVersion = "v$version" -ne '${{ steps.previoustag.outputs.tag }}'
+            Write-Output "::set-output name=require::$newVersion"
+            Write-Output "::set-output name=version::$version"
+            Write-Output "::set-output name=notes::$notes"
+          azPSVersion: "latest"
+          failOnStandardError: true
+
+      - name: echo
+        run: echo '${{ steps.release.outputs.require }}'
+
   release:
     needs: build
-    if: startsWith(github.ref, 'refs/tags/v') && github.event.base_ref=='refs/heads/master'
+    if: needs.build.outputs.require_release == 'True'
     runs-on: windows-2019 
+
+    env:
+        FILE_NAME: "TNBase-v${{ needs.build.outputs.release_version }}${{ github.ref == 'refs/heads/master' && '' || '-prerelease' }}-win-x64.msi"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
-      - name: Set release version
-        run: echo ("RELEASE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/v', '')) >> $env:GITHUB_ENV
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
@@ -52,14 +93,14 @@ jobs:
       - name: Apply version number
         run: |
           $project = Get-Content $env:Setup_Project
-          $project = $project.Replace('"ProductVersion" = "8:1.0.0"', '"ProductVersion" = "8:${{ env.RELEASE_VERSION }}"')
+          $project = $project.Replace('"ProductVersion" = "8:1.0.0"', '"ProductVersion" = "8:${{ needs.build.outputs.release_version }}"')
           $productCode = '"ProductCode" = "8:{' + [guid]::NewGuid().toString().ToUpper()
           $project = $project -replace '"ProductCode" = "8:{[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}', $productCode
           $packageCode = '"PackageCode" = "8:{' + [guid]::NewGuid().toString().ToUpper()
           $project = $project -replace '"PackageCode" = "8:{[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}', $packageCode
           Set-Content $env:Setup_Project -Value $project
           $project = Get-Content $env:Application_Project
-          $project = $project.Replace("<Version>1.0.0</Version>", "<Version>${{ env.RELEASE_VERSION }}</Version>")
+          $project = $project.Replace("<Version>1.0.0</Version>", "<Version>${{ needs.build.outputs.release_version }}</Version>")
           Set-Content $env:Application_Project -Value $project
 
       - name: Setup VS Dev Environment
@@ -69,18 +110,21 @@ jobs:
         run: devenv $env:Solution_Name /build $env:Configuration  /Project $env:Setup_Project
           
       - name: Rename setup file
-        run: Rename-Item -Path "TNBase.Setup\Release\TNBase.Setup.msi" -NewName "TNBase-v${{ env.RELEASE_VERSION }}-win-x64.msi"
-        
-      - name: Release Changelog Builder
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v2.5.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: Rename-Item -Path "TNBase.Setup\Release\TNBase.Setup.msi" -NewName "${{ env.FILE_NAME }}"
+
+      - name: Publish prerelease artefact
+        uses: actions/upload-artifact@v3
+        if: github.ref != 'refs/heads/master'
+        with:
+          name: '${{ env.FILE_NAME }}'
+          path: 'TNBase.Setup/Release/${{ env.FILE_NAME }}'
     
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: github.ref == 'refs/heads/master'
         with:
-          body: ${{steps.build_changelog.outputs.changelog}}
+          tag_name: 'v${{ needs.build.outputs.release_version }}'
+          body: ${{ needs.build.outputs.release_notes }}
           files: |
-            TNBase.Setup/Release/TNBase-v${{ env.RELEASE_VERSION }}-win-x64.msi
+            TNBase.Setup/Release/${{ env.FILE_NAME }}
             Release Notes.txt
