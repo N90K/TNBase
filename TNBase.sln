@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase", "TNBase\TNBase.csproj", "{CAA1C567-2970-437F-9CF2-A50677AA2F21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase", "src\TNBase\TNBase.csproj", "{CAA1C567-2970-437F-9CF2-A50677AA2F21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.DataStorage", "TNBase.DataStorage\TNBase.DataStorage.csproj", "{1B25649F-1CE3-4764-92DE-73E2EFCE8789}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.DataStorage", "src\TNBase.DataStorage\TNBase.DataStorage.csproj", "{1B25649F-1CE3-4764-92DE-73E2EFCE8789}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Objects", "TNBase.Objects\TNBase.Objects.csproj", "{3ABEC2D1-048C-4FAD-A649-C686A2E91C82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Objects", "src\TNBase.Objects\TNBase.Objects.csproj", "{3ABEC2D1-048C-4FAD-A649-C686A2E91C82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.DataStorage.Test", "TNBase.DataStorage.Test\TNBase.DataStorage.Test.csproj", "{A04F15CC-4CB4-4D66-97FF-5FDF0D99D16E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.DataStorage.Test", "test\TNBase.DataStorage.Test\TNBase.DataStorage.Test.csproj", "{A04F15CC-4CB4-4D66-97FF-5FDF0D99D16E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Objects.Test", "TNBase.Objects.Test\TNBase.Objects.Test.csproj", "{FC7B620D-FAD7-492E-9879-6138A8E1836F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Objects.Test", "test\TNBase.Objects.Test\TNBase.Objects.Test.csproj", "{FC7B620D-FAD7-492E-9879-6138A8E1836F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Test", "TNBase.Test\TNBase.Test.csproj", "{00008951-7EE7-42A6-BCA4-78A676FE8668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Test", "test\TNBase.Test\TNBase.Test.csproj", "{00008951-7EE7-42A6-BCA4-78A676FE8668}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6783E69C-32D4-46C6-9C1C-99F06003FF5E}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,13 +23,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Release Notes.txt = Release Notes.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Infrastructure", "TNBase.Infrastructure\TNBase.Infrastructure.csproj", "{68828006-18C6-4F24-AD61-5350C524C093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Infrastructure", "src\TNBase.Infrastructure\TNBase.Infrastructure.csproj", "{68828006-18C6-4F24-AD61-5350C524C093}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository", "TNBase.Repository\TNBase.Repository.csproj", "{6C10F681-0C55-459B-A800-298BBEEF0139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository", "src\TNBase.Repository\TNBase.Repository.csproj", "{6C10F681-0C55-459B-A800-298BBEEF0139}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository.UnitTests", "TNBase.Repository.UnitTests\TNBase.Repository.UnitTests.csproj", "{53541575-8084-4F63-A93B-595493A2C115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TNBase.Repository.UnitTests", "test\TNBase.Repository.UnitTests\TNBase.Repository.UnitTests.csproj", "{53541575-8084-4F63-A93B-595493A2C115}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TNBase.Setup", "TNBase.Setup\TNBase.Setup.vdproj", "{C8C2837C-F9B9-4427-B838-D7EEADA44CAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4992B161-EF12-4509-9EE9-5CDAD3E7319B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A396CAB4-D3E2-4DFE-8804-68C0376F9E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +112,17 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CAA1C567-2970-437F-9CF2-A50677AA2F21} = {4992B161-EF12-4509-9EE9-5CDAD3E7319B}
+		{1B25649F-1CE3-4764-92DE-73E2EFCE8789} = {4992B161-EF12-4509-9EE9-5CDAD3E7319B}
+		{3ABEC2D1-048C-4FAD-A649-C686A2E91C82} = {4992B161-EF12-4509-9EE9-5CDAD3E7319B}
+		{A04F15CC-4CB4-4D66-97FF-5FDF0D99D16E} = {A396CAB4-D3E2-4DFE-8804-68C0376F9E47}
+		{FC7B620D-FAD7-492E-9879-6138A8E1836F} = {A396CAB4-D3E2-4DFE-8804-68C0376F9E47}
+		{00008951-7EE7-42A6-BCA4-78A676FE8668} = {A396CAB4-D3E2-4DFE-8804-68C0376F9E47}
+		{68828006-18C6-4F24-AD61-5350C524C093} = {4992B161-EF12-4509-9EE9-5CDAD3E7319B}
+		{6C10F681-0C55-459B-A800-298BBEEF0139} = {4992B161-EF12-4509-9EE9-5CDAD3E7319B}
+		{53541575-8084-4F63-A93B-595493A2C115} = {A396CAB4-D3E2-4DFE-8804-68C0376F9E47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1EB9D2E-CD1D-4DBD-8222-010A8BEF080C}

@@ -4,9 +4,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj" />
-    <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
-    <ProjectReference Include="..\TNBase.Repository\TNBase.Repository.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.DataStorage\TNBase.DataStorage.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Objects\TNBase.Objects.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Repository\TNBase.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Listeners.s3db">

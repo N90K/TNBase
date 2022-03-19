@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
-    <ProjectReference Include="..\TNBase.Repository\TNBase.Repository.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Objects\TNBase.Objects.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Repository\TNBase.Repository.csproj" />
   </ItemGroup>
 
 </Project>

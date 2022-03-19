@@ -124,7 +124,7 @@
         {
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3FD1C062BB03467E949DA0ADBFA36ACB"
             {
-            "SourcePath" = "8:..\\TNBase\\Resource\\SBTNA_logo_icon.ico"
+            "SourcePath" = "8:..\\src\\TNBase\\Resource\\SBTNA_logo_icon.ico"
             "TargetName" = "8:SBTNA_logo_icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_2722D3E86DAD474996D20EA2FF2049FD"
@@ -760,7 +760,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1C917F09BC0E4542BF1958BC51AAF1C4"
             {
-            "SourcePath" = "8:..\\TNBase\\obj\\Release\\net5.0-windows\\win-x64\\apphost.exe"
+            "SourcePath" = "8:..\\src\\TNBase\\obj\\Release\\net5.0-windows\\win-x64\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2722D3E86DAD474996D20EA2FF2049FD"

@@ -9,10 +9,10 @@
     <Description>TNBase is a database application used to keep the records of listeners and the postal pouches for talking newspapers.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TNBase.DataStorage\TNBase.DataStorage.csproj" />
-    <ProjectReference Include="..\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
-    <ProjectReference Include="..\TNBase.Objects\TNBase.Objects.csproj" />
-    <ProjectReference Include="..\TNBase.Repository\TNBase.Repository.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.DataStorage\TNBase.DataStorage.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Objects\TNBase.Objects.csproj" />
+    <ProjectReference Include="..\..\src\TNBase.Repository\TNBase.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
