@@ -9,6 +9,12 @@ namespace TNBase.Forms.Scanning
 {
     public partial class MagazinesScanOutForm : Form
     {
+        private enum ScanStatus
+        {
+            Ok,
+            Error
+        }
+
         private List<Scan> scans = new List<Scan>();
         private List<int> walletsToScan;
         private WalletTypes walletType;
@@ -60,7 +66,7 @@ namespace TNBase.Forms.Scanning
                         WalletType = walletType
                     });
                     ModuleSounds.PlayBeep();
-                    lblStatus.Text = $"Last scanned {wallet}.";
+                    SetStatusMessage($"Last scanned {wallet}.", ScanStatus.Ok);
                     UpdateScanList(wallet);
                 }
                 else
@@ -68,22 +74,28 @@ namespace TNBase.Forms.Scanning
                     if (scans.Any(x => x.Wallet == wallet))
                     {
                         ModuleSounds.DoubleBeep();
-                        lblStatus.Text = $"Duplicate! Wallet {wallet} already scanned.";
+                        SetStatusMessage($"Duplicate! Wallet {wallet} already scanned.", ScanStatus.Error);
                     }
                     else
                     {
                         ModuleSounds.BeepInvalid();
-                        lblStatus.Text = $"Not Found! Wallet {wallet} should not be scanned.";
+                        SetStatusMessage($"Not Found! Wallet {wallet} should not be scanned.", ScanStatus.Error);
                     }
                 }
             }
             else
             {
                 ModuleSounds.BeepInvalid();
-                lblStatus.Text = $"Invalid barcode {txtScannerInput.Text}.";
+                SetStatusMessage($"Invalid barcode {txtScannerInput.Text}.", ScanStatus.Error);
             }
 
             txtScannerInput.Text = "";
+        }
+
+        private void SetStatusMessage(string message, ScanStatus status)
+        {
+            lblStatus.Text = message;
+            lblStatus.ForeColor = status == ScanStatus.Ok ? System.Drawing.SystemColors.ControlDarkDark : System.Drawing.Color.Red;
         }
 
         private void UpdateScanList(int lastScaned)

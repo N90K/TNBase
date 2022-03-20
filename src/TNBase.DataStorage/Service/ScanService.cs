@@ -15,8 +15,6 @@ namespace TNBase.DataStorage
             this.context = context;
         }
 
-        public SQLiteConnection Connection { get; }
-
         public void AddScans(IEnumerable<Scan> scans)
         {
             foreach (var scan in scans)

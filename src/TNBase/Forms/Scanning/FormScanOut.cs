@@ -22,16 +22,16 @@ namespace TNBase
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                doScanAction();
+                DoScanAction();
             }
         }
 
-        private void doScanAction()
+        private void DoScanAction()
         {
-            if ((Information.IsNumeric(txtScannerInput.Text)))
+            if (Information.IsNumeric(txtScannerInput.Text))
             {
                 ModuleSounds.PlayBeep();
-                addScanItem(int.Parse(txtScannerInput.Text));
+                AddScanItem(int.Parse(txtScannerInput.Text));
             }
             else if (txtScannerInput.Text.Length > 0)
             {
@@ -40,22 +40,18 @@ namespace TNBase
             }
         }
 
-        public void addScanItem(int walletId)
+        public void AddScanItem(int walletId)
         {
             bool scannedAlready = false;
-
-            // Actually process the scanned items!
-            for (int i = 0; i <= (lstScanned.Items.Count - 1); i++)
+            foreach (ListViewItem item in lstScanned.Items)
             {
-                ListViewItem item = lstScanned.Items[i];
-                // If the item exists, just update the quantity.
-                if ((item.SubItems[0].Text == walletId.ToString()))
+                if (item.SubItems[0].Text == walletId.ToString())
                 {
                     scannedAlready = true;
                 }
             }
 
-            if ((walletId == lastScanned | scannedAlready))
+            if (walletId == lastScanned | scannedAlready)
             {
                 txtScannerInput.Text = "";
                 ModuleSounds.PlayTwoOut();
@@ -63,44 +59,39 @@ namespace TNBase
             }
             else
             {
-                addListItem(walletId);
+                AddListItem(walletId);
             }
             lastScanned = walletId;
         }
 
-        public void addListItem(int walletId)
+        public void AddListItem(int walletId)
         {
-            // If there is no duplicate, just add the item.
-            string[] arr = new string[3];
-            ListViewItem itm = null;
+            string[] subItems = new string[3];
 
-            //Add first item
-            arr[0] = walletId.ToString();
-            arr[1] = "1";
+            subItems[0] = walletId.ToString();
+            subItems[1] = "1";
 
-            itm = new ListViewItem(arr);
-            lstScanned.Items.Add(itm);
+            lstScanned.Items.Add(new ListViewItem(subItems));
 
             txtScannerInput.Text = "";
-            scannedOut = scannedOut + 1;
+            scannedOut++;
 
-            // Focus list item properly.
             lstScanned.Focus();
             lstScanned.Items[lstScanned.Items.Count - 1].Selected = true;
             lstScanned.Items[lstScanned.Items.Count - 1].Focused = true;
             lstScanned.Items[lstScanned.Items.Count - 1].EnsureVisible();
             txtScannerInput.Focus();
 
-            // Process and play a second beep.
             Task.Delay(100).Wait();
+
             var theListener = serviceLayer.GetListenerById(walletId);
-            if (((theListener == null)))
+            if (theListener == null)
             {
                 ModuleSounds.PlayNotInUse();
             }
             else
             {
-                if (theListener.Status == ListenerStates.ACTIVE & (theListener.Joined > DateTime.Now.AddDays(-6) & theListener.Stock == 3))
+                if (theListener.Status == ListenerStates.ACTIVE && theListener.Joined > DateTime.Now.AddDays(-6) && theListener.Stock == 3)
                 {
                     ModuleSounds.PlayNew();
                 }
@@ -117,7 +108,6 @@ namespace TNBase
 
         private void btnFinished_Click(object sender, EventArgs e)
         {
-            // Show scanned form.
             My.MyProject.Forms.formScannedOutTotal.Show();
             My.MyProject.Forms.formScannedOutTotal.setup(scannedOut);
         }
@@ -134,7 +124,7 @@ namespace TNBase
         }
 
         // Close the form and process the wallets.
-        public void doClose()
+        public void DoClose()
         {
             ModuleScanning.setScannedOut(ModuleScanning.getScannedOut() + scannedOut);
 

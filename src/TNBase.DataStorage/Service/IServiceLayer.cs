@@ -91,6 +91,6 @@ namespace TNBase.DataStorage
         /// <summary>
         /// Scan methods
         /// </summary>
-        bool RecordScan(int wallet, ScanTypes scanType);
+        void RecordScan(int wallet, ScanTypes scanType);
     }
 }

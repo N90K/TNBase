@@ -9,6 +9,12 @@ namespace TNBase.Forms.Scanning
 {
     public partial class MagazinesScanInForm : Form
     {
+        private enum ScanStatus
+        {
+            Ok,
+            Error
+        }
+
         private readonly List<Scan> scans = new List<Scan>();
         private ScanTypes scanType;
         private WalletTypes walletType;
@@ -88,18 +94,18 @@ namespace TNBase.Forms.Scanning
                     if (count > 1)
                     {
                         ModuleSounds.DoubleBeep();
-                        lblStatus.Text = $"Repeat scan for wallet {wallet}.";
+                        SetStatusMessage($"Repeat scan for wallet {wallet}.", ScanStatus.Error);
                     }
                     else
                     {
                         ModuleSounds.PlayBeep();
-                        lblStatus.Text = $"Last scanned {wallet}.";
+                        SetStatusMessage($"Last scanned {wallet}.", ScanStatus.Ok);
                     }
                 }
                 else
                 {
                     ModuleSounds.PlayNotInUse();
-                    lblStatus.Text = $"Wallet {wallet} not in use.";
+                    SetStatusMessage($"Wallet {wallet} not in use.", ScanStatus.Error);
                 }
 
                 UpdateScanList(wallet);
@@ -107,10 +113,16 @@ namespace TNBase.Forms.Scanning
             else
             {
                 ModuleSounds.BeepInvalid();
-                lblStatus.Text = $"Invalid barcode {txtScannerInput.Text}.";
+                SetStatusMessage($"Invalid barcode {txtScannerInput.Text}.", ScanStatus.Error);
             }
 
             txtScannerInput.Text = "";
+        }
+
+        private void SetStatusMessage(string message, ScanStatus status)
+        {
+            lblStatus.Text = message;
+            lblStatus.ForeColor = status == ScanStatus.Ok ? System.Drawing.SystemColors.ControlDarkDark : System.Drawing.Color.Red;
         }
 
         private void UpdateScanList(int lastScaned)

@@ -674,15 +674,17 @@ namespace TNBase.DataStorage
             return (forTheWeek != null ? forTheWeek : new WeeklyStats { WeekNumber = currentWeekNumber });
         }
 
-        public bool RecordScan(int wallet, ScanTypes scanType)
+        public void RecordScan(int wallet, ScanTypes scanType)
         {
-            Scan tempScan = new Scan();
-            tempScan.Wallet = wallet;
-            tempScan.ScanType = scanType;
+            var scan = new Scan
+            {
+                Wallet = wallet,
+                ScanType = scanType,
+                Recorded = DateTime.UtcNow
+            };
 
-            context.Scans.Add(tempScan);
+            context.Scans.Add(scan);
             context.SaveChanges();
-            return true;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TNBase
 		private void btnFinished_Click(object sender, EventArgs e)
 		{
 			this.Close();
-			My.MyProject.Forms.formScanOut.doClose();
+			My.MyProject.Forms.formScanOut.DoClose();
 
 			// Show birthdays form.
 			My.MyProject.Forms.formPrintBirthdays.Show();
