@@ -120,18 +120,6 @@ namespace TNBase
             }
         }
 
-        private DateTime? GetBirthdayValue()
-        {
-            if (chkNoBirthday.Checked)
-            {
-                return null;
-            }
-
-            var day = cbxBirthdayDay.SelectedIndex + 1;
-            var month = cbxBirthdayMonth.SelectedIndex + 1;
-            return new DateTime(DateTime.Now.Year, month, day);
-        }
-
         public FormAddFull()
         {
             InitializeComponent();

@@ -11,7 +11,7 @@ namespace TNBase
 {
     public partial class FormAddMini
     {
-        private Logger log = LogManager.GetCurrentClassLogger();
+        private readonly Logger log = LogManager.GetCurrentClassLogger();
         private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         private bool preventClose;
 
@@ -25,28 +25,25 @@ namespace TNBase
             }
             else
             {
-                // Check Name exists
-                List<Listener> theListeners = new List<Listener>();
                 log.Trace("Looking up listeners by name and surname.");
-                theListeners = serviceLayer.GetListenersByName(txtForename.Text, txtSurname.Text, comboTitle.Text);
+                var listeners = serviceLayer.GetListenersByName(txtForename.Text, txtSurname.Text, comboTitle.Text);
 
                 // Check for results.
-                if ((theListeners != null) & theListeners.Count > 0)
+                if ((listeners != null) & listeners.Count > 0)
                 {
-                    // If its just one form.
-                    string dataString = null;
-                    if (theListeners.Count == 1)
+                    if (listeners.Count == 1)
                     {
                         // Look up data.
-                        Listener theListener = theListeners[0];
-                        dataString = theListener.FormatListenerData();
+                        Listener theListener = listeners[0];
+                        // If its just one form.
+                        string dataString = theListener.FormatListenerData();
 
                         // Show prompt.
                         DialogResult result = MessageBox.Show("There would appear to be another listener with the same name. Is this a duplicate?" + Environment.NewLine + Environment.NewLine + dataString + Environment.NewLine + "Press [Y] if this is a duplicate or [N] otherwise.", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
                         if (result == DialogResult.No)
                         {
                             // Show the form.
-                            showFullForm();
+                            ShowFullForm();
                         }
                         else if (result == DialogResult.Yes)
                         {
@@ -60,12 +57,12 @@ namespace TNBase
                         log.Trace("Multiple duplicates, displaying choice form.");
                         Interaction.MsgBox("Multiple Listeners with this Forename and Surname have been found. Please review the Listeners and cancel if a duplicate exists.");
 
-                        showDuplicateForm(theListeners);
+                        ShowDuplicateForm(listeners);
                     }
                 }
                 else
                 {
-                    showFullForm();
+                    ShowFullForm();
                 }
             }
         }
@@ -85,14 +82,14 @@ namespace TNBase
         /// <summary>
         /// Show the full add form
         /// </summary>
-        private void showFullForm()
+        private void ShowFullForm()
         {
             FormAddFull form = new FormAddFull();
             form.Setup(comboTitle.Text, txtSurname.Text, txtForename.Text);
             form.ShowDialog();
         }
 
-        private void showDuplicateForm(List<Listener> theListeners)
+        private void ShowDuplicateForm(List<Listener> theListeners)
         {
             FormDuplicates form = new FormDuplicates();
 
@@ -118,7 +115,7 @@ namespace TNBase
 
         private void comboTitle_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (comboTitle.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(comboTitle.Text))
             {
                 errorProvider.SetError(comboTitle, "Please set the title");
                 e.Cancel = true;

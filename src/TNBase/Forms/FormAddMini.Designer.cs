@@ -53,8 +53,9 @@ namespace TNBase
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(23, 20);
+            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label1.Location = new System.Drawing.Point(34, 33);
+            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(309, 33);
             this.Label1.TabIndex = 1;
@@ -62,21 +63,24 @@ namespace TNBase
             // 
             // comboTitle
             // 
-            this.comboTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboTitle.FormattingEnabled = true;
             this.errorProvider.SetIconAlignment(this.comboTitle, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
-            this.comboTitle.Location = new System.Drawing.Point(29, 60);
+            this.comboTitle.Location = new System.Drawing.Point(34, 69);
+            this.comboTitle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboTitle.Name = "comboTitle";
-            this.comboTitle.Size = new System.Drawing.Size(413, 41);
+            this.comboTitle.Size = new System.Drawing.Size(309, 32);
             this.comboTitle.TabIndex = 1;
             this.comboTitle.Validating += new System.ComponentModel.CancelEventHandler(this.comboTitle_Validating);
             // 
             // Label2
             // 
             this.Label2.AutoSize = true;
-            this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(27, 123);
+            this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label2.Location = new System.Drawing.Point(34, 198);
+            this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(133, 33);
             this.Label2.TabIndex = 2;
@@ -84,31 +88,34 @@ namespace TNBase
             // 
             // txtSurname
             // 
-            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.errorProvider.SetIconAlignment(this.txtSurname, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
-            this.txtSurname.Location = new System.Drawing.Point(33, 159);
+            this.txtSurname.Location = new System.Drawing.Point(34, 234);
+            this.txtSurname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSurname.MaxLength = 50;
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(409, 40);
-            this.txtSurname.TabIndex = 2;
+            this.txtSurname.Size = new System.Drawing.Size(481, 29);
+            this.txtSurname.TabIndex = 3;
             this.txtSurname.Validating += new System.ComponentModel.CancelEventHandler(this.txtSurname_Validating);
             // 
             // txtForename
             // 
-            this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.errorProvider.SetIconAlignment(this.txtForename, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
-            this.txtForename.Location = new System.Drawing.Point(33, 271);
+            this.txtForename.Location = new System.Drawing.Point(34, 154);
+            this.txtForename.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtForename.MaxLength = 50;
             this.txtForename.Name = "txtForename";
-            this.txtForename.Size = new System.Drawing.Size(409, 40);
-            this.txtForename.TabIndex = 3;
+            this.txtForename.Size = new System.Drawing.Size(481, 29);
+            this.txtForename.TabIndex = 2;
             this.txtForename.Validating += new System.ComponentModel.CancelEventHandler(this.txtForename_Validating);
             // 
             // Label3
             // 
             this.Label3.AutoSize = true;
-            this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(27, 235);
+            this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label3.Location = new System.Drawing.Point(34, 118);
+            this.Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(148, 33);
             this.Label3.TabIndex = 3;
@@ -118,10 +125,11 @@ namespace TNBase
             // 
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnFinished.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinished.Location = new System.Drawing.Point(127, 354);
+            this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFinished.Location = new System.Drawing.Point(146, 318);
+            this.btnFinished.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFinished.Name = "btnFinished";
-            this.btnFinished.Size = new System.Drawing.Size(223, 67);
+            this.btnFinished.Size = new System.Drawing.Size(260, 77);
             this.btnFinished.TabIndex = 4;
             this.btnFinished.Text = "Continue";
             this.btnFinished.UseVisualStyleBackColor = false;
@@ -135,10 +143,10 @@ namespace TNBase
             // FormAddMini
             // 
             this.AcceptButton = this.btnFinished;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(482, 451);
+            this.ClientSize = new System.Drawing.Size(551, 421);
             this.Controls.Add(this.btnFinished);
             this.Controls.Add(this.txtForename);
             this.Controls.Add(this.Label3);
@@ -148,6 +156,7 @@ namespace TNBase
             this.Controls.Add(this.Label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddMini";

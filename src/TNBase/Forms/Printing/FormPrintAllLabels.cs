@@ -79,7 +79,7 @@ namespace TNBase
 				theIndex = theIndex + 1;
 
 				g.DrawString("First Class Post", reportFontSmallBoldTitles, Brushes.Black, initialX, initialY);
-				g.DrawString(myListener.Title + ". " + myListener.Forename + " " + myListener.Surname, reportFontSmall, Brushes.Black, initialX, initialY + 16 + 4);
+				g.DrawString(myListener.Title + " " + myListener.Forename + " " + myListener.Surname, reportFontSmall, Brushes.Black, initialX, initialY + 16 + 4);
 				g.DrawString(myListener.Addr1, reportFontSmall, Brushes.Black, initialX, initialY + 32 + 4);
 				g.DrawString(myListener.Addr2, reportFontSmall, Brushes.Black, initialX, initialY + 48 + 4);
 				g.DrawString(myListener.Town + ", " + myListener.Postcode, reportFontSmall, Brushes.Black, initialX, initialY + 66 + 4);
