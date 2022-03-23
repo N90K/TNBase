@@ -66,9 +66,6 @@ jobs:
           azPSVersion: "latest"
           failOnStandardError: true
 
-      - name: echo
-        run: echo '${{ steps.release.outputs.require }}'
-
   release:
     needs: build
     if: needs.build.outputs.require_release == 'True'
@@ -109,23 +106,36 @@ jobs:
 
       - name: Create installation package
         run: devenv $env:Solution_Name /build $env:Configuration  /Project $env:Setup_Project
-          
+
+      - name: Build file name
+        id: file
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $suffix = ''
+            if('pull_request' -eq '${{ github.event_name }}') {
+              $suffix = '-prerelease'
+            }
+            Write-Output "::set-output name=name::TNBase-v${{ needs.build.outputs.release_version }}$suffix-win-x64.msi"
+          azPSVersion: "latest"
+          failOnStandardError: true
+
       - name: Rename setup file
-        run: Rename-Item -Path "TNBase.Setup\Release\TNBase.Setup.msi" -NewName "${{ env.FILE_NAME }}"
+        run: Rename-Item -Path "TNBase.Setup\Release\TNBase.Setup.msi" -NewName "${{ steps.file.outputs.name }}"
 
       - name: Publish prerelease artefact
         uses: actions/upload-artifact@v3
         if: github.ref != 'refs/heads/master'
         with:
-          name: '${{ env.FILE_NAME }}'
-          path: 'TNBase.Setup/Release/${{ env.FILE_NAME }}'
+          name: '${{ steps.file.outputs.name }}'
+          path: 'TNBase.Setup/Release/${{ steps.file.outputs.name }}'
     
       - name: Release
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/master'
         with:
           tag_name: 'v${{ needs.build.outputs.release_version }}'
-          body: ${{ needs.build.outputs.release_notes }}
+          body: '${{ needs.build.outputs.release_notes }}'
           files: |
-            TNBase.Setup/Release/${{ env.FILE_NAME }}
-            Release Notes.txt
+            'TNBase.Setup/Release/${{ steps.file.outputs.name }}'
+            'Release Notes.txt'
