@@ -56,7 +56,7 @@ jobs:
                     $version = $line
                 }
                 elseif($line.Trim() -ne ''){
-                    $notes += "$line `n"
+                    $notes += "$line %0A"
                 }
             }
             $newVersion = "v$version" -ne '${{ steps.previoustag.outputs.tag }}'
@@ -70,9 +70,6 @@ jobs:
     needs: build
     if: needs.build.outputs.require_release == 'True'
     runs-on: windows-2019 
-
-    env:
-        FILE_NAME: "TNBase-v${{ needs.build.outputs.release_version }}${{ github.ref == 'refs/heads/master' && '' || '-prerelease' }}-win-x64.msi"
 
     steps:
       - name: Checkout
@@ -129,7 +126,7 @@ jobs:
         with:
           name: '${{ steps.file.outputs.name }}'
           path: 'TNBase.Setup/Release/${{ steps.file.outputs.name }}'
-    
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/master'
@@ -137,5 +134,5 @@ jobs:
           tag_name: 'v${{ needs.build.outputs.release_version }}'
           body: '${{ needs.build.outputs.release_notes }}'
           files: |
-            'TNBase.Setup/Release/${{ steps.file.outputs.name }}'
-            'Release Notes.txt'
+            TNBase.Setup/Release/${{ steps.file.outputs.name }}
+            Release Notes.txt
