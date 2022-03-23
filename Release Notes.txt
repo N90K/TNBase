@@ -1,3 +1,10 @@
+1.7.5
+- Fixed installation fails to upgrade existing DLL files
+- Closed #56 - Show magazine scan in and out errors in red
+- Closed #37 - Changed Stats label for average number of listeners
+- Closed #68 - Made improvements to the Add Listener forms
+- Closed #51 - Made adjustments to the address label printing
+
 1.7.4
 - Fixed application log output file is missing
 - Added a link to log output form the Log Viewer
