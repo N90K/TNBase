@@ -50,11 +50,11 @@ namespace TNBase
 
         private void printLabelDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Font reportFont = new System.Drawing.Font("Times New Roman", 24, FontStyle.Bold);
-            Font reportFontSmall = new System.Drawing.Font("Times New Roman", 12);
-            Font reportFontSmallBold = new System.Drawing.Font("Times New Roman", 14, FontStyle.Bold);
-            Font reportFontSmallBoldTitles = new System.Drawing.Font("Times New Roman", 16, FontStyle.Bold);
-            Font reportFontBigBoldTitles = new System.Drawing.Font("Times New Roman", 20, FontStyle.Bold);
+            Font reportFont = new Font("Times New Roman", 24, FontStyle.Bold);
+            Font reportFontSmall = new Font("Times New Roman", 12);
+            Font reportFontSmallBold = new Font("Times New Roman", 14, FontStyle.Bold);
+            Font reportFontSmallBoldTitles = new Font("Times New Roman", 16, FontStyle.Bold);
+            Font reportFontBigBoldTitles = new Font("Times New Roman", 20, FontStyle.Bold);
 
             Graphics g = e.Graphics;
             var lineHeight = 16;
@@ -69,7 +69,7 @@ namespace TNBase
             int theIndex = 0;
 
             int min = Math.Min(theListeners.Count, 3 * 6);
-            min = min - 1;
+            min--;
 
             for (int value = 0; value <= min; value++)
             {
@@ -77,9 +77,9 @@ namespace TNBase
                 int myColumn = (value % 3);
                 Listener myListener = theListeners[0];
 
-                var initialY = (175 * myRow) + 50;
-                var initialX = (myColumn * 240) + Properties.Settings.Default.LabelXAdjust;
-                theIndex = theIndex + 1;
+                var initialY = (183 * myRow) + 43;
+                var initialX = (myColumn * 260) + Properties.Settings.Default.LabelXAdjust;
+                theIndex++;
 
                 var addressLines = new List<string>
                 {

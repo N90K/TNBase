@@ -38,11 +38,11 @@ namespace TNBase
 
         private void printLabelDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Font reportFont = new System.Drawing.Font("Times New Roman", 24, FontStyle.Bold);
-            Font reportFontSmall = new System.Drawing.Font("Times New Roman", 12);
-            Font reportFontSmallBold = new System.Drawing.Font("Times New Roman", 14, FontStyle.Bold);
-            Font reportFontSmallBoldTitles = new System.Drawing.Font("Times New Roman", 16, FontStyle.Bold);
-            Font reportFontBigBoldTitles = new System.Drawing.Font("Times New Roman", 20, FontStyle.Bold);
+            Font reportFont = new Font("Times New Roman", 24, FontStyle.Bold);
+            Font reportFontSmall = new Font("Times New Roman", 12);
+            Font reportFontSmallBold = new Font("Times New Roman", 14, FontStyle.Bold);
+            Font reportFontSmallBoldTitles = new Font("Times New Roman", 16, FontStyle.Bold);
+            Font reportFontBigBoldTitles = new Font("Times New Roman", 20, FontStyle.Bold);
 
             Graphics g = e.Graphics;
             var lineHeight = 16;
@@ -65,8 +65,8 @@ namespace TNBase
                 int myRow = (int)Math.Ceiling((double)((double)(theIndex + 1) / (double)3)) - 1;
                 int myColumn = (theIndex % 3);
 
-                var initialY = (175 * myRow) + 40;
-                var initialX = (myColumn * 240) + Properties.Settings.Default.LabelXAdjust;
+                var initialY = (183 * myRow) + 43;
+                var initialX = (myColumn * 260) + Properties.Settings.Default.LabelXAdjust;
                 theIndex++;
 
                 g.DrawString("First Class Post", reportFontSmallBoldTitles, Brushes.Black, initialX, initialY);
