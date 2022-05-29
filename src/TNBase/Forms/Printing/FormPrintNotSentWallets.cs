@@ -9,7 +9,8 @@ namespace TNBase
 {
     public partial class FormPrintNotSentWallets
 	{
-		List<Listener> theListeners = new List<Listener>();
+        private const int itemsPerPage = 7;
+        List<Listener> theListeners = new List<Listener>();
 		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
 		int totalCount = 0;
 		int currentPageNumber = 0;
@@ -33,7 +34,7 @@ namespace TNBase
 		{
 			SetInitial();
 
-			totalPages = (int) Math.Ceiling((double) totalCount / 5);
+			totalPages = (int) Math.Ceiling((double) totalCount / itemsPerPage);
 			if (totalPages == 0) {
 				totalPages = 1;
 			}
@@ -64,15 +65,15 @@ namespace TNBase
 
 			g.DrawString("Wallets that have not been sent this week due to listener stock levels.", reportFontSmall, Brushes.Black, 170, 130, StringFormat.GenericTypographic);
 
-			if (theListeners.Count > 5) {
+			if (theListeners.Count > itemsPerPage) {
 				e.HasMorePages = true;
 			}
-			currentPageNumber = currentPageNumber + 1;
+			currentPageNumber++;
 
-			int min = Math.Min(theListeners.Count, 5);
-			min = min - 1;
+			int min = Math.Min(theListeners.Count, itemsPerPage);
+			min--;
 
-			int gap = 140;
+			int gap = 100;
 			int start = 220;
 
 			for (int value = 0; value <= min; value++) {
@@ -81,7 +82,7 @@ namespace TNBase
 				g.DrawString(theListener.Wallet + ". " + theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmallBold, Brushes.Black, 100, start + (gap * value));
 
 				string telephoneStr = theListener.Telephone;
-				if ((string.IsNullOrEmpty(telephoneStr))) {
+				if (string.IsNullOrEmpty(telephoneStr)) {
 					telephoneStr = "Telephone unknown.";
 				}
 				g.DrawString("TEL: " + telephoneStr, reportFontSmall, Brushes.Black, 550, start + (gap * value));
@@ -94,9 +95,6 @@ namespace TNBase
 
                 g.DrawString("Last sent: " + lastOutStr, reportFontSmallBold, Brushes.Black, 550, start + (gap * value) + 50);
 
-
-                g.DrawString("Status: " + theListener.Status, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 75);
-
 				theListeners.RemoveAt(0);
 			}
 
@@ -106,7 +104,7 @@ namespace TNBase
 			g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 970);
 
 			// VB is stupid.... have to reset this so its back when you actually print it!
-			if (!(e.HasMorePages)) {
+			if (!e.HasMorePages) {
 				SetInitial();
 			}
 		}

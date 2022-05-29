@@ -44,34 +44,30 @@ namespace TNBase
 
 		private void printStoppedWalletsDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
 		{
-			Font reportFont = new System.Drawing.Font("Times New Roman", 24, FontStyle.Bold);
-			Font reportFontSmall = new System.Drawing.Font("Times New Roman", 14);
-			Font reportFontSmallBold = new System.Drawing.Font("Times New Roman", 14, FontStyle.Bold);
-			Font reportFontSmallBoldTitles = new System.Drawing.Font("Times New Roman", 16, FontStyle.Bold);
+			Font reportFont = new Font("Times New Roman", 24, FontStyle.Bold);
+			Font reportFontSmall = new Font("Times New Roman", 14);
+			Font reportFontSmallBold = new Font("Times New Roman", 14, FontStyle.Bold);
+			Font reportFontSmallBoldTitles = new Font("Times New Roman", 16, FontStyle.Bold);
 			Graphics g = e.Graphics;
 			int pageHeight = e.MarginBounds.Height;
 
-			g.DrawString("Inactive listeners this week.", reportFont, Brushes.Black, 260, 80, StringFormat.GenericTypographic);
+			g.DrawString("Paused Wallet List", reportFont, Brushes.Black, 260, 80, StringFormat.GenericTypographic);
+           
+			string nowDate = DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
+            DateTime tempDate = DateTime.Now.AddDays(6);
+            string weekDate = tempDate.ToString(ModuleGeneric.DATE_FORMAT);
 
-			string nowDate = null;
-			string weekDate = null;
-			nowDate = System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
-
-			DateTime tempDate = default(DateTime);
-			tempDate = DateTime.Now.AddDays(6);
-			weekDate = tempDate.ToString(ModuleGeneric.DATE_FORMAT);
-
-			g.DrawString("Listeners inactive in the next six days (" + nowDate + " to " + weekDate + ").", reportFontSmall, Brushes.Black, 180, 130, StringFormat.GenericTypographic);
+            g.DrawString("Listeners inactive in the next six days (" + nowDate + " to " + weekDate + ").", reportFontSmall, Brushes.Black, 180, 130, StringFormat.GenericTypographic);
 
 			if (theListeners.Count > 5) {
 				e.HasMorePages = true;
 			} else {
 				e.HasMorePages = false;
 			}
-			currentPageNumber = currentPageNumber + 1;
+			currentPageNumber++;
 
 			int min = Math.Min(theListeners.Count, 5);
-			min = min - 1;
+			min--;
 
 			int gap = 140;
 			int start = 220;
@@ -82,34 +78,11 @@ namespace TNBase
 				g.DrawString(theListener.Wallet + ". " + theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmallBold, Brushes.Black, 100, start + (gap * value));
 
 				string telephoneStr = theListener.Telephone;
-				if ((string.IsNullOrEmpty(telephoneStr))) {
+				if (string.IsNullOrEmpty(telephoneStr)) {
 					telephoneStr = "Telephone unknown.";
 				}
+
 				g.DrawString("TEL: " + telephoneStr, reportFontSmall, Brushes.Black, 550, start + (gap * value));
-
-				string lineastr = "";
-				if (!(string.IsNullOrEmpty(theListener.Addr2))) {
-					lineastr = theListener.Addr1 + ", " + theListener.Addr2;
-				} else {
-					lineastr = theListener.Addr1;
-				}
-
-				string linebstr = "";
-				if (!(string.IsNullOrEmpty(theListener.Town))) {
-					linebstr = theListener.County;
-					if (!(string.IsNullOrEmpty(theListener.County))) {
-						linebstr = linebstr + ", " + theListener.County;
-					}
-				} else {
-					if (!(string.IsNullOrEmpty(theListener.County))) {
-						linebstr = theListener.County;
-					}
-				}
-
-				g.DrawString(lineastr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 25);
-				g.DrawString(linebstr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 50);
-				g.DrawString(theListener.Postcode, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 75);
-
 				g.DrawString("DOB: " + theListener.BirthdayText, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
 				g.DrawString("Resume date: " + theListener.GetResumeDateString(), reportFontSmallBold, Brushes.Black, 550, start + (gap * value) + 50);
 
@@ -117,10 +90,10 @@ namespace TNBase
 			}
 
 			g.DrawString("Number of Listeners: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 950);
-			g.DrawString("Printed on " + System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 950);
+			g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 950);
 			g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 970);
 
-			if (!(e.HasMorePages)) {
+			if (!e.HasMorePages) {
 				SetInitial();
 			}
 		}

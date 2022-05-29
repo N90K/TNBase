@@ -109,7 +109,7 @@ namespace TNBase.DataStorage.Test
         [TestMethod]
         public void Stats_UnsentWallets()
         {
-            serviceLayer.GetUnsentListeners().Count.Should().Be(3);
+            serviceLayer.GetUnsentListeners().Count.Should().Be(2);
         }
 
         [Ignore]

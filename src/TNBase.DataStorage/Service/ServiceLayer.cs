@@ -103,7 +103,7 @@ namespace TNBase.DataStorage
 
         public List<Listener> GetUnsentListeners()
         {
-            return context.Listeners.ToList().Where(x => x.InOutRecords.Out8.Equals(0) && !x.Status.Equals(ListenerStates.DELETED)).ToList();
+            return context.Listeners.ToList().Where(x => x.InOutRecords.Out8.Equals(0) && x.Status.Equals(ListenerStates.ACTIVE)).ToList();
         }
 
         public List<Listener> GetRecentlyAddedListeners()

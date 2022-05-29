@@ -8,127 +8,95 @@ using Microsoft.Extensions.DependencyInjection;
 namespace TNBase
 {
     public partial class FormPrintAlphabeticList
-	{
-		List<Listener> theListeners = new List<Listener>();
-		private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
-		int totalCount = 0;
-		int currentPageNumber = 0;
+    {
+        private const int itemsPerPage = 20;
+        List<Listener> theListeners = new List<Listener>();
+        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+        int totalCount = 0;
+        int currentPageNumber = 0;
 
-		int totalPages = 0;
-		private void printDormantDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-		{
-			Font reportFont = new System.Drawing.Font("Times New Roman", 24, FontStyle.Bold);
-			Font reportFontSmall = new System.Drawing.Font("Times New Roman", 14);
-			Font reportFontSmallBold = new System.Drawing.Font("Times New Roman", 14, FontStyle.Bold);
-			Font reportFontSmallBoldTitles = new System.Drawing.Font("Times New Roman", 16, FontStyle.Bold);
-			Graphics g = e.Graphics;
-			int pageHeight = e.MarginBounds.Height;
+        int totalPages = 0;
+        private void printDormantDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Font reportFont = new Font("Times New Roman", 24, FontStyle.Bold);
+            Font reportFontSmall = new Font("Times New Roman", 14);
+            Font reportFontSmallBold = new Font("Times New Roman", 14, FontStyle.Bold);
+            Font reportFontSmallBoldTitles = new Font("Times New Roman", 16, FontStyle.Bold);
+            Graphics g = e.Graphics;
+            int pageHeight = e.MarginBounds.Height;
 
-			g.DrawString("All Listeners (Alphabetic).", reportFont, Brushes.Black, 220, 80, StringFormat.GenericTypographic);
+            g.DrawString("All Listeners (Alphabetic).", reportFont, Brushes.Black, 220, 80, StringFormat.GenericTypographic);
 
-			string nowDate = null;
-			string weekDate = null;
-			nowDate = System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
+            string nowDate = DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
+            DateTime tempDate = DateTime.Now.AddDays(6);
+            string weekDate = tempDate.ToString(ModuleGeneric.DATE_FORMAT);
 
-			DateTime tempDate = default(DateTime);
-			tempDate = DateTime.Now.AddDays(6);
-			weekDate = tempDate.ToString(ModuleGeneric.DATE_FORMAT);
+            g.DrawString("All listeners sorted alphabetically by surname.", reportFontSmall, Brushes.Black, 220, 130, StringFormat.GenericTypographic);
 
-			g.DrawString("All listeners sorted alphabetically by surname.", reportFontSmall, Brushes.Black, 220, 130, StringFormat.GenericTypographic);
+            if (theListeners.Count > itemsPerPage)
+            {
+                e.HasMorePages = true;
+            }
+            currentPageNumber++;
 
-			if (theListeners.Count > 5) {
-				e.HasMorePages = true;
-			}
-			currentPageNumber = currentPageNumber + 1;
+            int min = Math.Min(theListeners.Count, itemsPerPage);
+            min--;
 
-			int min = Math.Min(theListeners.Count, 5);
-			min = min - 1;
+            int gap = 35;
+            int start = 220;
 
-			int gap = 140;
-			int start = 220;
+            for (int value = 0; value <= min; value++)
+            {
+                Listener theListener = theListeners[0];
 
-			for (int value = 0; value <= min; value++) {
-				Listener theListener = theListeners[0];
+                g.DrawString(theListener.Wallet + ". ", reportFontSmall, Brushes.Black, 100, start + (gap * value));
+                g.DrawString(theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmall, Brushes.Black, 160, start + (gap * value));
 
-				g.DrawString(theListener.Wallet + ". " + theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmallBold, Brushes.Black, 100, start + (gap * value));
+                theListeners.RemoveAt(0);
+            }
 
-				string telephoneStr = theListener.Telephone;
-				if ((string.IsNullOrEmpty(telephoneStr))) {
-					telephoneStr = "Telephone unknown.";
-				}
-				g.DrawString("TEL: " + telephoneStr, reportFontSmall, Brushes.Black, 550, start + (gap * value));
+            g.DrawString("Number of Listeners: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 980);
+            g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 980);
+            g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 1000);
 
-				string lineastr = "";
-				if (!(string.IsNullOrEmpty(theListener.Addr2))) {
-					lineastr = theListener.Addr1 + ", " + theListener.Addr2;
-				} else {
-					lineastr = theListener.Addr1;
-				}
+            // VB is stupid.... have to reset this so its back when you actually print it!
+            if (!e.HasMorePages)
+            {
+                SetInitial();
+            }
+        }
 
-				string linebstr = "";
-				if (!(string.IsNullOrEmpty(theListener.Town))) {
-					linebstr = theListener.County;
-					if (!(string.IsNullOrEmpty(theListener.County))) {
-						linebstr = linebstr + ", " + theListener.County;
-					}
-				} else {
-					if (!(string.IsNullOrEmpty(theListener.County))) {
-						linebstr = theListener.County;
-					}
-				}
+        private void SetInitial()
+        {
+            theListeners = serviceLayer.GetAlphabeticList();
+            totalCount = theListeners.Count;
+            currentPageNumber = 0;
+        }
 
-				g.DrawString(lineastr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 25);
-				g.DrawString(linebstr, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 50);
-				g.DrawString(theListener.Postcode, reportFontSmall, Brushes.Black, 150, start + (gap * value) + 75);
+        // Print age analysis form.
+        private void printForm()
+        {
+            SetInitial();
+            totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+            if (totalPages == 0)
+            {
+                totalPages = 1;
+            }
 
-				g.DrawString("DOB: " + theListener.BirthdayText, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 25);
-				g.DrawString("Joined: " + theListener.Joined, reportFontSmall, Brushes.Black, 550, start + (gap * value) + 50);
-				g.DrawString("Mem-Stick Player: " + theListener.MemStickPlayer, reportFontSmall, Brushes.Black, 530, start + (gap * value) + 75);
+            printPreview.Document = printDormantDoc;
+            printPreview.ClientSize = new Size(600, 600);
+            printPreview.ShowDialog();
+        }
 
-				theListeners.RemoveAt(0);
-			}
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-
-			g.DrawString("Number of Listeners: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 950);
-			g.DrawString("Printed on " + System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 950);
-			g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 970);
-
-			// VB is stupid.... have to reset this so its back when you actually print it!
-			if (!(e.HasMorePages)) {
-				SetInitial();
-			}
-		}
-
-		private void SetInitial()
-		{
-			theListeners = serviceLayer.GetAlphabeticList();
-			totalCount = theListeners.Count;
-			currentPageNumber = 0;
-		}
-
-		// Print age analysis form.
-		private void printForm()
-		{
-			SetInitial();
-			totalPages = (int) Math.Ceiling((double) (totalCount / 5));
-			if (totalPages == 0) {
-				totalPages = 1;
-			}
-
-			printPreview.Document = printDormantDoc;
-			printPreview.ClientSize = new Size(600, 600);
-			printPreview.ShowDialog();
-		}
-
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
-
-		public FormPrintAlphabeticList()
-		{
-			InitializeComponent();
-		}
+        public FormPrintAlphabeticList()
+        {
+            InitializeComponent();
+        }
 
         private void formPrintAlphabeticList_Load(object sender, EventArgs e)
         {
@@ -136,5 +104,5 @@ namespace TNBase
             this.Close();
         }
 
-	}
+    }
 }

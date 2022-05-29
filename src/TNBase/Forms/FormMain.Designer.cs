@@ -61,12 +61,10 @@ namespace TNBase
             this.PrintAddressLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListenersInactiveFor30DaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GPOSackLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RecentlyDeletedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StoppedListenersThisWeekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WalletsNotSentOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UnreturnedSpeakersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintAlphabeticSurnameListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StoppedListenerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printCollectorForListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magazineWalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.walletsStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -263,12 +261,10 @@ namespace TNBase
             this.PrintAddressLabelsToolStripMenuItem,
             this.ListenersInactiveFor30DaysToolStripMenuItem,
             this.GPOSackLabelsToolStripMenuItem,
-            this.RecentlyDeletedToolStripMenuItem,
             this.StoppedListenersThisWeekToolStripMenuItem,
             this.WalletsNotSentOutToolStripMenuItem,
             this.UnreturnedSpeakersToolStripMenuItem,
             this.PrintAlphabeticSurnameListToolStripMenuItem,
-            this.StoppedListenerListToolStripMenuItem,
             this.printCollectorForListenerToolStripMenuItem,
             this.magazineWalletsToolStripMenuItem,
             this.walletsStockToolStripMenuItem,
@@ -312,25 +308,18 @@ namespace TNBase
             this.GPOSackLabelsToolStripMenuItem.Text = "Print Sack Labels";
             this.GPOSackLabelsToolStripMenuItem.Click += new System.EventHandler(this.GPOSackLabelsToolStripMenuItem_Click);
             // 
-            // RecentlyDeletedToolStripMenuItem
-            // 
-            this.RecentlyDeletedToolStripMenuItem.Name = "RecentlyDeletedToolStripMenuItem";
-            this.RecentlyDeletedToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
-            this.RecentlyDeletedToolStripMenuItem.Text = "Recently Deleted Listeners";
-            this.RecentlyDeletedToolStripMenuItem.Click += new System.EventHandler(this.RecentlyDeletedToolStripMenuItem_Click);
-            // 
             // StoppedListenersThisWeekToolStripMenuItem
             // 
             this.StoppedListenersThisWeekToolStripMenuItem.Name = "StoppedListenersThisWeekToolStripMenuItem";
             this.StoppedListenersThisWeekToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
-            this.StoppedListenersThisWeekToolStripMenuItem.Text = "Inactive Listeners This Week";
+            this.StoppedListenersThisWeekToolStripMenuItem.Text = "Paused Wallet List";
             this.StoppedListenersThisWeekToolStripMenuItem.Click += new System.EventHandler(this.StoppedListenersThisWeekToolStripMenuItem_Click);
             // 
             // WalletsNotSentOutToolStripMenuItem
             // 
             this.WalletsNotSentOutToolStripMenuItem.Name = "WalletsNotSentOutToolStripMenuItem";
             this.WalletsNotSentOutToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
-            this.WalletsNotSentOutToolStripMenuItem.Text = "Wallets Not Sent Out";
+            this.WalletsNotSentOutToolStripMenuItem.Text = "Unsent Wallets This Week";
             this.WalletsNotSentOutToolStripMenuItem.Click += new System.EventHandler(this.WalletsNotSentOutToolStripMenuItem_Click);
             // 
             // UnreturnedSpeakersToolStripMenuItem
@@ -346,13 +335,6 @@ namespace TNBase
             this.PrintAlphabeticSurnameListToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.PrintAlphabeticSurnameListToolStripMenuItem.Text = "Print Alphabetic (Surname) List";
             this.PrintAlphabeticSurnameListToolStripMenuItem.Click += new System.EventHandler(this.PrintAlphabeticSurnameListToolStripMenuItem_Click);
-            // 
-            // StoppedListenerListToolStripMenuItem
-            // 
-            this.StoppedListenerListToolStripMenuItem.Name = "StoppedListenerListToolStripMenuItem";
-            this.StoppedListenerListToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
-            this.StoppedListenerListToolStripMenuItem.Text = "Stopped Listener List";
-            this.StoppedListenerListToolStripMenuItem.Click += new System.EventHandler(this.StoppedListenersThisWeekToolStripMenuItem_Click);
             // 
             // printCollectorForListenerToolStripMenuItem
             // 
@@ -778,7 +760,6 @@ namespace TNBase
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.menuTop);
-            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -850,13 +831,11 @@ namespace TNBase
         private System.Windows.Forms.ToolStripMenuItem ListenersInactiveFor30DaysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GPOSackLabelsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem RecentlyDeletedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StoppedListenersThisWeekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem WalletsNotSentOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem UnreturnedSpeakersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PrintAlphabeticSurnameListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PrintAllListenerLabelsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem StoppedListenerListToolStripMenuItem;
 		internal System.Windows.Forms.Label lblWeekNumber;
 
 		public FormMain()
