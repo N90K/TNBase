@@ -68,6 +68,7 @@ namespace TNBase
             this.cbxBirthdayDay = new System.Windows.Forms.ComboBox();
             this.cbxBirthdayMonth = new System.Windows.Forms.ComboBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chkOnlineOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,26 +306,26 @@ namespace TNBase
             // 
             this.chkTape.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkTape.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chkTape.Location = new System.Drawing.Point(652, 99);
+            this.chkTape.Location = new System.Drawing.Point(652, 137);
             this.chkTape.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkTape.Name = "chkTape";
             this.chkTape.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkTape.Size = new System.Drawing.Size(287, 43);
             this.chkTape.TabIndex = 18;
-            this.chkTape.Text = "Memory Stick Player Issued?\r\n";
+            this.chkTape.Text = "Memory stick player issued";
             this.chkTape.UseVisualStyleBackColor = true;
             // 
             // chkMagazine
             // 
             this.chkMagazine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkMagazine.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chkMagazine.Location = new System.Drawing.Point(652, 140);
+            this.chkMagazine.Location = new System.Drawing.Point(652, 175);
             this.chkMagazine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkMagazine.Name = "chkMagazine";
             this.chkMagazine.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkMagazine.Size = new System.Drawing.Size(287, 37);
             this.chkMagazine.TabIndex = 19;
-            this.chkMagazine.Text = "Magazine?";
+            this.chkMagazine.Text = "Magazine";
             this.chkMagazine.UseVisualStyleBackColor = true;
             // 
             // Label12
@@ -370,7 +371,6 @@ namespace TNBase
             // 
             this.cbxBirthdayDay.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cbxBirthdayDay.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxBirthdayDay.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbxBirthdayDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxBirthdayDay.Enabled = false;
             this.cbxBirthdayDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -401,6 +401,20 @@ namespace TNBase
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // chkOnlineOnly
+            // 
+            this.chkOnlineOnly.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkOnlineOnly.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkOnlineOnly.Location = new System.Drawing.Point(652, 99);
+            this.chkOnlineOnly.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.chkOnlineOnly.Name = "chkOnlineOnly";
+            this.chkOnlineOnly.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chkOnlineOnly.Size = new System.Drawing.Size(287, 43);
+            this.chkOnlineOnly.TabIndex = 33;
+            this.chkOnlineOnly.Text = "Online only";
+            this.chkOnlineOnly.UseVisualStyleBackColor = true;
+            this.chkOnlineOnly.CheckedChanged += new System.EventHandler(this.chkOnlineOnly_CheckedChanged);
+            // 
             // FormAddFull
             // 
             this.AcceptButton = this.btnFinished;
@@ -409,6 +423,7 @@ namespace TNBase
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1315, 757);
+            this.Controls.Add(this.chkOnlineOnly);
             this.Controls.Add(this.cbxBirthdayMonth);
             this.Controls.Add(this.cbxBirthdayDay);
             this.Controls.Add(this.chkNoBirthday);
@@ -480,5 +495,6 @@ namespace TNBase
         private ComboBox cbxBirthdayDay;
         private ComboBox cbxBirthdayMonth;
         private ErrorProvider errorProvider;
+        internal CheckBox chkOnlineOnly;
     }
 }

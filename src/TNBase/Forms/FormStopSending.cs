@@ -4,6 +4,7 @@ using System.Drawing;
 using TNBase.Objects;
 using TNBase.DataStorage;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Forms;
 
 namespace TNBase
 {
@@ -26,12 +27,19 @@ namespace TNBase
             // Setup some labels
             lblName.Text = theListener.Title + " " + theListener.Forename + " " + theListener.Surname;
             lblWallet.Text = "Wallet: " + theListener.Wallet;
-            lblStatus.Text = theListener.Status.ToString();
+            lblStatus.Text = theListener.OnlineOnly ? "Online-only" : theListener.Status.ToString();
 
             // Add some color
             if (theListener.Status == ListenerStates.DELETED)
             {
                 lblStatus.ForeColor = Color.Red;
+            }
+            else if (theListener.OnlineOnly)
+            {
+                MessageBox.Show("Online-only listeners can't be stopped");
+                startDate.Enabled = false;
+                endDate.Enabled = false;
+                btnFinished.Enabled = false;
             }
             else if (theListener.Status == ListenerStates.ACTIVE)
             {

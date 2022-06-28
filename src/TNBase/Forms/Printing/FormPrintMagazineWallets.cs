@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace TNBase
 {
@@ -28,7 +29,9 @@ namespace TNBase
 
         private void SetInitial()
         {
-            theListeners = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE);
+            theListeners = serviceLayer.GetPostListenersByStatus(ListenerStates.ACTIVE)
+                .Where(x=>x.Magazine).ToList();
+
             theListeners.Sort(new INumbListener());
 
             totalPages = (int)Math.Ceiling((double)theListeners.Count / 40);
@@ -49,9 +52,9 @@ namespace TNBase
 
         private void formPrintMagazineWallets_Load(object sender, EventArgs e)
         {
-			SetInitial();
+            SetInitial();
             printForm();
-			this.Close();
+            this.Close();
         }
 
         private void printMagazineWalletsDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -66,8 +69,9 @@ namespace TNBase
             int pageHeight = e.MarginBounds.Height;
 
             // More page stuff
-            if (theListeners.Count >= 40) {
-				e.HasMorePages = true;
+            if (theListeners.Count >= 40)
+            {
+                e.HasMorePages = true;
             }
             currentPageNumber = currentPageNumber + 1;
 

@@ -35,6 +35,7 @@ namespace TNBase.Objects
         public string Postcode { get; set; }
         public bool WarnOfAddressChange { get; set; }
         public string Telephone { get; set; }
+        public bool OnlineOnly { get; set; }
         public bool MemStickPlayer { get; set; }
         public bool Magazine { get; set; }
         public int? BirthdayDay { get; set; }
@@ -88,7 +89,7 @@ namespace TNBase.Objects
         public bool OwnsWalletsOrEquipment => MemStickPlayer || SentNewsWallets != 0 || SentMagazineWallets != 0;
 
         public bool CanEdit => Status == ListenerStates.ACTIVE || Status == ListenerStates.PAUSED || Status == ListenerStates.DELETED;
-        public bool CanPause => Status == ListenerStates.ACTIVE;
+        public bool CanPause => Status == ListenerStates.ACTIVE && !OnlineOnly;
         public bool CanResume => Status == ListenerStates.PAUSED;
         public bool CanDelete => Status != ListenerStates.DELETED;
         public bool CanRestore => Status == ListenerStates.DELETED;

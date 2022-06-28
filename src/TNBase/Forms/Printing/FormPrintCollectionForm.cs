@@ -24,7 +24,8 @@ namespace TNBase
 			int pageHeight = e.MarginBounds.Height;
 
 			if (deleted) {
-				g.DrawString("Deleted Listener - Please collect Memory Stick player", reportFontMiddle, Brushes.Black, 100, 80, StringFormat.GenericTypographic);
+				var reason = theListener.OnlineOnly ? "Online-Only Listener" : "Deleted Listener";
+				g.DrawString($"{reason} - Please collect Memory Stick player", reportFontMiddle, Brushes.Black, 100, 80, StringFormat.GenericTypographic);
 			} else {
 				g.DrawString("New Listener requires Memory Stick Player", reportFont, Brushes.Black, 100, 80, StringFormat.GenericTypographic);
 			}

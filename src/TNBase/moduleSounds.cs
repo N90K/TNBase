@@ -125,9 +125,15 @@ namespace TNBase
 			PlaySound(sound);
 		}
 
-        internal static void PlayAddressChanged()
-        {
+		internal static void PlayAddressChanged()
+		{
 			string sound = GetResourcesFolder() + "address-changed.wav";
+			PlaySound(sound);
+		}
+
+		internal static void PlayOnlineOnly()
+		{
+			string sound = GetResourcesFolder() + "online-only.wav";
 			PlaySound(sound);
 		}
 	}

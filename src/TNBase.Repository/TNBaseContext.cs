@@ -87,6 +87,8 @@ namespace TNBase.Repository
 
                 entity.Property(e => e.LastOut).HasColumnType("date");
 
+                entity.Property(e => e.OnlineOnly).HasColumnType("bit");
+
                 entity.Property(e => e.Magazine).HasColumnType("bit");
 
                 entity.Property(e => e.MagazineStock)

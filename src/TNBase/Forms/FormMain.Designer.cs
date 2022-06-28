@@ -69,6 +69,7 @@ namespace TNBase
             this.magazineWalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.walletsStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magazineWalletStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlineonlyListenersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatisticsHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -268,7 +269,8 @@ namespace TNBase
             this.printCollectorForListenerToolStripMenuItem,
             this.magazineWalletsToolStripMenuItem,
             this.walletsStockToolStripMenuItem,
-            this.magazineWalletStockToolStripMenuItem});
+            this.magazineWalletStockToolStripMenuItem,
+            this.onlineonlyListenersToolStripMenuItem});
             this.PrintingToolStripMenuItem.Name = "PrintingToolStripMenuItem";
             this.PrintingToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.PrintingToolStripMenuItem.Text = "Prin&ting";
@@ -363,6 +365,13 @@ namespace TNBase
             this.magazineWalletStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.magazineWalletStockToolStripMenuItem.Text = "Magazine Wallet Stock";
             this.magazineWalletStockToolStripMenuItem.Click += new System.EventHandler(this.MagazineWalletStockToolStripMenuItem_Click);
+            // 
+            // onlineonlyListenersToolStripMenuItem
+            // 
+            this.onlineonlyListenersToolStripMenuItem.Name = "onlineonlyListenersToolStripMenuItem";
+            this.onlineonlyListenersToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
+            this.onlineonlyListenersToolStripMenuItem.Text = "Online-only Listeners";
+            this.onlineonlyListenersToolStripMenuItem.Click += new System.EventHandler(this.onlineonlyListenersToolStripMenuItem_Click);
             // 
             // StatisticsHistoryToolStripMenuItem
             // 
@@ -856,5 +865,6 @@ namespace TNBase
         private Button btnMagScanOut;
         private Button btnMagScanIn;
         private ToolStripMenuItem magazineWalletStockToolStripMenuItem;
+        private ToolStripMenuItem onlineonlyListenersToolStripMenuItem;
     }
 }

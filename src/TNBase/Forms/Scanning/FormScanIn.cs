@@ -82,7 +82,11 @@ namespace TNBase
             }
             else
             {
-                if (listener.Status == ListenerStates.PAUSED)
+                if (listener.OnlineOnly)
+                {
+                    ModuleSounds.PlayOnlineOnly();
+                }
+                else if (listener.Status == ListenerStates.PAUSED)
                 {
                     ModuleSounds.PlayStopped();
                 }

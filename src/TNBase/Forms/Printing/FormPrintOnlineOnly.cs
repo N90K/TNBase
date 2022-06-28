@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TNBase
 {
-    public partial class FormPrintAlphabeticList
+    public partial class FormPrintOnlineOnly
     {
         private const int itemsPerPage = 20;
         List<Listener> theListeners = new List<Listener>();
@@ -25,13 +25,13 @@ namespace TNBase
             Graphics g = e.Graphics;
             int pageHeight = e.MarginBounds.Height;
 
-            g.DrawString("All Listeners (Alphabetic).", reportFont, Brushes.Black, 220, 80, StringFormat.GenericTypographic);
+            g.DrawString("Online-only Listeners", reportFont, Brushes.Black, 220, 80, StringFormat.GenericTypographic);
 
             string nowDate = DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT);
             DateTime tempDate = DateTime.Now.AddDays(6);
             string weekDate = tempDate.ToString(ModuleGeneric.DATE_FORMAT);
 
-            g.DrawString("All listeners sorted alphabetically by surname.", reportFontSmall, Brushes.Black, 220, 130, StringFormat.GenericTypographic);
+            g.DrawString("No memory sticks to be sent to these listeners.", reportFontSmall, Brushes.Black, 220, 130, StringFormat.GenericTypographic);
 
             if (theListeners.Count > itemsPerPage)
             {
@@ -49,17 +49,15 @@ namespace TNBase
             {
                 Listener theListener = theListeners[0];
 
-                var star = theListener.OnlineOnly ? "*" : "";
                 g.DrawString(theListener.Wallet + ". ", reportFontSmall, Brushes.Black, 100, start + (gap * value));
-                g.DrawString($"{theListener.Title} {theListener.Forename} {theListener.Surname}{star}", reportFontSmall, Brushes.Black, 160, start + (gap * value));
+                g.DrawString(theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmall, Brushes.Black, 160, start + (gap * value));
 
                 theListeners.RemoveAt(0);
             }
 
-            g.DrawString("*online-only listener", reportFontSmall, Brushes.Black, 100, 950);
-            g.DrawString("Number of Listeners: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 1000);
-            g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 1000);
-            g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 1020);
+            g.DrawString("Number of Listeners: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 980);
+            g.DrawString("Printed on " + DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 980);
+            g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 1000);
 
             // VB is stupid.... have to reset this so its back when you actually print it!
             if (!e.HasMorePages)
@@ -70,7 +68,7 @@ namespace TNBase
 
         private void SetInitial()
         {
-            theListeners = serviceLayer.GetAlphabeticList();
+            theListeners = serviceLayer.GetOnlineOnlyListenersOrderedBySurname();
             totalCount = theListeners.Count;
             currentPageNumber = 0;
         }
@@ -95,7 +93,7 @@ namespace TNBase
             this.Close();
         }
 
-        public FormPrintAlphabeticList()
+        public FormPrintOnlineOnly()
         {
             InitializeComponent();
         }

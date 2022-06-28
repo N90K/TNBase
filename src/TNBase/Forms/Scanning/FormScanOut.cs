@@ -89,6 +89,10 @@ namespace TNBase
             {
                 ModuleSounds.PlayNotInUse();
             }
+            else if (theListener.OnlineOnly)
+            {
+                ModuleSounds.PlayOnlineOnly();
+            }
             else
             {
                 if (theListener.Status == ListenerStates.ACTIVE && theListener.Joined > DateTime.Now.AddDays(-6) && theListener.Stock == 3)

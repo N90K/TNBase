@@ -60,6 +60,11 @@ namespace TNBase.DataStorage
             return context.Listeners.Where(x => !x.Status.Equals(ListenerStates.DELETED)).OrderBy(x => x.Surname).ToList();
         }
 
+        public List<Listener> GetOnlineOnlyListenersOrderedBySurname()
+        {
+            return context.Listeners.Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.OnlineOnly).OrderBy(x => x.Surname).ToList();
+        }
+
         public List<Listener> GetNextWeekBirthdays()
         {
             var list = context.Listeners.ToList().Where(x =>
@@ -103,7 +108,7 @@ namespace TNBase.DataStorage
 
         public List<Listener> GetUnsentListeners()
         {
-            return context.Listeners.ToList().Where(x => x.InOutRecords.Out8.Equals(0) && x.Status.Equals(ListenerStates.ACTIVE)).ToList();
+            return context.Listeners.ToList().Where(x => x.InOutRecords.Out8.Equals(0) && x.Status.Equals(ListenerStates.ACTIVE) && !x.OnlineOnly).ToList();
         }
 
         public List<Listener> GetRecentlyAddedListeners()
@@ -143,12 +148,16 @@ namespace TNBase.DataStorage
 
         public List<Listener> GetUnreturnedSpeakerListeners()
         {
-            return context.Listeners.Where(x => x.Status.Equals(ListenerStates.DELETED) && x.MemStickPlayer).ToList();
+            return context.Listeners.Where(x => (x.Status.Equals(ListenerStates.DELETED) || x.OnlineOnly) && x.MemStickPlayer).ToList();
         }
 
         public List<Listener> GetActiveListenersNotScannedIn()
         {
-            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.InOutRecords.In7.Equals(0) && x.Stock > 0).ToList();
+            return context.Listeners.ToList().Where(x =>
+                x.Status.Equals(ListenerStates.ACTIVE) &&
+                !x.OnlineOnly &&
+                x.InOutRecords.In7.Equals(0) &&
+                x.Stock > 0).ToList();
         }
 
         public bool AddCollector(Collector collector)
@@ -227,6 +236,11 @@ namespace TNBase.DataStorage
             return context.Listeners.ToList();
         }
 
+        public List<Listener> GetPostListeners()
+        {
+            return context.Listeners.Where(x => !x.OnlineOnly).ToList();
+        }
+
         public bool DeleteCollector(Collector collector)
         {
             context.Collectors.Remove(collector);
@@ -282,6 +296,11 @@ namespace TNBase.DataStorage
         public List<Listener> GetListenersByStatus(ListenerStates status)
         {
             return context.Listeners.ToList().Where(x => x.Status.Equals(status)).ToList();
+        }
+
+        public List<Listener> GetPostListenersByStatus(ListenerStates status)
+        {
+            return context.Listeners.ToList().Where(x => x.Status.Equals(status) && !x.OnlineOnly).ToList();
         }
 
         public List<WeeklyStats> GetAllWeeklyStats()
@@ -515,12 +534,22 @@ namespace TNBase.DataStorage
 
         public int Get3MonthInactiveListeners()
         {
-            return context.Listeners.Where(x => !x.Status.Equals(ListenerStates.DELETED) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-3)).Count();
+            return context.Listeners.Where(x =>
+                !x.Status.Equals(ListenerStates.DELETED) &&
+                !x.OnlineOnly &&
+                x.LastOut.HasValue &&
+                x.LastOut < DateTime.Now.AddMonths(-3)
+            ).Count();
         }
 
         public List<Listener> Get1MonthDormantListeners()
         {
-            return context.Listeners.Where(x => x.Status.Equals(ListenerStates.ACTIVE) && x.LastOut.HasValue && x.LastOut < DateTime.Now.AddMonths(-1)).ToList();
+            return context.Listeners.Where(x =>
+                x.Status.Equals(ListenerStates.ACTIVE) &&
+                !x.OnlineOnly &&
+                x.LastOut.HasValue &&
+                x.LastOut < DateTime.Now.AddMonths(-1)
+            ).ToList();
         }
 
         public int GetListenersAtYearStart(int year)
@@ -542,7 +571,7 @@ namespace TNBase.DataStorage
 
         public int GetInactiveWalletNumbers()
         {
-            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.DELETED)).Count();
+            return context.Listeners.ToList().Where(x => x.Status.Equals(ListenerStates.DELETED) && !x.OnlineOnly).Count();
         }
 
         public int GetNewListenersForYear(int year)

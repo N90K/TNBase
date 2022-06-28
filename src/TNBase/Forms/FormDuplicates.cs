@@ -176,8 +176,12 @@ namespace TNBase
 
             if (theFormType == DuplicateFormType.PrintCollector)
             {
-                DialogResult result = MessageBox.Show("Are you printing this form for a deleted listener? (Select No if its a new one)", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
-                bool deleted = (result == DialogResult.Yes);
+                bool deleted = true;
+                if (!listener.OnlineOnly)
+                {
+                    DialogResult result = MessageBox.Show("Are you printing this form for a deleted listener? (Select No if its a new one)", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
+                    deleted = result == DialogResult.Yes;
+                }
 
                 My.MyProject.Forms.formPrintCollectionForm.Show();
                 My.MyProject.Forms.formPrintCollectionForm.SetupForm(listener, deleted);

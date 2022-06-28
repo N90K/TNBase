@@ -39,26 +39,26 @@ namespace TNBase
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowse));
             this.lstBrowse = new System.Windows.Forms.ListView();
-            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Forename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Addr1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Addr2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Town = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.County = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Postcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Magazine = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Player = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Telephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Joined = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Birthday = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.StatusInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MagazineStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LastIn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LastOut = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Info = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Title = new System.Windows.Forms.ColumnHeader();
+            this.Forename = new System.Windows.Forms.ColumnHeader();
+            this.Surname = new System.Windows.Forms.ColumnHeader();
+            this.Addr1 = new System.Windows.Forms.ColumnHeader();
+            this.Addr2 = new System.Windows.Forms.ColumnHeader();
+            this.Town = new System.Windows.Forms.ColumnHeader();
+            this.County = new System.Windows.Forms.ColumnHeader();
+            this.Postcode = new System.Windows.Forms.ColumnHeader();
+            this.Magazine = new System.Windows.Forms.ColumnHeader();
+            this.Player = new System.Windows.Forms.ColumnHeader();
+            this.Telephone = new System.Windows.Forms.ColumnHeader();
+            this.Joined = new System.Windows.Forms.ColumnHeader();
+            this.Birthday = new System.Windows.Forms.ColumnHeader();
+            this.Status = new System.Windows.Forms.ColumnHeader();
+            this.StatusInfo = new System.Windows.Forms.ColumnHeader();
+            this.Stock = new System.Windows.Forms.ColumnHeader();
+            this.MagazineStock = new System.Windows.Forms.ColumnHeader();
+            this.LastIn = new System.Windows.Forms.ColumnHeader();
+            this.LastOut = new System.Windows.Forms.ColumnHeader();
+            this.Info = new System.Windows.Forms.ColumnHeader();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnStopSending = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -71,8 +71,9 @@ namespace TNBase
             this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.lstFreeze = new System.Windows.Forms.ListView();
-            this.walletFreeze = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.walletFreeze = new System.Windows.Forms.ColumnHeader();
             this.filterButton = new System.Windows.Forms.Button();
+            this.onlineOnly = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // lstBrowse
@@ -87,6 +88,7 @@ namespace TNBase
             this.Town,
             this.County,
             this.Postcode,
+            this.onlineOnly,
             this.Magazine,
             this.Player,
             this.Telephone,
@@ -99,14 +101,15 @@ namespace TNBase
             this.LastIn,
             this.LastOut,
             this.Info});
-            this.lstBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lstBrowse.FullRowSelect = true;
             this.lstBrowse.GridLines = true;
             this.lstBrowse.HideSelection = false;
-            this.lstBrowse.Location = new System.Drawing.Point(96, 61);
+            this.lstBrowse.Location = new System.Drawing.Point(112, 70);
+            this.lstBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lstBrowse.MultiSelect = false;
             this.lstBrowse.Name = "lstBrowse";
-            this.lstBrowse.Size = new System.Drawing.Size(991, 405);
+            this.lstBrowse.Size = new System.Drawing.Size(1156, 467);
             this.lstBrowse.TabIndex = 2;
             this.lstBrowse.UseCompatibleStateImageBehavior = false;
             this.lstBrowse.View = System.Windows.Forms.View.Details;
@@ -206,8 +209,9 @@ namespace TNBase
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(422, 9);
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.Location = new System.Drawing.Point(492, 10);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(238, 33);
             this.lblTitle.TabIndex = 51;
@@ -216,10 +220,11 @@ namespace TNBase
             // btnStopSending
             // 
             this.btnStopSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnStopSending.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopSending.Location = new System.Drawing.Point(227, 546);
+            this.btnStopSending.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnStopSending.Location = new System.Drawing.Point(265, 630);
+            this.btnStopSending.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnStopSending.Name = "btnStopSending";
-            this.btnStopSending.Size = new System.Drawing.Size(209, 74);
+            this.btnStopSending.Size = new System.Drawing.Size(244, 85);
             this.btnStopSending.TabIndex = 55;
             this.btnStopSending.Text = "Stop Sending";
             this.btnStopSending.UseVisualStyleBackColor = false;
@@ -228,11 +233,12 @@ namespace TNBase
             // btnEdit
             // 
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(448, 546);
+            this.btnEdit.Location = new System.Drawing.Point(523, 630);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(209, 74);
+            this.btnEdit.Size = new System.Drawing.Size(244, 85);
             this.btnEdit.TabIndex = 54;
             this.btnEdit.Text = "&Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -241,11 +247,12 @@ namespace TNBase
             // btnRemove
             // 
             this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(12, 546);
+            this.btnRemove.Location = new System.Drawing.Point(14, 630);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(209, 74);
+            this.btnRemove.Size = new System.Drawing.Size(244, 85);
             this.btnRemove.TabIndex = 53;
             this.btnRemove.Text = "Delete";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -254,11 +261,12 @@ namespace TNBase
             // btnDone
             // 
             this.btnDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDone.Location = new System.Drawing.Point(878, 546);
+            this.btnDone.Location = new System.Drawing.Point(1024, 630);
+            this.btnDone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(209, 74);
+            this.btnDone.Size = new System.Drawing.Size(244, 85);
             this.btnDone.TabIndex = 57;
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = false;
@@ -267,10 +275,11 @@ namespace TNBase
             // btnFirst
             // 
             this.btnFirst.BackColor = System.Drawing.Color.White;
-            this.btnFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFirst.Location = new System.Drawing.Point(12, 472);
+            this.btnFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFirst.Location = new System.Drawing.Point(14, 545);
+            this.btnFirst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(78, 64);
+            this.btnFirst.Size = new System.Drawing.Size(91, 74);
             this.btnFirst.TabIndex = 58;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
@@ -279,10 +288,11 @@ namespace TNBase
             // btnPrevious
             // 
             this.btnPrevious.BackColor = System.Drawing.Color.White;
-            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrevious.Location = new System.Drawing.Point(96, 472);
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrevious.Location = new System.Drawing.Point(112, 545);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(78, 64);
+            this.btnPrevious.Size = new System.Drawing.Size(91, 74);
             this.btnPrevious.TabIndex = 59;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
@@ -291,10 +301,11 @@ namespace TNBase
             // btnNext
             // 
             this.btnNext.BackColor = System.Drawing.Color.White;
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(180, 472);
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNext.Location = new System.Drawing.Point(210, 545);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(78, 64);
+            this.btnNext.Size = new System.Drawing.Size(91, 74);
             this.btnNext.TabIndex = 60;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -303,10 +314,11 @@ namespace TNBase
             // btnLast
             // 
             this.btnLast.BackColor = System.Drawing.Color.White;
-            this.btnLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLast.Location = new System.Drawing.Point(264, 472);
+            this.btnLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLast.Location = new System.Drawing.Point(308, 545);
+            this.btnLast.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(78, 64);
+            this.btnLast.Size = new System.Drawing.Size(91, 74);
             this.btnLast.TabIndex = 61;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
@@ -315,22 +327,24 @@ namespace TNBase
             // cmbOrder
             // 
             this.cmbOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbOrder.FormattingEnabled = true;
             this.cmbOrder.Items.AddRange(new object[] {
             "Wallet",
             "Surname"});
-            this.cmbOrder.Location = new System.Drawing.Point(922, 472);
+            this.cmbOrder.Location = new System.Drawing.Point(1076, 545);
+            this.cmbOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbOrder.Name = "cmbOrder";
-            this.cmbOrder.Size = new System.Drawing.Size(165, 39);
+            this.cmbOrder.Size = new System.Drawing.Size(192, 39);
             this.cmbOrder.TabIndex = 62;
             this.cmbOrder.SelectedIndexChanged += new System.EventHandler(this.cmbOrder_SelectedIndexChanged);
             // 
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(779, 472);
+            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label1.Location = new System.Drawing.Point(909, 545);
+            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(127, 31);
             this.Label1.TabIndex = 63;
@@ -341,14 +355,15 @@ namespace TNBase
             this.lstFreeze.AllowColumnReorder = true;
             this.lstFreeze.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.walletFreeze});
-            this.lstFreeze.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstFreeze.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lstFreeze.FullRowSelect = true;
             this.lstFreeze.GridLines = true;
             this.lstFreeze.HideSelection = false;
-            this.lstFreeze.Location = new System.Drawing.Point(12, 61);
+            this.lstFreeze.Location = new System.Drawing.Point(14, 70);
+            this.lstFreeze.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lstFreeze.MultiSelect = false;
             this.lstFreeze.Name = "lstFreeze";
-            this.lstFreeze.Size = new System.Drawing.Size(83, 405);
+            this.lstFreeze.Size = new System.Drawing.Size(96, 467);
             this.lstFreeze.TabIndex = 64;
             this.lstFreeze.UseCompatibleStateImageBehavior = false;
             this.lstFreeze.View = System.Windows.Forms.View.Details;
@@ -361,21 +376,26 @@ namespace TNBase
             // 
             // filterButton
             // 
-            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(801, 11);
+            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.filterButton.Location = new System.Drawing.Point(934, 13);
+            this.filterButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(277, 37);
+            this.filterButton.Size = new System.Drawing.Size(323, 43);
             this.filterButton.TabIndex = 65;
             this.filterButton.Text = "Show marked for deletion";
             this.filterButton.UseVisualStyleBackColor = true;
             this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
+            // onlineOnly
+            // 
+            this.onlineOnly.Text = "Online";
+            // 
             // FormBrowse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1104, 634);
+            this.ClientSize = new System.Drawing.Size(1288, 732);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.lstFreeze);
             this.Controls.Add(this.Label1);
@@ -392,6 +412,7 @@ namespace TNBase
             this.Controls.Add(this.lstBrowse);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormBrowse";
@@ -435,5 +456,6 @@ namespace TNBase
         internal ListView lstFreeze;
         internal ColumnHeader walletFreeze;
         private Button filterButton;
+        private ColumnHeader onlineOnly;
     }
 }

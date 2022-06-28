@@ -130,12 +130,12 @@ namespace TNBase
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            new FormAddMini().ShowDialog();
+            new FormAddFull().ShowDialog();
         }
 
         private void AddToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FormAddMini().ShowDialog();
+            new FormAddFull().ShowDialog();
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
@@ -508,7 +508,7 @@ namespace TNBase
         private void WalletsStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormPrintWalletStock();
-            var stock = serviceLayer.GetListeners()
+            var stock = serviceLayer.GetPostListeners()
                 .Select(x => new StockItem
                 {
                     Wallet = x.Wallet,
@@ -524,7 +524,7 @@ namespace TNBase
         private void MagazineWalletStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormPrintWalletStock();
-            var stock = serviceLayer.GetListeners()
+            var stock = serviceLayer.GetPostListeners()
                 .Select(x => new StockItem
                 {
                     Wallet = x.Wallet,
@@ -550,7 +550,7 @@ namespace TNBase
         private void ScanIn(WalletTypes walletType)
         {
             var magazineWallets = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE)
-                .Where(x => x.Magazine)
+                .Where(x => x.Magazine && !x.OnlineOnly)
                 .Select(x => x.Wallet)
                 .ToList();
             var stoppedListeners = serviceLayer.GetStoppedListeners().Select(x => x.Wallet);
@@ -577,7 +577,7 @@ namespace TNBase
         private void ScanOut(WalletTypes walletType, IEnumerable<int> scanned = null)
         {
             var listeners = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE);
-            var toScan = listeners.Where(x => x.Magazine && (scanned == null || !scanned.Contains(x.Wallet))).Select(x => x.Wallet);
+            var toScan = listeners.Where(x => x.Magazine && !x.OnlineOnly && (scanned == null || !scanned.Contains(x.Wallet))).Select(x => x.Wallet);
             var stoppedListeners = serviceLayer.GetStoppedListeners().Select(x => x.Wallet);
 
             var scanForm = new MagazinesScanOutForm();
@@ -596,6 +596,12 @@ namespace TNBase
                 var scanService = Program.ServiceProvider.GetService<ScanService>();
                 scanService.AddScans(scans);
             }
+        }
+
+        private void onlineonlyListenersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormPrintOnlineOnly();
+            form.Show();
         }
     }
 }

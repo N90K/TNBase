@@ -46,7 +46,8 @@ namespace TNBase
                     listener.Town,
                     listener.County,
                     listener.Postcode,
-                    listener.Magazine.ToString(),
+                    listener.OnlineOnly.ToString(),
+                    listener.OnlineOnly ? "N/A" : listener.Magazine.ToString(),
                     listener.MemStickPlayer.ToString(),
                     listener.Telephone,
                     listener.Joined.ToNullableNaString(DateTimeExtensions.DEFAULT_FORMAT),
@@ -77,6 +78,11 @@ namespace TNBase
                 else if (listener.Status == ListenerStates.PAUSED)
                 {
                     itm.BackColor = Color.LightGray;
+                }
+
+                if (listener.OnlineOnly)
+                {
+                    itm.ForeColor = Color.Green;
                 }
 
                 lstBrowse.Items.Add(itm);
@@ -248,6 +254,7 @@ namespace TNBase
 
         private void formBrowse_Load(object sender, EventArgs e)
         {
+            cmbOrder.SelectedIndex = 0;
             AddHorribleHeaders();
             UpdateListeners();
         }

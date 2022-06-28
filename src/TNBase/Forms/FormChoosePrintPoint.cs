@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 using TNBase.Objects;
 namespace TNBase
 {
@@ -8,6 +9,12 @@ namespace TNBase
 		Listener myListener;
 		public void SetupForm(Listener theListener)
 		{
+            if (theListener.OnlineOnly)
+            {
+				MessageBox.Show("Unable to print labels for Online-only listener");
+				Close();
+            }
+
 			myListener = theListener;
 			cmbSelection.Text = "1 - 4";
 		}

@@ -68,7 +68,8 @@ namespace TNBase
             {
                 Listener theListener = theListeners[0];
 
-                g.DrawString(theListener.Title + " " + theListener.Forename + " " + theListener.Surname, reportFontSmallBold, Brushes.Black, 100, 240 + (70 * value));
+                var star = theListener.OnlineOnly ? "*" : "";
+                g.DrawString($"{theListener.Title} {theListener.Forename} {theListener.Surname}{star}", reportFontSmallBold, Brushes.Black, 100, 240 + (70 * value));
 
                 g.DrawString(theListener.BirthdayText, reportFontSmallBold, Brushes.Black, 460, 240 + (70 * value));
 
@@ -92,12 +93,13 @@ namespace TNBase
                 theListeners.RemoveAt(0);
             }
 
-            g.DrawString("Number of Birthdays: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 950);
-            g.DrawString("Printed on " + System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 950);
-            g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 970);
+            g.DrawString("*online-only listener", reportFontSmall, Brushes.Black, 100, 950);
+            g.DrawString("Number of Birthdays: " + totalCount, reportFontSmallBold, Brushes.Black, 100, 1000);
+            g.DrawString("Printed on " + System.DateTime.Now.ToString(ModuleGeneric.DATE_FORMAT), reportFontSmallBold, Brushes.Black, 550, 1000);
+            g.DrawString("Page " + currentPageNumber + "/" + totalPages, reportFontSmallBold, Brushes.Black, 380, 1020);
 
             // VB is stupid.... have to reset this so its back when you actually print it!
-            if (!(e.HasMorePages))
+            if (!e.HasMorePages)
             {
                 SetInitial();
             }
