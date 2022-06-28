@@ -72,22 +72,29 @@ namespace TNBase.DataStorage
                 !x.Status.Equals(ListenerStates.DELETED))
             .ToList();
 
-            var currentWeek = DateTime.Now.WeekOfYear();
-
-            var lastRecordingWeek = GetLastRecordingWeekOfYear();
-            var weeksThisYear = new DateTime(DateTime.Now.Year, 12, 31).WeekOfYear() == 53 ? 53 : 52; // can be 52, 53 or 1
-
-            var weekOffset = currentWeek == lastRecordingWeek ? 4 : currentWeek == 53 ? 1 : 2;
-
-            var weekToInclude = (currentWeek + weekOffset) % weeksThisYear;
-
-            var nextWeeks = new List<int> { weekToInclude };
-            if (currentWeek == lastRecordingWeek - 1)
+            DateTime nowDate = DateTime.Now.Date;
+            DateTime weekDate = DateTime.Now.AddDays(1).Date;
+            if (DateTime.Now.Month == 12 & DateTime.Now.Day >= 8 & DateTime.Now.Day <= 14)
             {
-                nextWeeks.Add(weekToInclude + 1);
+                nowDate = nowDate.AddDays(9);
+                weekDate = weekDate.AddDays(29);
+            }
+            else if (DateTime.Now.Month == 12 & DateTime.Now.Day >= 15 & DateTime.Now.Day <= 25)
+            {
+                nowDate = nowDate.AddDays(23);
+                weekDate = weekDate.AddDays(29);
+            }
+            else
+            {
+                nowDate = nowDate.AddDays(9);
+                weekDate = weekDate.AddDays(15);
             }
 
-            return list.Where(x => nextWeeks.Contains(x.NextBirthdayDate.Value.WeekOfYear())).ToList();
+            return list.Where(x =>
+            {
+                var nextBirthdate = x.NextBirthdayDate;
+                return nextBirthdate >= nowDate && nextBirthdate < weekDate;
+            }).ToList();
         }
 
         private int GetLastRecordingWeekOfYear()

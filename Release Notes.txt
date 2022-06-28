@@ -1,3 +1,10 @@
+1.7.6
+- Fixed #85 - Upcoming Birthdays report doesn't list all birthdays for that week
+- Closed #77 - Introduced online-only listeners
+- Closes #78 - Added audio message for paused magazine wallets
+- Closed #80 - Updates to Print menu and reports
+- Improved address label positioning
+
 1.7.5
 - Fixed installation fails to upgrade existing DLL files
 - Closed #56 - Show magazine scan in and out errors in red

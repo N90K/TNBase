@@ -29,23 +29,23 @@ namespace TNBase
 
             g.DrawString("Upcoming Birthdays", reportFont, Brushes.Black, 280, 80, StringFormat.GenericTypographic);
 
-            string nowDate = null;
-            string weekDate = null;
+            string nowDate;
+            string weekDate;
 
             // Also duplicated in the service layer!!!!
-            if ((System.DateTime.Now.Month == 12 & System.DateTime.Now.Day >= 8 & System.DateTime.Now.Day <= 14))
+            if (DateTime.Now.Month == 12 & DateTime.Now.Day >= 8 & DateTime.Now.Day <= 14)
             {
-                nowDate = System.DateTime.Now.AddDays(9).ToString(ModuleGeneric.DATE_FORMAT);
+                nowDate = DateTime.Now.AddDays(9).ToString(ModuleGeneric.DATE_FORMAT);
                 weekDate = DateTime.Now.AddDays(29).ToString(ModuleGeneric.DATE_FORMAT);
             }
-            else if ((System.DateTime.Now.Month == 12 & System.DateTime.Now.Day >= 15 & System.DateTime.Now.Day <= 25))
+            else if (DateTime.Now.Month == 12 & DateTime.Now.Day >= 15 & DateTime.Now.Day <= 25)
             {
-                nowDate = System.DateTime.Now.AddDays(23).ToString(ModuleGeneric.DATE_FORMAT);
+                nowDate = DateTime.Now.AddDays(23).ToString(ModuleGeneric.DATE_FORMAT);
                 weekDate = DateTime.Now.AddDays(29).ToString(ModuleGeneric.DATE_FORMAT);
             }
             else
             {
-                nowDate = System.DateTime.Now.AddDays(9).ToString(ModuleGeneric.DATE_FORMAT);
+                nowDate = DateTime.Now.AddDays(9).ToString(ModuleGeneric.DATE_FORMAT);
                 weekDate = DateTime.Now.AddDays(15).ToString(ModuleGeneric.DATE_FORMAT);
             }
 
