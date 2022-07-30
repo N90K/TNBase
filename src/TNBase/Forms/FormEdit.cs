@@ -195,16 +195,10 @@ namespace TNBase
                 return;
             }
 
-            if (comboTitle.SelectedItem == null)
-            {
-                Interaction.MsgBox("Invalid title entered, please use an item in the drop down list.");
-                return;
-            }
-
             // Only if they are updated...
             if (updated)
             {
-                myListener.Title = comboTitle.SelectedItem.ToString();
+                myListener.Title = comboTitle.Text;
                 myListener.Forename = txtForename.Text;
                 myListener.Surname = txtSurname.Text;
                 myListener.Addr1 = txtAddr1.Text;
@@ -317,7 +311,7 @@ namespace TNBase
 
         private bool HasNameChanged()
         {
-            string selectedItem = comboTitle.SelectedItem == null ? "n/a" : comboTitle.SelectedItem.ToString();
+            string selectedItem = comboTitle.SelectedItem == null ? "" : comboTitle.SelectedItem.ToString();
 
             return !(selectedItem.Equals(myListener.Title)
                     && txtSurname.Text.Equals(myListener.Surname)
@@ -326,7 +320,7 @@ namespace TNBase
 
         private bool HasUpdated()
         {
-            string selectedItem = comboTitle.SelectedItem == null ? "n/a" : comboTitle.SelectedItem.ToString();
+            string selectedItem = comboTitle.SelectedItem == null ? "" : comboTitle.SelectedItem.ToString();
 
             return HasAddressChanged() ||
                     HasBirthdayChanged() ||
