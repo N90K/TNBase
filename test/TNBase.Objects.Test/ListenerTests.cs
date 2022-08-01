@@ -102,6 +102,14 @@ namespace TNBase.Objects.Test
         }
 
         [TestMethod]
+        public void MagazineStock_ShouldBeSetToDefault_WhenNewListenerIsCreated()
+        {
+            var listener = new Listener();
+
+            Assert.AreEqual(1, listener.MagazineStock);
+        }
+
+        [TestMethod]
         public void GetNiceName_ReturnsName_WhenNoTitle()
         {
             var listener = new Listener
