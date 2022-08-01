@@ -68,8 +68,9 @@ namespace TNBase
 
             if (theType == FindListenerFormType.PrintLabels)
             {
-                My.MyProject.Forms.formChoosePrintPoint.Show();
-                My.MyProject.Forms.formChoosePrintPoint.SetupForm(listener);
+                var form = new FormChoosePrintPoint();
+                form.SetupForm(listener);
+                form.ShowDialog();
             }
 
             if (theType == FindListenerFormType.AdjustStock)
@@ -135,7 +136,11 @@ namespace TNBase
             if (!string.IsNullOrEmpty(txtWallet.Text))
             {
                 var wallet = int.Parse(txtWallet.Text);
-                listeners.Add(serviceLayer.GetListenerById(wallet));
+                var listener = serviceLayer.GetListenerById(wallet);
+                if (listener != null)
+                {
+                    listeners.Add(listener);
+                }
             }
             else if (!string.IsNullOrEmpty(txtForename.Text) || !string.IsNullOrEmpty(txtSurname.Text))
             {

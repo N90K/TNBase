@@ -248,18 +248,18 @@ namespace TNBase
                 serviceLayer.UpdateListener(myListener);
                 Interaction.MsgBox("The listener has successfully been updated.");
 
-                if (addrChanged || nameChanged)
+                if ((addrChanged || nameChanged) && !myListener.OnlineOnly)
                 {
-                    // Show prompt.
-                    DialogResult result = MessageBox.Show("Would you like to print new address labels for the updated address?", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
+                    var result = MessageBox.Show("Would you like to print new address labels for the updated address?", ModuleGeneric.getAppShortName(), MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        My.MyProject.Forms.formChoosePrintPoint.Show();
-                        My.MyProject.Forms.formChoosePrintPoint.SetupForm(serviceLayer.GetListenerById(listenerWalletNo));
+                        var form = new FormChoosePrintPoint();
+                        form.SetupForm(serviceLayer.GetListenerById(listenerWalletNo));
+                        form.ShowDialog();
                     }
                 }
             }
-            this.Close();
+            Close();
         }
 
         private void btnRestore_Click(object sender, EventArgs e)

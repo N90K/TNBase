@@ -147,13 +147,6 @@ namespace TNBase.My
 				[DebuggerStepThrough] set { SetForm(ref formBrowse_instance, value); }
 			}
 			
-			global::TNBase.FormChoosePrintPoint formChoosePrintPoint_instance;
-			bool formChoosePrintPoint_isCreating;
-			public global::TNBase.FormChoosePrintPoint formChoosePrintPoint {
-				[DebuggerStepThrough] get { return GetForm(ref formChoosePrintPoint_instance, ref formChoosePrintPoint_isCreating); }
-				[DebuggerStepThrough] set { SetForm(ref formChoosePrintPoint_instance, value); }
-			}
-			
 			global::TNBase.FormDuplicateFound formDuplicateFound_instance;
 			bool formDuplicateFound_isCreating;
 			public global::TNBase.FormDuplicateFound formDuplicateFound {

@@ -58,6 +58,7 @@ namespace TNBase
 
             Graphics g = e.Graphics;
             var lineHeight = 16;
+            var labelContentWidth = 260;
             var spacing = 4;
 
             if (theListeners.Count >= 5)
@@ -74,10 +75,10 @@ namespace TNBase
             for (int value = 0; value <= min; value++)
             {
                 int myRow = (int)Math.Ceiling((double)((double)(value + 1) / (double)3)) - 1;
-                int myColumn = (value % 3);
+                int myColumn = value % 3;
                 Listener myListener = theListeners[0];
 
-                var initialY = (183 * myRow) + 43;
+                var initialY = (183 * myRow) + 33;
                 var initialX = (myColumn * 260) + Properties.Settings.Default.LabelXAdjust;
                 theIndex++;
 
@@ -96,15 +97,15 @@ namespace TNBase
 
                 for (int i = 0; i < addressLines.Count; i++)
                 {
-                    g.DrawString(addressLines[i], reportFontSmall, Brushes.Black, initialX, initialY + lineHeight * (i + 1) + spacing);
+                    g.DrawString(addressLines[i], reportFontSmall, Brushes.Black, new RectangleF(initialX, initialY + lineHeight * (i + 1) + spacing, labelContentWidth, lineHeight), new StringFormat(StringFormatFlags.NoWrap));
                 }
 
                 BarcodeLib.Barcode b = new BarcodeLib.Barcode();
                 Image newImage = b.Encode(BarcodeLib.TYPE.CODE39, myListener.Wallet.ToString(), Color.Black, Color.White, 150, 34);
 
-                e.Graphics.DrawImage(newImage, initialX - 10, initialY + lineHeight * 7 + spacing * 2, 150, 34);
+                e.Graphics.DrawImage(newImage, initialX, initialY + lineHeight * 7 + spacing * 2, 150, 34);
 
-                g.DrawString(myListener.Wallet.ToString(), reportFontBigBoldTitles, Brushes.Black, initialX + 122, initialY + lineHeight * 7 + spacing * 3);
+                g.DrawString(myListener.Wallet.ToString(), reportFontBigBoldTitles, Brushes.Black, initialX + 142, initialY + lineHeight * 7 + spacing * 3);
 
                 theListeners.RemoveAt(0);
             }

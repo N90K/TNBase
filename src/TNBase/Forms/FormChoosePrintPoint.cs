@@ -5,23 +5,17 @@ namespace TNBase
 {
     public partial class FormChoosePrintPoint
 	{
+		Listener listener;
 
-		Listener myListener;
-		public void SetupForm(Listener theListener)
+		public void SetupForm(Listener listener)
 		{
-            if (theListener.OnlineOnly)
-            {
-				MessageBox.Show("Unable to print labels for Online-only listener");
-				Close();
-            }
-
-			myListener = theListener;
+			this.listener = listener;
 			cmbSelection.Text = "1 - 4";
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 		private void Button1_Click(object sender, EventArgs e)
@@ -38,8 +32,8 @@ namespace TNBase
 				myIndex = 12;
 			}
 
-			My.MyProject.Forms.formPrintLabels.setupForm(myListener, myIndex);
-			this.Close();
+			My.MyProject.Forms.formPrintLabels.setupForm(listener, myIndex);
+			Close();
 		}
 
 		private void UncheckAll()
@@ -142,6 +136,15 @@ namespace TNBase
 		public FormChoosePrintPoint()
 		{
 			InitializeComponent();
+		}
+
+        private void FormChoosePrintPoint_Load(object sender, EventArgs e)
+        {
+			if (listener.OnlineOnly)
+			{
+				MessageBox.Show("Unable to print labels for Online-only listener");
+				Close();
+			}
 		}
 	}
 }

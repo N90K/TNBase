@@ -170,8 +170,9 @@ namespace TNBase
 
             if (theFormType == DuplicateFormType.PrintLabels)
             {
-                My.MyProject.Forms.formChoosePrintPoint.Show();
-                My.MyProject.Forms.formChoosePrintPoint.SetupForm(listener);
+                var form = new FormChoosePrintPoint();
+                form.SetupForm(listener);
+                form.ShowDialog();
             }
 
             if (theFormType == DuplicateFormType.PrintCollector)
