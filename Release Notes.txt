@@ -1,3 +1,8 @@
+1.7.7
+- Fixed #89 - Edit Listener dialogue doesn't allow blank title
+- Closed #90 - Adjusted address label position
+- Closes #88 - Set default magazine stock to 1
+
 1.7.6
 - Fixed #85 - Upcoming Birthdays report doesn't list all birthdays for that week
 - Closed #77 - Introduced online-only listeners
