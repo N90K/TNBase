@@ -58,6 +58,7 @@ namespace TNBase
                 Postcode = txtPostcode.Text,
                 MemStickPlayer = chkTape.Checked && !chkOnlineOnly.Checked,
                 Magazine = chkMagazine.Checked && !chkOnlineOnly.Checked,
+                MagazineStock = chkMagazine.Checked && !chkOnlineOnly.Checked ? 1 : 0,
                 OnlineOnly = chkOnlineOnly.Checked,
                 Info = txtInformation.Text,
                 Telephone = string.IsNullOrEmpty(txtTelephone.Text) ? "0" : txtTelephone.Text,

@@ -102,11 +102,11 @@ namespace TNBase.Objects.Test
         }
 
         [TestMethod]
-        public void MagazineStock_ShouldBeSetToDefault_WhenNewListenerIsCreated()
+        public void MagazineStock_ShouldBeSetToZero_WhenNewListenerIsCreated()
         {
             var listener = new Listener();
 
-            Assert.AreEqual(1, listener.MagazineStock);
+            Assert.AreEqual(0, listener.MagazineStock);
         }
 
         [TestMethod]

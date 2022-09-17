@@ -20,7 +20,7 @@ namespace TNBase.Objects
         {
             Joined = DateTime.Now;
             Stock = DEFAULT_NEWS_STOCK;
-            MagazineStock = DEFAULT_MAGAZINE_STOCK;
+            MagazineStock = 0;
             Status = ListenerStates.ACTIVE;
         }
 
