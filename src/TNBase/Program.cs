@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using TNBase.DataStorage;
+using TNBase.External.DataImport;
 using TNBase.Repository;
 
 namespace TNBase
@@ -67,6 +68,10 @@ namespace TNBase
             services.AddScoped<ITNBaseContext>(s => new TNBaseContext($"Data Source={databasePath}"));
             services.AddScoped<IServiceLayer, ServiceLayer>();
             services.AddScoped<ScanService>();
+            services.AddScoped<CsvImportService>();
+
+            var resourceDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resource");
+            services.AddSingleton(s => new ResourceManager(resourceDirectory));
 
             services.AddSingleton(s => new DatabaseManagerOptions { DatabasePath = databasePath });
             services.AddScoped<DatabaseManager>();

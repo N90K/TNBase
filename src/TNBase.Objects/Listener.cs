@@ -13,14 +13,12 @@ namespace TNBase.Objects
     public class Listener
     {
         public const string NEVER_END_PAUSE_STRING = "UFN";
-        public const int DEFAULT_NEWS_STOCK = 3;
-        public const int DEFAULT_MAGAZINE_STOCK = 1;
+        //public const int DEFAULT_NEWS_STOCK = 3;
+        //public const int DEFAULT_MAGAZINE_STOCK = 1;
 
         public Listener()
         {
             Joined = DateTime.Now;
-            Stock = DEFAULT_NEWS_STOCK;
-            MagazineStock = 0;
             Status = ListenerStates.ACTIVE;
         }
 
@@ -86,8 +84,11 @@ namespace TNBase.Objects
         public DateTime? LastOut { get; set; }
         public int MagazineStock { get; set; }
 
-        public int SentNewsWallets => DEFAULT_NEWS_STOCK - Stock;
-        public int SentMagazineWallets => Magazine ? DEFAULT_MAGAZINE_STOCK - MagazineStock : 0;
+        public int NewsWalletsIssued { get; set; }
+        public int MagazineWalletsIssued { get; set; }
+
+        public int SentNewsWallets => NewsWalletsIssued - Stock;
+        public int SentMagazineWallets => Magazine ? MagazineWalletsIssued - MagazineStock : 0;
         public bool OwnsWalletsOrEquipment => MemStickPlayer || SentNewsWallets != 0 || SentMagazineWallets != 0;
 
         public bool CanEdit => Status == ListenerStates.ACTIVE || Status == ListenerStates.PAUSED || Status == ListenerStates.DELETED;

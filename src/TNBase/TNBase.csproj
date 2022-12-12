@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\src\TNBase.Infrastructure\TNBase.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\TNBase.Objects\TNBase.Objects.csproj" />
     <ProjectReference Include="..\..\src\TNBase.Repository\TNBase.Repository.csproj" />
+    <ProjectReference Include="..\TNBase.External\TNBase.External.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
@@ -41,6 +42,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Update="Resource\Iconshock-Real-Vista-Data-Database.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resource\ListenersImportSample.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resource\New_Logo.jpg">
@@ -92,6 +96,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resource\sound\twoout.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resource\TNBase.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

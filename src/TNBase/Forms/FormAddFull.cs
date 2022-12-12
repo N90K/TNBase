@@ -7,12 +7,13 @@ using TNBase.DataStorage;
 using System.Globalization;
 using TNBase.Infrastructure.Helpers;
 using Microsoft.Extensions.DependencyInjection;
+using TNBase.Properties;
 
 namespace TNBase
 {
     public partial class FormAddFull
     {
-        private Logger log = LogManager.GetCurrentClassLogger();
+        private readonly Logger log = LogManager.GetCurrentClassLogger();
         private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
         private string title;
         private string surname;
@@ -56,9 +57,12 @@ namespace TNBase
                 Town = txtTown.Text,
                 County = txtCounty.Text,
                 Postcode = txtPostcode.Text,
+                Stock = !chkOnlineOnly.Checked ? Settings.Default.DefaultNewsWalletsIssued : 0,
+                NewsWalletsIssued = !chkOnlineOnly.Checked ? Settings.Default.DefaultNewsWalletsIssued : 0,
                 MemStickPlayer = chkTape.Checked && !chkOnlineOnly.Checked,
                 Magazine = chkMagazine.Checked && !chkOnlineOnly.Checked,
-                MagazineStock = chkMagazine.Checked && !chkOnlineOnly.Checked ? 1 : 0,
+                MagazineStock = chkMagazine.Checked && !chkOnlineOnly.Checked ? Settings.Default.DefaultMagazineWalletsIssued : 0,
+                MagazineWalletsIssued = chkMagazine.Checked && !chkOnlineOnly.Checked ? Settings.Default.DefaultMagazineWalletsIssued : 0,
                 OnlineOnly = chkOnlineOnly.Checked,
                 Info = txtInformation.Text,
                 Telephone = string.IsNullOrEmpty(txtTelephone.Text) ? "0" : txtTelephone.Text,

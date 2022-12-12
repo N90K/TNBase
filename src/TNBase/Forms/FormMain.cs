@@ -14,6 +14,7 @@ using TNBase.Model;
 using Microsoft.Extensions.DependencyInjection;
 using TNBase.Repository;
 using System.Globalization;
+using TNBase.Forms;
 
 namespace TNBase
 {
@@ -228,11 +229,6 @@ namespace TNBase
         private void BackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowBackup();
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            My.MyProject.Forms.formAbout.Show();
         }
 
         private void BtnFinished_Click(object sender, EventArgs e)
@@ -602,6 +598,23 @@ namespace TNBase
         {
             var form = new FormPrintOnlineOnly();
             form.Show();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            My.MyProject.Forms.formAbout.Show();
+        }
+
+        private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resourceManager = Program.ServiceProvider.GetService<ResourceManager>();
+            Help.ShowHelp(this, resourceManager.HelpFilePath, HelpNavigator.TableOfContents);
+        }
+
+        private void dataImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormDataImport();
+            form.ShowDialog();
         }
     }
 }

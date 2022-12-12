@@ -487,7 +487,7 @@ namespace TNBase.Objects.Test
         [TestMethod]
         public void SentNewsWallets_ReturnsZero_WhenAllNewsWalletsAreInStock()
         {
-            var listener = new Listener { Stock = 3 };
+            var listener = new Listener { Stock = 2, NewsWalletsIssued = 2 };
 
             Assert.AreEqual(0, listener.SentNewsWallets);
         }
@@ -495,15 +495,15 @@ namespace TNBase.Objects.Test
         [TestMethod]
         public void SentNewsWallets_ReturnsNumberOfSentWallets_WhenNotAllNewsWalletsAreInStock()
         {
-            var listener = new Listener { Stock = 1 };
+            var listener = new Listener { Stock = 1, NewsWalletsIssued = 5 };
 
-            Assert.AreEqual(2, listener.SentNewsWallets);
+            Assert.AreEqual(4, listener.SentNewsWallets);
         }
 
         [TestMethod]
         public void SentMagazineWallets_ReturnsZero_WhenMagazineWalletIsInStock()
         {
-            var listener = new Listener { MagazineStock = 1, Magazine = true };
+            var listener = new Listener { MagazineStock = 2, Magazine = true, MagazineWalletsIssued = 2 };
 
             Assert.AreEqual(0, listener.SentMagazineWallets);
         }
@@ -511,15 +511,16 @@ namespace TNBase.Objects.Test
         [TestMethod]
         public void SentMagazineWallets_ReturnsNumberOfSentWallets_WhenNoMagazineWalletIsInStock()
         {
-            var listener = new Listener { MagazineStock = 0, Magazine = true };
+            var listener = new Listener { MagazineStock = 0, Magazine = true, MagazineWalletsIssued = 2 };
 
-            Assert.AreEqual(1, listener.SentMagazineWallets);
+            Assert.AreEqual(2, listener.SentMagazineWallets);
         }
 
         [TestMethod]
         public void SentMagazineWallets_ReturnsZero_WhenMagazineOptionIsNotSet()
         {
-            var listener = new Listener { MagazineStock = 0, Magazine = false };
+            // TODO: Review if this logic is OK. I would think magazine checkbox should not influence this value
+            var listener = new Listener { MagazineStock = 0, Magazine = false, MagazineWalletsIssued = 2 };
 
             Assert.AreEqual(0, listener.SentMagazineWallets);
         }
@@ -531,6 +532,7 @@ namespace TNBase.Objects.Test
             {
                 Forename = "Listener",
                 Stock = 2,
+                NewsWalletsIssued = 3,
                 Status = ListenerStates.DELETED
             };
 
@@ -547,6 +549,7 @@ namespace TNBase.Objects.Test
                 Forename = "Listener",
                 Magazine = true,
                 MagazineStock = 0,
+                MagazineWalletsIssued = 1,
                 Status = ListenerStates.DELETED
             };
 

@@ -91,9 +91,7 @@ namespace TNBase.Repository
 
                 entity.Property(e => e.Magazine).HasColumnType("bit");
 
-                entity.Property(e => e.MagazineStock)
-                    .HasColumnType("bigint")
-                    .HasDefaultValueSql("0");
+                entity.Property(e => e.MagazineStock).HasColumnType("bigint");
 
                 entity.Property(e => e.MemStickPlayer).HasColumnType("bit");
 
@@ -101,14 +99,11 @@ namespace TNBase.Repository
 
                 entity.Property(e => e.WarnOfAddressChange).HasColumnType("bit");
 
-                entity.Property(e => e.Status)
-                    .HasConversion<string>();
+                entity.Property(e => e.Status).HasConversion<string>();
 
                 entity.Property(e => e.StatusInfo).HasColumnType("text");
 
-                entity.Property(e => e.Stock)
-                    .HasColumnType("bigint")
-                    .HasDefaultValueSql("3");
+                entity.Property(e => e.Stock).HasColumnType("bigint");
 
                 entity.Property(e => e.Surname)
                     .IsRequired()

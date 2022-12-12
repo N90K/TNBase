@@ -182,13 +182,13 @@ namespace TNBase
                     }
 
                     // Are there more than 3 stock items?
-                    if (listener.Stock > Listener.DEFAULT_NEWS_STOCK)
+                    if (listener.Stock > listener.NewsWalletsIssued)
                     {
                         int overStock = listener.Stock;
-                        listener.Stock = 3;
+                        listener.Stock = listener.NewsWalletsIssued;
                         MessageBox.Show("Listener with Wallet: " + listener.Wallet + ", Name: " + listener.GetNiceName() + " would have " + overStock + " stock after scanning in these wallets. " + Environment.NewLine + Environment.NewLine +
                                          "Please look for any old wallets and remove the labels before clicking OK to continue.");
-                        log.Warn("Listner " + listener.GetNiceName() + " would have " + overStock + " stock after the scanning in. Limiting to " + Listener.DEFAULT_NEWS_STOCK + " and displaying warning.");
+                        log.Warn("Listner " + listener.GetNiceName() + " would have " + overStock + " stock after the scanning in. Limiting to " + listener.NewsWalletsIssued + " and displaying warning.");
                     }
 
                     // If the listener is active, we will be also sending it out

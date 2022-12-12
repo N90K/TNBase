@@ -1,0 +1,4 @@
+Wallet,Title,Forename,Surname,Addr1,Addr2,Town,County,Postcode,Telephone,OnlineOnly,ReceivesMagazine,HasPlayerIssued,JoinedDate,BirthdayDay,BirthdayMonth,Status,PauseStartDate,PauseEndDate,NumberOfNewsIssued,NewsStock,NumberOfMagazinesIssued,MagazineStock,Information
+1,Mr,Tom,Baker,189 Queens Court,High St,Ramsgate,Kent,CT11 9TP,01843 851077,0,1,1,25/03/2018,16,6,Active,,,3,2,1,0,Contact: John Baker (father) 01843 851088
+2,Miss,Ashley,Robertson,Matlock St,,Bakewell,Derbyshire,DE45 1EE,01629 814692,0,0,1,09/12/2020,2,8,Paused,07/01/2022,07/06/2022,3,3,0,0,
+5,Dr,Rebecca,Shaw,6 Mill Rd,,Alloa,Clackmannanshire,FK10 1JY,01259 213344,1,0,0,18/10/2021,24,5,Active,,,0,0,0,0,

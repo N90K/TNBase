@@ -38,6 +38,12 @@
     <Compile Update="Forms\FormChoosePrintPoint.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormDataImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormDataImportReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormDelete.cs">
       <SubType>Form</SubType>
     </Compile>
