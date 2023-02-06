@@ -70,19 +70,19 @@ namespace TNBase.DataStorage.Test
         private void InsertListeners()
         {
             // Add some active listeners
-            Listener l1 = new Listener() { Title = "Mr", Forename = "John", Surname = "Biddle", Addr1 = "1 Park Avenue", Addr2 = "", County = "London", Postcode = "N7 NDF", Town = "Camden", Telephone = "01234 423 232", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = false, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-2), Wallet = 1, InOutRecords = new InOutRecords() };
+            Listener l1 = new Listener() { Title = "Mr", Forename = "John", Surname = "Biddle", Addr1 = "1 Park Avenue", Addr2 = "", County = "London", Postcode = "N7 NDF", Town = "Camden", Telephone = "01234 423 232", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = false, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-2), Wallet = 1, InOutRecords = new InOutRecords(), BirthdayDay = 1, BirthdayMonth = 4 };
             serviceLayer.AddListener(l1);
-            Listener l2 = new Listener() { Title = "Miss", Forename = "Sarah", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 2, InOutRecords = new InOutRecords() };
+            Listener l2 = new Listener() { Title = "Miss", Forename = "Sarah", Surname = "Jones", Addr1 = "40 Camden Road", Addr2 = "", County = "London", Postcode = "N7 8AB", Town = "Camden", Telephone = "07843434343", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 2, InOutRecords = new InOutRecords(), BirthdayDay = 7, BirthdayMonth = 5 };
             serviceLayer.AddListener(l2);
 
             // Add a deleted listener
-            Listener l3 = new Listener() { Title = "Doctor", Forename = "Nigel", Surname = "Sarage", Addr1 = "4 Bad Lane", Addr2 = "Topal", County = "Coart", Postcode = "N7 8DD", Town = "Rhywr", Telephone = "01435 643633", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 3, InOutRecords = new InOutRecords() };
+            Listener l3 = new Listener() { Title = "Doctor", Forename = "Nigel", Surname = "Sarage", Addr1 = "4 Bad Lane", Addr2 = "Topal", County = "Coart", Postcode = "N7 8DD", Town = "Rhywr", Telephone = "01435 643633", Stock = 3, Info = "", Joined = DateTime.Now, MemStickPlayer = true, Magazine = true, Status = ListenerStates.ACTIVE, StatusInfo = "", LastOut = DateTime.Now.AddMonths(-4), Wallet = 3, InOutRecords = new InOutRecords(), BirthdayDay = 30, BirthdayMonth = 6 };
             // TODO (L) Improve/Change the delete method!
             serviceLayer.AddListener(l3);
             serviceLayer.SoftDeleteListener(l3, "Test");
 
             // Add a paused listener
-            Listener l4 = new Listener() { Title = "Mrs", Forename = "Lazy", Surname = "Bones", Addr1 = "4 Bone Road", Addr2 = "Scel", County = "Etal", Postcode = "N19 2DD", Town = "Death", Telephone = "01435 643433", Stock = 3, Info = "", Joined = DateTime.Now.AddDays(-425), MemStickPlayer = false, Magazine = false, Status = ListenerStates.ACTIVE, StatusInfo = "", Wallet = 4, InOutRecords = new InOutRecords() };
+            Listener l4 = new Listener() { Title = "Mrs", Forename = "Lazy", Surname = "Bones", Addr1 = "4 Bone Road", Addr2 = "Scel", County = "Etal", Postcode = "N19 2DD", Town = "Death", Telephone = "01435 643433", Stock = 3, Info = "", Joined = DateTime.Now.AddDays(-425), MemStickPlayer = false, Magazine = false, Status = ListenerStates.ACTIVE, StatusInfo = "", Wallet = 4, InOutRecords = new InOutRecords(), BirthdayDay = 15, BirthdayMonth = 12 };
             l4.Pause(DateTime.Now);
             serviceLayer.AddListener(l4);
         }
@@ -222,9 +222,25 @@ namespace TNBase.DataStorage.Test
         }
 
         [TestMethod]
-        public void ServiceLayer_GetNextWeeksBirthdays()
+        public void ServiceLayer_GetUpcomingBirthdays()
         {
-            Assert.AreEqual(0, serviceLayer.GetNextWeekBirthdays().Count);
+            Assert.AreEqual(0, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 3, 1), to = new DateTime(2023, 3, 31) }).Count);
+            Assert.AreEqual(2, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 4, 1), to = new DateTime(2023, 5, 7) }).Count);
+            Assert.AreEqual(1, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 4, 1), to = new DateTime(2023, 5, 6) }).Count);
+            Assert.AreEqual(0, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 4, 2), to = new DateTime(2023, 5, 6) }).Count);
+
+            // returns paused but not deleted listener
+            Assert.AreEqual(1, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 5, 15), to = new DateTime(2024, 5, 6) }).Count);
+        }
+
+        [TestMethod]
+        public void ServiceLayer_GetUpcomingBirthdayDates()
+        {
+            Assert.AreEqual(new DateRange() { from = new DateTime(2023, 3, 10), to = new DateTime(2023, 3, 16) }, serviceLayer.GetUpcomingBirthdayDates(new DateTime(2023, 3, 1)));
+            Assert.AreEqual(new DateRange() { from = new DateTime(2023, 12, 17), to = new DateTime(2024, 1, 6) }, serviceLayer.GetUpcomingBirthdayDates(new DateTime(2023, 12, 8)));
+            Assert.AreEqual(new DateRange() { from = new DateTime(2023, 12, 23), to = new DateTime(2024, 1, 12) }, serviceLayer.GetUpcomingBirthdayDates(new DateTime(2023, 12, 14)));
+            Assert.AreEqual(new DateRange() { from = new DateTime(2024, 1, 7), to = new DateTime(2024, 1, 13) }, serviceLayer.GetUpcomingBirthdayDates(new DateTime(2023, 12, 15)));
+            Assert.AreEqual(new DateRange() { from = new DateTime(2024, 1, 17), to = new DateTime(2024, 1, 23) }, serviceLayer.GetUpcomingBirthdayDates(new DateTime(2023, 12, 25)));
         }
 
         [TestMethod]

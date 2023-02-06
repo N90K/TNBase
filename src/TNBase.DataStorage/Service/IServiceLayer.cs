@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TNBase.Objects;
 
 namespace TNBase.DataStorage
@@ -36,7 +37,8 @@ namespace TNBase.DataStorage
         List<Listener> GetUnreturnedSpeakerListeners();
         List<Listener> GetActiveListenersNotScannedIn();
         List<Listener> Get1MonthDormantListeners();
-        List<Listener> GetNextWeekBirthdays();
+        List<Listener> GetUpcomingBirthdays(DateRange dateRange);
+        DateRange GetUpcomingBirthdayDates();
         List<Listener> GetListenersByName(string forename, string surname, string title = null);
         List<Listener> GetListenersByStatus(ListenerStates status);
         List<Listener> GetPostListenersByStatus(ListenerStates status);

@@ -261,7 +261,8 @@ namespace TNBase
                     warnings.Add("No recently added Listeners this week.");
                 }
 
-                if (serviceLayer.GetNextWeekBirthdays().Count > 0)
+                DateRange dateRange = serviceLayer.GetUpcomingBirthdayDates();
+                if (serviceLayer.GetUpcomingBirthdays(dateRange).Count > 0)
                 {
                     FormPrintBirthdays printBirthdays = new FormPrintBirthdays();
                     printBirthdays.Show();
