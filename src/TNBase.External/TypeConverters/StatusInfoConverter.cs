@@ -4,7 +4,7 @@ using CsvHelper.TypeConversion;
 using System;
 using TNBase.Objects;
 
-namespace TNBase.External.DataImport
+namespace TNBase.External.TypeConverters
 {
     public class StatusInfoConverter : ITypeConverter
     {
@@ -26,7 +26,21 @@ namespace TNBase.External.DataImport
 
         public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
         {
-            throw new System.NotImplementedException();
+            var info = (string)value;
+            
+            if (string.IsNullOrEmpty(info) || info.IndexOf(",") == -1)
+            {
+                return string.Empty;
+            }
+
+            if (memberMapData.Names[0] == "PauseStartDate")
+            {
+                return info.Substring(0, info.IndexOf(','));
+            }
+            else
+            {
+                return info.Substring(info.IndexOf(',') + 1);
+            }
         }
     }
 }

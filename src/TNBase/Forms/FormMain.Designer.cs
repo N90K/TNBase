@@ -110,6 +110,7 @@ namespace TNBase
             this.btnMagScanOut = new System.Windows.Forms.Button();
             this.btnMagScanIn = new System.Windows.Forms.Button();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.dataExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTop.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
@@ -122,10 +123,10 @@ namespace TNBase
             // 
             this.Label1.AutoSize = true;
             this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Label1.Location = new System.Drawing.Point(269, 134);
-            this.Label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.Label1.Location = new System.Drawing.Point(145, 63);
+            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(0, 79);
+            this.Label1.Size = new System.Drawing.Size(0, 39);
             this.Label1.TabIndex = 0;
             // 
             // menuTop
@@ -142,8 +143,8 @@ namespace TNBase
             this.helpToolStripMenuItem});
             this.menuTop.Location = new System.Drawing.Point(0, 0);
             this.menuTop.Name = "menuTop";
-            this.menuTop.Padding = new System.Windows.Forms.Padding(13, 4, 0, 4);
-            this.menuTop.Size = new System.Drawing.Size(2277, 53);
+            this.menuTop.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuTop.Size = new System.Drawing.Size(1226, 28);
             this.menuTop.TabIndex = 1;
             this.menuTop.Text = "MenuStrip1";
             // 
@@ -159,48 +160,48 @@ namespace TNBase
             this.mBtnListeners.Name = "mBtnListeners";
             this.mBtnListeners.ShortcutKeyDisplayString = "";
             this.mBtnListeners.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.mBtnListeners.Size = new System.Drawing.Size(154, 45);
+            this.mBtnListeners.Size = new System.Drawing.Size(78, 24);
             this.mBtnListeners.Text = "&Listeners";
             // 
             // AddToolStripMenuItem
             // 
             this.AddToolStripMenuItem.Name = "AddToolStripMenuItem";
-            this.AddToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.AddToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.AddToolStripMenuItem.Text = "Add";
             this.AddToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
             // 
             // DeleteToolStripMenuItem
             // 
             this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.DeleteToolStripMenuItem.Text = "Delete";
             this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // EditToolStripMenuItem
             // 
             this.EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            this.EditToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.EditToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.EditToolStripMenuItem.Text = "Edit";
             this.EditToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // StopSendingToolStripMenuItem
             // 
             this.StopSendingToolStripMenuItem.Name = "StopSendingToolStripMenuItem";
-            this.StopSendingToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.StopSendingToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.StopSendingToolStripMenuItem.Text = "Stop Sending";
             this.StopSendingToolStripMenuItem.Click += new System.EventHandler(this.StopSendingToolStripMenuItem_Click);
             // 
             // CancelAStopToolStripMenuItem
             // 
             this.CancelAStopToolStripMenuItem.Name = "CancelAStopToolStripMenuItem";
-            this.CancelAStopToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.CancelAStopToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.CancelAStopToolStripMenuItem.Text = "Cancel a Stop";
             this.CancelAStopToolStripMenuItem.Click += new System.EventHandler(this.CancelAStopToolStripMenuItem_Click);
             // 
             // BrowseToolStripMenuItem
             // 
             this.BrowseToolStripMenuItem.Name = "BrowseToolStripMenuItem";
-            this.BrowseToolStripMenuItem.Size = new System.Drawing.Size(335, 50);
+            this.BrowseToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.BrowseToolStripMenuItem.Text = "Browse";
             this.BrowseToolStripMenuItem.Click += new System.EventHandler(this.BrowseToolStripMenuItem_Click);
             // 
@@ -213,57 +214,58 @@ namespace TNBase
             this.logViewToolStripMenuItem,
             this.openLogDirectoryToolStripMenuItem,
             this.adjustStockLevelsToolStripMenuItem,
-            this.dataImportToolStripMenuItem});
+            this.dataImportToolStripMenuItem,
+            this.dataExportToolStripMenuItem});
             this.MaintenenceToolStripMenuItem.Name = "MaintenenceToolStripMenuItem";
-            this.MaintenenceToolStripMenuItem.Size = new System.Drawing.Size(210, 45);
+            this.MaintenenceToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.MaintenenceToolStripMenuItem.Text = "&Maintenence";
             // 
             // BackupToolStripMenuItem
             // 
             this.BackupToolStripMenuItem.Name = "BackupToolStripMenuItem";
-            this.BackupToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.BackupToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.BackupToolStripMenuItem.Text = "Backup";
             this.BackupToolStripMenuItem.Click += new System.EventHandler(this.BackupToolStripMenuItem_Click);
             // 
             // RestoreToolStripMenuItem
             // 
             this.RestoreToolStripMenuItem.Name = "RestoreToolStripMenuItem";
-            this.RestoreToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.RestoreToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.RestoreToolStripMenuItem.Text = "Restore";
             this.RestoreToolStripMenuItem.Click += new System.EventHandler(this.RestoreToolStripMenuItem_Click);
             // 
             // PrintAllListenerLabelsToolStripMenuItem
             // 
             this.PrintAllListenerLabelsToolStripMenuItem.Name = "PrintAllListenerLabelsToolStripMenuItem";
-            this.PrintAllListenerLabelsToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.PrintAllListenerLabelsToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.PrintAllListenerLabelsToolStripMenuItem.Text = "Print All Listener Labels";
             this.PrintAllListenerLabelsToolStripMenuItem.Click += new System.EventHandler(this.PrintAllListenerLabelsToolStripMenuItem_Click);
             // 
             // logViewToolStripMenuItem
             // 
             this.logViewToolStripMenuItem.Name = "logViewToolStripMenuItem";
-            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.logViewToolStripMenuItem.Text = "Log View";
             this.logViewToolStripMenuItem.Click += new System.EventHandler(this.LogViewToolStripMenuItem_Click);
             // 
             // openLogDirectoryToolStripMenuItem
             // 
             this.openLogDirectoryToolStripMenuItem.Name = "openLogDirectoryToolStripMenuItem";
-            this.openLogDirectoryToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.openLogDirectoryToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.openLogDirectoryToolStripMenuItem.Text = "Open Log Directory";
             this.openLogDirectoryToolStripMenuItem.Click += new System.EventHandler(this.OpenLogDirectoryToolStripMenuItem_Click);
             // 
             // adjustStockLevelsToolStripMenuItem
             // 
             this.adjustStockLevelsToolStripMenuItem.Name = "adjustStockLevelsToolStripMenuItem";
-            this.adjustStockLevelsToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.adjustStockLevelsToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.adjustStockLevelsToolStripMenuItem.Text = "Adjust Stock Levels";
             this.adjustStockLevelsToolStripMenuItem.Click += new System.EventHandler(this.AdjustStockLevelsToolStripMenuItem_Click);
             // 
             // dataImportToolStripMenuItem
             // 
             this.dataImportToolStripMenuItem.Name = "dataImportToolStripMenuItem";
-            this.dataImportToolStripMenuItem.Size = new System.Drawing.Size(459, 50);
+            this.dataImportToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.dataImportToolStripMenuItem.Text = "Data Import";
             this.dataImportToolStripMenuItem.Click += new System.EventHandler(this.dataImportToolStripMenuItem_Click);
             // 
@@ -285,104 +287,104 @@ namespace TNBase
             this.magazineWalletStockToolStripMenuItem,
             this.onlineonlyListenersToolStripMenuItem});
             this.PrintingToolStripMenuItem.Name = "PrintingToolStripMenuItem";
-            this.PrintingToolStripMenuItem.Size = new System.Drawing.Size(141, 45);
+            this.PrintingToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.PrintingToolStripMenuItem.Text = "Prin&ting";
             // 
             // UpcomingBirthdaysToolStripMenuItem
             // 
             this.UpcomingBirthdaysToolStripMenuItem.Name = "UpcomingBirthdaysToolStripMenuItem";
-            this.UpcomingBirthdaysToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.UpcomingBirthdaysToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.UpcomingBirthdaysToolStripMenuItem.Text = "Upcoming Birthdays";
             this.UpcomingBirthdaysToolStripMenuItem.Click += new System.EventHandler(this.UpcomingBirthdaysToolStripMenuItem_Click);
             // 
             // RecentlyAddedListenersToolStripMenuItem
             // 
             this.RecentlyAddedListenersToolStripMenuItem.Name = "RecentlyAddedListenersToolStripMenuItem";
-            this.RecentlyAddedListenersToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.RecentlyAddedListenersToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.RecentlyAddedListenersToolStripMenuItem.Text = "Recently Added Listeners";
             this.RecentlyAddedListenersToolStripMenuItem.Click += new System.EventHandler(this.RecentlyAddedListenersToolStripMenuItem_Click);
             // 
             // PrintAddressLabelsToolStripMenuItem
             // 
             this.PrintAddressLabelsToolStripMenuItem.Name = "PrintAddressLabelsToolStripMenuItem";
-            this.PrintAddressLabelsToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.PrintAddressLabelsToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.PrintAddressLabelsToolStripMenuItem.Text = "Print Address Labels";
             this.PrintAddressLabelsToolStripMenuItem.Click += new System.EventHandler(this.PrintAddressLabelsToolStripMenuItem_Click);
             // 
             // ListenersInactiveFor30DaysToolStripMenuItem
             // 
             this.ListenersInactiveFor30DaysToolStripMenuItem.Name = "ListenersInactiveFor30DaysToolStripMenuItem";
-            this.ListenersInactiveFor30DaysToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.ListenersInactiveFor30DaysToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.ListenersInactiveFor30DaysToolStripMenuItem.Text = "Listeners inactive for 30 days";
             this.ListenersInactiveFor30DaysToolStripMenuItem.Click += new System.EventHandler(this.ListenersInactiveFor30DaysToolStripMenuItem_Click);
             // 
             // GPOSackLabelsToolStripMenuItem
             // 
             this.GPOSackLabelsToolStripMenuItem.Name = "GPOSackLabelsToolStripMenuItem";
-            this.GPOSackLabelsToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.GPOSackLabelsToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.GPOSackLabelsToolStripMenuItem.Text = "Print Sack Labels";
             this.GPOSackLabelsToolStripMenuItem.Click += new System.EventHandler(this.GPOSackLabelsToolStripMenuItem_Click);
             // 
             // StoppedListenersThisWeekToolStripMenuItem
             // 
             this.StoppedListenersThisWeekToolStripMenuItem.Name = "StoppedListenersThisWeekToolStripMenuItem";
-            this.StoppedListenersThisWeekToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.StoppedListenersThisWeekToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.StoppedListenersThisWeekToolStripMenuItem.Text = "Paused Wallet List";
             this.StoppedListenersThisWeekToolStripMenuItem.Click += new System.EventHandler(this.StoppedListenersThisWeekToolStripMenuItem_Click);
             // 
             // WalletsNotSentOutToolStripMenuItem
             // 
             this.WalletsNotSentOutToolStripMenuItem.Name = "WalletsNotSentOutToolStripMenuItem";
-            this.WalletsNotSentOutToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.WalletsNotSentOutToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.WalletsNotSentOutToolStripMenuItem.Text = "Unsent Wallets This Week";
             this.WalletsNotSentOutToolStripMenuItem.Click += new System.EventHandler(this.WalletsNotSentOutToolStripMenuItem_Click);
             // 
             // UnreturnedSpeakersToolStripMenuItem
             // 
             this.UnreturnedSpeakersToolStripMenuItem.Name = "UnreturnedSpeakersToolStripMenuItem";
-            this.UnreturnedSpeakersToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.UnreturnedSpeakersToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.UnreturnedSpeakersToolStripMenuItem.Text = "Unreturned Memory Stick Players";
             this.UnreturnedSpeakersToolStripMenuItem.Click += new System.EventHandler(this.UnreturnedSpeakersToolStripMenuItem_Click);
             // 
             // PrintAlphabeticSurnameListToolStripMenuItem
             // 
             this.PrintAlphabeticSurnameListToolStripMenuItem.Name = "PrintAlphabeticSurnameListToolStripMenuItem";
-            this.PrintAlphabeticSurnameListToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.PrintAlphabeticSurnameListToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.PrintAlphabeticSurnameListToolStripMenuItem.Text = "Print Alphabetic (Surname) List";
             this.PrintAlphabeticSurnameListToolStripMenuItem.Click += new System.EventHandler(this.PrintAlphabeticSurnameListToolStripMenuItem_Click);
             // 
             // printCollectorForListenerToolStripMenuItem
             // 
             this.printCollectorForListenerToolStripMenuItem.Name = "printCollectorForListenerToolStripMenuItem";
-            this.printCollectorForListenerToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.printCollectorForListenerToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.printCollectorForListenerToolStripMenuItem.Text = "Print Collector For Listener";
             this.printCollectorForListenerToolStripMenuItem.Click += new System.EventHandler(this.PrintCollectorForListenerToolStripMenuItem_Click);
             // 
             // magazineWalletsToolStripMenuItem
             // 
             this.magazineWalletsToolStripMenuItem.Name = "magazineWalletsToolStripMenuItem";
-            this.magazineWalletsToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.magazineWalletsToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.magazineWalletsToolStripMenuItem.Text = "Magazine Wallets";
             this.magazineWalletsToolStripMenuItem.Click += new System.EventHandler(this.MagazineWalletsToolStripMenuItem_Click);
             // 
             // walletsStockToolStripMenuItem
             // 
             this.walletsStockToolStripMenuItem.Name = "walletsStockToolStripMenuItem";
-            this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.walletsStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.walletsStockToolStripMenuItem.Text = "News Wallet Stock";
             this.walletsStockToolStripMenuItem.Click += new System.EventHandler(this.WalletsStockToolStripMenuItem_Click);
             // 
             // magazineWalletStockToolStripMenuItem
             // 
             this.magazineWalletStockToolStripMenuItem.Name = "magazineWalletStockToolStripMenuItem";
-            this.magazineWalletStockToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.magazineWalletStockToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.magazineWalletStockToolStripMenuItem.Text = "Magazine Wallet Stock";
             this.magazineWalletStockToolStripMenuItem.Click += new System.EventHandler(this.MagazineWalletStockToolStripMenuItem_Click);
             // 
             // onlineonlyListenersToolStripMenuItem
             // 
             this.onlineonlyListenersToolStripMenuItem.Name = "onlineonlyListenersToolStripMenuItem";
-            this.onlineonlyListenersToolStripMenuItem.Size = new System.Drawing.Size(597, 50);
+            this.onlineonlyListenersToolStripMenuItem.Size = new System.Drawing.Size(296, 24);
             this.onlineonlyListenersToolStripMenuItem.Text = "Online-only Listeners";
             this.onlineonlyListenersToolStripMenuItem.Click += new System.EventHandler(this.onlineonlyListenersToolStripMenuItem_Click);
             // 
@@ -392,20 +394,20 @@ namespace TNBase
             this.StatisticsToolStripMenuItem,
             this.HistoryToolStripMenuItem});
             this.StatisticsHistoryToolStripMenuItem.Name = "StatisticsHistoryToolStripMenuItem";
-            this.StatisticsHistoryToolStripMenuItem.Size = new System.Drawing.Size(274, 45);
+            this.StatisticsHistoryToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
             this.StatisticsHistoryToolStripMenuItem.Text = "Statistics / Histor&y";
             // 
             // StatisticsToolStripMenuItem
             // 
             this.StatisticsToolStripMenuItem.Name = "StatisticsToolStripMenuItem";
-            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(269, 50);
+            this.StatisticsToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.StatisticsToolStripMenuItem.Text = "Statistics";
             this.StatisticsToolStripMenuItem.Click += new System.EventHandler(this.StatisticsToolStripMenuItem_Click);
             // 
             // HistoryToolStripMenuItem
             // 
             this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
-            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(269, 50);
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.HistoryToolStripMenuItem.Text = "History";
             this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
@@ -415,21 +417,21 @@ namespace TNBase
             this.ScanInToolStripMenuItem,
             this.ScanOutToolStripMenuItem});
             this.ScanningToolStripMenuItem.Name = "ScanningToolStripMenuItem";
-            this.ScanningToolStripMenuItem.Size = new System.Drawing.Size(159, 45);
+            this.ScanningToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.ScanningToolStripMenuItem.Text = "Scanning";
             this.ScanningToolStripMenuItem.Visible = false;
             // 
             // ScanInToolStripMenuItem
             // 
             this.ScanInToolStripMenuItem.Name = "ScanInToolStripMenuItem";
-            this.ScanInToolStripMenuItem.Size = new System.Drawing.Size(275, 50);
+            this.ScanInToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.ScanInToolStripMenuItem.Text = "Scan In";
             this.ScanInToolStripMenuItem.Click += new System.EventHandler(this.ScanInToolStripMenuItem_Click);
             // 
             // ScanOutToolStripMenuItem
             // 
             this.ScanOutToolStripMenuItem.Name = "ScanOutToolStripMenuItem";
-            this.ScanOutToolStripMenuItem.Size = new System.Drawing.Size(275, 50);
+            this.ScanOutToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.ScanOutToolStripMenuItem.Text = "Scan Out";
             this.ScanOutToolStripMenuItem.Click += new System.EventHandler(this.ScanOutToolStripMenuItem_Click);
             // 
@@ -439,20 +441,20 @@ namespace TNBase
             this.AddCollectorsToolStripMenuItem,
             this.BrowseToolStripMenuItem1});
             this.CollectorsToolStripMenuItem.Name = "CollectorsToolStripMenuItem";
-            this.CollectorsToolStripMenuItem.Size = new System.Drawing.Size(170, 45);
+            this.CollectorsToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
             this.CollectorsToolStripMenuItem.Text = "Collectors";
             // 
             // AddCollectorsToolStripMenuItem
             // 
             this.AddCollectorsToolStripMenuItem.Name = "AddCollectorsToolStripMenuItem";
-            this.AddCollectorsToolStripMenuItem.Size = new System.Drawing.Size(350, 50);
+            this.AddCollectorsToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.AddCollectorsToolStripMenuItem.Text = "Add Collectors";
             this.AddCollectorsToolStripMenuItem.Click += new System.EventHandler(this.AddCollectorsToolStripMenuItem_Click);
             // 
             // BrowseToolStripMenuItem1
             // 
             this.BrowseToolStripMenuItem1.Name = "BrowseToolStripMenuItem1";
-            this.BrowseToolStripMenuItem1.Size = new System.Drawing.Size(350, 50);
+            this.BrowseToolStripMenuItem1.Size = new System.Drawing.Size(176, 24);
             this.BrowseToolStripMenuItem1.Text = "Browse";
             this.BrowseToolStripMenuItem1.Click += new System.EventHandler(this.BrowseToolStripMenuItem1_Click);
             // 
@@ -462,21 +464,21 @@ namespace TNBase
             this.viewHelpToolStripMenuItem,
             this.aboutToolStripMenuItem1});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(100, 45);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // viewHelpToolStripMenuItem
             // 
             this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
             this.viewHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(359, 50);
+            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.viewHelpToolStripMenuItem.Text = "&View Help";
             this.viewHelpToolStripMenuItem.Click += new System.EventHandler(this.viewHelpToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(359, 50);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(170, 24);
             this.aboutToolStripMenuItem1.Text = "Abo&ut";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
@@ -484,10 +486,10 @@ namespace TNBase
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDate.Location = new System.Drawing.Point(1870, 273);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblDate.Location = new System.Drawing.Point(1007, 128);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(209, 44);
+            this.lblDate.Size = new System.Drawing.Size(100, 24);
             this.lblDate.TabIndex = 2;
             this.lblDate.Text = "??/??/????";
             // 
@@ -495,10 +497,10 @@ namespace TNBase
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTime.Location = new System.Drawing.Point(160, 273);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTime.Location = new System.Drawing.Point(86, 128);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(167, 44);
+            this.lblTime.Size = new System.Drawing.Size(80, 24);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "??:??:??";
             // 
@@ -519,11 +521,11 @@ namespace TNBase
             this.GroupBox1.Controls.Add(this.btnAdd);
             this.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GroupBox1.Location = new System.Drawing.Point(115, 431);
-            this.GroupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.GroupBox1.Location = new System.Drawing.Point(62, 202);
+            this.GroupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.GroupBox1.Size = new System.Drawing.Size(455, 900);
+            this.GroupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.GroupBox1.Size = new System.Drawing.Size(245, 422);
             this.GroupBox1.TabIndex = 4;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Listeners";
@@ -532,10 +534,10 @@ namespace TNBase
             // 
             this.btnPrintLabels.BackColor = System.Drawing.Color.White;
             this.btnPrintLabels.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintLabels.Location = new System.Drawing.Point(13, 757);
-            this.btnPrintLabels.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnPrintLabels.Location = new System.Drawing.Point(7, 355);
+            this.btnPrintLabels.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintLabels.Name = "btnPrintLabels";
-            this.btnPrintLabels.Size = new System.Drawing.Size(429, 96);
+            this.btnPrintLabels.Size = new System.Drawing.Size(231, 45);
             this.btnPrintLabels.TabIndex = 11;
             this.btnPrintLabels.Text = "&Print Labels";
             this.btnPrintLabels.UseVisualStyleBackColor = false;
@@ -545,10 +547,10 @@ namespace TNBase
             // 
             this.btnCancelStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancelStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelStop.Location = new System.Drawing.Point(13, 538);
-            this.btnCancelStop.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnCancelStop.Location = new System.Drawing.Point(7, 252);
+            this.btnCancelStop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancelStop.Name = "btnCancelStop";
-            this.btnCancelStop.Size = new System.Drawing.Size(429, 96);
+            this.btnCancelStop.Size = new System.Drawing.Size(231, 45);
             this.btnCancelStop.TabIndex = 9;
             this.btnCancelStop.Text = "&Cancel a Stop";
             this.btnCancelStop.UseVisualStyleBackColor = false;
@@ -558,10 +560,10 @@ namespace TNBase
             // 
             this.btnStopSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnStopSending.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStopSending.Location = new System.Drawing.Point(13, 646);
-            this.btnStopSending.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnStopSending.Location = new System.Drawing.Point(7, 303);
+            this.btnStopSending.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnStopSending.Name = "btnStopSending";
-            this.btnStopSending.Size = new System.Drawing.Size(429, 96);
+            this.btnStopSending.Size = new System.Drawing.Size(231, 45);
             this.btnStopSending.TabIndex = 8;
             this.btnStopSending.Text = "&Stop Sending";
             this.btnStopSending.UseVisualStyleBackColor = false;
@@ -571,10 +573,10 @@ namespace TNBase
             // 
             this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBrowse.Location = new System.Drawing.Point(13, 416);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnBrowse.Location = new System.Drawing.Point(7, 195);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(429, 96);
+            this.btnBrowse.Size = new System.Drawing.Size(231, 45);
             this.btnBrowse.TabIndex = 10;
             this.btnBrowse.Text = "Bro&wse";
             this.btnBrowse.UseVisualStyleBackColor = false;
@@ -584,10 +586,10 @@ namespace TNBase
             // 
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(13, 305);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnEdit.Location = new System.Drawing.Point(7, 143);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(429, 96);
+            this.btnEdit.Size = new System.Drawing.Size(231, 45);
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "&Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -597,10 +599,10 @@ namespace TNBase
             // 
             this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(13, 196);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnRemove.Location = new System.Drawing.Point(7, 92);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(429, 94);
+            this.btnRemove.Size = new System.Drawing.Size(231, 44);
             this.btnRemove.TabIndex = 6;
             this.btnRemove.Text = "&Delete";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -610,10 +612,10 @@ namespace TNBase
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(13, 77);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnAdd.Location = new System.Drawing.Point(7, 36);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(429, 96);
+            this.btnAdd.Size = new System.Drawing.Size(231, 45);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -624,10 +626,10 @@ namespace TNBase
             this.btnFinished.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnFinished.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFinished.Location = new System.Drawing.Point(914, 1261);
-            this.btnFinished.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnFinished.Location = new System.Drawing.Point(492, 591);
+            this.btnFinished.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFinished.Name = "btnFinished";
-            this.btnFinished.Size = new System.Drawing.Size(388, 130);
+            this.btnFinished.Size = new System.Drawing.Size(209, 61);
             this.btnFinished.TabIndex = 12;
             this.btnFinished.Text = "&Finished";
             this.btnFinished.UseVisualStyleBackColor = false;
@@ -639,11 +641,11 @@ namespace TNBase
             this.GroupBox2.Controls.Add(this.btnScanIn);
             this.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GroupBox2.Location = new System.Drawing.Point(1664, 431);
-            this.GroupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.GroupBox2.Location = new System.Drawing.Point(896, 202);
+            this.GroupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.GroupBox2.Size = new System.Drawing.Size(455, 356);
+            this.GroupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.GroupBox2.Size = new System.Drawing.Size(245, 167);
             this.GroupBox2.TabIndex = 12;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "News Scanning";
@@ -652,10 +654,10 @@ namespace TNBase
             // 
             this.btnScanOut.BackColor = System.Drawing.Color.Yellow;
             this.btnScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnScanOut.Location = new System.Drawing.Point(13, 196);
-            this.btnScanOut.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnScanOut.Location = new System.Drawing.Point(7, 92);
+            this.btnScanOut.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnScanOut.Name = "btnScanOut";
-            this.btnScanOut.Size = new System.Drawing.Size(429, 96);
+            this.btnScanOut.Size = new System.Drawing.Size(231, 45);
             this.btnScanOut.TabIndex = 11;
             this.btnScanOut.Text = "Scan &Out";
             this.btnScanOut.UseVisualStyleBackColor = false;
@@ -665,10 +667,10 @@ namespace TNBase
             // 
             this.btnScanIn.BackColor = System.Drawing.Color.Yellow;
             this.btnScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnScanIn.Location = new System.Drawing.Point(13, 77);
-            this.btnScanIn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnScanIn.Location = new System.Drawing.Point(7, 36);
+            this.btnScanIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnScanIn.Name = "btnScanIn";
-            this.btnScanIn.Size = new System.Drawing.Size(429, 96);
+            this.btnScanIn.Size = new System.Drawing.Size(231, 45);
             this.btnScanIn.TabIndex = 10;
             this.btnScanIn.Text = "Scan &In";
             this.btnScanIn.UseVisualStyleBackColor = false;
@@ -680,17 +682,17 @@ namespace TNBase
             this.StatusStrip1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblHints});
-            this.StatusStrip1.Location = new System.Drawing.Point(0, 1492);
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 697);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
-            this.StatusStrip1.Size = new System.Drawing.Size(2277, 42);
+            this.StatusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.StatusStrip1.Size = new System.Drawing.Size(1226, 22);
             this.StatusStrip1.TabIndex = 14;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
             // lblHints
             // 
             this.lblHints.Name = "lblHints";
-            this.lblHints.Size = new System.Drawing.Size(95, 32);
+            this.lblHints.Size = new System.Drawing.Size(48, 17);
             this.lblHints.Text = "lblHints";
             // 
             // timerHints
@@ -707,10 +709,10 @@ namespace TNBase
             // 
             this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.InitialImage")));
-            this.PictureBox1.Location = new System.Drawing.Point(784, 431);
-            this.PictureBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.PictureBox1.Location = new System.Drawing.Point(422, 202);
+            this.PictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(665, 644);
+            this.PictureBox1.Size = new System.Drawing.Size(358, 302);
             this.PictureBox1.TabIndex = 15;
             this.PictureBox1.TabStop = false;
             // 
@@ -722,10 +724,10 @@ namespace TNBase
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblVersion.Location = new System.Drawing.Point(1014, 1101);
-            this.lblVersion.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblVersion.Location = new System.Drawing.Point(546, 516);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(171, 44);
+            this.lblVersion.Size = new System.Drawing.Size(83, 24);
             this.lblVersion.TabIndex = 16;
             this.lblVersion.Text = "V ?.?.?.?";
             // 
@@ -733,10 +735,10 @@ namespace TNBase
             // 
             this.lblWeekNumber.AutoSize = true;
             this.lblWeekNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblWeekNumber.Location = new System.Drawing.Point(984, 273);
-            this.lblWeekNumber.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblWeekNumber.Location = new System.Drawing.Point(530, 128);
+            this.lblWeekNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWeekNumber.Name = "lblWeekNumber";
-            this.lblWeekNumber.Size = new System.Drawing.Size(221, 44);
+            this.lblWeekNumber.Size = new System.Drawing.Size(109, 24);
             this.lblWeekNumber.TabIndex = 17;
             this.lblWeekNumber.Text = "Week: ????";
             // 
@@ -746,11 +748,11 @@ namespace TNBase
             this.groupBox3.Controls.Add(this.btnMagScanIn);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(1664, 928);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox3.Location = new System.Drawing.Point(896, 435);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox3.Size = new System.Drawing.Size(455, 356);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox3.Size = new System.Drawing.Size(245, 167);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Magazine Scanning";
@@ -759,10 +761,10 @@ namespace TNBase
             // 
             this.btnMagScanOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnMagScanOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMagScanOut.Location = new System.Drawing.Point(13, 196);
-            this.btnMagScanOut.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnMagScanOut.Location = new System.Drawing.Point(7, 92);
+            this.btnMagScanOut.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMagScanOut.Name = "btnMagScanOut";
-            this.btnMagScanOut.Size = new System.Drawing.Size(429, 96);
+            this.btnMagScanOut.Size = new System.Drawing.Size(231, 45);
             this.btnMagScanOut.TabIndex = 13;
             this.btnMagScanOut.Text = "Scan &Out";
             this.btnMagScanOut.UseVisualStyleBackColor = false;
@@ -772,10 +774,10 @@ namespace TNBase
             // 
             this.btnMagScanIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnMagScanIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMagScanIn.Location = new System.Drawing.Point(13, 77);
-            this.btnMagScanIn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnMagScanIn.Location = new System.Drawing.Point(7, 36);
+            this.btnMagScanIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMagScanIn.Name = "btnMagScanIn";
-            this.btnMagScanIn.Size = new System.Drawing.Size(429, 96);
+            this.btnMagScanIn.Size = new System.Drawing.Size(231, 45);
             this.btnMagScanIn.TabIndex = 12;
             this.btnMagScanIn.Text = "Scan &In";
             this.btnMagScanIn.UseVisualStyleBackColor = false;
@@ -785,13 +787,20 @@ namespace TNBase
             // 
             this.helpProvider.HelpNamespace = "Resource\\TNBase.chm";
             // 
+            // dataExportToolStripMenuItem
+            // 
+            this.dataExportToolStripMenuItem.Name = "dataExportToolStripMenuItem";
+            this.dataExportToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
+            this.dataExportToolStripMenuItem.Text = "Data Export";
+            this.dataExportToolStripMenuItem.Click += new System.EventHandler(this.dataExportToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(2277, 1534);
+            this.ClientSize = new System.Drawing.Size(1226, 719);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblWeekNumber);
             this.Controls.Add(this.lblVersion);
@@ -810,7 +819,7 @@ namespace TNBase
             this.helpProvider.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.TopicId);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuTop;
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.helpProvider.SetShowHelp(this, true);
@@ -908,5 +917,6 @@ namespace TNBase
         private ToolStripMenuItem viewHelpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem1;
         private HelpProvider helpProvider;
+        private ToolStripMenuItem dataExportToolStripMenuItem;
     }
 }
