@@ -191,6 +191,7 @@ namespace TNBase
 
             txtSurname.Text = surname;
             txtForename.Text = forename;
+            chkMagazine.Checked = true;
 
             if (withSetup)
             {

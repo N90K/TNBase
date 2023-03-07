@@ -1,3 +1,8 @@
+1.7.14
+- Closes #58 - Allow date range criteria for upcoming birthdays
+- Closes #34 - Option to export listeners to a CSV file
+- Closes #102 - Magazine selected by default for new listener
+
 1.7.13
 - Fixed #88 - Magazine stock not set to 0 when magazine option is unchecked
 - Closed #95 - Option to import listeners from CSV file
