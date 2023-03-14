@@ -266,13 +266,6 @@ namespace TNBase.My
 				[DebuggerStepThrough] set { SetForm(ref formStats_instance, value); }
 			}
 			
-			global::TNBase.FormFindListener formFindListener_instance;
-			bool formFindListener_isCreating;
-			public global::TNBase.FormFindListener formFindListener {
-				[DebuggerStepThrough] get { return GetForm(ref formFindListener_instance, ref formFindListener_isCreating); }
-				[DebuggerStepThrough] set { SetForm(ref formFindListener_instance, value); }
-			}
-			
 			global::TNBase.FormFinished formFinished_instance;
 			bool formFinished_isCreating;
 			public global::TNBase.FormFinished formFinished {

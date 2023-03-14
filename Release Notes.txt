@@ -1,3 +1,7 @@
+1.7.16
+- Fixes #106 - Edit Listener form gets cropped on low resolution screens
+- Fixes #104 - Further fix to Find Listener form layout
+
 1.7.15
 - Fixes #104 - Find Listener form layout is broken
 

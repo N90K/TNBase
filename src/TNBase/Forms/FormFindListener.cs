@@ -1,16 +1,16 @@
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TNBase.DataStorage;
-using TNBase.Forms;
 using TNBase.Objects;
 
-namespace TNBase
+namespace TNBase.Forms
 {
-    public partial class FormFindListener
+    public partial class FormFindListener : Form
     {
         public enum FindListenerFormType
         {

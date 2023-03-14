@@ -144,26 +144,30 @@ namespace TNBase
 
         private void BtnRemove_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.DeleteForm;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.DeleteForm;
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.EditForm;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.EditForm;
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.DeleteForm;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.DeleteForm;
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.EditForm;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.EditForm;
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)
@@ -304,8 +308,9 @@ namespace TNBase
 
         private void btnPrintLabels_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.PrintLabels;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.PrintLabels;
         }
 
         private void UpcomingBirthdaysToolStripMenuItem_Click(object sender, EventArgs e)
@@ -359,8 +364,9 @@ namespace TNBase
 
         private void BtnStopSending_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.StopSending;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.StopSending;
         }
 
         private void BtnCancelStop_Click(object sender, EventArgs e)
@@ -396,8 +402,9 @@ namespace TNBase
 
         private void PrintAddressLabelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.PrintLabels;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.PrintLabels;
         }
 
         private void AddCollectorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -489,8 +496,9 @@ namespace TNBase
 
         private void PrintCollectorForListenerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.PrintCollector;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.PrintCollector;
         }
 
         private void MagazineWalletsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -501,8 +509,9 @@ namespace TNBase
 
         private void AdjustStockLevelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            My.MyProject.Forms.formFindListener.Show();
-            My.MyProject.Forms.formFindListener.theType = FormFindListener.FindListenerFormType.AdjustStock;
+            var form = new FormFindListener();
+            form.Show();
+            form.theType = FormFindListener.FindListenerFormType.AdjustStock;
         }
 
         private void WalletsStockToolStripMenuItem_Click(object sender, EventArgs e)
