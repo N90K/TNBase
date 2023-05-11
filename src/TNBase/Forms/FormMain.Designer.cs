@@ -56,6 +56,8 @@ namespace TNBase
             this.openLogDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustStockLevelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateDatabaseEncryptionKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpcomingBirthdaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RecentlyAddedListenersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,7 +112,6 @@ namespace TNBase
             this.btnMagScanOut = new System.Windows.Forms.Button();
             this.btnMagScanIn = new System.Windows.Forms.Button();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.dataExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTop.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
@@ -143,8 +144,8 @@ namespace TNBase
             this.helpToolStripMenuItem});
             this.menuTop.Location = new System.Drawing.Point(0, 0);
             this.menuTop.Name = "menuTop";
-            this.menuTop.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuTop.Size = new System.Drawing.Size(1226, 28);
+            this.menuTop.Padding = new System.Windows.Forms.Padding(13, 4, 0, 4);
+            this.menuTop.Size = new System.Drawing.Size(1168, 32);
             this.menuTop.TabIndex = 1;
             this.menuTop.Text = "MenuStrip1";
             // 
@@ -215,7 +216,8 @@ namespace TNBase
             this.openLogDirectoryToolStripMenuItem,
             this.adjustStockLevelsToolStripMenuItem,
             this.dataImportToolStripMenuItem,
-            this.dataExportToolStripMenuItem});
+            this.dataExportToolStripMenuItem,
+            this.updateDatabaseEncryptionKeyToolStripMenuItem});
             this.MaintenenceToolStripMenuItem.Name = "MaintenenceToolStripMenuItem";
             this.MaintenenceToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.MaintenenceToolStripMenuItem.Text = "&Maintenence";
@@ -268,6 +270,20 @@ namespace TNBase
             this.dataImportToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.dataImportToolStripMenuItem.Text = "Data Import";
             this.dataImportToolStripMenuItem.Click += new System.EventHandler(this.dataImportToolStripMenuItem_Click);
+            // 
+            // dataExportToolStripMenuItem
+            // 
+            this.dataExportToolStripMenuItem.Name = "dataExportToolStripMenuItem";
+            this.dataExportToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
+            this.dataExportToolStripMenuItem.Text = "Data Export";
+            this.dataExportToolStripMenuItem.Click += new System.EventHandler(this.dataExportToolStripMenuItem_Click);
+            // 
+            // updateDatabaseEncryptionKeyToolStripMenuItem
+            // 
+            this.updateDatabaseEncryptionKeyToolStripMenuItem.Name = "updateDatabaseEncryptionKeyToolStripMenuItem";
+            this.updateDatabaseEncryptionKeyToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
+            this.updateDatabaseEncryptionKeyToolStripMenuItem.Text = "Database Encryption";
+            this.updateDatabaseEncryptionKeyToolStripMenuItem.Click += new System.EventHandler(this.updateDatabaseEncryptionKeyToolStripMenuItem_Click);
             // 
             // PrintingToolStripMenuItem
             // 
@@ -682,10 +698,10 @@ namespace TNBase
             this.StatusStrip1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblHints});
-            this.StatusStrip1.Location = new System.Drawing.Point(0, 697);
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 672);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.StatusStrip1.Size = new System.Drawing.Size(1226, 22);
+            this.StatusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
+            this.StatusStrip1.Size = new System.Drawing.Size(1168, 22);
             this.StatusStrip1.TabIndex = 14;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
@@ -787,20 +803,13 @@ namespace TNBase
             // 
             this.helpProvider.HelpNamespace = "Resource\\TNBase.chm";
             // 
-            // dataExportToolStripMenuItem
-            // 
-            this.dataExportToolStripMenuItem.Name = "dataExportToolStripMenuItem";
-            this.dataExportToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
-            this.dataExportToolStripMenuItem.Text = "Data Export";
-            this.dataExportToolStripMenuItem.Click += new System.EventHandler(this.dataExportToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1226, 719);
+            this.ClientSize = new System.Drawing.Size(1168, 694);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblWeekNumber);
             this.Controls.Add(this.lblVersion);
@@ -917,6 +926,7 @@ namespace TNBase
         private ToolStripMenuItem viewHelpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem1;
         private HelpProvider helpProvider;
+        private ToolStripMenuItem updateDatabaseEncryptionKeyToolStripMenuItem;
         private ToolStripMenuItem dataExportToolStripMenuItem;
     }
 }

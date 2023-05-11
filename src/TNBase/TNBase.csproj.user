@@ -32,10 +32,16 @@
     <Compile Update="Forms\FormAdjustStockLevels.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormBackupDialogue.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FormChoosePrintPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormDatabaseEncryption.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FormDataImport.cs">
@@ -71,7 +77,10 @@
     <Compile Update="Forms\FormResumeSending.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormSplash.cs">
+    <Compile Update="Forms\FormDatabasePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormSetDatabasePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FormStats.cs">

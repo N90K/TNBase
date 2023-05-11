@@ -1,3 +1,6 @@
+1.7.17
+- Closes #100 - Encrypt listeners database
+
 1.7.16
 - Fixes #106 - Edit Listener form gets cropped on low resolution screens
 - Fixes #104 - Further fix to Find Listener form layout

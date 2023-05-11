@@ -223,14 +223,7 @@ namespace TNBase.My
 				[DebuggerStepThrough] get { return GetForm(ref formScanOutInitial_instance, ref formScanOutInitial_isCreating); }
 				[DebuggerStepThrough] set { SetForm(ref formScanOutInitial_instance, value); }
 			}
-			
-			global::TNBase.FormSplash formSplash_instance;
-			bool formSplash_isCreating;
-			public global::TNBase.FormSplash formSplash {
-				[DebuggerStepThrough] get { return GetForm(ref formSplash_instance, ref formSplash_isCreating); }
-				[DebuggerStepThrough] set { SetForm(ref formSplash_instance, value); }
-			}
-			
+						
 			global::TNBase.FormEdit formEdit_instance;
 			bool formEdit_isCreating;
 			public global::TNBase.FormEdit formEdit {

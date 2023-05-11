@@ -41,11 +41,17 @@ namespace TNBase
             ServiceProvider = services.BuildServiceProvider();
 
             var databaseManager = ServiceProvider.GetRequiredService<DatabaseManager>();
-            databaseManager.BackupDatabase();
+            databaseManager.BackupDatabaseToBackupDrive();
 
             ModuleGeneric.SaveStartTime();
 
-            var context = (TNBaseContext)ServiceProvider.GetRequiredService<ITNBaseContext>();
+            var context = (TNBaseContext)ServiceProvider.GetService<ITNBaseContext>();
+            if (context == null)
+            {
+                MessageBox.Show("Unable to connect to database. Application will be closed.");
+                return;
+            }
+
             context.UpdateDatabase();
 
             var serviceLayer = ServiceProvider.GetRequiredService<IServiceLayer>();
@@ -65,8 +71,10 @@ namespace TNBase
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            var databasePath = Path.Combine(applicationDataDirectory, "Listeners.s3db");
-            services.AddScoped<ITNBaseContext>(s => new TNBaseContext($"Data Source={databasePath}"));
+            services.AddSingleton(s => new DatabaseManagerOptions { DataLocation = applicationDataDirectory });
+            services.AddSingleton<DatabaseManager>();
+            services.AddScoped(s => s.GetService<DatabaseManager>().Database);
+
             services.AddScoped<IServiceLayer, ServiceLayer>();
             services.AddScoped<ScanService>();
             services.AddScoped<CsvImportService>();
@@ -74,9 +82,6 @@ namespace TNBase
 
             var resourceDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resource");
             services.AddSingleton(s => new ResourceManager(resourceDirectory));
-
-            services.AddSingleton(s => new DatabaseManagerOptions { DatabasePath = databasePath });
-            services.AddScoped<DatabaseManager>();
 
             services.AddScoped<FormMain>();
         }

@@ -12,7 +12,6 @@ using TNBase.Objects;
 using System.Linq;
 using TNBase.Model;
 using Microsoft.Extensions.DependencyInjection;
-using TNBase.Repository;
 using System.Globalization;
 using TNBase.Forms;
 using System.Text;
@@ -26,15 +25,8 @@ namespace TNBase
     /// </summary>
 	public partial class FormMain
     {
-        // Logging instance
         Logger log = LogManager.GetCurrentClassLogger();
 
-        // Variabless
-        private readonly IServiceLayer serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
-
-        /// <summary>
-        /// Load the correct logo!
-        /// </summary>
         private void LoadLogo()
         {
             string logo = Properties.Settings.Default.Logo;
@@ -83,6 +75,7 @@ namespace TNBase
 
         private void UpdateWeekNumber()
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
             var weekNumber = ISOWeek.GetWeekOfYear(DateTime.UtcNow).ToString();
 
             if (Properties.Settings.Default.ShowLegacyWeekNumber)
@@ -175,32 +168,12 @@ namespace TNBase
             ShowBackup();
         }
 
-        // Show backup dialog.
         public void ShowBackup()
         {
-            backupDialog.FileName = ModuleGeneric.DATABASE_NAME;
-            backupDialog.Title = "Backup Listener Database";
-            backupDialog.Filter = "SQLite Database Files|*.s3db";
-            backupDialog.CheckPathExists = true;
-            backupDialog.InitialDirectory = "A:\\";
-            backupDialog.OverwritePrompt = Properties.Settings.Default.OverwritePrompt;
-
-            // If successful, backup the database.
-            if (backupDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var databaseOptions = Program.ServiceProvider.GetService<DatabaseManagerOptions>();
-                if (DBUtils.CopyDatabase(databaseOptions.DatabasePath, backupDialog.FileName))
-                {
-                    Interaction.MsgBox("Database backup successful, please restart app!");
-                }
-                else
-                {
-                    Interaction.MsgBox("Error: Database was not copied correctly!");
-                }
-            }
+            var form = new FormBackupDialogue();
+            form.ShowDialog();
         }
 
-        // Show restore dialog.
         public void ShowRestore()
         {
             DialogResult result = MessageBox.Show("You should backup the existing database before restoring as restoring will overwrite the current database." + Environment.NewLine + Environment.NewLine + "Overwriting the current database is irreversible, are you sure you want to continue?", ModuleGeneric.getAppShortName(), MessageBoxButtons.OKCancel);
@@ -215,16 +188,12 @@ namespace TNBase
             restoreDialog.CheckPathExists = true;
             restoreDialog.InitialDirectory = "A:\\";
 
-            // If successful, backup the database.
-            if (restoreDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (restoreDialog.ShowDialog() == DialogResult.OK)
             {
-                var databaseOptions = Program.ServiceProvider.GetService<DatabaseManagerOptions>();
-                if (DBUtils.RestoreDatabase(restoreDialog.FileName, databaseOptions.DatabasePath))
+                var databaseManager = Program.ServiceProvider.GetService<DatabaseManager>();
+                if (databaseManager.RestoreDatabase(restoreDialog.FileName))
                 {
-                    Program.NewScope();
-                    var context = (TNBaseContext)Program.ServiceProvider.GetService<ITNBaseContext>();
-                    context.UpdateDatabase();
-                    Interaction.MsgBox("Database restore successful.");
+                    Interaction.MsgBox("Database restored successfully.");
                 }
                 else
                 {
@@ -240,6 +209,8 @@ namespace TNBase
 
         private void BtnFinished_Click(object sender, EventArgs e)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             // Show a load of forms automatically.!
             if ((Properties.Settings.Default.OnlyAutoPrintOnSat &&
                 DateTime.UtcNow.DayOfWeek.Equals(DayOfWeek.Saturday)) || !Properties.Settings.Default.OnlyAutoPrintOnSat)
@@ -330,6 +301,8 @@ namespace TNBase
 
         private void BtnScanIn_Click(object sender, EventArgs e)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             // Check if alterations have been completed.
             DialogResult result = MessageBox.Show("Have you completed all the alterations and additions from the pending tray?" + Environment.NewLine + Environment.NewLine + "If you still have alterations or additions press Cancel and scan in after.", ModuleGeneric.getAppShortName(), MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
@@ -516,6 +489,8 @@ namespace TNBase
 
         private void WalletsStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             var form = new FormPrintWalletStock();
             var stock = serviceLayer.GetPostListeners()
                 .Select(x => new StockItem
@@ -532,6 +507,8 @@ namespace TNBase
 
         private void MagazineWalletStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             var form = new FormPrintWalletStock();
             var stock = serviceLayer.GetPostListeners()
                 .Select(x => new StockItem
@@ -558,6 +535,8 @@ namespace TNBase
 
         private void ScanIn(WalletTypes walletType)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             var magazineWallets = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE)
                 .Where(x => x.Magazine && !x.OnlineOnly)
                 .Select(x => x.Wallet)
@@ -585,6 +564,8 @@ namespace TNBase
 
         private void ScanOut(WalletTypes walletType, IEnumerable<int> scanned = null)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             var listeners = serviceLayer.GetListenersByStatus(ListenerStates.ACTIVE);
             var toScan = listeners.Where(x => x.Magazine && !x.OnlineOnly && (scanned == null || !scanned.Contains(x.Wallet))).Select(x => x.Wallet);
             var stoppedListeners = serviceLayer.GetStoppedListeners().Select(x => x.Wallet);
@@ -630,8 +611,16 @@ namespace TNBase
             form.ShowDialog();
         }
 
+        private void updateDatabaseEncryptionKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormDatabaseEncryption();
+            form.ShowDialog();
+        }
+        
         private void dataExportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var serviceLayer = Program.ServiceProvider.GetRequiredService<IServiceLayer>();
+
             var dialog = new SaveFileDialog
             {
                 Filter = "CSV Text|*.csv",

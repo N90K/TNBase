@@ -10,13 +10,21 @@ namespace TNBase.Repository
 {
     public partial class TNBaseContext : DbContext, ITNBaseContext
     {
-        private readonly SqliteConnection connection;
-
         public TNBaseContext(string connectionString)
         {
-            connection = new SqliteConnection(connectionString);
-            connection.Open();
+            Connection = new SqliteConnection(connectionString);
+            Connection.Open();
         }
+
+        public TNBaseContext(SqliteConnection connection, bool isDatabaseEncrypted)
+        {
+            Connection = connection;
+            IsEncrypted = isDatabaseEncrypted;
+        }
+
+        public SqliteConnection Connection { get; }
+
+        public bool IsEncrypted { get; }
 
         public virtual DbSet<Collector> Collectors { get; set; }
         public virtual DbSet<InOutRecords> InOutRecords { get; set; }
@@ -27,14 +35,14 @@ namespace TNBase.Repository
 
         public void UpdateDatabase()
         {
-            new DatabaseUpdater<SqlMigration>(connection).Update();
+            new DatabaseUpdater<SqlMigration>(Connection).Update();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite(connection);
+                optionsBuilder.UseSqlite(Connection);
             }
 
             optionsBuilder.UseLazyLoadingProxies();

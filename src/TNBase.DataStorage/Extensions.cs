@@ -1,10 +1,8 @@
 ﻿using System;
+using TNBase.Infrastructure.Helpers;
 
 namespace TNBase.DataStorage
 {
-    /// <summary>
-    /// Some extension methods
-    /// </summary>
     public static class Extensions
     {
         /// <summary>
@@ -13,9 +11,10 @@ namespace TNBase.DataStorage
         /// <returns></returns>
         public static DateTime EnsureMinDate(this DateTime dateTime)
         {
-            if (dateTime < DBUtils.AppMinDate())
+            var minDate = DateTime.ParseExact("01/01/1900", DateHelpers.DEFAULT_DATE_FORMAT, null);
+            if (dateTime < minDate)
             {
-                return DBUtils.AppMinDate();
+                return minDate;
             }
             return dateTime;
         }
