@@ -53,14 +53,14 @@ namespace TNBase
 
                 g.DrawString(theListener.BirthdayText, reportFontSmallBold, Brushes.Black, 460, 240 + (70 * value));
 
-                var nextBirthday = theListener.NextBirthdayDate;
+                var nextBirthday = theListener.NextBirthdayDate(DateTime.Now);
                 if (nextBirthday.HasValue && nextBirthday.Value.Day != theListener.BirthdayDay)
                 {
                     g.DrawString($"(carried to {nextBirthday.Value.Day.WithSuffix()} {DateTimeFormatInfo.CurrentInfo.GetMonthName(nextBirthday.Value.Month)})",
                         reportFontSmall, Brushes.Black, 460, 240 + (70 * value) + 25);
                 }
 
-                string birthdayDayOfWeek = theListener.HasBirthday ? theListener.NextBirthdayDate.Value.ToString("dddd") : "N/A";
+                string birthdayDayOfWeek = theListener.HasBirthday ? nextBirthday.Value.ToString("dddd") : "N/A";
                 g.DrawString(birthdayDayOfWeek, reportFontSmallBold, Brushes.Black, 650, 240 + (70 * value));
 
                 string commaString = ", ";

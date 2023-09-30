@@ -72,10 +72,9 @@ namespace TNBase.DataStorage
                 !x.Status.Equals(ListenerStates.DELETED))
             .ToList();
 
-
             return list.Where(x =>
             {
-                var nextBirthdate = x.NextBirthdayDate;
+                var nextBirthdate = x.NextBirthdayDate(dateRange.from);
                 return nextBirthdate >= dateRange.from && nextBirthdate <= dateRange.to;
             }).ToList();
         }

@@ -45,26 +45,22 @@ namespace TNBase.Objects
 
         public string BirthdayText => HasBirthday ? $"{BirthdayDay.Value.WithSuffix()} {DateTimeFormatInfo.CurrentInfo.GetMonthName(BirthdayMonth.Value)}" : "N/A";
 
-        public DateTime? NextBirthdayDate
+        public DateTime? NextBirthdayDate(DateTime now)
         {
-            get
+            if (!HasBirthday)
             {
-                if (!HasBirthday)
-                {
-                    return null;
-                }
-
-                var now = DateTime.Now;
-                var isNextYear = BirthdayMonth.Value < now.Month || (BirthdayDay < now.Day && BirthdayMonth == now.Month);
-                var year = isNextYear ? now.Year + 1 : now.Year;
-
-                if (!DateTime.IsLeapYear(year) && BirthdayDay == 29 && BirthdayMonth == 2)
-                {
-                    return new DateTime(year, 3, 1); // move birthday forward by a day if not leap year
-                }
-
-                return new DateTime(year, BirthdayMonth.Value, BirthdayDay.Value);
+                return null;
             }
+
+            var isNextYear = BirthdayMonth.Value < now.Month || (BirthdayMonth == now.Month && BirthdayDay < now.Day);
+            var year = isNextYear ? now.Year + 1 : now.Year;
+
+            if (!DateTime.IsLeapYear(year) && BirthdayDay == 29 && BirthdayMonth == 2)
+            {
+                return new DateTime(year, 3, 1); // move birthday forward by a day if not leap year
+            }
+
+            return new DateTime(year, BirthdayMonth.Value, BirthdayDay.Value);
         }
 
         [XmlIgnore]

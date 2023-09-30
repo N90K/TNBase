@@ -230,7 +230,7 @@ namespace TNBase.DataStorage.Test
             Assert.AreEqual(0, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 4, 2), to = new DateTime(2023, 5, 6) }).Count);
 
             // returns paused but not deleted listener
-            Assert.AreEqual(1, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 5, 15), to = new DateTime(2024, 5, 6) }).Count);
+            Assert.AreEqual(2, serviceLayer.GetUpcomingBirthdays(new DateRange() { from = new DateTime(2023, 5, 15), to = new DateTime(2024, 5, 6) }).Count);
         }
 
         [TestMethod]
