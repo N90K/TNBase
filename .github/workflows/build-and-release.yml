@@ -2,19 +2,19 @@ name: Build and release TNBase Application
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
-    
+    branches: [master]
+
 env:
   Solution_Name: TNBase.sln
   Setup_Project: TNBase.Setup\TNBase.Setup.vdproj
   Configuration: Release
-      
+
 jobs:
   build:
-    runs-on: windows-2019    
-    
+    runs-on: windows-2019
+
     outputs:
       require_release: ${{ steps.release.outputs.require }}
       release_version: ${{ steps.release.outputs.version }}
@@ -22,24 +22,24 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Install .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
 
       - name: Execute unit tests
-        run: dotnet test -c $env:Configuration  
-          
-      - name: 'Get previous version tag'
+        run: dotnet test -c $env:Configuration
+
+      - name: "Get previous version tag"
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: v0.0.0
-          
+
       - name: Set release version
         id: release
         uses: azure/powershell@v1
@@ -69,20 +69,20 @@ jobs:
   release:
     needs: build
     if: needs.build.outputs.require_release == 'True'
-    runs-on: windows-2019 
+    runs-on: windows-2019
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
-        
+        uses: microsoft/setup-msbuild@v1.1
+
       - name: Restore the application
         run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-        
+
       - name: Apply version number
         run: |
           $project = Get-Content $env:Setup_Project
@@ -99,7 +99,7 @@ jobs:
           }
 
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+        uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
       - name: Create installation package
         run: devenv $env:Solution_Name /build $env:Configuration  /Project $env:Setup_Project
@@ -124,15 +124,15 @@ jobs:
         uses: actions/upload-artifact@v3
         if: github.ref != 'refs/heads/master'
         with:
-          name: '${{ steps.file.outputs.name }}'
-          path: 'TNBase.Setup/Release/${{ steps.file.outputs.name }}'
+          name: "${{ steps.file.outputs.name }}"
+          path: "TNBase.Setup/Release/${{ steps.file.outputs.name }}"
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/master'
         with:
-          tag_name: 'v${{ needs.build.outputs.release_version }}'
-          body: '${{ needs.build.outputs.release_notes }}'
+          tag_name: "v${{ needs.build.outputs.release_version }}"
+          body: "${{ needs.build.outputs.release_notes }}"
           files: |
             TNBase.Setup/Release/${{ steps.file.outputs.name }}
             Release Notes.txt
